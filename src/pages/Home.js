@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Pokedex from "pokedex-promise-v2";
+import Settings from "./Settings";
 import { useNavigate } from "react-router-dom";
 
 const P = new Pokedex();
@@ -13,13 +14,17 @@ function GenerationsGrid() {
   const [generationCount, setGenerationCount] = useState(0);
   // Tracks whether we have retrieved number of Pokemon gens yet.
   const [loading, setLoading] = useState(true);
+  // Settings.
+  const [settings, setSettings] = useState({
+    useLatestCries: false,
+    show: false,
+  });
 
   const navigate = useNavigate();
 
   useEffect(() => {
     P.getResource(["https://pokeapi.co/api/v2/generation"])
       .then((response) => {
-        console.log(response);
         setGenerationCount(response[0].count);
         setLoading(false);
       })
@@ -62,7 +67,10 @@ function GenerationsGrid() {
 
   // Handle "[ Start ]" button click
   const handleStart = () => {
-    navigate("/quiz", { state: { selectedGenerationIds, generationCount } });
+    let homeSettings = settings;
+    navigate("/quiz", {
+      state: { selectedGenerationIds, generationCount, homeSettings },
+    });
   };
 
   // Generate rows dynamically (3 buttons per row)
@@ -94,6 +102,7 @@ function GenerationsGrid() {
 
   return (
     <Container className="justify-content-center">
+      <Settings settings={settings} setSettings={setSettings} />
       {generateRows()}
       <Row className="justify-content-center mt-3">
         <Col xs={2} className="p-2">
