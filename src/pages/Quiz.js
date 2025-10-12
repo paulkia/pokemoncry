@@ -1,21 +1,28 @@
 import "../App.css";
 import Settings from "./Settings";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useReducer, useEffect } from "react";
+import React, {
+  useState,
+  useReducer,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { useLocation } from "react-router-dom";
 import Pokedex from "pokedex-promise-v2";
 import {
   FormControl,
-  Modal,
   OverlayTrigger,
   Tooltip,
   ProgressBar,
-  Button,
-  Form,
   InputGroup,
 } from "react-bootstrap";
 import { Trie } from "../library/trie";
-import { shuffle } from "../library/util";
+import { shuffle, GameModes } from "../library/util";
+import { playAudioWithViz, stopAudioViz } from "../library/audioViz";
+// NEW: import feedback sounds
+import correctSound from "../audio/correct.mp3";
+import incorrectSound from "../audio/incorrect.mp3";
 
 export const ACTION_TYPES = {
   INITIAL_SETUP: "INITIAL_SETUP",
@@ -24,7 +31,10 @@ export const ACTION_TYPES = {
   ADD_CORRECT: "ADD_CORRECT",
   ADD_INCORRECT: "ADD_INCORRECT",
   DISABLE_INPUT: "DISABLE_INPUT",
+  END_GAME: "END_GAME",
 };
+
+const PAUSE_TIME = 1000; // ms
 
 const P = new Pokedex();
 
@@ -38,7 +48,7 @@ const initialState = {
   // List of pokemon the user will guess.
   pokemonInGameOrder: [],
   // Index of pokemon the user is currently guessing.
-  pokeNum: 0,
+  pokeNum: 1,
   // Set of relevant pokemon names. Time complexity optimization.
   pokeTrie: new Trie(),
   // List of correctly guessed pokemon.
@@ -49,15 +59,21 @@ const initialState = {
 
 function quizReducer(state, action) {
   switch (action.type) {
-    case ACTION_TYPES.INITIAL_SETUP:
-      state.pokeTrie.insert(action.allPokemonNames);
+    case ACTION_TYPES.INITIAL_SETUP: {
+      // Create a new Trie to avoid mutating previous state
+      const newTrie = new Trie();
+      if (Array.isArray(action.allPokemonNames)) {
+        newTrie.insert(action.allPokemonNames);
+      }
       return {
         ...state,
         inputDisabled: false,
         relevantPokemon: action.relevantPokemon,
         pokemonInGameOrder: action.pokemonInGameOrder,
+        pokeTrie: newTrie,
         pokeNum: 1,
       };
+    }
     case ACTION_TYPES.UPDATE_INPUT:
       return { ...state, input: action.input };
     case ACTION_TYPES.NEXT_POKEMON:
@@ -80,32 +96,89 @@ function quizReducer(state, action) {
   }
 }
 
+function chooseCry(pokemonData, useLatest) {
+  if (!pokemonData) return null;
+  if (!useLatest && pokemonData.legacyCry) return pokemonData.legacyCry;
+  return pokemonData.latestCry || pokemonData.legacyCry || null;
+}
+
 function Quiz() {
   const location = useLocation();
-  const { selectedGenerationIds, generationCount, homeSettings } =
-    location.state || {};
+  const {
+    selectedGenerationIds,
+    generationCount,
+    homeSettings,
+    practiceType,
+    numberOfPokemon,
+    mode,
+  } = location.state || {};
   const [state, dispatch] = useReducer(quizReducer, initialState);
-  const [settings, setSettings] = useState(homeSettings);
+  const [settings, setSettings] = useState(homeSettings || {});
+  // Clock state: mm:ss:hh (hundredths). Start at 00:00:00 until game begins.
+  const [clock, setClock] = useState("00:00:00");
+  // Ref to store timer start (ms since epoch). Set when initial setup completes.
+  const startRef = useRef(null);
+  // Ref to the input DOM node so we can trigger a shake animation on wrong guesses.
+  const inputRef = useRef(null);
+  const lastPlayRef = useRef(0); // timestamp of last played cry
+  const canvasRef = useRef(null);
 
-  const useLatestCries = settings.useLatestCries;
+  // NEW: reusable Audio refs for correct/incorrect feedback
+  const correctAudioRef = useRef(
+    typeof Audio !== "undefined" ? new Audio(correctSound) : null
+  );
+  const incorrectAudioRef = useRef(
+    typeof Audio !== "undefined" ? new Audio(incorrectSound) : null
+  );
+
+  // Use audioViz module to play + visualize. Wrapper ensures canvasRef is passed.
+  const playAudioViz = useCallback((url) => {
+    playAudioWithViz(url, canvasRef.current);
+  }, []);
+
+  // Inject shake CSS once
+  useEffect(() => {
+    const styleId = "quiz-shake-style";
+    if (document.getElementById(styleId)) return;
+    const style = document.createElement("style");
+    style.id = styleId;
+    style.innerHTML = `
+      @keyframes shake {
+        0% { transform: translateX(0); }
+        15% { transform: translateX(-8px); }
+        30% { transform: translateX(8px); }
+        45% { transform: translateX(-6px); }
+        60% { transform: translateX(6px); }
+        75% { transform: translateX(-3px); }
+        100% { transform: translateX(0); }
+      }
+      .shake {
+        animation: shake 600ms ease;
+      }
+    `;
+    document.head.appendChild(style);
+  }, []);
+
+  // Build pokemon data and initialize the game.
   useEffect(() => {
     const fetchPokemonData = async () => {
       // Gets all generations.
-      const generationsFromPokedex = await P.getResource(
-        Array.from({ length: generationCount }, (_, index) => index + 1).map(
-          (gen) => {
-            return "https://pokeapi.co/api/v2/generation/" + gen;
-          }
-        )
+      const genIds = Array.from(
+        { length: generationCount },
+        (_, index) => index + 1
       );
+      const genUrls = genIds.map(
+        (gen) => "https://pokeapi.co/api/v2/generation/" + gen
+      );
+      const generationsFromPokedex = await P.getResource(genUrls);
       let pokemonUrls = [];
       let pokemonNamesFromApi = new Set();
       for (const generation of generationsFromPokedex) {
-        if (selectedGenerationIds.includes(generation.id)) {
+        if (selectedGenerationIds?.includes(generation.id)) {
           pokemonUrls.push(
-            ...generation.pokemon_species.map((pokemon) => {
-              return pokemon.url.replace("pokemon-species", "pokemon");
-            })
+            ...generation.pokemon_species.map((pokemon) =>
+              pokemon.url.replace("pokemon-species", "pokemon")
+            )
           );
         }
         for (const pokemon of generation.pokemon_species) {
@@ -124,8 +197,8 @@ function Quiz() {
             ? pokemon.sprites.other.showdown.front_default
             : pokemon.sprites.front_default;
         pokemonListFromApi[pokemon.species.name] = {
-          legacyCry: pokemon.cries.legacy,
-          latestCry: pokemon.cries.latest,
+          legacyCry: pokemon.cries?.legacy ?? null,
+          latestCry: pokemon.cries?.latest ?? null,
           sprite: (
             <img
               src={spriteUrl}
@@ -135,59 +208,42 @@ function Quiz() {
           ),
         };
       }
-      let pokemonNamesFromMap = Array.from(Object.keys(pokemonListFromApi));
+      let pokemonNamesFromMap = Object.keys(pokemonListFromApi);
       shuffle(pokemonNamesFromMap);
+
+      // Apply number-of-pokemon limit for Practice mode if provided
+      if (
+        mode === GameModes.PRACTICE &&
+        numberOfPokemon &&
+        numberOfPokemon !== "all"
+      ) {
+        const count = Math.min(
+          Number(numberOfPokemon),
+          pokemonNamesFromMap.length
+        );
+        pokemonNamesFromMap = pokemonNamesFromMap.slice(0, count);
+      }
+      // Play first cry if available (with visualization)
       if (pokemonNamesFromMap.length > 0) {
         const firstPokemon = pokemonNamesFromMap[0];
-        if (
-          !useLatestCries &&
-          pokemonListFromApi[firstPokemon].legacyCry != null
-        ) {
-          new Audio(pokemonListFromApi[firstPokemon].legacyCry).play();
-        } else {
-          new Audio(pokemonListFromApi[firstPokemon].latestCry).play();
-        }
+        const cryUrl = chooseCry(
+          pokemonListFromApi[firstPokemon],
+          settings?.useLatestCries ?? false
+        );
+        playAudioViz(cryUrl, canvasRef.current);
       }
       dispatch({
         type: ACTION_TYPES.INITIAL_SETUP,
         relevantPokemon: pokemonListFromApi,
-        allPokemonNames: pokemonNamesFromApi,
+        allPokemonNames: Array.from(pokemonNamesFromApi),
         pokemonInGameOrder: pokemonNamesFromMap,
         pokeNum: 1,
       });
+      // Start the elapsed timer when the game is initialized.
+      startRef.current = Date.now();
     };
     fetchPokemonData();
   }, [selectedGenerationIds, generationCount]);
-
-  useEffect(() => {
-    const handleSpecialCommands = (e) => {
-      if (state.inputDisabled || settings.show) {
-        return;
-      }
-      switch (e.key) {
-        case "1":
-          // Replay the sound and do nothing else.
-          const currPokemon = state.pokemonInGameOrder[state.pokeNum - 1];
-          if (
-            !settings.useLatestCries &&
-            state.relevantPokemon[currPokemon].legacyCry != null
-          ) {
-            new Audio(state.relevantPokemon[currPokemon].legacyCry).play();
-          } else {
-            new Audio(state.relevantPokemon[currPokemon].latestCry).play();
-          }
-          return;
-        default:
-          return;
-      }
-    };
-    window.addEventListener("keydown", handleSpecialCommands);
-
-    // Clean up on unmount
-    return () => {
-      window.removeEventListener("keydown", handleSpecialCommands);
-    };
-  }, [state, settings]);
 
   const getSuggestionRemainder = () => {
     let trieResult = state.pokeTrie.getWord(state.input);
@@ -197,78 +253,216 @@ function Quiz() {
     return "";
   };
 
-  const handleSpecialKey = (e) => {
-    // Ignore non-special keys.
-    if (e.key !== "Enter" && e.key !== "Tab") {
-      return;
+  const playCryForPokemon = useCallback(
+    (pokemonName) => {
+      if (!pokemonName) return;
+      const now = Date.now();
+      // If an audio was played within the last pause time, do not replay.
+      // If cry sound is triggered (with '1') before next pokemon timeout, disables unnecessary replay.
+      if (now - lastPlayRef.current < PAUSE_TIME) return;
+      lastPlayRef.current = now;
+
+      const cryUrl = chooseCry(
+        /*pokemonData=*/ state.relevantPokemon[pokemonName],
+        /*useLatest=*/ settings?.useLatestCries ?? false
+      );
+      playAudioViz(cryUrl);
+    },
+    [state.relevantPokemon, settings]
+  );
+
+  // Unified handler for both window-level key events and input onKeyDown.
+  const handleKey = useCallback(
+    (e) => {
+      if (state.inputDisabled) return;
+      const currPokemon = state.pokemonInGameOrder[state.pokeNum - 1];
+      if (!currPokemon) return;
+      const suggestion = getSuggestionRemainder();
+      const input = `${state.input}${suggestion}`;
+      switch (e.key) {
+        // Replay sound on '1'
+        case "1":
+          playCryForPokemon(currPokemon);
+          return;
+        case "Tab": {
+          e.preventDefault();
+          dispatch({ type: ACTION_TYPES.UPDATE_INPUT, input });
+          return;
+        }
+        case "Enter": {
+          e.preventDefault();
+          if (!state.pokeTrie.words.has(input)) {
+            return;
+          }
+          if (input === currPokemon) {
+            dispatch({ type: ACTION_TYPES.ADD_CORRECT, pokemon: currPokemon });
+            // Play correct feedback sound
+            if (correctAudioRef.current) {
+              try {
+                correctAudioRef.current.currentTime = 0;
+                void correctAudioRef.current.play();
+              } catch (err) {
+                /* ignore playback errors */
+              }
+            }
+          } else {
+            dispatch({
+              type: ACTION_TYPES.ADD_INCORRECT,
+              pokemon: currPokemon,
+            });
+            // Play incorrect feedback sound
+            if (incorrectAudioRef.current) {
+              try {
+                incorrectAudioRef.current.currentTime = 0;
+                void incorrectAudioRef.current.play();
+              } catch (err) {
+                /* ignore playback errors */
+              }
+            }
+            // Trigger shake animation on the input when incorrect
+            if (inputRef.current) {
+              // restart animation
+              inputRef.current.classList.remove("shake");
+              // force reflow to ensure restart
+              // eslint-disable-next-line no-unused-expressions
+              inputRef.current.offsetWidth;
+              inputRef.current.classList.add("shake");
+              // cleanup after animation (safety)
+              setTimeout(
+                () =>
+                  inputRef.current &&
+                  inputRef.current.classList.remove("shake"),
+                700
+              );
+            }
+          }
+          if (state.pokemonInGameOrder.length > state.pokeNum) {
+            dispatch({ type: ACTION_TYPES.NEXT_POKEMON });
+            // Allow users to see the result before hearing the next pokemon.
+            setTimeout(
+              () => {
+                const nextPokemon = state.pokemonInGameOrder[state.pokeNum];
+                playCryForPokemon(nextPokemon);
+              },
+              settings?.fastMode ? 0 : PAUSE_TIME
+            );
+          } else {
+            dispatch({ type: ACTION_TYPES.END_GAME });
+          }
+        }
+        default:
+          break;
+      }
+    },
+    [state, settings]
+  );
+
+  // Listen to key input
+  useEffect(() => {
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [handleKey]);
+
+  // Clean up audio visualization on unmount.
+  useEffect(() => {
+    return () => {
+      stopAudioViz();
+      // Pause any feedback sounds on unmount
+      if (correctAudioRef.current) {
+        try {
+          correctAudioRef.current.pause();
+        } catch (e) {}
+      }
+      if (incorrectAudioRef.current) {
+        try {
+          incorrectAudioRef.current.pause();
+        } catch (e) {}
+      }
+    };
+  }, []);
+
+  // Start a high-resolution timer when the game begins.
+  useEffect(() => {
+    let timerId = null;
+
+    // Start the interval only if the game has started (startRef set) and input is enabled.
+    if (startRef.current && !state.inputDisabled) {
+      const pad2 = (n) => n.toString().padStart(2, "0");
+
+      const updateClock = () => {
+        const elapsed = Date.now() - startRef.current;
+        const hours = Math.floor(elapsed / 3600000);
+        const minutes = Math.floor((elapsed % 3600000) / 60000);
+        const seconds = Math.floor((elapsed % 60000) / 1000);
+        const hundredths = Math.floor((elapsed % 1000) / 10);
+        const timeStr =
+          (hours > 0 ? `${pad2(hours)}:` : "") +
+          `${pad2(minutes)}:${pad2(seconds)}:${pad2(hundredths)}`;
+        setClock(timeStr);
+      };
+
+      // Immediately update once then start frequent updates for hundredths precision.
+      updateClock();
+      timerId = setInterval(updateClock, 10); // 10ms gives hundredths resolution in display
     }
-    e.preventDefault(); // prevent form submit or page reload
-    let input = `${state.input}${getSuggestionRemainder()}`;
-    dispatch({
-      type: ACTION_TYPES.UPDATE_INPUT,
-      input: `${state.input}${getSuggestionRemainder()}`,
-    });
-    if (e.key !== "Enter" || !state.pokeTrie.words.has(input)) {
-      return;
-    }
-    const currPokemon = state.pokemonInGameOrder[state.pokeNum - 1];
-    if (input === currPokemon) {
-      dispatch({ type: ACTION_TYPES.ADD_CORRECT, pokemon: currPokemon });
-    } else {
-      dispatch({ type: ACTION_TYPES.ADD_INCORRECT, pokemon: currPokemon });
-    }
-    if (state.pokemonInGameOrder.length > state.pokeNum) {
-      dispatch({ type: ACTION_TYPES.NEXT_POKEMON });
-      setTimeout(() => {
-        const nextPokemon = state.pokemonInGameOrder[state.pokeNum];
-        new Audio(state.relevantPokemon[nextPokemon].cry).play();
-      }, 500);
-    } else {
-      dispatch({ type: ACTION_TYPES.END_GAME });
-    }
-  };
+
+    return () => {
+      if (timerId) {
+        clearInterval(timerId);
+      }
+    };
+  }, [state.inputDisabled]);
+
+  const progress =
+    (state.pokeNum / Math.max(1, state.pokemonInGameOrder.length)) * 100;
+
+  const label =
+    (state.pokeNum - 1) / Math.max(1, state.pokemonInGameOrder.length) < 0.15
+      ? `${Math.round(
+          (state.pokeNum / Math.max(1, state.pokemonInGameOrder.length)) * 100
+        )}%`
+      : state.pokeNum > Math.max(1, state.pokemonInGameOrder.length)
+      ? `Done!`
+      : `${state.pokeNum - 1}/${state.pokemonInGameOrder.length}`;
 
   return (
     <div className="App p-5">
       <h1>Who's that Pokemon?</h1>
+      <br />
       <p>Repeat the sound by pressing '1'.</p>
+      <div
+        style={{
+          textAlign: "center",
+          fontFamily: "monospace",
+          fontSize: "1rem",
+        }}
+      >
+        Score: {clock}
+      </div>
+      {/* Waveform canvas */}
+      <div style={{ width: "50%", margin: "8px auto" }}>
+        <canvas
+          ref={canvasRef}
+          style={{ width: "50%", height: "64px", background: "transparent" }}
+        />
+      </div>
       {/* Container for relative positioning */}
       <div style={{ position: "relative", width: "25%", margin: "0 auto" }}>
         {/* Top-right icon */}
         <Settings settings={settings} setSettings={setSettings} />
-        <ProgressBar
-          animated
-          now={
-            (state.pokeNum / Math.max(1, state.pokemonInGameOrder.length)) * 100
-          }
-          label={
-            (state.pokeNum - 1) / Math.max(1, state.pokemonInGameOrder.length) <
-            0.15
-              ? `${Math.round(
-                  (state.pokeNum /
-                    Math.max(1, state.pokemonInGameOrder.length)) *
-                    100
-                )}%`
-              : state.pokeNum > Math.max(1, state.pokemonInGameOrder.length)
-              ? `Done!`
-              : `${state.pokeNum - 1}/${state.pokemonInGameOrder.length}`
-          }
-        />
+        <ProgressBar animated now={progress} label={label} />
         <br />
         <InputGroup>
           <OverlayTrigger
             placement="top"
             overlay={
               <Tooltip>
-                <div className="App">
-                  Use dashes instead of spaces. E.g. mime-jr
-                </div>
+                <div className="App">Use dashes. E.g. nidoran-f</div>
               </Tooltip>
             }
           >
             <InputGroup.Text id="basic-addon1">?</InputGroup.Text>
           </OverlayTrigger>
-
           <span
             style={{
               position: "absolute",
@@ -282,13 +476,13 @@ function Quiz() {
               fontSize: "1rem",
             }}
           >
-            {state.input}
+            {getSuggestionRemainder().length === 0 ? "" : state.input}
             <span style={{ opacity: 0.5 }}>{getSuggestionRemainder()}</span>
           </span>
           {/* The actual input, with a transparent background */}
           <FormControl
+            ref={inputRef}
             type="text"
-            // placeholder={state.pokemonInGameOrder[state.pokeNum - 1]}
             disabled={state.inputDisabled}
             value={state.input}
             style={{
@@ -305,16 +499,19 @@ function Quiz() {
                   .replace(/[^a-z-]/g, ""),
               })
             }
-            onKeyDown={handleSpecialKey}
           />
         </InputGroup>
       </div>
       <br />
-      <p>[Correct]</p>
-      <p>{state.correct.map((name) => state.relevantPokemon[name].sprite)}</p>
+      <p>
+        {state.correct.length > 0 ? "[Correct]" : ""}
+        {state.correct.map((name) => state.relevantPokemon[name].sprite)}
+      </p>
 
-      <p>[Incorrect]</p>
-      <p>{state.incorrect.map((name) => state.relevantPokemon[name].sprite)}</p>
+      <p>
+        {state.incorrect.length > 0 ? "[Incorrect]" : ""}
+        {state.incorrect.map((name) => state.relevantPokemon[name].sprite)}
+      </p>
       {/* Have an invisible set of rendered images at the end. This pre-loads the gifs. */}
     </div>
   );

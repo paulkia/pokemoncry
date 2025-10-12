@@ -72,6 +72,35 @@ function Settings({ settings, setSettings }) {
                 })
               }
             />
+            <Form.Check
+              type="checkbox"
+              id="fast-mode"
+              label={
+                <>
+                  Fast Mode{" "}
+                  <OverlayTrigger
+                    placement="right"
+                    overlay={
+                      <Tooltip id="tooltip-legacy">
+                        Shortens time delays and accelerates transitions.
+                      </Tooltip>
+                    }
+                  >
+                    <i
+                      className="bi bi-info-circle"
+                      style={{ cursor: "pointer", marginLeft: "4px" }}
+                    ></i>
+                  </OverlayTrigger>
+                </>
+              }
+              checked={settings.fastMode}
+              onChange={(e) =>
+                setSettings({
+                  ...settings,
+                  fastMode: !settings.fastMode,
+                })
+              }
+            />
           </Form>
         </Modal.Body>
         <Modal.Footer>
