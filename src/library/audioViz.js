@@ -1,13 +1,13 @@
-// Module that manages audio playback + WebAudio Analyser visualization on a canvas.
+import { useCallback, useRef } from "react";
+import { Row, Col } from "react-bootstrap";
 
-let audioEl = null;
 let audioCtx = null;
 let analyser = null;
 let sourceNode = null;
 let dataArray = null;
 let animationId = null;
 
-export function stopAudioViz() {
+export function stopAudioViz(audioEl) {
   if (animationId) {
     cancelAnimationFrame(animationId);
     animationId = null;
@@ -40,14 +40,13 @@ export function stopAudioViz() {
   dataArray = null;
 }
 
-export function playAudioWithViz(url, canvas) {
+export function playAudioWithViz(url, audioEl, canvas) {
   if (!url || !canvas) return;
   try {
-    // stop previous
-    stopAudioViz();
+    // stop previous sound before playing new one
+    stopAudioViz(audioEl);
 
     // create audio element
-    audioEl = document.createElement("audio");
     audioEl.crossOrigin = "anonymous";
     audioEl.src = url;
     audioEl.autoplay = true;
@@ -118,4 +117,36 @@ export function playAudioWithViz(url, canvas) {
       a.play().catch(() => {});
     } catch {}
   }
+}
+
+export function playCryForPokemon(
+  pokemonData,
+  vizInitializedRef,
+  audioRef,
+  canvasRef,
+  settings
+) {
+  if (!pokemonData) return;
+
+  let cryUrl = pokemonData.latestCry || pokemonData.legacyCry || null;
+
+  if (settings?.preferLegacyCries) {
+    cryUrl = pokemonData.legacyCry || pokemonData.latestCry || null;
+  }
+
+  const audio = audioRef.current;
+
+  // Ensure only one audio at a time: pause and rewind before every play.
+  try {
+    audio.pause();
+  } catch (_) {}
+  audio.currentTime = 0;
+
+  if (!vizInitializedRef.current) {
+    playAudioWithViz(cryUrl, audioRef.current, canvasRef.current);
+    vizInitializedRef.current = true;
+    return;
+  }
+  audio.src = cryUrl;
+  audio.play().catch(() => {});
 }

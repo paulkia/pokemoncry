@@ -1,5 +1,5 @@
 import "../App.css";
-import Settings from "./Settings";
+import Settings from "../components/Settings";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, {
   useState,
@@ -19,7 +19,7 @@ import {
 } from "react-bootstrap";
 import { Trie } from "../library/trie";
 import { shuffle, GameModes } from "../library/util";
-import { playAudioWithViz, stopAudioViz } from "../library/audioViz";
+import { playAudioWithViz, stopAudioViz } from "../library/AudioViz";
 // NEW: import feedback sounds
 import correctSound from "../audio/correct.mp3";
 import incorrectSound from "../audio/incorrect.mp3";
@@ -31,12 +31,11 @@ export const ACTION_TYPES = {
   ADD_CORRECT: "ADD_CORRECT",
   ADD_INCORRECT: "ADD_INCORRECT",
   DISABLE_INPUT: "DISABLE_INPUT",
+  ENABLE_INPUT: "ENABLE_INPUT",
   END_GAME: "END_GAME",
 };
 
 const PAUSE_TIME = 1000; // ms
-
-const P = new Pokedex();
 
 const initialState = {
   // User input.
@@ -77,13 +76,20 @@ function quizReducer(state, action) {
     case ACTION_TYPES.UPDATE_INPUT:
       return { ...state, input: action.input };
     case ACTION_TYPES.NEXT_POKEMON:
-      return { ...state, pokeNum: state.pokeNum + 1, input: "" };
+      return {
+        ...state,
+        inputDisabled: true,
+        pokeNum: state.pokeNum + 1,
+        input: "",
+      };
     case ACTION_TYPES.ADD_CORRECT:
       return { ...state, correct: [...state.correct, action.pokemon] };
     case ACTION_TYPES.ADD_INCORRECT:
       return { ...state, incorrect: [...state.incorrect, action.pokemon] };
     case ACTION_TYPES.DISABLE_INPUT:
       return { ...state, inputDisabled: true };
+    case ACTION_TYPES.ENABLE_INPUT:
+      return { ...state, inputDisabled: false };
     case ACTION_TYPES.END_GAME:
       return {
         ...state,
@@ -102,15 +108,14 @@ function chooseCry(pokemonData, useLatest) {
   return pokemonData.latestCry || pokemonData.legacyCry || null;
 }
 
-function Quiz() {
+function Challenge() {
   const location = useLocation();
   const {
     selectedGenerationIds,
     generationCount,
     homeSettings,
-    practiceType,
-    numberOfPokemon,
-    mode,
+    relevantPokemon, // Data of only the relevant Pokemon
+    allNames,
   } = location.state || {};
   const [state, dispatch] = useReducer(quizReducer, initialState);
   const [settings, setSettings] = useState(homeSettings || {});
@@ -123,7 +128,7 @@ function Quiz() {
   const lastPlayRef = useRef(0); // timestamp of last played cry
   const canvasRef = useRef(null);
 
-  // NEW: reusable Audio refs for correct/incorrect feedback
+  // Reusable Audio refs for correct/incorrect feedback
   const correctAudioRef = useRef(
     typeof Audio !== "undefined" ? new Audio(correctSound) : null
   );
@@ -161,89 +166,35 @@ function Quiz() {
 
   // Build pokemon data and initialize the game.
   useEffect(() => {
-    const fetchPokemonData = async () => {
-      // Gets all generations.
-      const genIds = Array.from(
-        { length: generationCount },
-        (_, index) => index + 1
-      );
-      const genUrls = genIds.map(
-        (gen) => "https://pokeapi.co/api/v2/generation/" + gen
-      );
-      const generationsFromPokedex = await P.getResource(genUrls);
-      let pokemonUrls = [];
-      let pokemonNamesFromApi = new Set();
-      for (const generation of generationsFromPokedex) {
-        if (selectedGenerationIds?.includes(generation.id)) {
-          pokemonUrls.push(
-            ...generation.pokemon_species.map((pokemon) =>
-              pokemon.url.replace("pokemon-species", "pokemon")
-            )
-          );
-        }
-        for (const pokemon of generation.pokemon_species) {
-          pokemonNamesFromApi.add(pokemon.name);
-        }
-      }
-      const pokemonFromPokedex = await P.getResource(pokemonUrls);
-      let pokemonListFromApi = {};
-      for (const pokemon of pokemonFromPokedex) {
-        const spriteUrl =
-          pokemon.sprites.versions["generation-v"]["black-white"].animated
-            .front_default !== null
-            ? pokemon.sprites.versions["generation-v"]["black-white"].animated
-                .front_default
-            : pokemon.sprites.other.showdown.front_default !== null
-            ? pokemon.sprites.other.showdown.front_default
-            : pokemon.sprites.front_default;
-        pokemonListFromApi[pokemon.species.name] = {
-          legacyCry: pokemon.cries?.legacy ?? null,
-          latestCry: pokemon.cries?.latest ?? null,
-          sprite: (
-            <img
-              src={spriteUrl}
-              alt={`${pokemon.species.name} sprite`}
-              style={{ width: "50px", height: "50px", objectFit: "contain" }}
-            />
-          ),
-        };
-      }
-      let pokemonNamesFromMap = Object.keys(pokemonListFromApi);
-      shuffle(pokemonNamesFromMap);
+    // Prefer preloaded data supplied via location.state
+    const preloaded = location.state?.preloadedPokemon;
+    const preloadedOrder = Object.keys(relevantPokemon || {});
 
-      // Apply number-of-pokemon limit for Practice mode if provided
-      if (
-        mode === GameModes.PRACTICE &&
-        numberOfPokemon &&
-        numberOfPokemon !== "all"
-      ) {
-        const count = Math.min(
-          Number(numberOfPokemon),
-          pokemonNamesFromMap.length
-        );
-        pokemonNamesFromMap = pokemonNamesFromMap.slice(0, count);
-      }
-      // Play first cry if available (with visualization)
-      if (pokemonNamesFromMap.length > 0) {
-        const firstPokemon = pokemonNamesFromMap[0];
-        const cryUrl = chooseCry(
-          pokemonListFromApi[firstPokemon],
-          settings?.useLatestCries ?? false
-        );
-        playAudioViz(cryUrl, canvasRef.current);
-      }
-      dispatch({
-        type: ACTION_TYPES.INITIAL_SETUP,
-        relevantPokemon: pokemonListFromApi,
-        allPokemonNames: Array.from(pokemonNamesFromApi),
-        pokemonInGameOrder: pokemonNamesFromMap,
-        pokeNum: 1,
-      });
-      // Start the elapsed timer when the game is initialized.
-      startRef.current = Date.now();
-    };
-    fetchPokemonData();
-  }, [selectedGenerationIds, generationCount]);
+    // Play first cry if available (with visualization)
+    if (preloadedOrder.length > 0) {
+      const firstPokemon = preloadedOrder[0];
+      const cryUrl = chooseCry(
+        relevantPokemon[firstPokemon],
+        settings?.useLatestCries ?? false
+      );
+      if (cryUrl) playAudioViz(cryUrl, canvasRef.current);
+    }
+    dispatch({
+      type: ACTION_TYPES.INITIAL_SETUP,
+      relevantPokemon: relevantPokemon,
+      allPokemonNames: allNames,
+      pokemonInGameOrder: preloadedOrder,
+      pokeNum: 1,
+    });
+    // Start the elapsed timer when the game is initialized.
+    startRef.current = Date.now();
+  }, [
+    selectedGenerationIds,
+    generationCount,
+    location.state,
+    settings,
+    playAudioViz,
+  ]);
 
   const getSuggestionRemainder = () => {
     let trieResult = state.pokeTrie.getWord(state.input);
@@ -339,13 +290,11 @@ function Quiz() {
           if (state.pokemonInGameOrder.length > state.pokeNum) {
             dispatch({ type: ACTION_TYPES.NEXT_POKEMON });
             // Allow users to see the result before hearing the next pokemon.
-            setTimeout(
-              () => {
-                const nextPokemon = state.pokemonInGameOrder[state.pokeNum];
-                playCryForPokemon(nextPokemon);
-              },
-              settings?.fastMode ? 0 : PAUSE_TIME
-            );
+            setTimeout(() => {
+              const nextPokemon = state.pokemonInGameOrder[state.pokeNum];
+              playCryForPokemon(nextPokemon);
+              dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
+            }, PAUSE_TIME);
           } else {
             dispatch({ type: ACTION_TYPES.END_GAME });
           }
@@ -412,6 +361,8 @@ function Quiz() {
       }
     };
   }, [state.inputDisabled]);
+
+  inputRef.current && inputRef.current.focus();
 
   const progress =
     (state.pokeNum / Math.max(1, state.pokemonInGameOrder.length)) * 100;
@@ -505,16 +456,40 @@ function Quiz() {
       <br />
       <p>
         {state.correct.length > 0 ? "[Correct]" : ""}
-        {state.correct.map((name) => state.relevantPokemon[name].sprite)}
+        {state.correct.map((name) => {
+          const s = state.relevantPokemon[name]?.sprite;
+          return typeof s === "string" ? (
+            <img
+              key={name}
+              src={s}
+              alt={`${name} sprite`}
+              style={{ width: "50px", height: "50px", objectFit: "contain" }}
+            />
+          ) : (
+            s
+          );
+        })}
       </p>
 
       <p>
         {state.incorrect.length > 0 ? "[Incorrect]" : ""}
-        {state.incorrect.map((name) => state.relevantPokemon[name].sprite)}
+        {state.incorrect.map((name) => {
+          const s = state.relevantPokemon[name]?.sprite;
+          return typeof s === "string" ? (
+            <img
+              key={name}
+              src={s}
+              alt={`${name} sprite`}
+              style={{ width: "50px", height: "50px", objectFit: "contain" }}
+            />
+          ) : (
+            s
+          );
+        })}
       </p>
       {/* Have an invisible set of rendered images at the end. This pre-loads the gifs. */}
     </div>
   );
 }
 
-export default Quiz;
+export default Challenge;

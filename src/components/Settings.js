@@ -1,30 +1,15 @@
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useReducer, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import Pokedex from "pokedex-promise-v2";
-import {
-  FormControl,
-  Modal,
-  OverlayTrigger,
-  Tooltip,
-  ProgressBar,
-  Button,
-  Form,
-  InputGroup,
-} from "react-bootstrap";
-import { Trie } from "../library/trie";
-import { shuffle } from "../library/util";
+import { Modal, OverlayTrigger, Tooltip, Button, Form } from "react-bootstrap";
 
 function Settings({ settings, setSettings }) {
-  console.log("settings.show: ", settings);
   return (
     <span>
       <div
         style={{
           position: "absolute",
-          top: -100,
-          right: -200,
+          top: 100,
+          right: 100,
           zIndex: 2, // ensure it appears above everything else
           cursor: "pointer",
         }}
@@ -47,13 +32,13 @@ function Settings({ settings, setSettings }) {
               id="legacy-cries"
               label={
                 <>
-                  Modern cries only{" "}
+                  Prefer legacy cries{" "}
                   <OverlayTrigger
                     placement="right"
                     overlay={
                       <Tooltip id="tooltip-legacy">
-                        If disabled, plays older-style Pokémon cries instead of
-                        modern versions for early-gen Pokémon such as Pikachu.
+                        If enabled, plays original Pokémon game cries for
+                        early-gen Pokémon such as Pikachu.
                       </Tooltip>
                     }
                   >
@@ -64,25 +49,26 @@ function Settings({ settings, setSettings }) {
                   </OverlayTrigger>
                 </>
               }
-              checked={settings.useLatestCries}
+              checked={settings.preferLegacyCries}
               onChange={(e) =>
                 setSettings({
                   ...settings,
-                  useLatestCries: !settings.useLatestCries,
+                  preferLegacyCries: !settings.preferLegacyCries,
                 })
               }
             />
             <Form.Check
               type="checkbox"
-              id="fast-mode"
+              id="disable-animations"
               label={
                 <>
-                  Fast Mode{" "}
+                  Disable animations{" "}
                   <OverlayTrigger
                     placement="right"
                     overlay={
                       <Tooltip id="tooltip-legacy">
-                        Shortens time delays and accelerates transitions.
+                        If enabled, uses static sprites instead of gifs.
+                        Automatically kicks in if many Pokemon are on-screen.
                       </Tooltip>
                     }
                   >
@@ -93,11 +79,11 @@ function Settings({ settings, setSettings }) {
                   </OverlayTrigger>
                 </>
               }
-              checked={settings.fastMode}
+              checked={settings.disableAnimations}
               onChange={(e) =>
                 setSettings({
                   ...settings,
-                  fastMode: !settings.fastMode,
+                  disableAnimations: !settings.disableAnimations,
                 })
               }
             />
