@@ -16,6 +16,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import correctSound from "../../audio/correct.mp3";
 import incorrectSound from "../../audio/incorrect.mp3";
 
+import AppHeader from "../../components/AppHeader";
 import AudioDisplay from "../../components/AudioDisplay";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";
@@ -70,6 +71,7 @@ function MultipleChoicePractice() {
           canvasRef,
           settings
         );
+        setShowViz(true);
       }, 500);
     }
   }, [pokeNum]);
@@ -77,12 +79,13 @@ function MultipleChoicePractice() {
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback(
     (e) => {
+      e.preventDefault();
       if (pokeNum >= numPokemonToGuess) {
         return;
       }
       switch (e.key) {
-        // Replay sound on '1'
-        case "1":
+        // Replay sound on 'space'
+        case " ":
           setShowViz(true);
           playCryForPokemon(
             allPokemon[pokemonInGameOrder[pokeNum]],
@@ -92,11 +95,25 @@ function MultipleChoicePractice() {
             settings
           );
           return;
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+          const choiceIndex = parseInt(e.key) - 1;
+          console.log(multipleChoiceOptions);
+
+          console.log(choiceIndex);
+          if (choiceIndex >= 0 && choiceIndex < multipleChoiceOptions.length) {
+            const chosenName = multipleChoiceOptions[choiceIndex];
+            console.log(choiceIndex);
+            evaluateChoice(chosenName);
+          }
+          return;
         default:
           break;
       }
     },
-    [pokemonInGameOrder, pokeNum, settings]
+    [pokemonInGameOrder, pokeNum, settings, multipleChoiceOptions]
   );
 
   // Listen to key input
@@ -205,6 +222,7 @@ function MultipleChoicePractice() {
   const progress = (pokeNum / numPokemonToGuess) * 100;
   return (
     <div className="App p-5">
+      <AppHeader />
       <div className="App" style={{ position: "relative" }}>
         <Row>
           <Col>
@@ -214,14 +232,14 @@ function MultipleChoicePractice() {
             </Button>
           </Col>
           <Col>
-            <Settings settings={settings} setSettings={setSettings} />
-            <h4>Who's that Pokemon?</h4>
-            <p></p>
             <p>Practice Mode!</p> {/* Back button (left) */}
           </Col>
-          <Col></Col>
+          <Col>
+            <Settings settings={settings} setSettings={setSettings} />
+          </Col>
         </Row>
-        <p>Repeat the sound for the current Pokemon by pressing '1'</p>
+        <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
+        <p>Press 1, 2, 3, or 4 to select an option</p>
         <Row className="justify-content-center">
           <Col xs={12} md={4}>
             {/* Container for relative positioning */}
@@ -232,7 +250,7 @@ function MultipleChoicePractice() {
               pokeNum={pokeNum}
               numerator={
                 Object.entries(multipleChoiceResults).filter(
-                  ([pokeName, pokeResult]) =>
+                  ([_pokeName, pokeResult]) =>
                     pokeResult[MultipleChoiceResult.SELECTED_POKEMON] ===
                     pokeResult[MultipleChoiceResult.ACTUAL_POKEMON]
                 ).length
@@ -243,7 +261,7 @@ function MultipleChoicePractice() {
             {pokeNum !== numPokemonToGuess ? (
               // Audio display. Reveals either the waveform (current cry) or name of previous cry.
               <Row
-                className="align-items-center rounded p-2 pb-3 mb-3"
+                className="align-items-center rounded p-2 pb-3 mb-2"
                 style={{
                   outlineColor: NEUTRAL_RESULT_COLOR,
                   outlineStyle: "dashed",

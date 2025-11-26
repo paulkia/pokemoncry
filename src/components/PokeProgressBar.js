@@ -4,9 +4,9 @@ function PokeProgressBar({ completionPercent }) {
   const label =
     completionPercent === 100 ? `Done!` : `${Math.round(completionPercent)}%`;
   return (
-    <div style={{ position: "relative", margin: "1rem" }}>
+    <div style={{ position: "relative", margin: "2rem" }}>
       <ProgressBar
-        style={{ maxWidth: "400px", margin: "0 auto" }}
+        style={{ margin: "0 auto" }}
         animated
         now={completionPercent}
         label={label}

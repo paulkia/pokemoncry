@@ -6,6 +6,9 @@ import { GameModes, getRandomElement } from "../../library/util";
 import PracticePanel from "./PracticePanel";
 import ChallengePanel from "./ChallengePanel";
 
+import AppHeader from "../../components/AppHeader";
+import { LOGIN_STATUS } from "../Login";
+
 const P = new Pokedex();
 
 function getAnimatedSprite(pokemonData) {
@@ -89,7 +92,6 @@ async function preloadPokemon(generationCount) {
   const pokemonToData = {};
   const pokeNameToAllData = {};
   for (const pokemon of pokemonFromPokedex) {
-    // NOTE: store only serializable data (spriteUrl string), not JSX
     pokemonToData[pokemon.species.name] = {
       legacyCry: pokemon.cries?.legacy ?? null,
       latestCry: pokemon.cries?.latest ?? null,
@@ -147,7 +149,6 @@ function MainMenu() {
         setLoadingGens(false);
       })
       .catch((err) => {
-        console.log("There was an ERROR: ", err);
         setLoadingGens(false);
       });
   }, []);
@@ -217,34 +218,44 @@ function MainMenu() {
   // Default main menu
   return (
     <Container className="justify-content-center">
-      <Row className="justify-content-center mt-3">
-        <Col xs={3} className="p-2">
-          <Button
-            className="square-btn w-100"
-            variant="success"
-            style={{
-              minHeight: "100px",
-              fontSize: "1.2rem",
-              padding: "0.75rem 1rem",
-            }}
-            onClick={() => setGameMode(GameModes.PRACTICE)}
-          >
-            Practice!
-          </Button>
-        </Col>
-        <Col xs={3} className="p-2">
-          <Button
-            className="square-btn w-100"
-            variant="primary"
-            style={{
-              minHeight: "100px",
-              fontSize: "1.2rem",
-              padding: "0.75rem 1rem",
-            }}
-            onClick={() => setGameMode(GameModes.CHALLENGE)}
-          >
-            Challenge!
-          </Button>
+      <Row className="justify-content-center">
+        <Col
+          xl={6}
+          lg={6}
+          sm={6}
+          xs={12}
+          className="flex justify-content-center"
+        >
+          <Row>
+            <Col xl={6} lg={6} sm={6} xs={12}>
+              <Button
+                className="square-btn w-100 mb-3"
+                variant="success"
+                style={{
+                  minHeight: "100px",
+                  fontSize: "1.2rem",
+                  padding: "0.75rem 1rem",
+                }}
+                onClick={() => setGameMode(GameModes.PRACTICE)}
+              >
+                Practice!
+              </Button>
+            </Col>
+            <Col xl={6} lg={6} sm={6} xs={12}>
+              <Button
+                className="square-btn w-100"
+                variant="primary"
+                style={{
+                  minHeight: "100px",
+                  fontSize: "1.2rem",
+                  padding: "0.75rem 1rem",
+                }}
+                onClick={() => setGameMode(GameModes.CHALLENGE)}
+              >
+                Challenge!
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>
@@ -254,18 +265,7 @@ function MainMenu() {
 function Home() {
   return (
     <div className="App p-5">
-      <header>Ultimate Pokemon Cry Quiz!</header>
-      <p>
-        by [{" "}
-        <a
-          href="https://www.youtube.com/@Zechla"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Zechla
-        </a>{" "}
-        ]
-      </p>
+      <AppHeader loginStatus={LOGIN_STATUS.LOGGED_IN} />
       <MainMenu />
     </div>
   );

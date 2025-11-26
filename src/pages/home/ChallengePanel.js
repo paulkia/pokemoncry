@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Container, Col, Row, Spinner, Button } from "react-bootstrap";
+import {
+  ButtonGroup,
+  ToggleButton,
+  Col,
+  Row,
+  Spinner,
+  OverlayTrigger,
+  Tooltip,
+  Button,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Settings from "../../components/Settings";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +33,7 @@ function GenerationsGrid({
       rows.push(
         <Row key={i} className="justify-content-center">
           {buttonNumbers.slice(i, i + 3).map((buttonId) => (
-            <Col key={buttonId} xs={2} className="p-2">
+            <Col key={buttonId} xs={3} className="p-2">
               <Button
                 variant={
                   selectedGenerationIds.includes(buttonId)
@@ -41,6 +50,7 @@ function GenerationsGrid({
                     src={genIcons[buttonId] || ""}
                     alt={"↻"}
                     style={{
+                      imageRendering: "pixelated",
                       width: "55px",
                       height: "40px",
                       objectFit: "contain",
@@ -69,6 +79,7 @@ function ChallengePanel({
 }) {
   // challenge-local selection state (single-select or all)
   const navigate = useNavigate();
+  const [pokeNum, setPokeNum] = useState(20);
   const [selectedGenerationIds, setSelectedGenerationIds] = useState([]);
 
   const allButtonNumbers = Array.from(
@@ -92,32 +103,29 @@ function ChallengePanel({
   const onStart = (selectedGenerationIds) => {
     const homeSettings = settings;
 
-    // Get the subset of relevant Pokemon data for selected gens.
-    const subsetNames = new Set();
+    let pokemonNamesForRelevantGens = [];
     for (const gid of selectedGenerationIds) {
       const names = preloadedGenToNames[gid] || [];
-      for (const n of names) subsetNames.add(n);
+      for (const n of names) pokemonNamesForRelevantGens.push(n);
     }
-    const subsetMap = {};
-    for (const [name, data] of Object.entries(preloadedPokemon)) {
-      if (subsetNames.has(name)) subsetMap[name] = data;
-    }
-
+    pokemonNamesForRelevantGens = shuffle(pokemonNamesForRelevantGens).slice(
+      0,
+      pokeNum > 0 ? pokeNum : pokemonNamesForRelevantGens.length
+    );
     navigate("/challenge", {
       state: {
-        selectedGenerationIds,
-        generationCount,
-        homeSettings,
-        relevantPokemon: subsetMap, // Data of only the relevant Pokemon
-        allNames: Object.keys(preloadedPokemon), // All Pokemon names
+        homeSettings: homeSettings,
+        allPokemonData: preloadedPokemon, // Data of only the relevant Pokemon
+        pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
       },
     });
   };
 
   return (
-    <Container className="justify-content-center">
-      <Row className="justify-content-center mt-3">
-        <Col xs={10} className="p-2">
+    <div>
+      <Row className="mb-3">
+        <Col></Col>
+        <Col className="col-4">
           <Button
             variant="secondary"
             onClick={() => setGameMode(GameModes.MENU)}
@@ -125,8 +133,14 @@ function ChallengePanel({
             ← Back to Menu
           </Button>
         </Col>
+        <Col>
+          <Settings
+            style={{ marginTop: "-5rem" }}
+            settings={settings}
+            setSettings={setSettings}
+          />
+        </Col>
       </Row>
-      <Settings settings={settings} setSettings={setSettings} />
       {loadingGens ? null : (
         <>
           <GenerationsGrid
@@ -141,12 +155,53 @@ function ChallengePanel({
               <Button variant="light" onClick={handleSelectAll}>
                 {selectedGenerationIds.length === generationCount
                   ? "Select None"
-                  : "Select All"}
+                  : "Select All Generations"}
               </Button>
+            </Col>
+            <Col xs={6} md={4} lg={3} className="p-2">
+              <ButtonGroup>
+                {[
+                  { name: "Fast ⚡️", value: 20 },
+                  { name: "Full 🌍", value: 0 },
+                ].map((radio, idx) => (
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip>
+                        <div className="App">
+                          {radio.value === 20
+                            ? "20 Pokemon"
+                            : "All Pokemon from selected gens"}
+                        </div>
+                      </Tooltip>
+                    }
+                  >
+                    <ToggleButton
+                      key={idx}
+                      id={`radio-${idx}`}
+                      type="radio"
+                      variant={"outline-primary"}
+                      name="radio"
+                      value={radio.value}
+                      checked={pokeNum === radio.value}
+                      onChange={(e) =>
+                        setPokeNum(Number(e.currentTarget.value))
+                      }
+                    >
+                      {radio.name}
+                    </ToggleButton>
+                  </OverlayTrigger>
+                ))}
+              </ButtonGroup>
             </Col>
           </Row>
           <Row className="justify-content-center mt-3">
-            <Col xs={2} className="p-2">
+            <Col
+              xs={6}
+              md={4}
+              lg={3}
+              className="p-2 d-flex justify-content-center"
+            >
               <Button
                 disabled={
                   selectedGenerationIds.length === 0 || !preloadComplete
@@ -154,18 +209,16 @@ function ChallengePanel({
                 variant="success"
                 onClick={() => onStart(selectedGenerationIds)}
               >
-                Start{" "}
+                Challenge{" "}
                 {!preloadComplete ? (
                   <Spinner animation="border" size="sm" />
-                ) : (
-                  ""
-                )}
+                ) : null}
               </Button>
             </Col>
           </Row>
         </>
       )}
-    </Container>
+    </div>
   );
 }
 export default ChallengePanel;

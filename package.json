@@ -8,16 +8,18 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+    "firebase": "^12.6.0",
+    "lucide-react": "^0.554.0",
     "pokedex-promise-v2": "^4.2.1",
-    "react": "^19.0.0",
+    "react": "^19.2.0",
     "react-bootstrap": "^2.10.9",
-    "react-dom": "^19.0.0",
+    "react-bootstrap-validation": "^0.1.11",
+    "react-dom": "^19.2.0",
     "react-router-dom": "^7.4.0",
-    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_ENV=production node_modules/react-scripts/bin/react-scripts.js start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -39,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "firebase-tools": "^14.26.0",
+    "react-scripts": "^5.0.1"
   }
 }

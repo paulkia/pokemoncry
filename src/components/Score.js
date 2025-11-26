@@ -1,4 +1,7 @@
-function Score({ numPokemonToGuess, pokeNum, numerator }) {
+function Score({ numPokemonToGuess, pokeNum, numerator, score }) {
+  if (score > 0) {
+    return <div>Score: {Math.round(score)} points</div>;
+  }
   if (pokeNum < numPokemonToGuess) {
     return null;
   }

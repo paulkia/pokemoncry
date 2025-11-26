@@ -63,6 +63,7 @@ function GenerationsGrid({
                     src={genIcons[buttonId] || ""}
                     alt={"↻"}
                     style={{
+                      imageRendering: "pixelated",
                       width: "55px",
                       height: "40px",
                       objectFit: "contain",
@@ -127,47 +128,47 @@ function PracticePanel({
     if (practiceType === PRACTICE_TYPE.MULTIPLE_CHOICE) {
       navigate("/multiple-choice-practice", {
         state: {
-          homeSettings,
+          homeSettings: homeSettings,
           allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
           numPokemonToGuess:
             numberOfPokemon > 0
               ? numberOfPokemon
               : pokemonNamesForRelevantGens.length, // Number of Pokemon that will be guessed
-          pokemonNamesForRelevantGens, // All relevant Pokemon names
+          pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
         },
       });
     } else if (practiceType === PRACTICE_TYPE.SHORT_ANSWER) {
       navigate("/short-answer-practice", {
         state: {
-          homeSettings,
+          homeSettings: homeSettings,
           allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
           numPokemonToGuess:
             numberOfPokemon > 0
               ? numberOfPokemon
               : pokemonNamesForRelevantGens.length, // Number of Pokemon that will be guessed
-          pokemonNamesForRelevantGens, // All relevant Pokemon names
+          pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
         },
       });
     } else if (practiceType === PRACTICE_TYPE.ULTIMATE_TRAINING) {
       navigate("/ultimate-training-practice", {
         state: {
-          homeSettings,
+          homeSettings: homeSettings,
           allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
           numPokemonToGuess:
             numberOfPokemon > 0
               ? numberOfPokemon
               : pokemonNamesForRelevantGens.length, // Number of Pokemon that will be guessed
-          pokemonNamesForRelevantGens, // All relevant Pokemon names
+          pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
         },
       });
     }
   };
 
   return (
-    <Container className="justify-content-center">
-      {/* Back button centered horizontally, placed above the practice options */}
-      <Row className="justify-content-center mt-3">
-        <Col xs={12} md={4} className="p-2 d-flex justify-content-center">
+    <div>
+      <Row>
+        <Col></Col>
+        <Col className="col-4">
           <Button
             variant="secondary"
             onClick={() => setGameMode(GameModes.MENU)}
@@ -175,19 +176,18 @@ function PracticePanel({
             ← Back to Menu
           </Button>
         </Col>
-      </Row>
-
-      {/* Four-column layout: left small column (Settings), middle-left = generations, middle-right = practice options, right small spacer */}
-      <Row className="justify-content-center mt-2 gx-2">
-        {/* Left narrow column: Back + Settings */}
-        <Col xs={12} md={2} className="p-2">
-          <div className="mt-2">
-            <Settings settings={settings} setSettings={setSettings} />
-          </div>
+        <Col>
+          <Settings
+            style={{ marginTop: "-5rem" }}
+            settings={settings}
+            setSettings={setSettings}
+          />
         </Col>
-
+      </Row>
+      {/* Four-column layout: left small column (Settings), middle-left = generations, middle-right = practice options, right small spacer */}
+      <Row className="align-items-center justify-content-center mt-2 gx-2">
         {/* Middle-left: Generations grid */}
-        <Col xs={12} md={4} className="p-2">
+        <Col className="justify-content-center p-2" xs={12} md={4}>
           {loadingGens ? null : (
             <>
               <GenerationsGrid
@@ -209,7 +209,6 @@ function PracticePanel({
             </>
           )}
         </Col>
-
         {/* Middle-right: Practice options */}
         <Col
           xs={12}
@@ -228,7 +227,7 @@ function PracticePanel({
           {/* Updated button layout: MC + SA side-by-side, Ultimate underneath */}
           <div className="w-100 d-flex flex-column align-items-center mb-3">
             <Row className="w-100 justify-content-center">
-              <Col xs={12} lg={4} className="mb-2">
+              <Col xs={12} xl={4} className="mb-2">
                 <Button
                   className="w-100"
                   variant={
@@ -238,10 +237,10 @@ function PracticePanel({
                   }
                   onClick={() => setPracticeType(PRACTICE_TYPE.MULTIPLE_CHOICE)}
                 >
-                  Multiple Choice
+                  With Pictures
                 </Button>
               </Col>
-              <Col xs={12} lg={4} className="mb-2">
+              <Col xs={12} xl={4} className="mb-2">
                 <Button
                   className="w-100"
                   variant={
@@ -251,12 +250,12 @@ function PracticePanel({
                   }
                   onClick={() => setPracticeType(PRACTICE_TYPE.SHORT_ANSWER)}
                 >
-                  Short Answer
+                  Typing Practice
                 </Button>
               </Col>
             </Row>
             <Row className="w-100 justify-content-center">
-              <Col xs={12} lg={6}>
+              <Col xs={12} xl={6}>
                 <Button
                   className="w-100"
                   variant={
@@ -268,19 +267,22 @@ function PracticePanel({
                     setPracticeType(PRACTICE_TYPE.ULTIMATE_TRAINING)
                   }
                 >
-                  Ultimate Training{" "}
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={
-                      <Tooltip>
-                        <div className="App">
-                          Personalized practice for fastest learning.
-                        </div>
-                      </Tooltip>
-                    }
-                  >
-                    <i className="bi bi-info-circle-fill"></i>
-                  </OverlayTrigger>
+                  Ultimate{" "}
+                  <span style={{ whiteSpace: "nowrap" }}>
+                    Typing{" "}
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip>
+                          <div className="App">
+                            Personalized practice for fastest learning.
+                          </div>
+                        </Tooltip>
+                      }
+                    >
+                      <i className="bi bi-info-circle-fill"></i>
+                    </OverlayTrigger>
+                  </span>
                 </Button>
               </Col>
             </Row>
@@ -292,7 +294,7 @@ function PracticePanel({
               textAlign: "center",
             }}
           >
-            Number of Pokémon:
+            Number of Pokemon:
           </div>
           <div className="d-flex justify-content-center gap-2">
             <Button
@@ -302,10 +304,10 @@ function PracticePanel({
               10
             </Button>
             <Button
-              variant={numberOfPokemon === 30 ? "primary" : "outline-secondary"}
-              onClick={() => setNumberOfPokemon(30)}
+              variant={numberOfPokemon === 20 ? "primary" : "outline-secondary"}
+              onClick={() => setNumberOfPokemon(20)}
             >
-              30
+              20
             </Button>
             <Button
               variant={numberOfPokemon === 0 ? "primary" : "outline-secondary"}
@@ -315,9 +317,6 @@ function PracticePanel({
             </Button>
           </div>
         </Col>
-
-        {/* Right narrow spacer column */}
-        <Col xs={0} md={2} className="d-none d-md-block p-2" />
       </Row>
 
       {/* centered Start button */}
@@ -329,12 +328,12 @@ function PracticePanel({
             onClick={() => onStart(selectedGenerationIds)}
             className="w-100"
           >
-            Start{" "}
-            {!preloadComplete ? <Spinner animation="border" size="sm" /> : ""}
+            Practice{" "}
+            {!preloadComplete ? <Spinner animation="border" size="sm" /> : null}
           </Button>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 export default PracticePanel;

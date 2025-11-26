@@ -5,18 +5,12 @@ import { Modal, OverlayTrigger, Tooltip, Button, Form } from "react-bootstrap";
 function Settings({ settings, setSettings }) {
   return (
     <span>
-      <div
-        style={{
-          position: "absolute",
-          top: 100,
-          right: 100,
-          zIndex: 2, // ensure it appears above everything else
-          cursor: "pointer",
-        }}
+      <Button
+        variant="light"
         onClick={() => setSettings({ ...settings, show: true })}
       >
         <i className="bi bi-gear-fill" style={{ fontSize: "24px" }}></i>
-      </div>
+      </Button>
       <Modal
         show={settings.show || false}
         onHide={() => setSettings({ ...settings, show: false })}
@@ -37,8 +31,8 @@ function Settings({ settings, setSettings }) {
                     placement="right"
                     overlay={
                       <Tooltip id="tooltip-legacy">
-                        If enabled, plays original Pokémon game cries for
-                        early-gen Pokémon such as Pikachu.
+                        If enabled, plays original Pokemon game cries for
+                        early-gen Pokemon such as Pikachu.
                       </Tooltip>
                     }
                   >

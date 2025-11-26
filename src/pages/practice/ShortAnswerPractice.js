@@ -22,6 +22,7 @@ import {
 import { Trie } from "../../library/trie";
 import { playCryForPokemon } from "../../library/AudioViz";
 
+import AppHeader from "../../components/AppHeader";
 import Settings from "../../components/Settings";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";
@@ -94,7 +95,7 @@ function quizReducer(state, action) {
       const trieResult = state.pokeTrie.getWord(input) || "";
       const suggestion =
         trieResult.length > input.length
-          ? trieResult.substring(input.length)
+          ? trieResult.substring(input.legth)
           : "";
       return {
         ...state,
@@ -104,7 +105,6 @@ function quizReducer(state, action) {
     }
     case ACTION_TYPES.NEXT_POKEMON: {
       // reset input and compute suggestion remainder for empty input
-      const trieWord = state.pokeTrie.getWord("") || "";
       return {
         ...state,
         inputDisabled: true,
@@ -311,8 +311,9 @@ function ShortAnswerPractice() {
     const suggestion = state.suggestionRemainder;
     const input = `${state.input}${suggestion}`;
     switch (e.key) {
-      // Replay sound on '1'
-      case "1":
+      // Replay sound on 'space'
+      case " ":
+        e.preventDefault();
         setShowViz(true);
         playCryForPokemon(
           allPokemon[currPokemon],
@@ -365,6 +366,7 @@ function ShortAnswerPractice() {
               canvasRef,
               settings
             );
+            setShowViz(true);
             dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
             setTimeout(() => {
               inputRef.current && inputRef.current.focus();
@@ -390,8 +392,9 @@ function ShortAnswerPractice() {
     state.pokemonInGameOrder[state.pokeNum - 1] !== state.previousGuess
   ) {
     errorComponent = (
-      <Col className="col-md-1">
-        Guessed:{" "}
+      <Col xs={6} sm={4} lg={2}>
+        Guessed:
+        <br />
         <PokeButton
           name={state.previousGuess}
           sprite={state.allPokemon[state.previousGuess].sprite}
@@ -419,11 +422,12 @@ function ShortAnswerPractice() {
     return (
       <div>
         <Row className="mb-2 justify-content-center">
-          <Col className="col-md-1">
-            Previous:{" "}
+          <Col xs={6} sm={4} lg={2}>
+            Previous:
+            <br />
             <PokeButton
               name={previous}
-              sprite={state.allPokemon[previous].sprite}
+              sprite={allPokemon[previous].sprite}
               outlineType={OUTLINE_TYPE.GREEN}
               onClick={() => {
                 setShowViz(false);
@@ -496,6 +500,7 @@ function ShortAnswerPractice() {
   const progress = (state.pokeNum / numPokemonToGuess) * 100;
   return (
     <div className="App p-5">
+      <AppHeader />
       <div className="App" style={{ position: "relative" }}>
         <Row>
           <Col>
@@ -505,14 +510,14 @@ function ShortAnswerPractice() {
             </Button>
           </Col>
           <Col>
-            <Settings settings={settings} setSettings={setSettings} />
-            <h4>Who's that Pokemon?</h4>
-            <p></p>
             <p>Practice Mode!</p> {/* Back button (left) */}
           </Col>
-          <Col></Col>
+          <Col>
+            {" "}
+            <Settings settings={settings} setSettings={setSettings} />
+          </Col>
         </Row>
-        <p>Repeat the sound for the current Pokemon by pressing '1'</p>
+        <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
         <Row className="justify-content-center">
           <Col xs={12} md={4}>
             {/* Container for relative positioning */}

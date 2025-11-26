@@ -16,8 +16,10 @@ import {
   INCORRECT_AUDIO_SOUND,
   PAUSE_TIME,
   NEUTRAL_RESULT_COLOR,
-  MASTERY_COLOR,
+  CORRECT_RESULT_COLOR,
   DISABLE_ANIMATION_SWITCH,
+  getRandomElement,
+  shuffle,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
 import { playCryForPokemon } from "../../library/AudioViz";
@@ -25,6 +27,7 @@ import { playCryForPokemon } from "../../library/AudioViz";
 import AppHeader from "../../components/AppHeader";
 import Settings from "../../components/Settings";
 import PokeProgressBar from "../../components/PokeProgressBar";
+import Score from "../../components/Score";
 import AudioDisplay from "../../components/AudioDisplay";
 import PokeButton, { OUTLINE_TYPE } from "../../components/PokeButton";
 
@@ -41,38 +44,39 @@ const ACTION_TYPES = {
 
 export const SHINY_PROBABILITY = 1 / 69;
 
-const MASTERY_MULTIPLIER = 2;
-
-const LEAST_MASTERED = 1;
-const ALMOST_MASTERED = 0;
-const MASTERED = -1;
-const PERFECT = -2;
-
-const NEAR_OR_TOTAL_MASTERY = new Set([ALMOST_MASTERED, MASTERED, PERFECT]);
-
 const initialState = {
   // User input.
   input: "",
   // Whether input should be disabled. True when loading, or after game completion.
   inputDisabled: true,
   // All relevant pokemon data. Maps from pokemon name to cries, sprites, etc.
-  allPokemon: {},
+  allPokemonData: {},
   // List of pokemon the user will guess.
   pokemonInGameOrder: [],
   // Index of pokemon the user is currently guessing.
   pokeNum: 0,
   // Set of all pokemon names.
   pokeTrie: new Trie(),
+  // List of correctly guessed pokemon.
+  correct: [],
+  // List of incorrectly guessed pokemon.
+  incorrect: [],
   // Suggestion remainder (autocomplete) based on current input + trie.
   suggestionRemainder: "",
+  // Verdict
+  verdict: "",
   // Previous guess
   previousGuess: "",
-  // Maps from Pokemon to mastery level.
-  mastery: {},
-  // Maps from Pokemon to error count.
-  errors: {},
-  // Contains mastered pokemon sorted by most to least recently mastered.
-  masteredPokemon: [],
+  // Tracks successful Pokemon in a row
+  streak: 0,
+  // Score tracker
+  scoreMetrics: {
+    score: 0,
+    longestStreak: 0,
+    fastestTimeMs: Number.MAX_SAFE_INTEGER,
+    bestMon: "",
+    correctness: 0,
+  },
 };
 
 function quizReducer(state, action) {
@@ -80,17 +84,16 @@ function quizReducer(state, action) {
     case ACTION_TYPES.INITIAL_SETUP: {
       // Create a new Trie to avoid mutating previous state
       const newTrie = new Trie();
-      const allPokemonNames = Object.keys(action.allPokemon);
+      const allPokemonNames = Object.keys(action.allPokemonData);
       if (Array.isArray(allPokemonNames)) {
         newTrie.insert(allPokemonNames);
       }
       return {
         ...initialState,
         inputDisabled: false,
-        allPokemon: action.allPokemon,
+        allPokemonData: action.allPokemonData,
         pokemonInGameOrder: action.pokemonInGameOrder,
         pokeTrie: newTrie,
-        masteredPokemon: [],
       };
     }
     case ACTION_TYPES.UPDATE_INPUT: {
@@ -112,77 +115,60 @@ function quizReducer(state, action) {
       return {
         ...state,
         inputDisabled: true,
-        pokeNum: state.pokeNum + 1,
+        pokeNum: state.pokeNum + 1, // state.pokemonInGameOrder.length, // for debugging
         input: "",
         suggestionRemainder: "",
       };
     }
     case ACTION_TYPES.ADD_CORRECT:
-      let pokemonMastery = -1;
-      switch (state.mastery[action.pokemon]) {
-        // Correct on first try: perfect.
-        case undefined:
-          if (Math.random() < SHINY_PROBABILITY) {
-            state.allPokemon[action.pokemon].sprite =
-              state.allPokemon[action.pokemon].shinySprite;
-            state.allPokemon[action.pokemon].staticSprite =
-              state.allPokemon[action.pokemon].staticShinySprite;
-          }
-          pokemonMastery = PERFECT;
-          state.masteredPokemon.unshift(action.pokemon);
-          break;
-        // Correct after almost mastered: mastered.
-        case ALMOST_MASTERED:
-          pokemonMastery = MASTERED;
-          state.masteredPokemon.unshift(action.pokemon);
-          break;
-        // Correct after some imperfect level of mastery: improve by a factor.
-        default:
-          pokemonMastery = state.mastery[action.pokemon] * MASTERY_MULTIPLIER;
+      if (Math.random() < SHINY_PROBABILITY) {
+        state.allPokemonData[action.pokemon].sprite =
+          state.allPokemonData[action.pokemon].shinySprite;
+        state.allPokemonData[action.pokemon].staticSprite =
+          state.allPokemonData[action.pokemon].staticShinySprite;
       }
-      const pokemonInGameOrder = state.pokemonInGameOrder;
-      // If the Pokemon is not yet mastered, reinsert further down the list.
-      if (pokemonMastery !== MASTERED && pokemonMastery !== PERFECT) {
-        pokemonInGameOrder.splice(
-          state.pokeNum + pokemonMastery,
-          action.pokeNum,
-          action.pokemon
-        );
-        // If the Pokemon is at the end of the list, ensure it gets mastered next time.
-        if (state.pokeNum + pokemonMastery >= state.pokemonInGameOrder.length) {
-          pokemonMastery = ALMOST_MASTERED;
-        }
+      let streakMultiplier = Math.min(state.streak, 10) / 5 + 1;
+      const time = action.ms;
+      let scoreIncrement = 1;
+      if (time < 2000) {
+        scoreIncrement = 5;
+      } else if (time < 5000) {
+        scoreIncrement = 3;
+      } else if (time < 10000) {
+        scoreIncrement = 2;
+      }
+      let bestMon = state.scoreMetrics.bestMon;
+      if (time < state.scoreMetrics.fastestTimeMs) {
+        bestMon = state.pokemonInGameOrder[state.pokeNum];
       }
       return {
         ...state,
-        mastery: {
-          ...state.mastery,
-          [action.pokemon]: pokemonMastery,
-        },
-        pokemonInGameOrder: pokemonInGameOrder,
+        correct: [...state.correct, state.pokemonInGameOrder[state.pokeNum]],
         previousGuess: action.input,
+        streak: state.streak + 1,
+        longestStreak: Math.max(state.longestStreak, state.streak + 1),
+        scoreMetrics: {
+          ...state.scoreMetrics,
+          score: state.scoreMetrics.score + scoreIncrement * streakMultiplier,
+          longestStreak: Math.max(
+            state.scoreMetrics.longestStreak,
+            state.streak + 1
+          ),
+          fastestTimeMs: Math.min(state.scoreMetrics.fastestTimeMs, time),
+          bestMon: bestMon,
+          correctness: state.scoreMetrics.correctness + 1,
+        },
       };
-    case ACTION_TYPES.ADD_INCORRECT: {
-      const pokemonInGameOrder = state.pokemonInGameOrder;
-      pokemonInGameOrder.splice(
-        state.pokeNum + LEAST_MASTERED,
-        action.pokeNum,
-        action.pokemon
-      );
+    case ACTION_TYPES.ADD_INCORRECT:
       return {
         ...state,
-        mastery: {
-          ...state.mastery,
-          [action.pokemon]: LEAST_MASTERED,
-        },
-        pokemonInGameOrder: pokemonInGameOrder,
+        incorrect: [
+          ...state.incorrect,
+          state.pokemonInGameOrder[state.pokeNum],
+        ],
         previousGuess: action.input,
-        errors: {
-          ...state.errors,
-          [action.pokemon]: (state.errors[action.pokemon] || 0) + 1,
-        },
+        streak: 0,
       };
-    }
     case ACTION_TYPES.DISABLE_INPUT:
       return { ...state, inputDisabled: true };
     case ACTION_TYPES.ENABLE_INPUT: {
@@ -206,17 +192,52 @@ function quizReducer(state, action) {
         pokeNum: state.pokeNum + 1,
         input: "",
         suggestionRemainder: "",
+        verdict:
+          state.correct.length === state.pokemonInGameOrder.length
+            ? getRandomElement([
+                "Go touch grass",
+                "Incredible stuff",
+                "You must be fun at parties",
+                "Wow",
+              ])
+            : state.correct.length / state.pokemonInGameOrder.length >= 0.8
+            ? "Great job"
+            : state.correct.length / state.pokemonInGameOrder.length >= 0.5
+            ? "Not bad"
+            : state.correct.length === 0
+            ? "That's rough buddy"
+            : "Still better than most",
       };
     default:
       return state;
   }
 }
 
-function UltimateTrainingPractice() {
+// Format mm:ss:hh from elapsed milliseconds (hundredths precision)
+function formatHundredths(ms) {
+  const pad2 = (n) => n.toString().padStart(2, "0");
+  const minutes = Math.floor(ms / 60000);
+  const seconds = Math.floor((ms % 60000) / 1000);
+  const hundredths = Math.floor((ms % 1000) / 10);
+  return `${pad2(minutes)}:${pad2(seconds)}:${pad2(hundredths)}`;
+}
+
+// Display-only clock that updates unless frozen. Resets when `startMs` changes.
+function useDisplayClock(startMs, freeze) {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    if (freeze || !startMs) return;
+    const id = setInterval(() => setNow(Date.now()), 10);
+    return () => clearInterval(id);
+  }, [freeze, startMs]);
+  const elapsed = Math.max(0, (now || 0) - (startMs || 0));
+  return formatHundredths(elapsed);
+}
+
+function Challenge() {
   const {
     homeSettings,
-    allPokemon, // Data of all Pokemon
-    numPokemonToGuess, // Pokemon names for this quiz
+    allPokemonData, // Data of all Pokemon
     pokemonNamesForRelevantGens,
   } = useLocation().state || {};
   const navigate = useNavigate();
@@ -230,6 +251,16 @@ function UltimateTrainingPractice() {
   const audioRef = useRef(new Audio());
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
+
+  // Ref to store timer start (ms since epoch). Set when initial setup completes.
+  const totalStartRef = useRef(null);
+  // Clock state: mm:ss:hh (hundredths). Start at 00:00:00 until game begins.
+  const [totalClock, setTotalClock] = useState("00:00:00");
+
+  // Local clock (display-only): start time and formatted display string
+  const localStartRef = useRef(null); // kept for scoring calculations
+  const [localStartMs, setLocalStartMs] = useState(null);
+  const localClockDisplay = useDisplayClock(localStartMs, state.inputDisabled);
 
   // Inject shake CSS once
   useEffect(() => {
@@ -255,30 +286,55 @@ function UltimateTrainingPractice() {
   }, []);
 
   useEffect(() => {
+    const pokemonInGameOrder = shuffle(pokemonNamesForRelevantGens);
     // Play first cry with viz.
-    if (numPokemonToGuess > 0) {
-      const firstPokemon = pokemonNamesForRelevantGens[0];
-      setTimeout(() => {
-        playCryForPokemon(
-          allPokemon[firstPokemon],
-          vizInitializedRef,
-          audioRef,
-          canvasRef,
-          settings
-        );
-        inputRef.current && inputRef.current.focus();
-      }, 500);
-    }
-    dispatch({
-      type: ACTION_TYPES.INITIAL_SETUP,
-      allPokemon: allPokemon,
-      pokemonInGameOrder: pokemonNamesForRelevantGens.slice(
-        0,
-        numPokemonToGuess
-      ),
-      pokeNum: 1,
-    });
+    const firstPokemon = pokemonInGameOrder[0];
+    setTimeout(() => {
+      playCryForPokemon(
+        allPokemonData[firstPokemon],
+        vizInitializedRef,
+        audioRef,
+        canvasRef,
+        settings
+      );
+      inputRef.current && inputRef.current.focus();
+      totalStartRef.current = Date.now() + 500;
+      // Initialize local timers for the first Pokémon
+      const start = Date.now() + 500;
+      localStartRef.current = start; // for scoring
+      setLocalStartMs(start); // for display
+      dispatch({
+        type: ACTION_TYPES.INITIAL_SETUP,
+        allPokemonData: allPokemonData,
+        pokemonInGameOrder: pokemonInGameOrder,
+        pokeNum: 1,
+      });
+    }, 500);
   }, []);
+
+  // Start a high-resolution timer for the total clock only (local clock handled by hook)
+  useEffect(() => {
+    let totalTimerId = null;
+    if (totalStartRef.current && !state.inputDisabled) {
+      const pad2 = (n) => n.toString().padStart(2, "0");
+      const updateTotal = () => {
+        const elapsed = Date.now() - totalStartRef.current;
+        const hours = Math.floor(elapsed / 3600000);
+        const minutes = Math.floor((elapsed % 3600000) / 60000);
+        const seconds = Math.floor((elapsed % 60000) / 1000);
+        const hundredths = Math.floor((elapsed % 1000) / 10);
+        const timeStr =
+          (hours > 0 ? `${pad2(hours)}:` : "") +
+          `${pad2(minutes)}:${pad2(seconds)}:${pad2(hundredths)}`;
+        setTotalClock(timeStr);
+      };
+      updateTotal();
+      totalTimerId = setInterval(updateTotal, 10);
+    }
+    return () => {
+      if (totalTimerId) clearInterval(totalTimerId);
+    };
+  }, [state.inputDisabled]);
 
   useEffect(() => {
     if (state.pokeNum === DISABLE_ANIMATION_SWITCH) {
@@ -342,6 +398,7 @@ function UltimateTrainingPractice() {
 
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback((e) => {
+    e.preventDefault();
     if (state.inputDisabled) return;
     const currPokemon = state.pokemonInGameOrder[state.pokeNum];
     if (!currPokemon) return;
@@ -349,11 +406,11 @@ function UltimateTrainingPractice() {
     const input = `${state.input}${suggestion}`;
     switch (e.key) {
       // Replay sound on 'space'
-      case "space":
+      case " ":
         e.preventDefault();
         setShowViz(true);
         playCryForPokemon(
-          allPokemon[currPokemon],
+          allPokemonData[currPokemon],
           vizInitializedRef,
           audioRef,
           canvasRef,
@@ -376,6 +433,7 @@ function UltimateTrainingPractice() {
             type: ACTION_TYPES.ADD_CORRECT,
             pokemon: currPokemon,
             input: input,
+            ms: Date.now() - (localStartRef.current || Date.now()),
           });
           // Play correct feedback sound
           CORRECT_AUDIO_SOUND.play();
@@ -391,28 +449,24 @@ function UltimateTrainingPractice() {
           // Trigger shake animation on the input when incorrect
           triggerIncorrectAnimation();
         }
-        dispatch({ type: ACTION_TYPES.NEXT_POKEMON });
+        dispatch({
+          type: ACTION_TYPES.NEXT_POKEMON,
+        });
         // Allow users to see the result before hearing the next pokemon.
-        const loadNextPokemon =
-          // There is a next pokemon in the list already.
-          state.pokeNum + 1 < state.pokemonInGameOrder.length ||
-          // The input was wrong, so we will repeat this pokemon after the next dispatch is finished.
-          input !== currPokemon ||
-          // The user has not yet mastered this Pokemon, even after a correct attempt.
-          Object.keys(state.mastery).filter(
-            (key) => !NEAR_OR_TOTAL_MASTERY.has(state.mastery[key])
-          ).length > 0;
-        if (loadNextPokemon) {
+        if (state.pokeNum + 1 < pokemonNamesForRelevantGens.length) {
           setTimeout(() => {
             const nextPokemon = state.pokemonInGameOrder[state.pokeNum + 1];
             playCryForPokemon(
-              allPokemon[nextPokemon],
+              allPokemonData[nextPokemon],
               vizInitializedRef,
               audioRef,
               canvasRef,
               settings
             );
-            setShowViz(true);
+            // Reset local clock for next Pokémon and resume when input is enabled
+            const start = Date.now();
+            localStartRef.current = start; // for scoring
+            setLocalStartMs(start); // for display
             dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
             setTimeout(() => {
               inputRef.current && inputRef.current.focus();
@@ -432,98 +486,241 @@ function UltimateTrainingPractice() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [handleKey]);
 
-  let errorComponent = null;
-  if (
-    state.previousGuess &&
-    state.pokemonInGameOrder[state.pokeNum - 1] !== state.previousGuess
-  ) {
-    errorComponent = (
-      <Col xs={6} sm={4} lg={2}>
-        Guessed:
-        <br />
-        <PokeButton
-          name={state.previousGuess}
-          sprite={state.allPokemon[state.previousGuess].sprite}
-          outlineType={OUTLINE_TYPE.RED}
-          onClick={() => {
-            setShowViz(false);
-            playCryForPokemon(
-              allPokemon[state.previousGuess],
-              vizInitializedRef,
-              audioRef,
-              canvasRef,
-              settings
-            );
-          }}
-        />
-      </Col>
-    );
-  }
-
-  let previousComponent = null;
-  if (state.previousGuess) {
-    const previous = state.pokemonInGameOrder[state.pokeNum - 1];
-    previousComponent = (
-      <Row className="mb-2 justify-content-center">
-        {" "}
-        <Col xs={6} sm={4} lg={2}>
-          Previous:
-          <br />
-          <PokeButton
-            name={previous}
-            sprite={state.allPokemon[previous].sprite}
-            outlineType={OUTLINE_TYPE.GREEN}
-            onClick={() => {
-              setShowViz(false);
-              playCryForPokemon(
-                allPokemon[previous],
-                vizInitializedRef,
-                audioRef,
-                canvasRef,
-                settings
-              );
-            }}
-          />
-        </Col>
-        {errorComponent}
-      </Row>
-    );
-  }
-
+  const previous = state.pokemonInGameOrder[state.pokeNum - 1];
   // Helper to render a result row (correct / incorrect)
   const resultsPanel = () => {
+    if (state.pokeNum === 0) {
+      return null;
+    }
     return (
       <div>
-        {
-          <Row className="mb-2 justify-content-center">
-            <Col xl={Math.max(6, Math.min(12, state.masteredPokemon.length))}>
+        {state.pokeNum === pokemonNamesForRelevantGens.length ? (
+          <Row className="mb-5 mt-4 justify-content-center">
+            <Col lg={7} sm={12} className="align-items-stretch flex">
+              <Row
+                className="align-items-stretch rounded container-fluid flex p-2 justify-content-center"
+                style={{
+                  outlineColor: NEUTRAL_RESULT_COLOR,
+                  outlineStyle: "solid",
+                  outlineWidth: "4px",
+                  width: "auto",
+                }}
+              >
+                <Col
+                  className="align-items-center justify-content-center d-flex"
+                  sm={12}
+                  lg={2}
+                  style={{
+                    marginRight: "10px",
+                  }}
+                >
+                  <div>
+                    Total score:{" "}
+                    <span style={{ whiteSpace: "nowrap" }}>
+                      {Math.round(state.scoreMetrics.score)} points{" "}
+                      {state.scoreMetrics.score > 1000
+                        ? `🥳`
+                        : state.scoreMetrics.score > 0
+                        ? `⭐`
+                        : "😭"}
+                    </span>
+                  </div>
+                </Col>
+                <Col
+                  className="align-items-center justify-content-center d-flex"
+                  sm={12}
+                  lg={2}
+                  style={{ backgroundColor: NEUTRAL_RESULT_COLOR }}
+                >
+                  <div>
+                    Longest streak:{" "}
+                    <span style={{ whiteSpace: "nowrap" }}>
+                      {`${state.scoreMetrics.longestStreak} ${
+                        state.scoreMetrics.longestStreak ===
+                        state.pokemonInGameOrder.length
+                          ? "🤯"
+                          : state.scoreMetrics.longestStreak > 0
+                          ? "🔥"
+                          : "💩"
+                      }`}
+                    </span>
+                  </div>
+                </Col>
+                <Col
+                  className="align-items-center justify-content-center d-flex"
+                  sm={12}
+                  lg={2}
+                  style={{
+                    marginLeft: "10px",
+                    marginRight: "10px",
+                  }}
+                >
+                  <div>
+                    Correctness:{" "}
+                    <span style={{ whiteSpace: "nowrap" }}>
+                      {`${state.scoreMetrics.correctness} / ${state.pokeNum}`}{" "}
+                      {state.scoreMetrics.correctness > 0 ? `✅` : "❌"}
+                    </span>
+                  </div>
+                </Col>
+                <Col
+                  className="align-items-center justify-content-center d-flex"
+                  sm={12}
+                  lg={2}
+                  style={{ backgroundColor: NEUTRAL_RESULT_COLOR }}
+                >
+                  <div>
+                    {`Fastest Pokemon: ${
+                      state.scoreMetrics.bestMon
+                        ? `${state.scoreMetrics.bestMon} in `
+                        : ""
+                    }`}
+                    <span style={{ whiteSpace: "nowrap" }}>
+                      {state.scoreMetrics.fastestTimeMs < 1000
+                        ? `${(state.scoreMetrics.fastestTimeMs / 1000).toFixed(
+                            2
+                          )} 😱`
+                        : state.scoreMetrics.fastestTimeMs < 2000
+                        ? `${(state.scoreMetrics.fastestTimeMs / 1000).toFixed(
+                            2
+                          )} 🏎️`
+                        : state.scoreMetrics.fastestTimeMs !==
+                          Number.MAX_SAFE_INTEGER
+                        ? `${(state.scoreMetrics.fastestTimeMs / 1000).toFixed(
+                            2
+                          )} ⏱`
+                        : "uhhh"}
+                    </span>
+                  </div>
+                </Col>
+                <Col
+                  className="align-items-center justify-content-center d-flex"
+                  sm={12}
+                  lg={2}
+                  style={{
+                    marginLeft: "10px",
+                  }}
+                >
+                  <div>
+                    {!state.scoreMetrics.bestMon ||
+                    state.correctness === state.pokemonInGameOrder.length ? (
+                      <span>
+                        👑
+                        <br />
+                        🫵
+                      </span>
+                    ) : (
+                      <div>
+                        👑
+                        <br />
+                        <span style={{ whiteSpace: "nowrap" }}>
+                          {
+                            <PokeButton
+                              name={state.scoreMetrics.bestMon}
+                              sprite={
+                                state.allPokemonData[state.scoreMetrics.bestMon]
+                                  .sprite
+                              }
+                              outlineType={
+                                state.incorrect.includes(
+                                  state.scoreMetrics.bestMon
+                                )
+                                  ? OUTLINE_TYPE.RED
+                                  : OUTLINE_TYPE.GREEN
+                              }
+                              onClick={() => {
+                                setShowViz(false);
+                                playCryForPokemon(
+                                  allPokemonData[state.scoreMetrics.bestMon],
+                                  vizInitializedRef,
+                                  audioRef,
+                                  canvasRef,
+                                  settings
+                                );
+                              }}
+                            />
+                          }
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        ) : null}
+        <Row className="mb-5 justify-content-center">
+          <Col xs={6} sm={4} lg={2}>
+            Previous:
+            <br />
+            <PokeButton
+              name={previous}
+              sprite={state.allPokemonData[previous].sprite}
+              outlineType={OUTLINE_TYPE.GREEN}
+              onClick={() => {
+                setShowViz(false);
+                playCryForPokemon(
+                  allPokemonData[previous],
+                  vizInitializedRef,
+                  audioRef,
+                  canvasRef,
+                  settings
+                );
+              }}
+            />
+          </Col>
+          {state.previousGuess &&
+          state.pokemonInGameOrder[state.pokeNum - 1] !==
+            state.previousGuess ? (
+            <Col xs={6} sm={4} lg={2}>
+              Guessed:
+              <br />
+              <PokeButton
+                name={state.previousGuess}
+                sprite={state.allPokemonData[state.previousGuess].sprite}
+                outlineType={OUTLINE_TYPE.RED}
+                onClick={() => {
+                  setShowViz(false);
+                  playCryForPokemon(
+                    allPokemonData[state.previousGuess],
+                    vizInitializedRef,
+                    audioRef,
+                    canvasRef,
+                    settings
+                  );
+                }}
+              />
+            </Col>
+          ) : null}
+        </Row>
+        {state.pokeNum === pokemonNamesForRelevantGens.length ? (
+          <Row className="justify-content-center">
+            <Col className="col-md-8">
               <div
                 className="p-2 rounded"
-                style={{ backgroundColor: MASTERY_COLOR }}
+                style={{ backgroundColor: NEUTRAL_RESULT_COLOR }}
               >
-                Mastery:{" "}
-                {state.masteredPokemon.length === 0 ? (
-                  "(empty)"
-                ) : (
-                  <div className="d-flex flex-wrap justify-content-center mt-1">
-                    {state.masteredPokemon.map((name) => {
-                      let s = state.allPokemon[name]?.sprite;
+                <div className="d-flex flex-wrap justify-content-center mt-1">
+                  {state.pokemonInGameOrder
+                    .slice(0, state.pokeNum - 1)
+                    .map((name) => {
+                      let s = state.allPokemonData[name]?.sprite;
                       if (settings.disableAnimations) {
-                        s = state.allPokemon[name]?.staticSprite;
+                        s = state.allPokemonData[name]?.staticSprite;
                       }
                       return typeof s === "string" ? (
                         <PokeButton
                           name={name}
                           sprite={s}
                           outlineType={
-                            state.mastery[name] === PERFECT
-                              ? OUTLINE_TYPE.GREEN
-                              : OUTLINE_TYPE.NONE
+                            state.incorrect.includes(name)
+                              ? OUTLINE_TYPE.RED
+                              : OUTLINE_TYPE.GREEN
                           }
                           onClick={() => {
                             setShowViz(false);
                             playCryForPokemon(
-                              allPokemon[name],
+                              allPokemonData[name],
                               vizInitializedRef,
                               audioRef,
                               canvasRef,
@@ -535,12 +732,11 @@ function UltimateTrainingPractice() {
                         s
                       );
                     })}
-                  </div>
-                )}
+                </div>
               </div>
             </Col>
           </Row>
-        }
+        ) : null}
       </div>
     );
   };
@@ -551,7 +747,8 @@ function UltimateTrainingPractice() {
   } else if (autocomplete) {
     autocomplete.innerHTML = "";
   }
-  const progress = (state.pokeNum / state.pokemonInGameOrder.length) * 100;
+  const progress = (state.pokeNum / pokemonNamesForRelevantGens.length) * 100;
+
   return (
     <div className="App p-5">
       <AppHeader />
@@ -564,29 +761,29 @@ function UltimateTrainingPractice() {
             </Button>
           </Col>
           <Col>
-            <p>
-              Ultimate Training!
-              <br />
-              Pokemon are repeated until mastered.
-            </p>{" "}
-            {/* Back button (left) */}
-          </Col>
+            <p>Challenge Mode!</p> {/* Back button (left) */}
+          </Col>{" "}
           <Col>
-            {" "}
             <Settings settings={settings} setSettings={setSettings} />
           </Col>
         </Row>
+        <br />
         <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
         <Row className="justify-content-center">
-          <Col xs={12} md={4}>
+          <Col sm={12} md={6} lg={5}>
+            <br />
             {/* Container for relative positioning */}
+            <span>
+              Total Time:{" "}
+              {totalStartRef.current - Date.now() > 0 ? "00:00:00" : totalClock}
+            </span>
             <PokeProgressBar completionPercent={progress} />
+            {/* Audio button for current Pokemon. */}
           </Col>
         </Row>
       </div>
       <Row className="justify-content-center">
         <Col xs={12} md={4}>
-          {" "}
           {progress < 100 ? (
             <div
               className="align-items-center rounded p-2 pb-3 mt-3 mb-3"
@@ -600,7 +797,7 @@ function UltimateTrainingPractice() {
                   buttonFn={() => {
                     setShowViz(true);
                     playCryForPokemon(
-                      allPokemon[state.pokemonInGameOrder[state.pokeNum]],
+                      allPokemonData[state.pokemonInGameOrder[state.pokeNum]],
                       vizInitializedRef,
                       audioRef,
                       canvasRef,
@@ -707,14 +904,27 @@ function UltimateTrainingPractice() {
                   </InputGroup>
                 </Col>
               </Row>
+              <Row>
+                {state.scoreMetrics.score === 0 ? null : (
+                  <Col>
+                    <Score
+                      numPokemonToGuess={pokemonNamesForRelevantGens.length}
+                      pokeNum={state.pokeNum}
+                      numerator={state.correct.length}
+                      score={state.scoreMetrics.score}
+                    />
+                  </Col>
+                )}
+                {/* Local clock display: resets on next Pokémon, freezes when input is disabled */}
+                <Col>{state.pokeNum === 0 ? null : localClockDisplay}</Col>
+              </Row>
             </div>
           ) : null}
         </Col>
       </Row>
-      <br />
-      {previousComponent}
+      {state.streak > 0 && progress < 100 ? `🔥 ${state.streak}` : null}
       {resultsPanel()}
     </div>
   );
 }
-export default UltimateTrainingPractice;
+export default Challenge;
