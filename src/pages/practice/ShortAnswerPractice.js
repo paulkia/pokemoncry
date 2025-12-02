@@ -20,7 +20,7 @@ import {
   getRandomElement,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForPokemon } from "../../library/AudioViz";
+import { playCryForPokemon } from "../../library/audioviz";
 
 import AppHeader from "../../components/AppHeader";
 import Settings from "../../components/Settings";
@@ -95,7 +95,7 @@ function quizReducer(state, action) {
       const trieResult = state.pokeTrie.getWord(input) || "";
       const suggestion =
         trieResult.length > input.length
-          ? trieResult.substring(input.legth)
+          ? trieResult.substring(input.length)
           : "";
       return {
         ...state,
@@ -196,6 +196,10 @@ function ShortAnswerPractice() {
   const audioRef = useRef(new Audio());
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
+
+  if (!navigator.userActivation.hasBeenActive) {
+    navigate("/");
+  }
 
   // Inject shake CSS once
   useEffect(() => {
@@ -460,6 +464,7 @@ function ShortAnswerPractice() {
                       }
                       return typeof s === "string" ? (
                         <PokeButton
+                          key={name}
                           name={name}
                           sprite={s}
                           outlineType={
@@ -499,7 +504,7 @@ function ShortAnswerPractice() {
   }
   const progress = (state.pokeNum / numPokemonToGuess) * 100;
   return (
-    <div className="App p-5">
+    <div className="App p-5  text-center">
       <AppHeader />
       <div className="App" style={{ position: "relative" }}>
         <Row>

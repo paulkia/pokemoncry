@@ -20,7 +20,7 @@ import {
   DISABLE_ANIMATION_SWITCH,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForPokemon } from "../../library/AudioViz";
+import { playCryForPokemon } from "../../library/audioviz";
 
 import AppHeader from "../../components/AppHeader";
 import Settings from "../../components/Settings";
@@ -231,6 +231,10 @@ function UltimateTrainingPractice() {
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
 
+  if (!navigator.userActivation.hasBeenActive) {
+    navigate("/");
+  }
+
   // Inject shake CSS once
   useEffect(() => {
     const styleId = "quiz-shake-style";
@@ -349,7 +353,7 @@ function UltimateTrainingPractice() {
     const input = `${state.input}${suggestion}`;
     switch (e.key) {
       // Replay sound on 'space'
-      case "space":
+      case " ":
         e.preventDefault();
         setShowViz(true);
         playCryForPokemon(
@@ -442,6 +446,7 @@ function UltimateTrainingPractice() {
         Guessed:
         <br />
         <PokeButton
+          key={`prev-guess-${state.previousGuess}`}
           name={state.previousGuess}
           sprite={state.allPokemon[state.previousGuess].sprite}
           outlineType={OUTLINE_TYPE.RED}
@@ -470,6 +475,7 @@ function UltimateTrainingPractice() {
           Previous:
           <br />
           <PokeButton
+            key={`prev-${previous}`}
             name={previous}
             sprite={state.allPokemon[previous].sprite}
             outlineType={OUTLINE_TYPE.GREEN}
@@ -513,6 +519,7 @@ function UltimateTrainingPractice() {
                       }
                       return typeof s === "string" ? (
                         <PokeButton
+                          key={`mastered-${name}`}
                           name={name}
                           sprite={s}
                           outlineType={
@@ -553,7 +560,7 @@ function UltimateTrainingPractice() {
   }
   const progress = (state.pokeNum / state.pokemonInGameOrder.length) * 100;
   return (
-    <div className="App p-5">
+    <div className="App p-5 text-center">
       <AppHeader />
       <div className="App" style={{ position: "relative" }}>
         <Row>

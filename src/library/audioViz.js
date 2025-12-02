@@ -50,7 +50,12 @@ export function playAudioWithViz(url, audioEl, canvas) {
     audioEl.crossOrigin = "anonymous";
     audioEl.src = url;
     audioEl.autoplay = true;
-    audioEl.play().catch(() => {});
+    audioEl.play().catch((err) => {
+      console.error(
+        "Audio play failed. Likely because user refreshed page. ",
+        err
+      );
+    });
 
     // create or reuse audio context
     const Ctx = window.AudioContext || window.webkitAudioContext;
@@ -84,7 +89,9 @@ export function playAudioWithViz(url, audioEl, canvas) {
 
     // resume if suspended
     if (audioCtx.state === "suspended") {
-      audioCtx.resume().catch(() => {});
+      audioCtx.resume().catch((err) => {
+        console.error("Error resuming audio context:", err);
+      });
     }
 
     // draw loop
@@ -112,6 +119,7 @@ export function playAudioWithViz(url, audioEl, canvas) {
     draw();
   } catch (err) {
     // fallback: try simple playback without viz
+    console.error("Error in playAudioWithViz:", err);
     try {
       const a = new Audio(url);
       a.play().catch(() => {});
@@ -139,7 +147,9 @@ export function playCryForPokemon(
   // Ensure only one audio at a time: pause and rewind before every play.
   try {
     audio.pause();
-  } catch (_) {}
+  } catch (err) {
+    console.error("Error pausing audio:", err);
+  }
   audio.currentTime = 0;
 
   if (!vizInitializedRef.current) {
@@ -148,5 +158,7 @@ export function playCryForPokemon(
     return;
   }
   audio.src = cryUrl;
-  audio.play().catch(() => {});
+  audio.play().catch((err) => {
+    console.error("Audio play failed:", err);
+  });
 }

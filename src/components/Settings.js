@@ -15,6 +15,7 @@ function Settings({ settings, setSettings }) {
         show={settings.show || false}
         onHide={() => setSettings({ ...settings, show: false })}
         centered
+        className="App"
       >
         <Modal.Header closeButton>
           <Modal.Title>Settings</Modal.Title>

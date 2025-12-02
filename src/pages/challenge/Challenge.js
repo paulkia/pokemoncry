@@ -16,13 +16,12 @@ import {
   INCORRECT_AUDIO_SOUND,
   PAUSE_TIME,
   NEUTRAL_RESULT_COLOR,
-  CORRECT_RESULT_COLOR,
   DISABLE_ANIMATION_SWITCH,
   getRandomElement,
   shuffle,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForPokemon } from "../../library/AudioViz";
+import { playCryForPokemon } from "../../library/audioviz";
 
 import AppHeader from "../../components/AppHeader";
 import Settings from "../../components/Settings";
@@ -262,6 +261,10 @@ function Challenge() {
   const [localStartMs, setLocalStartMs] = useState(null);
   const localClockDisplay = useDisplayClock(localStartMs, state.inputDisabled);
 
+  if (!navigator.userActivation.hasBeenActive) {
+    navigate("/");
+  }
+
   // Inject shake CSS once
   useEffect(() => {
     const styleId = "quiz-shake-style";
@@ -398,7 +401,6 @@ function Challenge() {
 
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback((e) => {
-    e.preventDefault();
     if (state.inputDisabled) return;
     const currPokemon = state.pokemonInGameOrder[state.pokeNum];
     if (!currPokemon) return;
@@ -456,6 +458,7 @@ function Challenge() {
         if (state.pokeNum + 1 < pokemonNamesForRelevantGens.length) {
           setTimeout(() => {
             const nextPokemon = state.pokemonInGameOrder[state.pokeNum + 1];
+            setShowViz(true);
             playCryForPokemon(
               allPokemonData[nextPokemon],
               vizInitializedRef,
@@ -616,6 +619,7 @@ function Challenge() {
                         <span style={{ whiteSpace: "nowrap" }}>
                           {
                             <PokeButton
+                              key={`best-mon-${state.scoreMetrics.bestMon}`}
                               name={state.scoreMetrics.bestMon}
                               sprite={
                                 state.allPokemonData[state.scoreMetrics.bestMon]
@@ -654,6 +658,7 @@ function Challenge() {
             Previous:
             <br />
             <PokeButton
+              key={`prev-${previous}`}
               name={previous}
               sprite={state.allPokemonData[previous].sprite}
               outlineType={OUTLINE_TYPE.GREEN}
@@ -676,6 +681,7 @@ function Challenge() {
               Guessed:
               <br />
               <PokeButton
+                key={`prev-guess-${state.previousGuess}`}
                 name={state.previousGuess}
                 sprite={state.allPokemonData[state.previousGuess].sprite}
                 outlineType={OUTLINE_TYPE.RED}
@@ -710,6 +716,7 @@ function Challenge() {
                       }
                       return typeof s === "string" ? (
                         <PokeButton
+                          key={`result-${name}`}
                           name={name}
                           sprite={s}
                           outlineType={
@@ -750,7 +757,7 @@ function Challenge() {
   const progress = (state.pokeNum / pokemonNamesForRelevantGens.length) * 100;
 
   return (
-    <div className="App p-5">
+    <div className="App p-5 text-center">
       <AppHeader />
       <div className="App" style={{ position: "relative" }}>
         <Row>

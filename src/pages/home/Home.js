@@ -7,7 +7,6 @@ import PracticePanel from "./PracticePanel";
 import ChallengePanel from "./ChallengePanel";
 
 import AppHeader from "../../components/AppHeader";
-import { LOGIN_STATUS } from "../Login";
 
 const P = new Pokedex();
 
@@ -265,7 +264,7 @@ function MainMenu() {
 function Home() {
   return (
     <div className="App p-5">
-      <AppHeader loginStatus={LOGIN_STATUS.LOGGED_IN} />
+      <AppHeader />
       <MainMenu />
     </div>
   );

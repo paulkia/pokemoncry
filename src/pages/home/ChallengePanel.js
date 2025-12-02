@@ -35,6 +35,7 @@ function GenerationsGrid({
           {buttonNumbers.slice(i, i + 3).map((buttonId) => (
             <Col key={buttonId} xs={3} className="p-2">
               <Button
+                key={`gen-btn-${buttonId}`}
                 variant={
                   selectedGenerationIds.includes(buttonId)
                     ? "primary"
@@ -125,7 +126,7 @@ function ChallengePanel({
     <div>
       <Row className="mb-3">
         <Col></Col>
-        <Col className="col-4">
+        <Col className="col-4 d-flex justify-content-center align-items-center">
           <Button
             variant="secondary"
             onClick={() => setGameMode(GameModes.MENU)}
@@ -133,7 +134,7 @@ function ChallengePanel({
             ← Back to Menu
           </Button>
         </Col>
-        <Col>
+        <Col className="text-center">
           <Settings
             style={{ marginTop: "-5rem" }}
             settings={settings}
@@ -151,20 +152,32 @@ function ChallengePanel({
             preloadComplete={preloadComplete}
           />
           <Row className="justify-content-center mt-3">
-            <Col xs={6} md={4} lg={3} className="p-2">
+            <Col
+              xs={6}
+              md={4}
+              lg={3}
+              className="p-2 d-flex justify-content-center"
+            >
               <Button variant="light" onClick={handleSelectAll}>
                 {selectedGenerationIds.length === generationCount
                   ? "Select None"
                   : "Select All Generations"}
               </Button>
             </Col>
-            <Col xs={6} md={4} lg={3} className="p-2">
+            <Col
+              xs={6}
+              md={4}
+              lg={3}
+              className="p-2 d-flex justify-content-center"
+            >
               <ButtonGroup>
                 {[
                   { name: "Fast ⚡️", value: 20 },
                   { name: "Full 🌍", value: 0 },
                 ].map((radio, idx) => (
                   <OverlayTrigger
+                    key={`tooltip-${radio.name}`}
+                    id={`tooltip-${radio.name}`}
                     placement="top"
                     overlay={
                       <Tooltip>

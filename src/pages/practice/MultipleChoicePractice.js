@@ -9,7 +9,7 @@ import {
   INCORRECT_RESULT_COLOR,
   NEUTRAL_RESULT_COLOR,
 } from "../../library/util";
-import { playCryForPokemon } from "../../library/AudioViz";
+import { playCryForPokemon } from "../../library/audioviz";
 import "../../App.css";
 import Settings from "../../components/Settings";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -50,6 +50,10 @@ function MultipleChoicePractice() {
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
 
+  if (!navigator.userActivation.hasBeenActive) {
+    navigate("/");
+  }
+
   // Always trigger cry for the next Pokemon.
   useEffect(() => {
     const correctPokemon = pokemonInGameOrder[pokeNum];
@@ -64,13 +68,20 @@ function MultipleChoicePractice() {
     // Play the correct Pokemon's cry (with viz)
     if (pokeNum < numPokemonToGuess) {
       setTimeout(() => {
-        playCryForPokemon(
-          allPokemon[correctPokemon],
-          vizInitializedRef,
-          audioRef,
-          canvasRef,
-          settings
-        );
+        try {
+          playCryForPokemon(
+            allPokemon[correctPokemon],
+            vizInitializedRef,
+            audioRef,
+            canvasRef,
+            settings
+          );
+        } catch (err) {
+          console.log("err = ", err);
+          if (err.name === "NotAllowedError") {
+            navigate("/");
+          }
+        }
         setShowViz(true);
       }, 500);
     }
@@ -79,13 +90,13 @@ function MultipleChoicePractice() {
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback(
     (e) => {
-      e.preventDefault();
       if (pokeNum >= numPokemonToGuess) {
         return;
       }
       switch (e.key) {
         // Replay sound on 'space'
         case " ":
+          e.preventDefault();
           setShowViz(true);
           playCryForPokemon(
             allPokemon[pokemonInGameOrder[pokeNum]],
@@ -99,13 +110,11 @@ function MultipleChoicePractice() {
         case "2":
         case "3":
         case "4":
+          e.preventDefault();
           const choiceIndex = parseInt(e.key) - 1;
-          console.log(multipleChoiceOptions);
 
-          console.log(choiceIndex);
           if (choiceIndex >= 0 && choiceIndex < multipleChoiceOptions.length) {
             const chosenName = multipleChoiceOptions[choiceIndex];
-            console.log(choiceIndex);
             evaluateChoice(chosenName);
           }
           return;
@@ -140,49 +149,61 @@ function MultipleChoicePractice() {
     setPokeNum(pokeNum + 1);
   };
 
-  const multipleChoiceRow = (
-    multipleChoiceOptions,
-    onClick,
+  const multipleChoiceRow = ({
+    multipleChoiceOptions = [],
+    onClick = null,
     redPokemon = "",
-    greenPokemon = ""
-  ) => {
+    greenPokemon = "",
+    numbered = false,
+  }) => {
     let backgroundColor = NEUTRAL_RESULT_COLOR;
     if (redPokemon !== greenPokemon) {
       backgroundColor = INCORRECT_RESULT_COLOR;
     } else if (greenPokemon !== "") {
       backgroundColor = CORRECT_RESULT_COLOR;
     }
+    let num = 1;
+    const multipleChoiceRawComponent = multipleChoiceOptions.map((name) => {
+      let s = allPokemon[name]?.sprite;
+      if (settings.disableAnimations) {
+        s = allPokemon[name]?.staticSprite;
+      }
+      return typeof s === "string" ? (
+        <PokeButton
+          key={name}
+          name={name}
+          sprite={s}
+          outlineType={
+            name === greenPokemon
+              ? OUTLINE_TYPE.GREEN
+              : name === redPokemon
+              ? OUTLINE_TYPE.RED
+              : OUTLINE_TYPE.NONE
+          }
+          onClick={onClick}
+          label={numbered ? num++ : null}
+        />
+      ) : (
+        s
+      );
+    });
     return (
       <div
         className="p-2 rounded mb-2"
+        key={multipleChoiceOptions.join("-")}
         style={{
           backgroundColor: backgroundColor,
         }}
       >
         <div className="d-flex flex-wrap justify-content-center mt-1">
-          {multipleChoiceOptions.map((name) => {
-            let s = allPokemon[name]?.sprite;
-            if (settings.disableAnimations) {
-              s = allPokemon[name]?.staticSprite;
-            }
-            return typeof s === "string" ? (
-              <PokeButton
-                key={name}
-                name={name}
-                sprite={s}
-                outlineType={
-                  name === greenPokemon
-                    ? OUTLINE_TYPE.GREEN
-                    : name === redPokemon
-                    ? OUTLINE_TYPE.RED
-                    : OUTLINE_TYPE.NONE
-                }
-                onClick={onClick}
-              />
-            ) : (
-              s
-            );
-          })}
+          {
+            <span>
+              {multipleChoiceRawComponent.slice(0, 2)}
+              <span style={{ whiteSpace: "nowrap" }}>
+                {multipleChoiceRawComponent.slice(2, 4)}
+              </span>
+            </span>
+          }
         </div>
       </div>
     );
@@ -193,11 +214,12 @@ function MultipleChoicePractice() {
     for (let i = pokeNum - 1; i >= 0; i--) {
       const pokemonName = pokemonInGameOrder[i];
       results.push(
-        multipleChoiceRow(
-          multipleChoiceResults[pokemonName][
-            MultipleChoiceResult.MULTIPLE_CHOICE_OPTIONS
-          ],
-          (name) => {
+        multipleChoiceRow({
+          multipleChoiceOptions:
+            multipleChoiceResults[pokemonName][
+              MultipleChoiceResult.MULTIPLE_CHOICE_OPTIONS
+            ],
+          onClick: (name) => {
             setShowViz(false);
             playCryForPokemon(
               allPokemon[name],
@@ -207,13 +229,15 @@ function MultipleChoicePractice() {
               settings
             );
           },
-          multipleChoiceResults[pokemonName][
-            MultipleChoiceResult.SELECTED_POKEMON
-          ],
-          multipleChoiceResults[pokemonName][
-            MultipleChoiceResult.ACTUAL_POKEMON
-          ]
-        )
+          redPokemon:
+            multipleChoiceResults[pokemonName][
+              MultipleChoiceResult.SELECTED_POKEMON
+            ],
+          greenPokemon:
+            multipleChoiceResults[pokemonName][
+              MultipleChoiceResult.ACTUAL_POKEMON
+            ],
+        })
       );
     }
     return results;
@@ -221,7 +245,7 @@ function MultipleChoicePractice() {
 
   const progress = (pokeNum / numPokemonToGuess) * 100;
   return (
-    <div className="App p-5">
+    <div className="App p-5  text-center">
       <AppHeader />
       <div className="App" style={{ position: "relative" }}>
         <Row>
@@ -241,7 +265,7 @@ function MultipleChoicePractice() {
         <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
         <p>Press 1, 2, 3, or 4 to select an option</p>
         <Row className="justify-content-center">
-          <Col xs={12} md={4}>
+          <Col xs={12} md={5}>
             {/* Container for relative positioning */}
             <PokeProgressBar completionPercent={progress} />
             {/* Score, only displayed if all Pokemon have been guessed. */}
@@ -285,7 +309,11 @@ function MultipleChoicePractice() {
                 />
                 {/* Multiple choice options, only displayed if not all Pokemon have been guessed. */}
                 <div>
-                  {multipleChoiceRow(multipleChoiceOptions, evaluateChoice)}
+                  {multipleChoiceRow({
+                    multipleChoiceOptions: multipleChoiceOptions,
+                    onClick: evaluateChoice,
+                    numbered: true,
+                  })}
                 </div>
               </Row>
             ) : null}
@@ -294,7 +322,7 @@ function MultipleChoicePractice() {
       </div>
       <Row className="justify-content-center">
         {/* Results, only displayed if at least one Pokemon has been guessed. */}
-        <Col className="col-md-4">
+        <Col md={5}>
           {pokeNum > 0 && pokeNum < numPokemonToGuess ? (
             <Row className="m-4">
               <strong className="p-6" key={"results"}>
