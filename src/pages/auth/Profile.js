@@ -6,8 +6,9 @@ import { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { doc, deleteDoc } from "firebase/firestore";
 import AppHeader from "../../components/AppHeader";
-import { useAuth } from "../../components/AuthProvider";
+import { useAuth } from "../../AppContext";
 import { auth, db } from "../../firebase";
+import { ROUTER_UTIL } from "../../library/util";
 
 function Profile() {
   const navigate = useNavigate();
@@ -16,23 +17,31 @@ function Profile() {
   const [deletingAccount, setDeletingAccount] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { authUser, authUsername } = useAuth();
+  const { authUser, authUsername, authLoading } = useAuth();
 
   useEffect(() => {
-    if (loading) {
+    if (loading || authLoading) {
       return;
     }
-    if (authUser === null) {
-      navigate("/login");
+    if (authUser === null || authUser.isAnonymous) {
+      navigate(ROUTER_UTIL.LOGIN);
     }
     if (authUsername == null) {
-      navigate("/complete-profile");
+      navigate(ROUTER_UTIL.COMPLETE_PROFILE);
     }
-  }, [authUsername, authUser, navigate, signingOut, deletingAccount, loading]);
+  }, [
+    authUsername,
+    authUser,
+    navigate,
+    signingOut,
+    deletingAccount,
+    loading,
+    authLoading,
+  ]);
 
   const handleBackButton = () => {
     setLoading(true);
-    navigate("/");
+    navigate(ROUTER_UTIL.HOME);
   };
 
   const handleSignOut = async () => {
@@ -45,7 +54,7 @@ function Profile() {
       console.error("Sign out failed", err);
       setError(err?.message || "Sign-out failed");
     } finally {
-      navigate("/");
+      navigate(ROUTER_UTIL.HOME);
     }
   };
 
@@ -73,10 +82,12 @@ function Profile() {
     } else {
       console.error("No authenticated user to delete");
     }
-    navigate("/");
+    navigate(ROUTER_UTIL.HOME);
   };
 
-  return (
+  return authLoading || authUser?.isAnonymous || !authUsername ? (
+    <Spinner />
+  ) : (
     <span>
       <div className="App p-5">
         <AppHeader disableLoginButton={true} />

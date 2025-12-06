@@ -33,19 +33,17 @@ if (
   // Important: If you use the Firebase Admin SDK for any client-side mocks
   // or a hybrid approach (less common), you might need more specific setup
   // but for typical client-side React, this is sufficient.
+} else {
+  initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider(
+      "6LecaBksAAAAAFHwGfjPN1Y6G76k4iWkJsqcB367"
+    ),
+    isTokenAutoRefreshEnabled: true,
+  });
 }
 
-initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider("6LecaBksAAAAAFHwGfjPN1Y6G76k4iWkJsqcB367"),
-  isTokenAutoRefreshEnabled: true,
-});
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

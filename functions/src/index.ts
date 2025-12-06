@@ -3,7 +3,11 @@ import { onCall, HttpsError } from "firebase-functions/https";
 
 // The Firebase Admin SDK to access Firestore.
 import { initializeApp } from "firebase-admin/app";
-import { getFirestore, FieldValue } from "firebase-admin/firestore";
+import {
+  getFirestore,
+  FieldValue,
+  Transaction,
+} from "firebase-admin/firestore";
 
 const app = initializeApp();
 
@@ -53,7 +57,7 @@ export const claimUsername = onCall(async (request: any) => {
 
   try {
     // 3. Run a Firestore transaction to ensure atomicity
-    await db.runTransaction(async (transaction: any) => {
+    await db.runTransaction(async (transaction: Transaction) => {
       // Check if the user already has a username to potentially free up the old one
       const currentUserDoc = await transaction.get(userDocRef);
       const oldUsername = currentUserDoc.exists

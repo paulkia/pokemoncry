@@ -18,9 +18,15 @@ import {
   NEUTRAL_RESULT_COLOR,
   MASTERY_COLOR,
   DISABLE_ANIMATION_SWITCH,
+  ROUTER_UTIL,
+  LOCAL_STORAGE_UTIL,
+  SHINY_PROBABILITY,
+  DEFAULT_SETTINGS,
+  SHINY_AUDIO_SOUND,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
 import { playCryForPokemon } from "../../library/audioviz";
+import { useSettings } from "../../AppContext";
 
 import AppHeader from "../../components/AppHeader";
 import Settings from "../../components/Settings";
@@ -38,8 +44,6 @@ const ACTION_TYPES = {
   ENABLE_INPUT: "ENABLE_INPUT",
   END_GAME: "END_GAME",
 };
-
-export const SHINY_PROBABILITY = 1 / 69;
 
 const MASTERY_MULTIPLIER = 2;
 
@@ -123,10 +127,13 @@ function quizReducer(state, action) {
         // Correct on first try: perfect.
         case undefined:
           if (Math.random() < SHINY_PROBABILITY) {
-            state.allPokemon[action.pokemon].sprite =
+            state.allPokemon[action.pokemon].displaySprite =
               state.allPokemon[action.pokemon].shinySprite;
-            state.allPokemon[action.pokemon].staticSprite =
+            state.allPokemon[action.pokemon].staticDisplaySprite =
               state.allPokemon[action.pokemon].staticShinySprite;
+            SHINY_AUDIO_SOUND.play();
+          } else {
+            CORRECT_AUDIO_SOUND.play();
           }
           pokemonMastery = PERFECT;
           state.masteredPokemon.unshift(action.pokemon);
@@ -169,6 +176,7 @@ function quizReducer(state, action) {
         action.pokeNum,
         action.pokemon
       );
+      INCORRECT_AUDIO_SOUND.play();
       return {
         ...state,
         mastery: {
@@ -214,14 +222,14 @@ function quizReducer(state, action) {
 
 function UltimateTrainingPractice() {
   const {
-    homeSettings,
     allPokemon, // Data of all Pokemon
     numPokemonToGuess, // Pokemon names for this quiz
     pokemonNamesForRelevantGens,
   } = useLocation().state || {};
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(quizReducer, initialState);
-  const [settings, setSettings] = useState(homeSettings || {});
+  const { settings } = useSettings();
+
   // Ref to the input DOM node so we can trigger a shake animation on wrong guesses.
   const inputRef = useRef(null);
 
@@ -232,7 +240,7 @@ function UltimateTrainingPractice() {
   const [showViz, setShowViz] = useState(true);
 
   if (!navigator.userActivation.hasBeenActive) {
-    navigate("/");
+    navigate(ROUTER_UTIL.HOME);
   }
 
   // Inject shake CSS once
@@ -268,7 +276,7 @@ function UltimateTrainingPractice() {
           vizInitializedRef,
           audioRef,
           canvasRef,
-          settings
+          settings.preferLegacyCries
         );
         inputRef.current && inputRef.current.focus();
       }, 500);
@@ -283,15 +291,6 @@ function UltimateTrainingPractice() {
       pokeNum: 1,
     });
   }, []);
-
-  useEffect(() => {
-    if (state.pokeNum === DISABLE_ANIMATION_SWITCH) {
-      setSettings({
-        ...settings,
-        disableAnimations: !settings.disableAnimations,
-      });
-    }
-  }, [state.pokeNum]);
 
   function triggerCorrectAnimation() {
     // Grab confirm answer button
@@ -361,7 +360,7 @@ function UltimateTrainingPractice() {
           vizInitializedRef,
           audioRef,
           canvasRef,
-          settings
+          settings.preferLegacyCries
         );
         return;
       case "Tab": {
@@ -381,8 +380,6 @@ function UltimateTrainingPractice() {
             pokemon: currPokemon,
             input: input,
           });
-          // Play correct feedback sound
-          CORRECT_AUDIO_SOUND.play();
           triggerCorrectAnimation();
         } else {
           dispatch({
@@ -390,8 +387,6 @@ function UltimateTrainingPractice() {
             pokemon: currPokemon,
             input: input,
           });
-          // Play incorrect feedback sound
-          INCORRECT_AUDIO_SOUND.play();
           // Trigger shake animation on the input when incorrect
           triggerIncorrectAnimation();
         }
@@ -414,7 +409,7 @@ function UltimateTrainingPractice() {
               vizInitializedRef,
               audioRef,
               canvasRef,
-              settings
+              settings.preferLegacyCries
             );
             setShowViz(true);
             dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
@@ -448,7 +443,7 @@ function UltimateTrainingPractice() {
         <PokeButton
           key={`prev-guess-${state.previousGuess}`}
           name={state.previousGuess}
-          sprite={state.allPokemon[state.previousGuess].sprite}
+          sprite={state.allPokemon[state.previousGuess].displaySprite}
           outlineType={OUTLINE_TYPE.RED}
           onClick={() => {
             setShowViz(false);
@@ -457,7 +452,7 @@ function UltimateTrainingPractice() {
               vizInitializedRef,
               audioRef,
               canvasRef,
-              settings
+              settings.preferLegacyCries
             );
           }}
         />
@@ -477,7 +472,7 @@ function UltimateTrainingPractice() {
           <PokeButton
             key={`prev-${previous}`}
             name={previous}
-            sprite={state.allPokemon[previous].sprite}
+            sprite={state.allPokemon[previous].displaySprite}
             outlineType={OUTLINE_TYPE.GREEN}
             onClick={() => {
               setShowViz(false);
@@ -486,7 +481,7 @@ function UltimateTrainingPractice() {
                 vizInitializedRef,
                 audioRef,
                 canvasRef,
-                settings
+                settings.preferLegacyCries
               );
             }}
           />
@@ -513,9 +508,9 @@ function UltimateTrainingPractice() {
                 ) : (
                   <div className="d-flex flex-wrap justify-content-center mt-1">
                     {state.masteredPokemon.map((name) => {
-                      let s = state.allPokemon[name]?.sprite;
+                      let s = state.allPokemon[name]?.displaySprite;
                       if (settings.disableAnimations) {
-                        s = state.allPokemon[name]?.staticSprite;
+                        s = state.allPokemon[name]?.staticDisplaySprite;
                       }
                       return typeof s === "string" ? (
                         <PokeButton
@@ -534,7 +529,7 @@ function UltimateTrainingPractice() {
                               vizInitializedRef,
                               audioRef,
                               canvasRef,
-                              settings
+                              settings.preferLegacyCries
                             );
                           }}
                         />
@@ -566,7 +561,11 @@ function UltimateTrainingPractice() {
         <Row>
           <Col>
             {/* Back button positioned at top-left (inside padded app area) */}
-            <Button variant="secondary" size="sm" onClick={() => navigate("/")}>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => navigate(ROUTER_UTIL.HOME)}
+            >
               ← Back
             </Button>
           </Col>
@@ -580,7 +579,7 @@ function UltimateTrainingPractice() {
           </Col>
           <Col>
             {" "}
-            <Settings settings={settings} setSettings={setSettings} />
+            <Settings />
           </Col>
         </Row>
         <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
@@ -611,7 +610,7 @@ function UltimateTrainingPractice() {
                       vizInitializedRef,
                       audioRef,
                       canvasRef,
-                      settings
+                      settings.preferLegacyCries
                     );
                   }}
                   canvasRef={canvasRef}

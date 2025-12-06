@@ -132,13 +132,13 @@ export function playCryForPokemon(
   vizInitializedRef,
   audioRef,
   canvasRef,
-  settings
+  preferLegacyCries
 ) {
   if (!pokemonData) return;
 
   let cryUrl = pokemonData.latestCry || pokemonData.legacyCry || null;
 
-  if (settings?.preferLegacyCries) {
+  if (preferLegacyCries) {
     cryUrl = pokemonData.legacyCry || pokemonData.latestCry || null;
   }
 

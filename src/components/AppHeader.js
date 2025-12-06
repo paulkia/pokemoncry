@@ -6,13 +6,25 @@ import {
   Tooltip,
   Spinner,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../components/AuthProvider";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../AppContext";
+import { ROUTER_UTIL } from "../library/util";
+import Settings from "./Settings";
+
+const backRoutes = {
+  [ROUTER_UTIL.MULTIPLE_CHOICE_PRACTICE]: ROUTER_UTIL.PRACTICE_MENU,
+  [ROUTER_UTIL.SHORT_ANSWER_PRACTICE]: ROUTER_UTIL.PRACTICE_MENU,
+  [ROUTER_UTIL.ULTIMATE_TRAINING_PRACTICE]: ROUTER_UTIL.PRACTICE_MENU,
+  [ROUTER_UTIL.PRACTICE_MENU]: ROUTER_UTIL.HOME,
+  [ROUTER_UTIL.CHALLENGE_MENU]: ROUTER_UTIL.HOME,
+  [ROUTER_UTIL.CHALLENGE]: ROUTER_UTIL.CHALLENGE_MENU,
+  [ROUTER_UTIL.LEADERBOARD]: ROUTER_UTIL.HOME,
+};
 
 function AppHeader({ disableLoginButton }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { authUser, authUsername, authLoading } = useAuth();
-
   return (
     <Row className="mb-4">
       <Col></Col>
@@ -32,7 +44,7 @@ function AppHeader({ disableLoginButton }) {
         <br />
       </Col>
       <Col className="text-center">
-        {disableLoginButton ? null : authLoading ? (
+        {disableLoginButton ? null : !authUser || authLoading ? (
           <Spinner />
         ) : authUsername ? (
           <OverlayTrigger
@@ -43,12 +55,18 @@ function AppHeader({ disableLoginButton }) {
               </Tooltip>
             }
           >
-            <Button variant="light" onClick={() => navigate("/profile")}>
+            <Button
+              variant="light"
+              onClick={() => navigate(ROUTER_UTIL.PROFILE)}
+            >
               <i className="bi bi-person" style={{ fontSize: "24px" }}></i>
             </Button>
           </OverlayTrigger>
-        ) : authUser ? (
-          <Button variant="light" onClick={() => navigate("/complete-profile")}>
+        ) : !authUser?.isAnonymous ? (
+          <Button
+            variant="light"
+            onClick={() => navigate(ROUTER_UTIL.COMPLETE_PROFILE)}
+          >
             <i className="bi bi-person" style={{ fontSize: "24px" }}></i>
           </Button>
         ) : (
@@ -61,12 +79,25 @@ function AppHeader({ disableLoginButton }) {
               </Tooltip>
             }
           >
-            <Button variant="light" onClick={() => navigate("/login")}>
+            <Button variant="light" onClick={() => navigate(ROUTER_UTIL.LOGIN)}>
               <i className="bi bi-person-plus" style={{ fontSize: "24px" }}></i>
             </Button>
           </OverlayTrigger>
-        )}
+        )}{" "}
+        <Settings />
       </Col>
+      {location.pathname !== ROUTER_UTIL.HOME && (
+        <Row>
+          <Col>
+            <Button
+              variant="secondary"
+              onClick={() => navigate(backRoutes[location.pathname])}
+            >
+              ← Back
+            </Button>
+          </Col>
+        </Row>
+      )}
     </Row>
   );
 }

@@ -7,26 +7,27 @@ import {
   Spinner,
   OverlayTrigger,
   Tooltip,
+  Card,
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Settings from "../../components/Settings";
 import { useNavigate } from "react-router-dom";
-import { GameModes, shuffle } from "../../library/util";
+import { ROUTER_UTIL, LOCAL_STORAGE_UTIL } from "../../library/util";
+import { usePoke, useSettings } from "../../AppContext";
+import AppHeader from "../../components/AppHeader";
 
 function GenerationsGrid({
-  generationCount = 0,
   selectedGenerationIds = [],
   setSelectedGenerationIds,
-  genIcons = {},
-  preloadComplete = false,
 }) {
+  const { generationCount, preloadedGenIcons, pokeLoading } = usePoke();
+  const { settings } = useSettings();
   // Pure grid renderer. Expects generationCount and selection handlers from parent.
   const buttonNumbers = Array.from(
     { length: generationCount },
     (_, index) => index + 1
   );
-
   const generateRows = () => {
     const rows = [];
     for (let i = 0; i < buttonNumbers.length; i += 3) {
@@ -46,14 +47,18 @@ function GenerationsGrid({
               >
                 Gen {buttonId}
                 {<br />}
-                {!preloadComplete ? null : (
+                {pokeLoading ? null : (
                   <img
-                    src={genIcons[buttonId] || ""}
+                    src={
+                      settings.disableAnimations
+                        ? preloadedGenIcons[buttonId].staticSprite || ""
+                        : preloadedGenIcons[buttonId].sprite || ""
+                    }
                     alt={"↻"}
                     style={{
                       imageRendering: "pixelated",
-                      width: "55px",
-                      height: "40px",
+                      width: "75px",
+                      height: "75px",
                       objectFit: "contain",
                     }}
                   />
@@ -70,18 +75,12 @@ function GenerationsGrid({
   return <>{generateRows()}</>;
 }
 
-function ChallengePanel({
-  generationCount,
-  loadingGens,
-  settings,
-  setSettings,
-  setGameMode,
-  preloadInfo,
-}) {
+function ChallengePanel() {
   // challenge-local selection state (single-select or all)
   const navigate = useNavigate();
-  const [pokeNum, setPokeNum] = useState(20);
+  const [numberOfMons, setNumberOfMons] = useState(20);
   const [selectedGenerationIds, setSelectedGenerationIds] = useState([]);
+  const { generationCount, gensLoading, pokeLoading } = usePoke();
 
   const allButtonNumbers = Array.from(
     { length: generationCount },
@@ -95,142 +94,113 @@ function ChallengePanel({
       setSelectedGenerationIds(allButtonNumbers);
     }
   };
-  const {
-    preloadedPokemon = {},
-    preloadedGenToNames = {},
-    preloadComplete = false,
-  } = preloadInfo || {};
 
-  const onStart = (selectedGenerationIds) => {
-    const homeSettings = settings;
-
-    let pokemonNamesForRelevantGens = [];
-    for (const gid of selectedGenerationIds) {
-      const names = preloadedGenToNames[gid] || [];
-      for (const n of names) pokemonNamesForRelevantGens.push(n);
-    }
-    pokemonNamesForRelevantGens = shuffle(pokemonNamesForRelevantGens).slice(
-      0,
-      pokeNum > 0 ? pokeNum : pokemonNamesForRelevantGens.length
-    );
-    navigate("/challenge", {
+  const onStart = () => {
+    navigate(ROUTER_UTIL.CHALLENGE, {
       state: {
-        homeSettings: homeSettings,
-        allPokemonData: preloadedPokemon, // Data of only the relevant Pokemon
-        pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
+        numberOfMons,
+        selectedGenerationIds,
       },
     });
   };
 
   return (
-    <div>
+    <div className="App p-5">
+      <AppHeader />
       <Row className="mb-3">
         <Col></Col>
         <Col className="col-4 d-flex justify-content-center align-items-center">
           <Button
             variant="secondary"
-            onClick={() => setGameMode(GameModes.MENU)}
+            onClick={() => navigate(ROUTER_UTIL.HOME)}
           >
             ← Back to Menu
           </Button>
         </Col>
-        <Col className="text-center">
-          <Settings
-            style={{ marginTop: "-5rem" }}
-            settings={settings}
-            setSettings={setSettings}
-          />
+        <Col className="text-center"></Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col lg={7} md={12} sm={12}>
+          <Card className="cute-card mt-3">
+            <Card.Header>Challenge Type</Card.Header>
+            <Card.Body>
+              {gensLoading ? (
+                <Spinner />
+              ) : (
+                <GenerationsGrid
+                  selectedGenerationIds={selectedGenerationIds}
+                  setSelectedGenerationIds={setSelectedGenerationIds}
+                />
+              )}
+            </Card.Body>
+            <Card.Footer>
+              <Row className="justify-content-center align-items-center">
+                <Col className="d-flex justify-content-center">
+                  {gensLoading ? (
+                    <Spinner />
+                  ) : (
+                    <Button variant="outline-primary" onClick={handleSelectAll}>
+                      {selectedGenerationIds.length === generationCount
+                        ? "Select None"
+                        : "Select All Generations"}
+                    </Button>
+                  )}
+                </Col>
+                <Col className="d-flex justify-content-center">
+                  <ButtonGroup>
+                    {[
+                      { name: "Fast ⚡️", value: 20 },
+                      { name: "Full 🌍", value: 0 },
+                    ].map((radio, idx) => (
+                      <OverlayTrigger
+                        key={`tooltip-${radio.name}`}
+                        id={`tooltip-${radio.name}`}
+                        placement="top"
+                        overlay={
+                          <Tooltip>
+                            <div className="App">
+                              {radio.value === 20
+                                ? "20 mons"
+                                : "All mons from selected gens"}
+                            </div>
+                          </Tooltip>
+                        }
+                      >
+                        <ToggleButton
+                          key={idx}
+                          id={`radio-${idx}`}
+                          type="radio"
+                          variant={"outline-primary"}
+                          name="radio"
+                          value={radio.value}
+                          checked={numberOfMons === radio.value}
+                          onChange={(e) =>
+                            setNumberOfMons(Number(e.currentTarget.value))
+                          }
+                        >
+                          {radio.name}
+                        </ToggleButton>
+                      </OverlayTrigger>
+                    ))}
+                  </ButtonGroup>
+                </Col>
+              </Row>
+            </Card.Footer>
+          </Card>
         </Col>
       </Row>
-      {loadingGens ? null : (
-        <>
-          <GenerationsGrid
-            generationCount={generationCount}
-            selectedGenerationIds={selectedGenerationIds}
-            setSelectedGenerationIds={setSelectedGenerationIds}
-            genIcons={preloadInfo.preloadedGenIcons || {}}
-            preloadComplete={preloadComplete}
-          />
-          <Row className="justify-content-center mt-3">
-            <Col
-              xs={6}
-              md={4}
-              lg={3}
-              className="p-2 d-flex justify-content-center"
-            >
-              <Button variant="light" onClick={handleSelectAll}>
-                {selectedGenerationIds.length === generationCount
-                  ? "Select None"
-                  : "Select All Generations"}
-              </Button>
-            </Col>
-            <Col
-              xs={6}
-              md={4}
-              lg={3}
-              className="p-2 d-flex justify-content-center"
-            >
-              <ButtonGroup>
-                {[
-                  { name: "Fast ⚡️", value: 20 },
-                  { name: "Full 🌍", value: 0 },
-                ].map((radio, idx) => (
-                  <OverlayTrigger
-                    key={`tooltip-${radio.name}`}
-                    id={`tooltip-${radio.name}`}
-                    placement="top"
-                    overlay={
-                      <Tooltip>
-                        <div className="App">
-                          {radio.value === 20
-                            ? "20 Pokemon"
-                            : "All Pokemon from selected gens"}
-                        </div>
-                      </Tooltip>
-                    }
-                  >
-                    <ToggleButton
-                      key={idx}
-                      id={`radio-${idx}`}
-                      type="radio"
-                      variant={"outline-primary"}
-                      name="radio"
-                      value={radio.value}
-                      checked={pokeNum === radio.value}
-                      onChange={(e) =>
-                        setPokeNum(Number(e.currentTarget.value))
-                      }
-                    >
-                      {radio.name}
-                    </ToggleButton>
-                  </OverlayTrigger>
-                ))}
-              </ButtonGroup>
-            </Col>
-          </Row>
-          <Row className="justify-content-center mt-3">
-            <Col
-              xs={6}
-              md={4}
-              lg={3}
-              className="p-2 d-flex justify-content-center"
-            >
-              <Button
-                disabled={
-                  selectedGenerationIds.length === 0 || !preloadComplete
-                }
-                variant="success"
-                onClick={() => onStart(selectedGenerationIds)}
-              >
-                Challenge{" "}
-                {!preloadComplete ? (
-                  <Spinner animation="border" size="sm" />
-                ) : null}
-              </Button>
-            </Col>
-          </Row>
-        </>
-      )}
+      <Row className="justify-content-center mt-3">
+        <Col xs={6} md={4} lg={3} className="p-2 d-flex justify-content-center">
+          <Button
+            disabled={selectedGenerationIds.length === 0 || pokeLoading}
+            variant="success"
+            onClick={() => onStart()}
+          >
+            Challenge{" "}
+            {pokeLoading ? <Spinner animation="border" size="sm" /> : null}
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 }

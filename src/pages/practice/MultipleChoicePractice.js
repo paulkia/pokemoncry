@@ -5,10 +5,14 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   shuffle,
+  ROUTER_UTIL,
   CORRECT_RESULT_COLOR,
   INCORRECT_RESULT_COLOR,
   NEUTRAL_RESULT_COLOR,
+  LOCAL_STORAGE_UTIL,
+  DEFAULT_SETTINGS,
 } from "../../library/util";
+import { useSettings } from "../../AppContext";
 import { playCryForPokemon } from "../../library/audioviz";
 import "../../App.css";
 import Settings from "../../components/Settings";
@@ -31,15 +35,15 @@ export const MultipleChoiceResult = {
 };
 
 function MultipleChoicePractice() {
+  const location = useLocation();
   const {
-    homeSettings,
     allPokemon, // Data of all Pokemon
     numPokemonToGuess, // Pokemon names for this quiz
     pokemonNamesForRelevantGens,
-  } = useLocation().state || {};
+  } = location.state || {};
   const navigate = useNavigate();
-  const [settings, setSettings] = useState(homeSettings || {});
   const [pokemonInGameOrder] = useState(shuffle(pokemonNamesForRelevantGens));
+  const { settings } = useSettings();
   const [pokeNum, setPokeNum] = useState(0);
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
   const [multipleChoiceResults, setMultipleChoiceResults] = useState({});
@@ -51,7 +55,7 @@ function MultipleChoicePractice() {
   const [showViz, setShowViz] = useState(true);
 
   if (!navigator.userActivation.hasBeenActive) {
-    navigate("/");
+    navigate(ROUTER_UTIL.HOME);
   }
 
   // Always trigger cry for the next Pokemon.
@@ -74,12 +78,11 @@ function MultipleChoicePractice() {
             vizInitializedRef,
             audioRef,
             canvasRef,
-            settings
+            settings.preferLegacyCries
           );
         } catch (err) {
-          console.log("err = ", err);
           if (err.name === "NotAllowedError") {
-            navigate("/");
+            navigate(ROUTER_UTIL.HOME);
           }
         }
         setShowViz(true);
@@ -103,7 +106,7 @@ function MultipleChoicePractice() {
             vizInitializedRef,
             audioRef,
             canvasRef,
-            settings
+            settings.preferLegacyCries
           );
           return;
         case "1":
@@ -164,9 +167,9 @@ function MultipleChoicePractice() {
     }
     let num = 1;
     const multipleChoiceRawComponent = multipleChoiceOptions.map((name) => {
-      let s = allPokemon[name]?.sprite;
+      let s = allPokemon[name]?.displaySprite;
       if (settings.disableAnimations) {
-        s = allPokemon[name]?.staticSprite;
+        s = allPokemon[name]?.staticDisplaySprite;
       }
       return typeof s === "string" ? (
         <PokeButton
@@ -226,7 +229,7 @@ function MultipleChoicePractice() {
               vizInitializedRef,
               audioRef,
               canvasRef,
-              settings
+              settings.preferLegacyCries
             );
           },
           redPokemon:
@@ -251,7 +254,11 @@ function MultipleChoicePractice() {
         <Row>
           <Col>
             {/* Back button positioned at top-left (inside padded app area) */}
-            <Button variant="secondary" size="sm" onClick={() => navigate("/")}>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => navigate(ROUTER_UTIL.HOME)}
+            >
               ← Back
             </Button>
           </Col>
@@ -259,7 +266,7 @@ function MultipleChoicePractice() {
             <p>Practice Mode!</p> {/* Back button (left) */}
           </Col>
           <Col>
-            <Settings settings={settings} setSettings={setSettings} />
+            <Settings />
           </Col>
         </Row>
         <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
@@ -268,6 +275,20 @@ function MultipleChoicePractice() {
           <Col xs={12} md={5}>
             {/* Container for relative positioning */}
             <PokeProgressBar completionPercent={progress} />
+            {pokeNum === numPokemonToGuess && (
+              <Button
+                onClick={() => {
+                  navigate(ROUTER_UTIL.REFRESHER, {
+                    state: {
+                      refreshRoute: location.pathname,
+                      refreshState: location.state,
+                    },
+                  });
+                }}
+              >
+                Play Again
+              </Button>
+            )}
             {/* Score, only displayed if all Pokemon have been guessed. */}
             <Score
               numPokemonToGuess={numPokemonToGuess}
@@ -299,7 +320,7 @@ function MultipleChoicePractice() {
                       vizInitializedRef,
                       audioRef,
                       canvasRef,
-                      settings
+                      settings.preferLegacyCries
                     );
                   }}
                   canvasRef={canvasRef}
@@ -324,11 +345,7 @@ function MultipleChoicePractice() {
         {/* Results, only displayed if at least one Pokemon has been guessed. */}
         <Col md={5}>
           {pokeNum > 0 && pokeNum < numPokemonToGuess ? (
-            <Row className="m-4">
-              <strong className="p-6" key={"results"}>
-                {"[Score]"}
-              </strong>{" "}
-            </Row>
+            <Row className="m-4"></Row>
           ) : null}
           <Row>{pokeNum > 0 ? resultsPanel() : null}</Row>
         </Col>

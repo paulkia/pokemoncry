@@ -1,12 +1,20 @@
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  Spinner,
+} from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { ROUTER_UTIL } from "../../library/util";
 import AppHeader from "../../components/AppHeader";
-import { useAuth } from "../../components/AuthProvider";
+import { useAuth } from "../../AppContext";
 
 import { getFunctions, httpsCallable } from "firebase/functions";
 
@@ -19,26 +27,26 @@ function CompleteProfile() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { authUser, authUsername } = useAuth();
+  const { authUser, authUsername, authLoading } = useAuth();
 
   useEffect(() => {
-    if (loading) {
+    if (loading || authLoading) {
       return;
     }
     if (authUsername) {
-      navigate("/profile");
+      navigate(ROUTER_UTIL.PROFILE);
     }
-    if (!authUser) {
-      navigate("/login");
+    if (!authUser || authUser.isAnonymous) {
+      navigate(ROUTER_UTIL.LOGIN);
     }
-  }, [authUser, authUsername, loading, navigate]);
+  }, [authUser, authUsername, loading, authLoading, navigate]);
 
   const handleCancel = async () => {
     const auth = getAuth();
     setLoading(true);
     try {
       await signOut(auth);
-      navigate("/");
+      navigate(ROUTER_UTIL.HOME);
     } catch (err) {
       setLoading(false);
       console.error("Sign out failed during profile completion cancel", err);
@@ -56,8 +64,9 @@ function CompleteProfile() {
       return;
     }
     try {
+      setLoading(true);
       await claimUsernameCallable({ username: name });
-      navigate("/");
+      navigate(ROUTER_UTIL.HOME);
     } catch (err) {
       console.error("Profile update/token retrieval failed", err);
       setError(err?.message || "Could not save your profile");
@@ -65,7 +74,9 @@ function CompleteProfile() {
     }
   };
 
-  return (
+  return authLoading || authUsername || authUser?.isAnonymous ? (
+    <Spinner />
+  ) : (
     <span>
       <div className="App p-5">
         <AppHeader disableLoginButton={true} />

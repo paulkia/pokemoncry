@@ -1,69 +1,134 @@
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { useAuth } from "../../components/AuthProvider";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useAuth } from "../../AppContext";
+import {
+  GoogleAuthProvider,
+  signInWithCredential,
+  linkWithPopup,
+} from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import AppHeader from "../../components/AppHeader";
 import GoogleIcon from "../../components/GoogleIcon";
+import { ROUTER_UTIL } from "../../library/util";
+
+const updateLoginDoc = (firebaseId) => ({
+  firebase_id: firebaseId,
+  latestLoginTime: serverTimestamp(),
+});
+
+const newUserDoc = (firebaseId) => ({
+  firebase_id: firebaseId,
+  username: null,
+  latestLoginTime: serverTimestamp(),
+});
 
 function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const { authUser, authUsername } = useAuth();
+  const { authUser, authUsername, authLoading } = useAuth();
 
   useEffect(() => {
-    if (loading) {
+    if (loading || authLoading) {
       return;
     }
-    if (authUser !== null && authUsername !== null) {
-      navigate("/profile");
+    if (authUser && authUsername) {
+      navigate(ROUTER_UTIL.PROFILE);
+      return;
     }
-    if (authUser !== null && authUsername == null) {
-      navigate("/complete-profile");
+    if (authUser && !authUser.isAnonymous && !authUsername) {
+      navigate(ROUTER_UTIL.COMPLETE_PROFILE);
+      return;
     }
-  }, [authUsername, authUser, navigate, loading]);
+  }, [loading, authLoading, authUser, authUsername, navigate]);
 
   const handleGoogleSignIn = async (e) => {
     e?.preventDefault?.();
-    setError("");
     setLoading(true);
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      if (!auth.currentUser) {
-        throw new Error("No user after sign-in");
-      }
-      const userDocRef = doc(db, "users", auth.currentUser.uid);
-      const userDoc = await getDoc(userDocRef);
-      if (userDoc.exists() && userDoc.data().username) {
-        // Existing user with profile
-        navigate("/");
-      } else {
-        await setDoc(
-          userDocRef,
-          {
-            firebase_id: auth.currentUser.uid,
-            username: null,
-            updatedAt: serverTimestamp(),
-          },
-          { merge: true }
-        );
-        navigate("/complete-profile");
-      }
-    } catch (err) {
-      console.error("Google sign-in failed", err);
-      setError(err?.message || "Sign-in failed");
+    const provider = new GoogleAuthProvider();
+    // If user is anonymous, link accounts. Otherwise, sign in normally.
+    if (!authUser || !authUser.isAnonymous) {
+      setError("Sign in not possible at this time.");
+      console.error(
+        `Sign in status invalid. Should have auth user and be anonymous. Auth user: ${authUser}, isAnonymous: ${authUser?.isAnonymous}`
+      );
       setLoading(false);
+      return;
     }
-  };
+    // For users that are not yet in the firebase system.
+    linkWithPopup(authUser, provider)
+      .then(() => {
+        const firebaseId = authUser.uid;
+        const userDocRef = doc(db, "users", firebaseId);
+        setDoc(userDocRef, newUserDoc(firebaseId), { merge: true })
+          .then(() => navigate(ROUTER_UTIL.COMPLETE_PROFILE))
+          .catch((err) => {
+            setError(
+              "Failed to create user profile in database, please try again later."
+            );
+            console.error("Creating userdoc profile failed", err);
+            setLoading(false);
+          });
+      })
 
-  return (
+      .catch((linkError) => {
+        if (linkError.code !== "auth/credential-already-in-use") {
+          setError("Linking accounts failed, please try again later.");
+          console.error("Linking accounts failed", linkError.code, linkError);
+          setLoading(false);
+          return;
+        }
+        // For users that already have an account with our firebase system, merge the accounts.
+        const googleCredential =
+          GoogleAuthProvider.credentialFromError(linkError);
+        signInWithCredential(auth, googleCredential)
+          .then((cred) => {
+            const firebaseId = cred.user.uid;
+            // If the user already has a profile with a username, log them in.
+            const userDocRef = doc(db, "users", firebaseId);
+            getDoc(userDocRef).then((userDoc) => {
+              if (userDoc.exists() && userDoc.data().username) {
+                // TODO: MERGE SCORE DATA.
+                setDoc(userDocRef, updateLoginDoc(firebaseId), {
+                  merge: true,
+                })
+                  .then(() => navigate(ROUTER_UTIL.HOME))
+                  .catch((err) => {
+                    setError(
+                      "Failed to update login time in database, please try again later."
+                    );
+                    console.error("Updating login time failed", err);
+                    setLoading(false);
+                  });
+              } else {
+                // Create new user profile and navigate to complete-profile.
+                setDoc(userDocRef, newUserDoc(firebaseId), { merge: true })
+                  .then(() => navigate(ROUTER_UTIL.COMPLETE_PROFILE))
+                  .catch((err) => {
+                    setError(
+                      "Failed to create user profile in database, please try again later."
+                    );
+                    console.error("Creating userdoc profile failed", err);
+                    setLoading(false);
+                  });
+              }
+            });
+          })
+          .catch((err) => {
+            setError("Sign in failed, please try again later.");
+            console.error("Sign-in with credential failed", err);
+            setLoading(false);
+          });
+      });
+  };
+  return authLoading || authUsername || !authUser?.isAnonymous ? (
+    <Spinner />
+  ) : (
     <span>
       <div className="App p-5">
         <AppHeader disableLoginButton={true} />
@@ -110,7 +175,7 @@ function Login() {
                 <Card.Footer className="bg-white border-0 d-flex justify-content-end gap-2 p-4 pt-0">
                   <Button
                     variant="outline-secondary"
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate(ROUTER_UTIL.HOME)}
                   >
                     Cancel
                   </Button>

@@ -48,3 +48,76 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* --- Super Cute PracticePanel Cards 🌈 --- */
+@keyframes cute-spin-border {
+  0% { --cute-angle: 0deg; }
+  100% { --cute-angle: 360deg; }
+}
+
+.cute-card {
+  /* Layout & shape */
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 3px solid transparent;
+
+  /* Colorful gradient border via multiple backgrounds */
+  --cute-angle: 0deg;
+  
+  background-size: 24px 24px, auto, auto;
+  background-position: 0 0, 0 0, 0 0;
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-clip: padding-box, padding-box, border-box;
+  background-origin: padding-box, padding-box, border-box;
+
+  /* Depth & motion */
+  /* box-shadow: 0 12px 30px rgba(255, 105, 180, 0.25), 0 6px 12px rgba(0, 0, 0, 0.05); */
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  animation: cute-spin-border 10s linear infinite;
+}
+
+.cute-card:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+.cute-card .card-header {
+  background: linear-gradient(90deg, #ffdbdb, #e8f0ff, #dafff8);
+  border-bottom: 2px dashed rgba(132, 234, 255, 0.75);
+  color: #2a2a2a;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+.cute-card .card-footer {
+  background: linear-gradient(90deg, #fff7fb, #f7fff9);
+  border-top: 2px dashed rgba(255, 192, 203, 0.6);
+}
+
+/* Optional: make buttons inside cute cards more playful without changing global buttons */
+.cute-card .btn {
+  border-radius: 20px;
+}
+
+/* Improve separation between ListGroup items inside cute cards */
+.cute-card .list-group-item {
+  background-color: transparent;
+  border: none; /* override flush removal */
+  padding: 0.75rem 1rem;
+  position: relative;
+}
+
+.cute-card .list-group-item {
+  margin-bottom: 1rem; /* small gap between items */
+}
+
+.cute-card .list-group-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: -0.65rem;
+  height: 0;
+  border-bottom: 2px dashed rgba(132, 234, 255, 0.75); /* cute cyan divider */
+}

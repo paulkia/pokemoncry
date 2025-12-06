@@ -14,7 +14,15 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import Settings from "../../components/Settings";
 import { useNavigate } from "react-router-dom";
-import { GameModes, shuffle } from "../../library/util";
+import {
+  LOCAL_STORAGE_UTIL,
+  DEFAULT_SETTINGS,
+  ROUTER_UTIL,
+  NEUTRAL_RESULT_COLOR,
+  shuffle,
+} from "../../library/util";
+import { usePoke } from "../../AppContext";
+import AppHeader from "../../components/AppHeader";
 // import { List } from "lucide-react";
 
 const PRACTICE_TYPE = {
@@ -23,12 +31,10 @@ const PRACTICE_TYPE = {
 };
 
 function GenerationsGrid({
-  generationCount = 0,
   selectedGenerationIds = [],
   setSelectedGenerationIds,
-  genIcons = {},
-  preloadComplete = false,
 }) {
+  const { generationCount, preloadedGenIcons, pokeLoading } = usePoke();
   // Pure grid renderer. Expects generationCount and selection handlers from parent.
   const buttonNumbers = Array.from(
     { length: generationCount },
@@ -58,9 +64,9 @@ function GenerationsGrid({
                 }
               >
                 Gen {buttonId}{" "}
-                {!preloadComplete ? null : (
+                {pokeLoading ? null : (
                   <img
-                    src={genIcons[buttonId] || ""}
+                    src={preloadedGenIcons[buttonId].icon || ""}
                     alt={"↻"}
                     style={{
                       imageRendering: "pixelated",
@@ -82,14 +88,13 @@ function GenerationsGrid({
   return <>{generateRows()}</>;
 }
 
-function PracticePanel({
-  generationCount,
-  loadingGens,
-  settings,
-  setSettings,
-  setGameMode,
-  preloadInfo,
-}) {
+function PracticePanel() {
+  const {
+    generationCount,
+    preloadedPokemon,
+    preloadedGenToNames,
+    pokeLoading,
+  } = usePoke();
   const navigate = useNavigate();
   const [selectedGenerationIds, setSelectedGenerationIds] = useState([]);
   const [practiceType, setPracticeType] = useState(
@@ -111,14 +116,7 @@ function PracticePanel({
     }
   };
 
-  const {
-    preloadedPokemon = {},
-    preloadedGenToNames = {},
-    preloadComplete = false,
-  } = preloadInfo || {};
-
   const onStart = (selectedGenerationIds) => {
-    const homeSettings = settings;
     // Get the subset of relevant Pokemon data for selected gens and Pokemon number.
     let pokemonNamesForRelevantGens = [];
     for (const gid of selectedGenerationIds) {
@@ -129,9 +127,8 @@ function PracticePanel({
     switch (practiceType) {
       case PRACTICE_TYPE.SHORT_ANSWER:
         if (repeatMistakes) {
-          navigate("/ultimate-training-practice", {
+          navigate(ROUTER_UTIL.ULTIMATE_TRAINING_PRACTICE, {
             state: {
-              homeSettings: homeSettings,
               allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
               numPokemonToGuess:
                 numberOfPokemon > 0
@@ -141,9 +138,8 @@ function PracticePanel({
             },
           });
         } else {
-          navigate("/short-answer-practice", {
+          navigate(ROUTER_UTIL.SHORT_ANSWER_PRACTICE, {
             state: {
-              homeSettings: homeSettings,
               allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
               numPokemonToGuess:
                 numberOfPokemon > 0
@@ -155,9 +151,8 @@ function PracticePanel({
         }
         return;
       default:
-        navigate("/multiple-choice-practice", {
+        navigate(ROUTER_UTIL.MULTIPLE_CHOICE_PRACTICE, {
           state: {
-            homeSettings: homeSettings,
             allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
             numPokemonToGuess:
               numberOfPokemon > 0
@@ -171,35 +166,20 @@ function PracticePanel({
   };
 
   return (
-    <div>
-      <Row className="justify-content-center mt-3">
-        <Col></Col>
-        <Col className="col-4 d-flex justify-content-center align-items-center">
-          <Button
-            variant="secondary"
-            onClick={() => setGameMode(GameModes.MENU)}
-          >
-            ← Back to Menu
-          </Button>
-        </Col>
-        <Col className="text-center">
-          <Settings settings={settings} setSettings={setSettings} />
-        </Col>
-      </Row>
+    <div className="App p-5">
+      <AppHeader />
       {/* Four-column layout: left small column (Settings), middle-left = generations, middle-right = practice options, right small spacer */}
       <Form>
         <Row className="align-items-stretch justify-content-center mt-2 gx-2">
           {/* Middle-left: Generations grid */}
-          <Col xs={12} md={4} className="m-2">
-            {loadingGens ? null : (
-              <Card>
+          <Col md={12} lg={4} className="m-2">
+            {
+              <Card className="cute-card flex-grow-1">
+                <Card.Header>Generations</Card.Header>
                 <Card.Body>
                   <GenerationsGrid
-                    generationCount={generationCount}
                     selectedGenerationIds={selectedGenerationIds}
                     setSelectedGenerationIds={setSelectedGenerationIds}
-                    genIcons={preloadInfo.preloadedGenIcons || {}}
-                    preloadComplete={preloadComplete}
                   />
                 </Card.Body>
                 <Card.Footer className="justify-content-center d-flex">
@@ -210,94 +190,97 @@ function PracticePanel({
                   </Button>
                 </Card.Footer>
               </Card>
-            )}
+            }
           </Col>
           {/* Middle-right: Practice options */}
           <Col
-            xs={12}
-            md={4}
+            md={12}
+            lg={4}
             className="d-flex flex-column justify-content-between m-2"
           >
-            <Card className="mb-2">
+            <Card className="mb-2 cute-card ">
               <Card.Header>Practice type:</Card.Header>
-              {/* Updated button layout: MC + SA side-by-side, Ultimate underneath */}
-              <div className="w-100 d-flex flex-column align-items-center mb-3">
-                <Row className="w-100 justify-content-center">
-                  <ListGroup className="list-group-flush">
-                    <ListGroup.Item>
-                      <Button
-                        className="w-100"
-                        variant={
-                          practiceType === PRACTICE_TYPE.MULTIPLE_CHOICE
-                            ? "primary"
-                            : "outline-secondary"
-                        }
-                        onClick={() =>
-                          setPracticeType(PRACTICE_TYPE.MULTIPLE_CHOICE)
-                        }
-                      >
-                        With Pictures 🐠
-                      </Button>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <Button
-                        className="w-100"
-                        variant={
-                          practiceType === PRACTICE_TYPE.SHORT_ANSWER
-                            ? "primary"
-                            : "outline-secondary"
-                        }
-                        onClick={() =>
-                          setPracticeType(PRACTICE_TYPE.SHORT_ANSWER)
-                        }
-                      >
-                        Typing Practice 🙈
-                      </Button>
-                      <Form.Group>
-                        <FormCheck
-                          id="repeat-mistakes-switch"
-                          disabled={
+              <Card.Body>
+                <div className="w-100 d-flex flex-column align-items-center">
+                  <Row className="w-100 justify-content-center">
+                    <ListGroup className="list-group-flush overflow-auto">
+                      <ListGroup.Item>
+                        <Button
+                          className="w-100"
+                          variant={
                             practiceType === PRACTICE_TYPE.MULTIPLE_CHOICE
+                              ? "primary"
+                              : "outline-secondary"
                           }
-                          type="switch"
-                          inline
-                          className="mt-3 justify-content-center d-flex"
-                          checked={
-                            repeatMistakes &&
+                          onClick={() =>
+                            setPracticeType(PRACTICE_TYPE.MULTIPLE_CHOICE)
+                          }
+                        >
+                          With Pictures <i class="bi bi-image"></i>
+                        </Button>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <Button
+                          className="w-100"
+                          variant={
                             practiceType === PRACTICE_TYPE.SHORT_ANSWER
+                              ? "primary"
+                              : "outline-secondary"
                           }
-                          onChange={() => setRepeatMistakes(!repeatMistakes)}
-                          label={
-                            <span className="m-2">
-                              <span>Repeat</span>{" "}
-                              <span style={{ whiteSpace: "nowrap" }}>
-                                Mistakes
-                              </span>{" "}
-                              <OverlayTrigger
-                                placement="top"
-                                overlay={
-                                  <Tooltip>
-                                    <div className="App">
-                                      Personalized training for typing practice.
-                                    </div>
-                                  </Tooltip>
-                                }
-                              >
-                                <i className="bi bi-info-circle-fill"></i>
-                              </OverlayTrigger>
-                            </span>
+                          onClick={() =>
+                            setPracticeType(PRACTICE_TYPE.SHORT_ANSWER)
                           }
-                        />
-                      </Form.Group>
-                    </ListGroup.Item>
-                  </ListGroup>
-                </Row>
-              </div>
+                        >
+                          Typing Practice{" "}
+                          <i class="bi bi-input-cursor-text"></i>
+                        </Button>
+                        <Form.Group>
+                          <FormCheck
+                            id="repeat-mistakes-switch"
+                            disabled={
+                              practiceType === PRACTICE_TYPE.MULTIPLE_CHOICE
+                            }
+                            type="switch"
+                            inline
+                            className="mt-3 justify-content-center d-flex"
+                            checked={
+                              repeatMistakes &&
+                              practiceType === PRACTICE_TYPE.SHORT_ANSWER
+                            }
+                            onChange={() => setRepeatMistakes(!repeatMistakes)}
+                            label={
+                              <span className="m-2">
+                                <span>Repeat</span>{" "}
+                                <span style={{ whiteSpace: "nowrap" }}>
+                                  Mistakes
+                                </span>{" "}
+                                <OverlayTrigger
+                                  placement="top"
+                                  overlay={
+                                    <Tooltip>
+                                      <div className="App">
+                                        Personalized training for typing
+                                        practice.
+                                      </div>
+                                    </Tooltip>
+                                  }
+                                >
+                                  <i className="bi bi-info-circle-fill"></i>
+                                </OverlayTrigger>
+                              </span>
+                            }
+                          />
+                        </Form.Group>
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </Row>
+                </div>
+              </Card.Body>
             </Card>
             {/* Bottom card pinned to bottom, full height */}
-            <Card className="mt-3 height-100">
+            <Card className="mt-3 cute-card flex-grow-1">
               <Card.Header>Number of Pokemon:</Card.Header>
-              <Card.Body className="justify-content-center d-flex">
+              <Card.Body className="d-flex flex-grow-1 align-items-center justify-content-center">
                 <Button
                   className="m-1"
                   variant={
@@ -335,13 +318,13 @@ function PracticePanel({
       <Row className="justify-content-center mt-3">
         <Col xs={6} md={4} lg={3} className="p-2 d-flex justify-content-center">
           <Button
-            disabled={selectedGenerationIds.length === 0 || !preloadComplete}
+            disabled={selectedGenerationIds.length === 0 || pokeLoading}
             variant="success"
             onClick={() => onStart(selectedGenerationIds)}
             className="w-100"
           >
             Practice{" "}
-            {!preloadComplete ? <Spinner animation="border" size="sm" /> : null}
+            {pokeLoading ? <Spinner animation="border" size="sm" /> : null}
           </Button>
         </Col>
       </Row>

@@ -11,11 +11,17 @@ import {
   FormControl,
 } from "react-bootstrap";
 import { useState, useReducer, useEffect, useCallback, useRef } from "react";
+import { useSettings } from "../../AppContext";
 import {
   CORRECT_AUDIO_SOUND,
   INCORRECT_AUDIO_SOUND,
+  SHINY_AUDIO_SOUND,
   PAUSE_TIME,
+  ROUTER_UTIL,
   NEUTRAL_RESULT_COLOR,
+  LOCAL_STORAGE_UTIL,
+  DEFAULT_SETTINGS,
+  SHINY_PROBABILITY,
   DISABLE_ANIMATION_SWITCH,
   getRandomElement,
 } from "../../library/util";
@@ -39,8 +45,6 @@ const ACTION_TYPES = {
   ENABLE_INPUT: "ENABLE_INPUT",
   END_GAME: "END_GAME",
 };
-
-export const SHINY_PROBABILITY = 1 / 69;
 
 const initialState = {
   // User input.
@@ -115,10 +119,13 @@ function quizReducer(state, action) {
     }
     case ACTION_TYPES.ADD_CORRECT:
       if (Math.random() < SHINY_PROBABILITY) {
-        state.allPokemon[action.pokemon].sprite =
+        state.allPokemon[action.pokemon].displaySprite =
           state.allPokemon[action.pokemon].shinySprite;
-        state.allPokemon[action.pokemon].staticSprite =
+        state.allPokemon[action.pokemon].staticDisplaySprite =
           state.allPokemon[action.pokemon].staticShinySprite;
+        SHINY_AUDIO_SOUND.play();
+      } else {
+        CORRECT_AUDIO_SOUND.play();
       }
       return {
         ...state,
@@ -126,6 +133,7 @@ function quizReducer(state, action) {
         previousGuess: action.input,
       };
     case ACTION_TYPES.ADD_INCORRECT:
+      INCORRECT_AUDIO_SOUND.play();
       return {
         ...state,
         incorrect: [
@@ -180,14 +188,17 @@ function quizReducer(state, action) {
 
 function ShortAnswerPractice() {
   const {
-    homeSettings,
     allPokemon, // Data of all Pokemon
     numPokemonToGuess, // Pokemon names for this quiz
     pokemonNamesForRelevantGens,
   } = useLocation().state || {};
   const navigate = useNavigate();
+  const location = useLocation();
   const [state, dispatch] = useReducer(quizReducer, initialState);
-  const [settings, setSettings] = useState(homeSettings || {});
+
+  const { settings } = useSettings();
+  const { preferLegacyCries } = settings;
+
   // Ref to the input DOM node so we can trigger a shake animation on wrong guesses.
   const inputRef = useRef(null);
 
@@ -198,7 +209,7 @@ function ShortAnswerPractice() {
   const [showViz, setShowViz] = useState(true);
 
   if (!navigator.userActivation.hasBeenActive) {
-    navigate("/");
+    navigate(ROUTER_UTIL.HOME);
   }
 
   // Inject shake CSS once
@@ -234,7 +245,7 @@ function ShortAnswerPractice() {
           vizInitializedRef,
           audioRef,
           canvasRef,
-          settings
+          settings.preferLegacyCries
         );
         inputRef.current && inputRef.current.focus();
       }, 500);
@@ -246,15 +257,6 @@ function ShortAnswerPractice() {
       pokeNum: 1,
     });
   }, []);
-
-  useEffect(() => {
-    if (state.pokeNum === DISABLE_ANIMATION_SWITCH) {
-      setSettings({
-        ...settings,
-        disableAnimations: !settings.disableAnimations,
-      });
-    }
-  }, [state.pokeNum]);
 
   function triggerCorrectAnimation() {
     // Grab confirm answer button
@@ -324,7 +326,7 @@ function ShortAnswerPractice() {
           vizInitializedRef,
           audioRef,
           canvasRef,
-          settings
+          settings.preferLegacyCries
         );
         return;
       case "Tab": {
@@ -345,7 +347,6 @@ function ShortAnswerPractice() {
             input: input,
           });
           // Play correct feedback sound
-          CORRECT_AUDIO_SOUND.play();
           triggerCorrectAnimation();
         } else {
           dispatch({
@@ -354,7 +355,6 @@ function ShortAnswerPractice() {
             input: input,
           });
           // Play incorrect feedback sound
-          INCORRECT_AUDIO_SOUND.play();
           // Trigger shake animation on the input when incorrect
           triggerIncorrectAnimation();
         }
@@ -368,7 +368,7 @@ function ShortAnswerPractice() {
               vizInitializedRef,
               audioRef,
               canvasRef,
-              settings
+              settings.preferLegacyCries
             );
             setShowViz(true);
             dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
@@ -401,7 +401,11 @@ function ShortAnswerPractice() {
         <br />
         <PokeButton
           name={state.previousGuess}
-          sprite={state.allPokemon[state.previousGuess].sprite}
+          sprite={
+            settings.disableAnimations
+              ? state.allPokemon[state.previousGuess]?.staticDisplaySprite
+              : state.allPokemon[state.previousGuess]?.displaySprite
+          }
           outlineType={OUTLINE_TYPE.RED}
           onClick={() => {
             setShowViz(false);
@@ -410,7 +414,7 @@ function ShortAnswerPractice() {
               vizInitializedRef,
               audioRef,
               canvasRef,
-              settings
+              settings.preferLegacyCries
             );
           }}
         />
@@ -431,7 +435,11 @@ function ShortAnswerPractice() {
             <br />
             <PokeButton
               name={previous}
-              sprite={allPokemon[previous].sprite}
+              sprite={
+                settings.disableAnimations
+                  ? allPokemon[previous]?.staticDisplaySprite
+                  : allPokemon[previous]?.displaySprite
+              }
               outlineType={OUTLINE_TYPE.GREEN}
               onClick={() => {
                 setShowViz(false);
@@ -440,7 +448,7 @@ function ShortAnswerPractice() {
                   vizInitializedRef,
                   audioRef,
                   canvasRef,
-                  settings
+                  settings.preferLegacyCries
                 );
               }}
             />
@@ -458,9 +466,9 @@ function ShortAnswerPractice() {
                   {state.pokemonInGameOrder
                     .slice(0, state.pokeNum - 1)
                     .map((name) => {
-                      let s = state.allPokemon[name]?.sprite;
+                      let s = state.allPokemon[name]?.displaySprite;
                       if (settings.disableAnimations) {
-                        s = state.allPokemon[name]?.staticSprite;
+                        s = state.allPokemon[name]?.staticDisplaySprite;
                       }
                       return typeof s === "string" ? (
                         <PokeButton
@@ -479,7 +487,7 @@ function ShortAnswerPractice() {
                               vizInitializedRef,
                               audioRef,
                               canvasRef,
-                              settings
+                              settings.preferLegacyCries
                             );
                           }}
                         />
@@ -510,7 +518,11 @@ function ShortAnswerPractice() {
         <Row>
           <Col>
             {/* Back button positioned at top-left (inside padded app area) */}
-            <Button variant="secondary" size="sm" onClick={() => navigate("/")}>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => navigate(ROUTER_UTIL.HOME)}
+            >
               ← Back
             </Button>
           </Col>
@@ -519,7 +531,7 @@ function ShortAnswerPractice() {
           </Col>
           <Col>
             {" "}
-            <Settings settings={settings} setSettings={setSettings} />
+            <Settings />
           </Col>
         </Row>
         <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
@@ -527,6 +539,20 @@ function ShortAnswerPractice() {
           <Col xs={12} md={4}>
             {/* Container for relative positioning */}
             <PokeProgressBar completionPercent={progress} />
+            {state.pokeNum === numPokemonToGuess && (
+              <Button
+                onClick={() => {
+                  navigate(ROUTER_UTIL.REFRESHER, {
+                    state: {
+                      refreshRoute: location.pathname,
+                      refreshState: location.state,
+                    },
+                  });
+                }}
+              >
+                Play Again
+              </Button>
+            )}
             {/* Score, only displayed if all Pokemon have been guessed. */}
             <Score
               numPokemonToGuess={numPokemonToGuess}
@@ -557,7 +583,7 @@ function ShortAnswerPractice() {
                       vizInitializedRef,
                       audioRef,
                       canvasRef,
-                      settings
+                      settings.preferLegacyCries
                     );
                   }}
                   canvasRef={canvasRef}
