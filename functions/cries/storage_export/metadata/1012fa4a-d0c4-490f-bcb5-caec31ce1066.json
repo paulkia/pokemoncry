@@ -1,0 +1,19 @@
+{
+  "name": "cries/tinkatink-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684192,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "77aa8691-e02e-46b9-b4f5-cefc16dca84b"
+  ],
+  "etag": "vYJYVPZx/4kpX+Qpqe9rmrNQy3U",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.192Z",
+  "updated": "2025-12-12T07:48:04.192Z",
+  "size": 13292,
+  "md5Hash": "YHESNPUj1x9CRIKXMYfyNw==",
+  "crc32c": "463826587"
+}

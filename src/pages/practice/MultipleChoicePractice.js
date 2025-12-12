@@ -9,18 +9,14 @@ import {
   CORRECT_RESULT_COLOR,
   INCORRECT_RESULT_COLOR,
   NEUTRAL_RESULT_COLOR,
-  LOCAL_STORAGE_UTIL,
-  DEFAULT_SETTINGS,
 } from "../../library/util";
 import { useSettings } from "../../AppContext";
-import { playCryForPokemon } from "../../library/audioviz";
+import { playCryForMon } from "../../library/audioviz";
 import "../../App.css";
-import Settings from "../../components/Settings";
 import "bootstrap/dist/css/bootstrap.min.css";
 import correctSound from "../../audio/correct.mp3";
 import incorrectSound from "../../audio/incorrect.mp3";
 
-import AppHeader from "../../components/AppHeader";
 import AudioDisplay from "../../components/AudioDisplay";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";
@@ -37,12 +33,13 @@ export const MultipleChoiceResult = {
 function MultipleChoicePractice() {
   const location = useLocation();
   const {
-    allPokemon, // Data of all Pokemon
-    numPokemonToGuess, // Pokemon names for this quiz
-    pokemonNamesForRelevantGens,
+    allMon, // Data of all Mon
+    numMonToGuess, // Mon names for this quiz
+    monNamesForRelevantGens,
   } = location.state || {};
   const navigate = useNavigate();
-  const [pokemonInGameOrder] = useState(shuffle(pokemonNamesForRelevantGens));
+  console.log(monNamesForRelevantGens);
+  const [monInGameOrder] = useState(shuffle(monNamesForRelevantGens));
   const { settings } = useSettings();
   const [pokeNum, setPokeNum] = useState(0);
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
@@ -58,23 +55,24 @@ function MultipleChoicePractice() {
     navigate(ROUTER_UTIL.HOME);
   }
 
-  // Always trigger cry for the next Pokemon.
+  // Always trigger cry for the next Mon.
   useEffect(() => {
-    const correctPokemon = pokemonInGameOrder[pokeNum];
-    const relevantPokemonExceptCurrentAnswer =
-      pokemonNamesForRelevantGens.filter((poke) => poke !== correctPokemon);
+    const correctMon = monInGameOrder[pokeNum];
+    const relevantMonExceptCurrentAnswer = monNamesForRelevantGens.filter(
+      (poke) => poke !== correctMon
+    );
     const multipleChoiceOptionsPlusCorrectAnswer = shuffle(
-      relevantPokemonExceptCurrentAnswer
+      relevantMonExceptCurrentAnswer
     )
       .slice(0, NUM_OPTIONS - 1)
-      .concat([correctPokemon]);
+      .concat([correctMon]);
     setMultipleChoiceOptions(shuffle(multipleChoiceOptionsPlusCorrectAnswer));
-    // Play the correct Pokemon's cry (with viz)
-    if (pokeNum < numPokemonToGuess) {
+    // Play the correct Mon's cry (with viz)
+    if (pokeNum < numMonToGuess) {
       setTimeout(() => {
         try {
-          playCryForPokemon(
-            allPokemon[correctPokemon],
+          playCryForMon(
+            allMon[correctMon],
             vizInitializedRef,
             audioRef,
             canvasRef,
@@ -93,7 +91,7 @@ function MultipleChoicePractice() {
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback(
     (e) => {
-      if (pokeNum >= numPokemonToGuess) {
+      if (pokeNum >= numMonToGuess) {
         return;
       }
       switch (e.key) {
@@ -101,8 +99,8 @@ function MultipleChoicePractice() {
         case " ":
           e.preventDefault();
           setShowViz(true);
-          playCryForPokemon(
-            allPokemon[pokemonInGameOrder[pokeNum]],
+          playCryForMon(
+            allMon[monInGameOrder[pokeNum]],
             vizInitializedRef,
             audioRef,
             canvasRef,
@@ -125,7 +123,7 @@ function MultipleChoicePractice() {
           break;
       }
     },
-    [pokemonInGameOrder, pokeNum, settings, multipleChoiceOptions]
+    [monInGameOrder, pokeNum, settings, multipleChoiceOptions]
   );
 
   // Listen to key input
@@ -135,18 +133,18 @@ function MultipleChoicePractice() {
   }, [handleKey]);
 
   const evaluateChoice = (chosenName) => {
-    const correctPokemon = pokemonInGameOrder[pokeNum];
-    if (chosenName === correctPokemon) {
+    const correctMon = monInGameOrder[pokeNum];
+    if (chosenName === correctMon) {
       new Audio(correctSound).play();
     } else {
       new Audio(incorrectSound).play();
     }
     setMultipleChoiceResults({
       ...multipleChoiceResults,
-      [correctPokemon]: {
+      [correctMon]: {
         [MultipleChoiceResult.MULTIPLE_CHOICE_OPTIONS]: multipleChoiceOptions,
         [MultipleChoiceResult.SELECTED_POKEMON]: chosenName,
-        [MultipleChoiceResult.ACTUAL_POKEMON]: correctPokemon,
+        [MultipleChoiceResult.ACTUAL_POKEMON]: correctMon,
       },
     });
     setPokeNum(pokeNum + 1);
@@ -155,21 +153,21 @@ function MultipleChoicePractice() {
   const multipleChoiceRow = ({
     multipleChoiceOptions = [],
     onClick = null,
-    redPokemon = "",
-    greenPokemon = "",
+    redMon = "",
+    greenMon = "",
     numbered = false,
   }) => {
     let backgroundColor = NEUTRAL_RESULT_COLOR;
-    if (redPokemon !== greenPokemon) {
+    if (redMon !== greenMon) {
       backgroundColor = INCORRECT_RESULT_COLOR;
-    } else if (greenPokemon !== "") {
+    } else if (greenMon !== "") {
       backgroundColor = CORRECT_RESULT_COLOR;
     }
     let num = 1;
     const multipleChoiceRawComponent = multipleChoiceOptions.map((name) => {
-      let s = allPokemon[name]?.displaySprite;
+      let s = allMon[name]?.displaySprite;
       if (settings.disableAnimations) {
-        s = allPokemon[name]?.staticDisplaySprite;
+        s = allMon[name]?.staticDisplaySprite;
       }
       return typeof s === "string" ? (
         <PokeButton
@@ -177,9 +175,9 @@ function MultipleChoicePractice() {
           name={name}
           sprite={s}
           outlineType={
-            name === greenPokemon
+            name === greenMon
               ? OUTLINE_TYPE.GREEN
-              : name === redPokemon
+              : name === redMon
               ? OUTLINE_TYPE.RED
               : OUTLINE_TYPE.NONE
           }
@@ -215,67 +213,49 @@ function MultipleChoicePractice() {
   const resultsPanel = () => {
     let results = [];
     for (let i = pokeNum - 1; i >= 0; i--) {
-      const pokemonName = pokemonInGameOrder[i];
+      const monName = monInGameOrder[i];
       results.push(
         multipleChoiceRow({
           multipleChoiceOptions:
-            multipleChoiceResults[pokemonName][
+            multipleChoiceResults[monName][
               MultipleChoiceResult.MULTIPLE_CHOICE_OPTIONS
             ],
           onClick: (name) => {
             setShowViz(false);
-            playCryForPokemon(
-              allPokemon[name],
+            playCryForMon(
+              allMon[name],
               vizInitializedRef,
               audioRef,
               canvasRef,
               settings.preferLegacyCries
             );
           },
-          redPokemon:
-            multipleChoiceResults[pokemonName][
+          redMon:
+            multipleChoiceResults[monName][
               MultipleChoiceResult.SELECTED_POKEMON
             ],
-          greenPokemon:
-            multipleChoiceResults[pokemonName][
-              MultipleChoiceResult.ACTUAL_POKEMON
-            ],
+          greenMon:
+            multipleChoiceResults[monName][MultipleChoiceResult.ACTUAL_POKEMON],
         })
       );
     }
     return results;
   };
 
-  const progress = (pokeNum / numPokemonToGuess) * 100;
+  const progress = (pokeNum / numMonToGuess) * 100;
   return (
-    <div className="App p-5  text-center">
-      <AppHeader />
+    <span>
       <div className="App" style={{ position: "relative" }}>
         <Row>
-          <Col>
-            {/* Back button positioned at top-left (inside padded app area) */}
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => navigate(ROUTER_UTIL.HOME)}
-            >
-              ← Back
-            </Button>
-          </Col>
-          <Col>
-            <p>Practice Mode!</p> {/* Back button (left) */}
-          </Col>
-          <Col>
-            <Settings />
-          </Col>
+          <p>Practice Mode!</p> {/* Back button (left) */}
         </Row>
-        <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
+        <p>Repeat the sound for the current mon by pressing 'space'</p>
         <p>Press 1, 2, 3, or 4 to select an option</p>
         <Row className="justify-content-center">
           <Col xs={12} md={5}>
             {/* Container for relative positioning */}
             <PokeProgressBar completionPercent={progress} />
-            {pokeNum === numPokemonToGuess && (
+            {pokeNum === numMonToGuess && (
               <Button
                 onClick={() => {
                   navigate(ROUTER_UTIL.REFRESHER, {
@@ -289,9 +269,9 @@ function MultipleChoicePractice() {
                 Play Again
               </Button>
             )}
-            {/* Score, only displayed if all Pokemon have been guessed. */}
+            {/* Score, only displayed if all Mon have been guessed. */}
             <Score
-              numPokemonToGuess={numPokemonToGuess}
+              numMonToGuess={numMonToGuess}
               pokeNum={pokeNum}
               numerator={
                 Object.entries(multipleChoiceResults).filter(
@@ -302,8 +282,8 @@ function MultipleChoicePractice() {
               }
             />
             <br />
-            {/* Audio button for current Pokemon. */}
-            {pokeNum !== numPokemonToGuess ? (
+            {/* Audio button for current Mon. */}
+            {pokeNum !== numMonToGuess ? (
               // Audio display. Reveals either the waveform (current cry) or name of previous cry.
               <Row
                 className="align-items-center rounded p-2 pb-3 mb-2"
@@ -315,8 +295,8 @@ function MultipleChoicePractice() {
                 <AudioDisplay
                   buttonFn={() => {
                     setShowViz(true);
-                    playCryForPokemon(
-                      allPokemon[pokemonInGameOrder[pokeNum]],
+                    playCryForMon(
+                      allMon[monInGameOrder[pokeNum]],
                       vizInitializedRef,
                       audioRef,
                       canvasRef,
@@ -328,7 +308,7 @@ function MultipleChoicePractice() {
                   vizInitializedRef={vizInitializedRef}
                   showViz={showViz}
                 />
-                {/* Multiple choice options, only displayed if not all Pokemon have been guessed. */}
+                {/* Multiple choice options, only displayed if not all Mon have been guessed. */}
                 <div>
                   {multipleChoiceRow({
                     multipleChoiceOptions: multipleChoiceOptions,
@@ -342,15 +322,15 @@ function MultipleChoicePractice() {
         </Row>
       </div>
       <Row className="justify-content-center">
-        {/* Results, only displayed if at least one Pokemon has been guessed. */}
+        {/* Results, only displayed if at least one Mon has been guessed. */}
         <Col md={5}>
-          {pokeNum > 0 && pokeNum < numPokemonToGuess ? (
+          {pokeNum > 0 && pokeNum < numMonToGuess ? (
             <Row className="m-4"></Row>
           ) : null}
           <Row>{pokeNum > 0 ? resultsPanel() : null}</Row>
         </Col>
       </Row>
-    </div>
+    </span>
   );
 }
 

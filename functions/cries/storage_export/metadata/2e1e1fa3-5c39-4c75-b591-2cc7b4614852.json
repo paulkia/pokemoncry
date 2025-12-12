@@ -1,0 +1,19 @@
+{
+  "name": "cries/bagon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683617,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "37a7fb7d-f9d6-4252-8079-179ccbf8ca05"
+  ],
+  "etag": "digPaMGuH9WGBrfBInXicKctP9o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.617Z",
+  "updated": "2025-12-12T07:48:03.617Z",
+  "size": 3464,
+  "md5Hash": "gdXjwUCug5UBc/wphJLD7g==",
+  "crc32c": "1109859602"
+}

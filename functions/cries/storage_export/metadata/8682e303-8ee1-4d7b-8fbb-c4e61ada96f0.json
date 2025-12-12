@@ -1,0 +1,19 @@
+{
+  "name": "cries/venonat-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684106,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f4e1d847-ee0c-4ae3-913a-fa28cea63ebe"
+  ],
+  "etag": "4b1xbUqRPuDXCSUXK4qp93QGFoA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.106Z",
+  "updated": "2025-12-12T07:48:04.106Z",
+  "size": 1924,
+  "md5Hash": "lzggCdSbLEmZor7WVxdMGA==",
+  "crc32c": "487913373"
+}

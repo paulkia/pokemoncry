@@ -1,0 +1,19 @@
+{
+  "name": "cries/budew-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683870,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9e62280b-fb33-4e69-a060-97a15bbf69b5"
+  ],
+  "etag": "rcYb8gw10IRfo4mPMa89QHrlNVs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.870Z",
+  "updated": "2025-12-12T07:48:03.870Z",
+  "size": 2348,
+  "md5Hash": "MuZzR8uLzvYAaeO3eG8BFQ==",
+  "crc32c": "3051421742"
+}

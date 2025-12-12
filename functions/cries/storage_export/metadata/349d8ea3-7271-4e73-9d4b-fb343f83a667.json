@@ -1,0 +1,19 @@
+{
+  "name": "cries/goldeen-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683814,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "16b5a96d-e10e-4cab-94bc-1a3331ae9a04"
+  ],
+  "etag": "HAK33Zq6q3ggjw4XBxCNDa7h3Mo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.814Z",
+  "updated": "2025-12-12T07:48:03.814Z",
+  "size": 1401,
+  "md5Hash": "ZafWOWrn/Bk7k/V//mxhCw==",
+  "crc32c": "2423653644"
+}

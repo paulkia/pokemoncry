@@ -1,0 +1,19 @@
+{
+  "name": "cries/rotom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683988,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "91057b2d-010e-467f-8661-e53d384721eb"
+  ],
+  "etag": "11qAG4EEw8HqZ43Y7EKawuptXig",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.988Z",
+  "updated": "2025-12-12T07:48:03.988Z",
+  "size": 9512,
+  "md5Hash": "78qovpudWNpNxG0FjtlM5Q==",
+  "crc32c": "4212157386"
+}

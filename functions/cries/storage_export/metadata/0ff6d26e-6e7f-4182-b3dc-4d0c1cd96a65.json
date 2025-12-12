@@ -1,0 +1,19 @@
+{
+  "name": "cries/spiritomb-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685426,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2d7d4400-daf7-4f71-814b-f2e1db618ade"
+  ],
+  "etag": "sVPibxUrBDlpEHevGwc+DZ6J9uc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.426Z",
+  "updated": "2025-12-12T07:48:05.426Z",
+  "size": 12104,
+  "md5Hash": "UEXXAk+Dl9b/HIdjr8MXvQ==",
+  "crc32c": "3779754321"
+}

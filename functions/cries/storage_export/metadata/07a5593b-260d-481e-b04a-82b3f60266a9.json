@@ -1,0 +1,19 @@
+{
+  "name": "cries/drifloon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683523,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a19815ac-0fb3-498f-bfa3-fc1dce267019"
+  ],
+  "etag": "Yo24UP8nBPJG9G5CYC+KUkzg/UE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.523Z",
+  "updated": "2025-12-12T07:48:03.523Z",
+  "size": 6704,
+  "md5Hash": "ffx11irxPvcbPgoj5I6mZQ==",
+  "crc32c": "4182704850"
+}

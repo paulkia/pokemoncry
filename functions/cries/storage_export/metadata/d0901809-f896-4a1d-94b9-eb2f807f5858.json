@@ -1,0 +1,19 @@
+{
+  "name": "cries/palpitoad-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683694,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9f2174c6-d85a-4f56-97db-42ca37248bb2"
+  ],
+  "etag": "KaHuOm7Eixim6V9eAIxNAXyGe3Q",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.694Z",
+  "updated": "2025-12-12T07:48:03.694Z",
+  "size": 6272,
+  "md5Hash": "jmjVIgwpyKk+u40Ph5u1uQ==",
+  "crc32c": "2499714366"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/zapdos-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683618,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "72ddaf4f-94a2-4df1-9410-f186844c831e"
+  ],
+  "etag": "afLC3SzQS8R3GSKo+Z1yxDEsXyw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.618Z",
+  "updated": "2025-12-12T07:48:03.618Z",
+  "size": 6056,
+  "md5Hash": "stPNmJBx11+E419u25yDzA==",
+  "crc32c": "317934517"
+}

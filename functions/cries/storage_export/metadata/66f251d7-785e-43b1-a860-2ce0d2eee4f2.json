@@ -1,0 +1,19 @@
+{
+  "name": "cries/gothita-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684286,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "10c94d60-9976-4f8d-94fb-b29f9f4ea13c"
+  ],
+  "etag": "nWJwtc+Gf5QcWQNx5WEgMmW8DVw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.286Z",
+  "updated": "2025-12-12T07:48:04.286Z",
+  "size": 3987,
+  "md5Hash": "mndlT00JZHS4/cCeH7PikA==",
+  "crc32c": "510352026"
+}

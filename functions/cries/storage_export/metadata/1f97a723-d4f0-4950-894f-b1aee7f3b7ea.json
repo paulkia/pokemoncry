@@ -1,0 +1,19 @@
+{
+  "name": "cries/glaceon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686212,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "415cce78-5869-4376-b14d-f1e75d25fa40"
+  ],
+  "etag": "9WT6FkOR35Gk4UW3Gj3XExH53Fo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.212Z",
+  "updated": "2025-12-12T07:48:06.212Z",
+  "size": 3884,
+  "md5Hash": "pOTVnZD2Iu4Dp6cppe3IOQ==",
+  "crc32c": "2891839966"
+}

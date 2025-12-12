@@ -1,0 +1,19 @@
+{
+  "name": "cries/sneasel-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684028,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3ca06601-2e46-483a-80f5-a5f3affb1e12"
+  ],
+  "etag": "ad+YozJdjpC2bIS0/u1sgWSuf0I",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.028Z",
+  "updated": "2025-12-12T07:48:04.028Z",
+  "size": 3680,
+  "md5Hash": "Vri4ttXDQmQgqwED/eqmxw==",
+  "crc32c": "2469401557"
+}

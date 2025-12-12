@@ -1,0 +1,19 @@
+{
+  "name": "cries/cursola-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684107,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "98f3ec6c-87f0-4d2f-a2cc-6caa42714905"
+  ],
+  "etag": "lERlvDBI3NMm4Cihd+TAiE+QWOY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.107Z",
+  "updated": "2025-12-12T07:48:04.107Z",
+  "size": 8167,
+  "md5Hash": "bt9uDDnBnvGMSiqgZajn/A==",
+  "crc32c": "241758471"
+}

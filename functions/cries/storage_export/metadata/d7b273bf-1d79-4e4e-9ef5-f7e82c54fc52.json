@@ -1,0 +1,19 @@
+{
+  "name": "cries/skitty-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684246,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7eecab3f-7fe3-4cf2-99b8-7f6b09ab2071"
+  ],
+  "etag": "wRS5zhOgNjkxgFowZLbgEvkxZa0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.246Z",
+  "updated": "2025-12-12T07:48:04.246Z",
+  "size": 1192,
+  "md5Hash": "K6cuMaOqI4Q0fLpFr8wBVQ==",
+  "crc32c": "3907217989"
+}

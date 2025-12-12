@@ -1,0 +1,19 @@
+{
+  "name": "cries/tangrowth-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684224,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "068ca82b-107c-4e42-a0bf-7271455d8562"
+  ],
+  "etag": "HEC9Pbe34JayiJlZOcr8Dzx206g",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.224Z",
+  "updated": "2025-12-12T07:48:04.224Z",
+  "size": 9080,
+  "md5Hash": "KUpy2qnPptITN5ySPfUgxA==",
+  "crc32c": "6461344"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/porygon2-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684383,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1735f99a-8dcc-4ed9-b6a7-9bb0f1f016a4"
+  ],
+  "etag": "2FzKQGqqTQIH2dFuyy3SGIhZ8IM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.383Z",
+  "updated": "2025-12-12T07:48:04.383Z",
+  "size": 6056,
+  "md5Hash": "CwKXgEek7cpmHUkHNUxXOA==",
+  "crc32c": "1585959452"
+}

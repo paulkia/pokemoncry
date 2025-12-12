@@ -1,0 +1,19 @@
+{
+  "name": "cries/ducklett-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683994,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a3bca774-f836-46db-a6e4-3c7bc1515d36"
+  ],
+  "etag": "vIsFs5xpLJjaS1XwtT/wS4de/rY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.994Z",
+  "updated": "2025-12-12T07:48:03.994Z",
+  "size": 1689,
+  "md5Hash": "uhNvTVj4N7IOdw8TuBvurw==",
+  "crc32c": "1744627850"
+}

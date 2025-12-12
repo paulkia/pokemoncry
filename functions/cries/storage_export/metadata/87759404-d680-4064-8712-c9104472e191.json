@@ -1,0 +1,19 @@
+{
+  "name": "cries/quaquaval-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684055,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cfe426f3-5889-4e71-a405-bc61675f868e"
+  ],
+  "etag": "42I+oXNDZTyGQsSxJXS7sIg16BE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.055Z",
+  "updated": "2025-12-12T07:48:04.055Z",
+  "size": 18092,
+  "md5Hash": "hb4V+PWVu+bx0FTitbvLNw==",
+  "crc32c": "2595752203"
+}

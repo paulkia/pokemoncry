@@ -1,0 +1,19 @@
+{
+  "name": "cries/croagunk-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686157,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1dc35f4c-91ad-46c4-8b4f-c1c34d0887b4"
+  ],
+  "etag": "gZFa41JR476TD1dw3XRJYclinXg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.157Z",
+  "updated": "2025-12-12T07:48:06.157Z",
+  "size": 6920,
+  "md5Hash": "cJEkEQcFouG50RJFombhag==",
+  "crc32c": "3281813543"
+}

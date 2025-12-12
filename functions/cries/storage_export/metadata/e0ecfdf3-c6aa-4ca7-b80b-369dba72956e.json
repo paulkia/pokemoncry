@@ -1,0 +1,19 @@
+{
+  "name": "cries/patrat-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684311,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2ef83260-2219-46aa-b206-bb0212916acc"
+  ],
+  "etag": "xDS0uuVL9cTzloR1vZgI/9iKe44",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.311Z",
+  "updated": "2025-12-12T07:48:04.311Z",
+  "size": 2060,
+  "md5Hash": "RMh+xfl6Yz1R7MlGQa9bvQ==",
+  "crc32c": "994220238"
+}

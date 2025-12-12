@@ -1,0 +1,19 @@
+{
+  "name": "cries/taillow-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686254,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e888a5b8-5169-47aa-b138-d80c1d19a0ef"
+  ],
+  "etag": "N2rf0KSCkzREybVZIITZTxS7glA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.254Z",
+  "updated": "2025-12-12T07:48:06.254Z",
+  "size": 2816,
+  "md5Hash": "avu3125nHfAhDa+oYoEMlg==",
+  "crc32c": "3842744973"
+}

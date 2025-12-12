@@ -1,0 +1,19 @@
+{
+  "name": "cries/farigiraf-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683404,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7875b51c-3c37-42a7-bb5a-7ed1557e0f83"
+  ],
+  "etag": "vOeplaSDMyZzrBCyFs42W3WScB4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.404Z",
+  "updated": "2025-12-12T07:48:03.404Z",
+  "size": 9644,
+  "md5Hash": "LVs137w6vcHmd836I0izXQ==",
+  "crc32c": "3100214752"
+}

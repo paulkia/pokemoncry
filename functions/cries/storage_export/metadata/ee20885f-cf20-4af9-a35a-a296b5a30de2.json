@@ -1,0 +1,19 @@
+{
+  "name": "cries/barboach-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684406,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "122ae427-9bab-45a8-b91f-9fe55937e57d"
+  ],
+  "etag": "18CMbtWcph4JzY64Uj8X5Dwymgk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.406Z",
+  "updated": "2025-12-12T07:48:04.406Z",
+  "size": 3896,
+  "md5Hash": "go+3edBVM8NrQzmUuLEPvA==",
+  "crc32c": "1646396288"
+}

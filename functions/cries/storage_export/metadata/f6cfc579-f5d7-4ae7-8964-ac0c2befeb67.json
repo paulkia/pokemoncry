@@ -1,0 +1,19 @@
+{
+  "name": "cries/garchomp-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683762,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "de69c8d2-8e92-4924-8654-b80dbbcef8a3"
+  ],
+  "etag": "3XQykg0/ox1Ltthbn7ksiBFFsaI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.762Z",
+  "updated": "2025-12-12T07:48:03.762Z",
+  "size": 2348,
+  "md5Hash": "mg5XeHfo9uGC9JfRzgF5Uw==",
+  "crc32c": "190129505"
+}

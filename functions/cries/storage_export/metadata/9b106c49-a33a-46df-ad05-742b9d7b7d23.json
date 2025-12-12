@@ -1,0 +1,19 @@
+{
+  "name": "cries/zangoose-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683545,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a5b3e2d5-85b5-499e-bd8c-e948624b1fcf"
+  ],
+  "etag": "FBxzs9niEtyBx4Yo0/SKftzePVw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.545Z",
+  "updated": "2025-12-12T07:48:03.545Z",
+  "size": 1401,
+  "md5Hash": "7qh3BNzpNz6t9f1Azmu5rg==",
+  "crc32c": "3680998913"
+}

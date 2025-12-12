@@ -1,0 +1,19 @@
+{
+  "name": "cries/omastar-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684157,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1536d317-6832-4e99-b5f3-3bf2b2bb39f3"
+  ],
+  "etag": "JSpZa9jaUqjVUEWBdr9dE/GK2Rc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.157Z",
+  "updated": "2025-12-12T07:48:04.157Z",
+  "size": 1819,
+  "md5Hash": "MghRa+aahQ3EJbQ56Zgd5g==",
+  "crc32c": "3498036159"
+}

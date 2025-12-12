@@ -1,0 +1,19 @@
+{
+  "name": "cries/fennekin-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683948,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a1d598a5-b761-49b7-887e-f6211f8842ac"
+  ],
+  "etag": "cIJlctTDMkDhDH67zidilL010vw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.948Z",
+  "updated": "2025-12-12T07:48:03.948Z",
+  "size": 5624,
+  "md5Hash": "iJ0EWBjVTReutLu3pq1MjA==",
+  "crc32c": "3956134055"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/krabby-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684418,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "aea5ae71-455b-45d2-b24c-8d4c41e2546a"
+  ],
+  "etag": "Fa63Y6n1d9++Txbu4yVVhUOnhRY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.418Z",
+  "updated": "2025-12-12T07:48:04.418Z",
+  "size": 2760,
+  "md5Hash": "i3sclKx3ytahL9CPGeM7vQ==",
+  "crc32c": "2830830942"
+}

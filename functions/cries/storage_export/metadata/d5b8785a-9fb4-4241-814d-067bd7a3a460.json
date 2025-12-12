@@ -1,0 +1,19 @@
+{
+  "name": "cries/slowpoke-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684032,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "be50e6e2-1373-47eb-9ce1-4b5c3147bdd7"
+  ],
+  "etag": "VpZq5bZlLvkU/L0KZUtuFrU0LUU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.032Z",
+  "updated": "2025-12-12T07:48:04.032Z",
+  "size": 3464,
+  "md5Hash": "+9t3AlL2OTTWgbe2zCZbYA==",
+  "crc32c": "2717183706"
+}

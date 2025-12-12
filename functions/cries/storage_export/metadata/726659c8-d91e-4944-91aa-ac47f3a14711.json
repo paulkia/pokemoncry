@@ -1,0 +1,19 @@
+{
+  "name": "cries/huntail-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683866,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e80937b7-ef53-4606-97c6-360f6b0a670c"
+  ],
+  "etag": "AIZgL7ZWf89/FxweZT4Lv3ZTkvo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.866Z",
+  "updated": "2025-12-12T07:48:03.866Z",
+  "size": 2028,
+  "md5Hash": "jmZ65jyX5xzpA3m8wrTwlg==",
+  "crc32c": "3350545503"
+}

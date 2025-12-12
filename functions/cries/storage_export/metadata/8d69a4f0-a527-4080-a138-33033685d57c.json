@@ -1,0 +1,19 @@
+{
+  "name": "cries/wiglett-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686215,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7c18015f-8857-4325-8ca9-9004230cfa92"
+  ],
+  "etag": "72ZQj1Js7rbsnXeoG5WNyOvozWE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.215Z",
+  "updated": "2025-12-12T07:48:06.215Z",
+  "size": 13292,
+  "md5Hash": "cw8wYxyX2eQuGLqi45Q9nw==",
+  "crc32c": "1937418969"
+}

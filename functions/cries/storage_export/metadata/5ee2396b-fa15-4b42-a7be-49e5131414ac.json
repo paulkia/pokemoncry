@@ -1,0 +1,19 @@
+{
+  "name": "cries/wailord-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684023,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "aa207e41-971b-4f55-a533-4bdfa87ed64d"
+  ],
+  "etag": "0UbTHFB48pO+RwWSNBs5JNRZLkk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.023Z",
+  "updated": "2025-12-12T07:48:04.023Z",
+  "size": 4432,
+  "md5Hash": "rz+BmEbQjfSncSQefUcs2Q==",
+  "crc32c": "3049356316"
+}

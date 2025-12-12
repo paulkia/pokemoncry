@@ -1,107 +1,96 @@
-import { useCallback, useRef } from "react";
-import { Row, Col } from "react-bootstrap";
-
 let audioCtx = null;
 let analyser = null;
 let sourceNode = null;
 let dataArray = null;
 let animationId = null;
 
-export function stopAudioViz(audioEl) {
+export function stopAudioViz() {
   if (animationId) {
     cancelAnimationFrame(animationId);
     animationId = null;
   }
+  // Stop the Web Audio source (the decoded buffer)
   if (sourceNode) {
     try {
+      sourceNode.stop();
       sourceNode.disconnect();
-    } catch {}
+    } catch (e) {
+      // Ignore errors if already stopped
+    }
     sourceNode = null;
   }
-  if (analyser) {
-    try {
-      analyser.disconnect();
-    } catch {}
-    analyser = null;
-  }
-  if (audioEl) {
-    try {
-      audioEl.pause();
-      audioEl.src = "";
-    } catch {}
-    audioEl = null;
-  }
-  if (audioCtx) {
-    try {
-      audioCtx.close();
-    } catch {}
-    audioCtx = null;
-  }
-  dataArray = null;
+  // DO NOT close audioCtx here.
+  // keeping the context open is safer for iOS user-interaction rules.
 }
 
-export function playAudioWithViz(url, audioEl, canvas) {
+export async function playAudioWithViz(url, canvas) {
   if (!url || !canvas) return;
+
   try {
-    // stop previous sound before playing new one
-    stopAudioViz(audioEl);
+    // 1. Stop previous sound
+    stopAudioViz();
 
-    // create audio element
-    audioEl.crossOrigin = "anonymous";
-    audioEl.src = url;
-    audioEl.autoplay = true;
-    audioEl.play().catch((err) => {
-      console.error(
-        "Audio play failed. Likely because user refreshed page. ",
-        err
-      );
-    });
+    // 2. Initialize AudioContext (Singleton pattern)
+    if (!audioCtx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new Ctx();
+    }
 
-    // create or reuse audio context
-    const Ctx = window.AudioContext || window.webkitAudioContext;
-    if (!Ctx) return;
-    audioCtx = new Ctx();
+    // 3. Resume context (Required for iOS if state is suspended)
+    if (audioCtx.state === "suspended") {
+      await audioCtx.resume();
+    }
 
-    // analyser
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2048;
+    // 4. Create Analyser (if not exists)
+    if (!analyser) {
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 2048;
+    }
 
-    // source
-    sourceNode = audioCtx.createMediaElementSource(audioEl);
+    // 5. Fetch and Decode Audio (The Fix for iOS)
+    // We fetch the blob/url and decode it fully. This bypasses the streaming bugs.
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+    // 6. Create Buffer Source & Connect
+    sourceNode = audioCtx.createBufferSource();
+    sourceNode.buffer = audioBuffer;
+
     sourceNode.connect(analyser);
     analyser.connect(audioCtx.destination);
 
-    // buffer
+    // 7. Start Playback
+    sourceNode.start(0);
+
+    // --- Visualization Logic (Unchanged) ---
     const bufferLength = analyser.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
 
-    // canvas sizing
     const canvasCtx = canvas.getContext("2d");
     const style = getComputedStyle(canvas);
     const width = parseInt(style.width, 10) || 300;
     const height = parseInt(style.height, 10) || 60;
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
-    canvasCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // resume if suspended
-    if (audioCtx.state === "suspended") {
-      audioCtx.resume().catch((err) => {
-        console.error("Error resuming audio context:", err);
-      });
+    // Resize handling
+    if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      canvasCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    // draw loop
     const draw = () => {
       animationId = requestAnimationFrame(draw);
       analyser.getByteTimeDomainData(dataArray);
+
       canvasCtx.clearRect(0, 0, width, height);
       canvasCtx.lineWidth = 2;
       canvasCtx.strokeStyle = "#00aaff";
       canvasCtx.beginPath();
+
       const slice = width / dataArray.length;
       let x = 0;
       for (let i = 0; i < dataArray.length; i++) {
@@ -115,50 +104,43 @@ export function playAudioWithViz(url, audioEl, canvas) {
       canvasCtx.stroke();
     };
 
-    if (animationId) cancelAnimationFrame(animationId);
     draw();
   } catch (err) {
-    // fallback: try simple playback without viz
-    console.error("Error in playAudioWithViz:", err);
-    try {
-      const a = new Audio(url);
-      a.play().catch(() => {});
-    } catch {}
+    console.error("Web Audio API Error:", err);
   }
 }
 
-export function playCryForPokemon(
-  pokemonData,
+export function playCryFromByteUrl(
+  cryUrl,
+  vizInitializedRef,
+  audioRef, // We keep this argument to avoid breaking your call sites, but we ignore it.
+  canvasRef
+) {
+  // We ignore audioRef completely now.
+  // Using the HTML <audio> tag is what caused the bug.
+  // We always use the Web Audio path (playAudioWithViz) for every play.
+
+  if (canvasRef.current) {
+    playAudioWithViz(cryUrl, canvasRef.current);
+    vizInitializedRef.current = true;
+  }
+}
+
+// Used by Practice modes
+export function playCryForMon(
+  monData,
   vizInitializedRef,
   audioRef,
   canvasRef,
   preferLegacyCries
 ) {
-  if (!pokemonData) return;
+  if (!monData) return;
 
-  let cryUrl = pokemonData.latestCry || pokemonData.legacyCry || null;
+  let cryUrl = monData.latestCry || monData.legacyCry || null;
 
   if (preferLegacyCries) {
-    cryUrl = pokemonData.legacyCry || pokemonData.latestCry || null;
+    cryUrl = monData.legacyCry || monData.latestCry || null;
   }
 
-  const audio = audioRef.current;
-
-  // Ensure only one audio at a time: pause and rewind before every play.
-  try {
-    audio.pause();
-  } catch (err) {
-    console.error("Error pausing audio:", err);
-  }
-  audio.currentTime = 0;
-
-  if (!vizInitializedRef.current) {
-    playAudioWithViz(cryUrl, audioRef.current, canvasRef.current);
-    vizInitializedRef.current = true;
-    return;
-  }
-  audio.src = cryUrl;
-  audio.play().catch((err) => {
-    console.error("Audio play failed:", err);
-  });
+  playCryFromByteUrl(cryUrl, vizInitializedRef, audioRef, canvasRef);
 }

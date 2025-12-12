@@ -1,0 +1,19 @@
+{
+  "name": "cries/scizor-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683399,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8c85b941-17c9-440c-9b8b-c2386f017833"
+  ],
+  "etag": "StLwWVQdAVcungsDToKgHVPWaTk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.399Z",
+  "updated": "2025-12-12T07:48:03.399Z",
+  "size": 7568,
+  "md5Hash": "hKqEjCRPlwM9y1ucynXHlg==",
+  "crc32c": "793292735"
+}

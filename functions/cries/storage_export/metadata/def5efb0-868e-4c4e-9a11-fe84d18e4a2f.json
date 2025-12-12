@@ -1,0 +1,19 @@
+{
+  "name": "cries/wo-chien-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684415,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "04fa40c2-1595-4b9f-80a0-0eb0e2ac21f3"
+  ],
+  "etag": "wDSohGEfOOPKIGBcf2WBCpxvj1k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.415Z",
+  "updated": "2025-12-12T07:48:04.415Z",
+  "size": 15020,
+  "md5Hash": "4sv9lsF05p4opt6DZWu3Dw==",
+  "crc32c": "939830445"
+}

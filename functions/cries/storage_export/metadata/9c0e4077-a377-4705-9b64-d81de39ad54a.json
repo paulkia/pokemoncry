@@ -1,0 +1,19 @@
+{
+  "name": "cries/arrokuda-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683627,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "10108a31-73e3-4a71-994f-4d5b40e3bf20"
+  ],
+  "etag": "TTC2bpGs1q0YDcxpjF/iJ6en+Vk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.627Z",
+  "updated": "2025-12-12T07:48:03.627Z",
+  "size": 9003,
+  "md5Hash": "pJM5oCjvrutMKCDHxJU2rg==",
+  "crc32c": "1671058479"
+}

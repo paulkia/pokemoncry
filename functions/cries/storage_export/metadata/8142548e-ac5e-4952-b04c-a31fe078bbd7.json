@@ -1,0 +1,19 @@
+{
+  "name": "cries/drifblim-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683575,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c3a1c8b3-389a-4fb2-8733-f5eff152457e"
+  ],
+  "etag": "dlkJn8FxZzm6sez0mOReHmAzxto",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.575Z",
+  "updated": "2025-12-12T07:48:03.575Z",
+  "size": 9296,
+  "md5Hash": "cyNAitHmLr1DPpWajwgsYg==",
+  "crc32c": "2024383374"
+}

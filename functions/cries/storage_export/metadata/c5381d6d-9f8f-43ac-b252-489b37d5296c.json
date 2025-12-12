@@ -1,0 +1,19 @@
+{
+  "name": "cries/probopass-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686008,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "671959f4-668d-41e9-9ab4-3a886765bc5b"
+  ],
+  "etag": "5CG2JR3T5BpfDR6tQXuWwC/IcbU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.008Z",
+  "updated": "2025-12-12T07:48:06.008Z",
+  "size": 3884,
+  "md5Hash": "ShFqr/ME7d7nsROs4NK6qA==",
+  "crc32c": "2237155807"
+}

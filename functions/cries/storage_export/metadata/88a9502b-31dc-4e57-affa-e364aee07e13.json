@@ -1,0 +1,19 @@
+{
+  "name": "cries/snorlax-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683762,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b78a9915-0f5a-4da9-8715-3c03d18a53d7"
+  ],
+  "etag": "3XQykg0/ox1Ltthbn7ksiBFFsaI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.762Z",
+  "updated": "2025-12-12T07:48:03.762Z",
+  "size": 3032,
+  "md5Hash": "PgJe5oN93FvH2AfyfpcXAA==",
+  "crc32c": "1440821073"
+}

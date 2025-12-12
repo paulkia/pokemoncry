@@ -1,0 +1,19 @@
+{
+  "name": "cries/monferno-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684120,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d9e0bb69-e753-40b1-8e39-f5821402201f"
+  ],
+  "etag": "/3HOXwvGMCo22SZ8sOP8Qejq2LY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.120Z",
+  "updated": "2025-12-12T07:48:04.120Z",
+  "size": 3308,
+  "md5Hash": "bqUWoYTIYx7gSKs3/3QBHw==",
+  "crc32c": "2015257261"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/bonsly-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685611,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3bacc644-9c40-494c-a447-9370d668abc8"
+  ],
+  "etag": "QjX6BXPfOS1y1l6IQRfDYJ/Nwfg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.611Z",
+  "updated": "2025-12-12T07:48:05.611Z",
+  "size": 5192,
+  "md5Hash": "CjBmBBrMtYEsjPOwuj2lXg==",
+  "crc32c": "3491680823"
+}

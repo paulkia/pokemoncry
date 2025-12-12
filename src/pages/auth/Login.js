@@ -9,9 +9,8 @@ import {
   signInWithCredential,
   linkWithPopup,
 } from "firebase/auth";
-import { auth, db } from "../../firebase";
+import { auth, db, analytics } from "../../firebase";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
-import AppHeader from "../../components/AppHeader";
 import GoogleIcon from "../../components/GoogleIcon";
 import { ROUTER_UTIL } from "../../library/util";
 
@@ -66,7 +65,10 @@ function Login() {
         const firebaseId = authUser.uid;
         const userDocRef = doc(db, "users", firebaseId);
         setDoc(userDocRef, newUserDoc(firebaseId), { merge: true })
-          .then(() => navigate(ROUTER_UTIL.COMPLETE_PROFILE))
+          .then(() => {
+            analytics.logEvent("sign_up", { linkWithPopup });
+            navigate(ROUTER_UTIL.COMPLETE_PROFILE);
+          })
           .catch((err) => {
             setError(
               "Failed to create user profile in database, please try again later."
@@ -75,7 +77,6 @@ function Login() {
             setLoading(false);
           });
       })
-
       .catch((linkError) => {
         if (linkError.code !== "auth/credential-already-in-use") {
           setError("Linking accounts failed, please try again later.");
@@ -97,7 +98,10 @@ function Login() {
                 setDoc(userDocRef, updateLoginDoc(firebaseId), {
                   merge: true,
                 })
-                  .then(() => navigate(ROUTER_UTIL.HOME))
+                  .then(() => {
+                    analytics.logEvent("login", { signInWithCredential });
+                    navigate(ROUTER_UTIL.HOME);
+                  })
                   .catch((err) => {
                     setError(
                       "Failed to update login time in database, please try again later."
@@ -108,7 +112,10 @@ function Login() {
               } else {
                 // Create new user profile and navigate to complete-profile.
                 setDoc(userDocRef, newUserDoc(firebaseId), { merge: true })
-                  .then(() => navigate(ROUTER_UTIL.COMPLETE_PROFILE))
+                  .then(() => {
+                    analytics.logEvent("sign_up", { signInWithCredential });
+                    navigate(ROUTER_UTIL.COMPLETE_PROFILE);
+                  })
                   .catch((err) => {
                     setError(
                       "Failed to create user profile in database, please try again later."
@@ -129,63 +136,58 @@ function Login() {
   return authLoading || authUsername || !authUser?.isAnonymous ? (
     <Spinner />
   ) : (
-    <span>
-      <div className="App p-5">
-        <AppHeader disableLoginButton={true} />
-      </div>
-      <Container
-        className="d-flex align-items-center justify-content-center py-5"
-        style={{
-          maxWidth: "100%",
-          fontFamily: '"Roboto Mono", monospace',
-          fontOpticalSizing: "auto",
-          fontWeight: 600,
-          fontStyle: "normal",
-        }}
-      >
-        <Row className="w-100" style={{ maxWidth: 480 }}>
-          <Col>
-            <Card className="shadow-sm border-0">
-              <>
-                <Card.Header className="bg-white border-0 pt-4 pb-0">
-                  <h3 className="mb-1">Welcome</h3>
-                  <div className="text-muted">Sign in to continue</div>
-                </Card.Header>
-                <Card.Body
-                  className="p-4"
-                  style={{ fontFamily: '"Roboto Mono", monospace' }}
-                >
-                  <div className="d-grid gap-3">
-                    <Button
-                      variant="light"
-                      disabled={loading}
-                      onClick={handleGoogleSignIn}
-                      className="border d-flex align-items-center justify-content-center gap-2 py-2"
-                    >
-                      <GoogleIcon />
-                      {loading ? "Signing in..." : "Sign in with Google"}
-                    </Button>
-                  </div>
-                  {error && (
-                    <div className="alert alert-danger mt-3 mb-0" role="alert">
-                      {error}
-                    </div>
-                  )}
-                </Card.Body>
-                <Card.Footer className="bg-white border-0 d-flex justify-content-end gap-2 p-4 pt-0">
+    <Container
+      className="d-flex align-items-center justify-content-center py-5"
+      style={{
+        maxWidth: "100%",
+        fontFamily: '"Roboto Mono", monospace',
+        fontOpticalSizing: "auto",
+        fontWeight: 600,
+        fontStyle: "normal",
+      }}
+    >
+      <Row className="w-100" style={{ maxWidth: 480 }}>
+        <Col>
+          <Card className="shadow-sm border-0">
+            <>
+              <Card.Header className="bg-white border-0 pt-4 pb-0">
+                <h3 className="mb-1">Welcome</h3>
+                <div className="text-muted">Sign in to continue</div>
+              </Card.Header>
+              <Card.Body
+                className="p-4"
+                style={{ fontFamily: '"Roboto Mono", monospace' }}
+              >
+                <div className="d-grid gap-3">
                   <Button
-                    variant="outline-secondary"
-                    onClick={() => navigate(ROUTER_UTIL.HOME)}
+                    variant="light"
+                    disabled={loading}
+                    onClick={handleGoogleSignIn}
+                    className="border d-flex align-items-center justify-content-center gap-2 py-2"
                   >
-                    Cancel
+                    <GoogleIcon />
+                    {loading ? "Signing in..." : "Sign in with Google"}
                   </Button>
-                </Card.Footer>
-              </>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </span>
+                </div>
+                {error && (
+                  <div className="alert alert-danger mt-3 mb-0" role="alert">
+                    {error}
+                  </div>
+                )}
+              </Card.Body>
+              <Card.Footer className="bg-white border-0 d-flex justify-content-end gap-2 p-4 pt-0">
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => navigate(ROUTER_UTIL.HOME)}
+                >
+                  Cancel
+                </Button>
+              </Card.Footer>
+            </>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

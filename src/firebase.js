@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,7 +24,10 @@ const app = initializeApp(firebaseConfig);
 // Modular SDK: derive service instances from the initialized app
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
+// Initialize Analytics and get a reference to the service
+const analytics = getAnalytics(app);
 
 // Named exports for convenience; keep default for legacy imports
-export { auth, db, app };
+export { auth, db, storage, app, analytics };
 export default app;

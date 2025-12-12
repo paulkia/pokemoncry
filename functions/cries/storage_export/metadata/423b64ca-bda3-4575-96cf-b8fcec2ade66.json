@@ -1,0 +1,19 @@
+{
+  "name": "cries/escavalier-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684380,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9e396dd4-1926-4c89-8285-f4779ff8e382"
+  ],
+  "etag": "oPvSCBUJ3rBuZTLJxJGXdeaqO4A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.380Z",
+  "updated": "2025-12-12T07:48:04.380Z",
+  "size": 8216,
+  "md5Hash": "gzDvzCeAwrGcfA1kvogytA==",
+  "crc32c": "1410399536"
+}

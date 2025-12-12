@@ -1,0 +1,19 @@
+{
+  "name": "cries/ambipom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684451,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "97c3a523-14c1-41bf-b217-444397b33b63"
+  ],
+  "etag": "j1u4t6QcBB9mK8vRKXQGhISI4Sw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.451Z",
+  "updated": "2025-12-12T07:48:04.451Z",
+  "size": 6272,
+  "md5Hash": "sazbx715WXeqMXeXSSg/Tg==",
+  "crc32c": "2028811643"
+}

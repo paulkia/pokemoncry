@@ -19,17 +19,13 @@ import {
   PAUSE_TIME,
   ROUTER_UTIL,
   NEUTRAL_RESULT_COLOR,
-  LOCAL_STORAGE_UTIL,
-  DEFAULT_SETTINGS,
   SHINY_PROBABILITY,
-  DISABLE_ANIMATION_SWITCH,
+  shuffle,
   getRandomElement,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForPokemon } from "../../library/audioviz";
+import { playCryForMon } from "../../library/audioviz";
 
-import AppHeader from "../../components/AppHeader";
-import Settings from "../../components/Settings";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";
 import AudioDisplay from "../../components/AudioDisplay";
@@ -51,22 +47,18 @@ const initialState = {
   input: "",
   // Whether input should be disabled. True when loading, or after game completion.
   inputDisabled: true,
-  // All relevant pokemon data. Maps from pokemon name to cries, sprites, etc.
-  allPokemon: {},
-  // List of pokemon the user will guess.
-  pokemonInGameOrder: [],
-  // Index of pokemon the user is currently guessing.
+  // All relevant mon data. Maps from mon name to cries, sprites, etc.
+  allMon: {},
+  // Index of mon the user is currently guessing.
   pokeNum: 0,
-  // Set of all pokemon names.
+  // Set of all mon names.
   pokeTrie: new Trie(),
-  // List of correctly guessed pokemon.
+  // List of correctly guessed mon.
   correct: [],
-  // List of incorrectly guessed pokemon.
+  // List of incorrectly guessed mon.
   incorrect: [],
   // Suggestion remainder (autocomplete) based on current input + trie.
   suggestionRemainder: "",
-  // Verdict
-  verdict: "",
   // Previous guess
   previousGuess: "",
 };
@@ -76,21 +68,20 @@ function quizReducer(state, action) {
     case ACTION_TYPES.INITIAL_SETUP: {
       // Create a new Trie to avoid mutating previous state
       const newTrie = new Trie();
-      const allPokemonNames = Object.keys(action.allPokemon);
-      if (Array.isArray(allPokemonNames)) {
-        newTrie.insert(allPokemonNames);
+      const allMonNames = Object.keys(action.allMon);
+      if (Array.isArray(allMonNames)) {
+        newTrie.insert(allMonNames);
       }
       return {
         input: "",
         inputDisabled: false,
-        allPokemon: action.allPokemon,
-        pokemonInGameOrder: action.pokemonInGameOrder,
+        allMon: action.allMon,
+        monInGameOrder: action.monInGameOrder,
         pokeNum: 0,
         pokeTrie: newTrie,
         correct: [],
         incorrect: [],
         suggestionRemainder: "",
-        verdict: "",
       };
     }
     case ACTION_TYPES.UPDATE_INPUT: {
@@ -119,27 +110,24 @@ function quizReducer(state, action) {
     }
     case ACTION_TYPES.ADD_CORRECT:
       if (Math.random() < SHINY_PROBABILITY) {
-        state.allPokemon[action.pokemon].displaySprite =
-          state.allPokemon[action.pokemon].shinySprite;
-        state.allPokemon[action.pokemon].staticDisplaySprite =
-          state.allPokemon[action.pokemon].staticShinySprite;
+        state.allMon[action.mon].displaySprite =
+          state.allMon[action.mon].shinySprite;
+        state.allMon[action.mon].staticDisplaySprite =
+          state.allMon[action.mon].staticShinySprite;
         SHINY_AUDIO_SOUND.play();
       } else {
         CORRECT_AUDIO_SOUND.play();
       }
       return {
         ...state,
-        correct: [...state.correct, state.pokemonInGameOrder[state.pokeNum]],
+        correct: [...state.correct, action.mon],
         previousGuess: action.input,
       };
     case ACTION_TYPES.ADD_INCORRECT:
       INCORRECT_AUDIO_SOUND.play();
       return {
         ...state,
-        incorrect: [
-          ...state.incorrect,
-          state.pokemonInGameOrder[state.pokeNum],
-        ],
+        incorrect: [...state.incorrect, action.mon],
         previousGuess: action.input,
       };
     case ACTION_TYPES.DISABLE_INPUT:
@@ -165,21 +153,6 @@ function quizReducer(state, action) {
         pokeNum: state.pokeNum + 1,
         input: "",
         suggestionRemainder: "",
-        verdict:
-          state.correct.length === state.pokemonInGameOrder.length
-            ? getRandomElement([
-                "Go touch grass",
-                "Incredible stuff",
-                "You must be fun at parties",
-                "Wow",
-              ])
-            : state.correct.length / state.pokemonInGameOrder.length >= 0.8
-            ? "Great job"
-            : state.correct.length / state.pokemonInGameOrder.length >= 0.5
-            ? "Not bad"
-            : state.correct.length === 0
-            ? "That's rough buddy"
-            : "Still better than most",
       };
     default:
       return state;
@@ -188,16 +161,18 @@ function quizReducer(state, action) {
 
 function ShortAnswerPractice() {
   const {
-    allPokemon, // Data of all Pokemon
-    numPokemonToGuess, // Pokemon names for this quiz
-    pokemonNamesForRelevantGens,
+    allMon, // Data of all Mon
+    numMonToGuess, // Mon names for this quiz
+    monNamesForRelevantGens,
   } = useLocation().state || {};
   const navigate = useNavigate();
   const location = useLocation();
   const [state, dispatch] = useReducer(quizReducer, initialState);
+  const [monInGameOrder] = useState(
+    shuffle(monNamesForRelevantGens).slice(0, numMonToGuess)
+  );
 
   const { settings } = useSettings();
-  const { preferLegacyCries } = settings;
 
   // Ref to the input DOM node so we can trigger a shake animation on wrong guesses.
   const inputRef = useRef(null);
@@ -237,11 +212,11 @@ function ShortAnswerPractice() {
 
   useEffect(() => {
     // Play first cry with viz.
-    if (numPokemonToGuess > 0) {
-      const firstPokemon = pokemonNamesForRelevantGens[0];
+    if (numMonToGuess > 0) {
+      const firstMon = monInGameOrder[0];
       setTimeout(() => {
-        playCryForPokemon(
-          allPokemon[firstPokemon],
+        playCryForMon(
+          allMon[firstMon],
           vizInitializedRef,
           audioRef,
           canvasRef,
@@ -252,8 +227,7 @@ function ShortAnswerPractice() {
     }
     dispatch({
       type: ACTION_TYPES.INITIAL_SETUP,
-      allPokemon: allPokemon,
-      pokemonInGameOrder: pokemonNamesForRelevantGens,
+      allMon: allMon,
       pokeNum: 1,
     });
   }, []);
@@ -312,8 +286,8 @@ function ShortAnswerPractice() {
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback((e) => {
     if (state.inputDisabled) return;
-    const currPokemon = state.pokemonInGameOrder[state.pokeNum];
-    if (!currPokemon) return;
+    const currMon = monInGameOrder[state.pokeNum];
+    if (!currMon) return;
     const suggestion = state.suggestionRemainder;
     const input = `${state.input}${suggestion}`;
     switch (e.key) {
@@ -321,8 +295,8 @@ function ShortAnswerPractice() {
       case " ":
         e.preventDefault();
         setShowViz(true);
-        playCryForPokemon(
-          allPokemon[currPokemon],
+        playCryForMon(
+          allMon[currMon],
           vizInitializedRef,
           audioRef,
           canvasRef,
@@ -340,10 +314,10 @@ function ShortAnswerPractice() {
           dispatch({ type: ACTION_TYPES.UPDATE_INPUT, input });
           return;
         }
-        if (input === currPokemon) {
+        if (input === currMon) {
           dispatch({
             type: ACTION_TYPES.ADD_CORRECT,
-            pokemon: currPokemon,
+            mon: currMon,
             input: input,
           });
           // Play correct feedback sound
@@ -351,7 +325,7 @@ function ShortAnswerPractice() {
         } else {
           dispatch({
             type: ACTION_TYPES.ADD_INCORRECT,
-            pokemon: currPokemon,
+            mon: currMon,
             input: input,
           });
           // Play incorrect feedback sound
@@ -359,12 +333,12 @@ function ShortAnswerPractice() {
           triggerIncorrectAnimation();
         }
         dispatch({ type: ACTION_TYPES.NEXT_POKEMON });
-        // Allow users to see the result before hearing the next pokemon.
-        if (state.pokeNum + 1 < numPokemonToGuess) {
+        // Allow users to see the result before hearing the next mon.
+        if (state.pokeNum + 1 < numMonToGuess) {
           setTimeout(() => {
-            const nextPokemon = state.pokemonInGameOrder[state.pokeNum + 1];
-            playCryForPokemon(
-              allPokemon[nextPokemon],
+            const nextMon = monInGameOrder[state.pokeNum + 1];
+            playCryForMon(
+              allMon[nextMon],
               vizInitializedRef,
               audioRef,
               canvasRef,
@@ -393,7 +367,7 @@ function ShortAnswerPractice() {
   let errorComponent = null;
   if (
     state.previousGuess &&
-    state.pokemonInGameOrder[state.pokeNum - 1] !== state.previousGuess
+    monInGameOrder[state.pokeNum - 1] !== state.previousGuess
   ) {
     errorComponent = (
       <Col xs={6} sm={4} lg={2}>
@@ -403,14 +377,14 @@ function ShortAnswerPractice() {
           name={state.previousGuess}
           sprite={
             settings.disableAnimations
-              ? state.allPokemon[state.previousGuess]?.staticDisplaySprite
-              : state.allPokemon[state.previousGuess]?.displaySprite
+              ? state.allMon[state.previousGuess]?.staticDisplaySprite
+              : state.allMon[state.previousGuess]?.displaySprite
           }
           outlineType={OUTLINE_TYPE.RED}
           onClick={() => {
             setShowViz(false);
-            playCryForPokemon(
-              allPokemon[state.previousGuess],
+            playCryForMon(
+              allMon[state.previousGuess],
               vizInitializedRef,
               audioRef,
               canvasRef,
@@ -421,7 +395,7 @@ function ShortAnswerPractice() {
       </Col>
     );
   }
-  const previous = state.pokemonInGameOrder[state.pokeNum - 1];
+  const previous = monInGameOrder[state.pokeNum - 1];
   // Helper to render a result row (correct / incorrect)
   const resultsPanel = () => {
     if (state.pokeNum === 0) {
@@ -437,14 +411,14 @@ function ShortAnswerPractice() {
               name={previous}
               sprite={
                 settings.disableAnimations
-                  ? allPokemon[previous]?.staticDisplaySprite
-                  : allPokemon[previous]?.displaySprite
+                  ? allMon[previous]?.staticDisplaySprite
+                  : allMon[previous]?.displaySprite
               }
               outlineType={OUTLINE_TYPE.GREEN}
               onClick={() => {
                 setShowViz(false);
-                playCryForPokemon(
-                  allPokemon[previous],
+                playCryForMon(
+                  allMon[previous],
                   vizInitializedRef,
                   audioRef,
                   canvasRef,
@@ -455,7 +429,7 @@ function ShortAnswerPractice() {
           </Col>
           {errorComponent}
         </Row>
-        {state.pokeNum === numPokemonToGuess ? (
+        {state.pokeNum === numMonToGuess ? (
           <Row className="mb-2 justify-content-center">
             <Col className="col-md-6">
               <div
@@ -463,38 +437,36 @@ function ShortAnswerPractice() {
                 style={{ backgroundColor: NEUTRAL_RESULT_COLOR }}
               >
                 <div className="d-flex flex-wrap justify-content-center mt-1">
-                  {state.pokemonInGameOrder
-                    .slice(0, state.pokeNum - 1)
-                    .map((name) => {
-                      let s = state.allPokemon[name]?.displaySprite;
-                      if (settings.disableAnimations) {
-                        s = state.allPokemon[name]?.staticDisplaySprite;
-                      }
-                      return typeof s === "string" ? (
-                        <PokeButton
-                          key={name}
-                          name={name}
-                          sprite={s}
-                          outlineType={
-                            state.incorrect.includes(name)
-                              ? OUTLINE_TYPE.RED
-                              : OUTLINE_TYPE.GREEN
-                          }
-                          onClick={() => {
-                            setShowViz(false);
-                            playCryForPokemon(
-                              allPokemon[name],
-                              vizInitializedRef,
-                              audioRef,
-                              canvasRef,
-                              settings.preferLegacyCries
-                            );
-                          }}
-                        />
-                      ) : (
-                        s
-                      );
-                    })}
+                  {monInGameOrder.slice(0, state.pokeNum - 1).map((name) => {
+                    let s = state.allMon[name]?.displaySprite;
+                    if (settings.disableAnimations) {
+                      s = state.allMon[name]?.staticDisplaySprite;
+                    }
+                    return typeof s === "string" ? (
+                      <PokeButton
+                        key={name}
+                        name={name}
+                        sprite={s}
+                        outlineType={
+                          state.incorrect.includes(name)
+                            ? OUTLINE_TYPE.RED
+                            : OUTLINE_TYPE.GREEN
+                        }
+                        onClick={() => {
+                          setShowViz(false);
+                          playCryForMon(
+                            allMon[name],
+                            vizInitializedRef,
+                            audioRef,
+                            canvasRef,
+                            settings.preferLegacyCries
+                          );
+                        }}
+                      />
+                    ) : (
+                      s
+                    );
+                  })}
                 </div>
               </div>
             </Col>
@@ -510,36 +482,19 @@ function ShortAnswerPractice() {
   } else if (autocomplete) {
     autocomplete.innerHTML = "";
   }
-  const progress = (state.pokeNum / numPokemonToGuess) * 100;
+  const progress = (state.pokeNum / numMonToGuess) * 100;
   return (
-    <div className="App p-5  text-center">
-      <AppHeader />
+    <span>
       <div className="App" style={{ position: "relative" }}>
         <Row>
-          <Col>
-            {/* Back button positioned at top-left (inside padded app area) */}
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => navigate(ROUTER_UTIL.HOME)}
-            >
-              ← Back
-            </Button>
-          </Col>
-          <Col>
-            <p>Practice Mode!</p> {/* Back button (left) */}
-          </Col>
-          <Col>
-            {" "}
-            <Settings />
-          </Col>
+          <p>Practice Mode!</p> {/* Back button (left) */}
         </Row>
-        <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
+        <p>Repeat the sound for the current mon by pressing 'space'</p>
         <Row className="justify-content-center">
           <Col xs={12} md={4}>
             {/* Container for relative positioning */}
             <PokeProgressBar completionPercent={progress} />
-            {state.pokeNum === numPokemonToGuess && (
+            {state.pokeNum === numMonToGuess && (
               <Button
                 onClick={() => {
                   navigate(ROUTER_UTIL.REFRESHER, {
@@ -553,13 +508,13 @@ function ShortAnswerPractice() {
                 Play Again
               </Button>
             )}
-            {/* Score, only displayed if all Pokemon have been guessed. */}
+            {/* Score, only displayed if all Mon have been guessed. */}
             <Score
-              numPokemonToGuess={numPokemonToGuess}
+              numMonToGuess={numMonToGuess}
               pokeNum={state.pokeNum}
               numerator={state.correct.length}
             />
-            {/* Audio button for current Pokemon. */}
+            {/* Audio button for current Mon. */}
           </Col>
         </Row>
       </div>
@@ -578,8 +533,8 @@ function ShortAnswerPractice() {
                 <AudioDisplay
                   buttonFn={() => {
                     setShowViz(true);
-                    playCryForPokemon(
-                      allPokemon[state.pokemonInGameOrder[state.pokeNum]],
+                    playCryForMon(
+                      allMon[monInGameOrder[state.pokeNum]],
                       vizInitializedRef,
                       audioRef,
                       canvasRef,
@@ -692,7 +647,7 @@ function ShortAnswerPractice() {
       </Row>
       <br />
       {resultsPanel()}
-    </div>
+    </span>
   );
 }
 export default ShortAnswerPractice;

@@ -1,0 +1,19 @@
+{
+  "name": "cries/ducklett-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683389,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "74644989-2e50-4b40-a931-d0772881d37d"
+  ],
+  "etag": "DTA32uC393cU/6fdcCVjEnB0WoY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.390Z",
+  "updated": "2025-12-12T07:48:03.390Z",
+  "size": 3248,
+  "md5Hash": "33iDFljw35IWuXIx7AQ8Jw==",
+  "crc32c": "1153022613"
+}

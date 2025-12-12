@@ -18,8 +18,8 @@ import { usePoke, useSettings } from "../../AppContext";
 import AppHeader from "../../components/AppHeader";
 
 function GenerationsGrid({
-  selectedGenerationIds = [],
-  setSelectedGenerationIds,
+  selectedGenerationId = -1,
+  setSelectedGenerationId,
 }) {
   const { generationCount, preloadedGenIcons, pokeLoading } = usePoke();
   const { settings } = useSettings();
@@ -38,12 +38,13 @@ function GenerationsGrid({
               <Button
                 key={`gen-btn-${buttonId}`}
                 variant={
-                  selectedGenerationIds.includes(buttonId)
+                  selectedGenerationId === buttonId ||
+                  selectedGenerationId === 0
                     ? "primary"
                     : "outline-secondary"
                 }
                 className="w-100"
-                onClick={() => setSelectedGenerationIds([buttonId])}
+                onClick={() => setSelectedGenerationId(buttonId)}
               >
                 Gen {buttonId}
                 {<br />}
@@ -79,19 +80,14 @@ function ChallengePanel() {
   // challenge-local selection state (single-select or all)
   const navigate = useNavigate();
   const [numberOfMons, setNumberOfMons] = useState(20);
-  const [selectedGenerationIds, setSelectedGenerationIds] = useState([]);
-  const { generationCount, gensLoading, pokeLoading } = usePoke();
-
-  const allButtonNumbers = Array.from(
-    { length: generationCount },
-    (_, i) => i + 1
-  );
+  const [selectedGenerationId, setSelectedGenerationId] = useState(-1);
+  const { gensLoading, pokeLoading } = usePoke();
 
   const handleSelectAll = () => {
-    if (selectedGenerationIds.length === generationCount) {
-      setSelectedGenerationIds([]);
+    if (selectedGenerationId === 0) {
+      setSelectedGenerationId(-1);
     } else {
-      setSelectedGenerationIds(allButtonNumbers);
+      setSelectedGenerationId(0);
     }
   };
 
@@ -99,26 +95,13 @@ function ChallengePanel() {
     navigate(ROUTER_UTIL.CHALLENGE, {
       state: {
         numberOfMons,
-        selectedGenerationIds,
+        selectedGenerationId,
       },
     });
   };
 
   return (
-    <div className="App p-5">
-      <AppHeader />
-      <Row className="mb-3">
-        <Col></Col>
-        <Col className="col-4 d-flex justify-content-center align-items-center">
-          <Button
-            variant="secondary"
-            onClick={() => navigate(ROUTER_UTIL.HOME)}
-          >
-            ← Back to Menu
-          </Button>
-        </Col>
-        <Col className="text-center"></Col>
-      </Row>
+    <span>
       <Row className="justify-content-center">
         <Col lg={7} md={12} sm={12}>
           <Card className="cute-card mt-3">
@@ -128,8 +111,8 @@ function ChallengePanel() {
                 <Spinner />
               ) : (
                 <GenerationsGrid
-                  selectedGenerationIds={selectedGenerationIds}
-                  setSelectedGenerationIds={setSelectedGenerationIds}
+                  selectedGenerationId={selectedGenerationId}
+                  setSelectedGenerationId={setSelectedGenerationId}
                 />
               )}
             </Card.Body>
@@ -140,7 +123,7 @@ function ChallengePanel() {
                     <Spinner />
                   ) : (
                     <Button variant="outline-primary" onClick={handleSelectAll}>
-                      {selectedGenerationIds.length === generationCount
+                      {selectedGenerationId === 0
                         ? "Select None"
                         : "Select All Generations"}
                     </Button>
@@ -192,7 +175,7 @@ function ChallengePanel() {
       <Row className="justify-content-center mt-3">
         <Col xs={6} md={4} lg={3} className="p-2 d-flex justify-content-center">
           <Button
-            disabled={selectedGenerationIds.length === 0 || pokeLoading}
+            disabled={selectedGenerationId === -1 || pokeLoading}
             variant="success"
             onClick={() => onStart()}
           >
@@ -201,7 +184,7 @@ function ChallengePanel() {
           </Button>
         </Col>
       </Row>
-    </div>
+    </span>
   );
 }
 export default ChallengePanel;

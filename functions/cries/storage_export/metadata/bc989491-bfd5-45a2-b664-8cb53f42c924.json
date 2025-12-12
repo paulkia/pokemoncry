@@ -1,0 +1,19 @@
+{
+  "name": "cries/hoopa-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686104,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1b90f426-a103-41b4-b876-7388865f9204"
+  ],
+  "etag": "P7ID5lSWahLoA1bpCfRqIOAWLTI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.104Z",
+  "updated": "2025-12-12T07:48:06.104Z",
+  "size": 8000,
+  "md5Hash": "UJul/+N64G7MJdD8F6z3cg==",
+  "crc32c": "1928093695"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/nidoran-f-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683902,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "03ccc3a3-2d05-4c61-b5f0-71af6ee16e55"
+  ],
+  "etag": "87/2wexNXJj5r684aJveIe2X9Mw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.902Z",
+  "updated": "2025-12-12T07:48:03.902Z",
+  "size": 1401,
+  "md5Hash": "N0bbmqyTDcpoPVvVfMC5BQ==",
+  "crc32c": "1340670756"
+}

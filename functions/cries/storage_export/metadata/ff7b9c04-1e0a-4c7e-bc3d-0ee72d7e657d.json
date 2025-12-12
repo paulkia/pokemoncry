@@ -1,0 +1,19 @@
+{
+  "name": "cries/sunkern-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683611,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "04c3f9ca-af50-462b-ab24-640f4739799a"
+  ],
+  "etag": "S/tH2IP3tXgNb9nyTHLvMrY7QKg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.611Z",
+  "updated": "2025-12-12T07:48:03.611Z",
+  "size": 1297,
+  "md5Hash": "0ubCn8JlCFlSVS0FcyexIw==",
+  "crc32c": "723222182"
+}

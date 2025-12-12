@@ -1,0 +1,19 @@
+{
+  "name": "cries/purrloin-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685496,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "085921b4-a7ee-4d9d-9a2c-76b7d9b72bfd"
+  ],
+  "etag": "MxcaZ7qfbvQQuywq38vC86e/SME",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.496Z",
+  "updated": "2025-12-12T07:48:05.496Z",
+  "size": 2629,
+  "md5Hash": "d3bPEHrEStWNgzngqFemyQ==",
+  "crc32c": "2023504088"
+}

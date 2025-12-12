@@ -1,0 +1,19 @@
+{
+  "name": "cries/hoothoot-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683634,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d09d9c49-f87f-4d22-9697-4eb09b9fe452"
+  ],
+  "etag": "mjHfnXs1RGs1qlSFEXJrbbz7DxU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.634Z",
+  "updated": "2025-12-12T07:48:03.634Z",
+  "size": 1506,
+  "md5Hash": "aIjPTKTOwSv/FHD4TO3K0Q==",
+  "crc32c": "1494683867"
+}

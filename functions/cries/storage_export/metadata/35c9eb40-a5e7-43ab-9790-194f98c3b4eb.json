@@ -1,0 +1,19 @@
+{
+  "name": "cries/primarina-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683668,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7de869b3-813d-46b4-8685-bc8fd6088785"
+  ],
+  "etag": "ZUv34jesNh5ukBJdH+2G4UwD6eQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.668Z",
+  "updated": "2025-12-12T07:48:03.668Z",
+  "size": 12137,
+  "md5Hash": "hhSFD5WYQ5FRIYY2Bj8k9w==",
+  "crc32c": "110334739"
+}

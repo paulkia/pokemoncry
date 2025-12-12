@@ -1,0 +1,19 @@
+{
+  "name": "cries/metagross-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683961,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e4f59f67-0147-436d-9971-0c0287d485a0"
+  ],
+  "etag": "9quUCqOzQxdtOE0D/wYfVTlP9ls",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.961Z",
+  "updated": "2025-12-12T07:48:03.961Z",
+  "size": 4223,
+  "md5Hash": "n85UhQm+UjnIGCMhYEd7oA==",
+  "crc32c": "1728846302"
+}

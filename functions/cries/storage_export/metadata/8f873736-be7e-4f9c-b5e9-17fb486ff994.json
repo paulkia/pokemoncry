@@ -1,0 +1,19 @@
+{
+  "name": "cries/typhlosion-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683589,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4e54684a-8248-4890-adbd-60873f38be5e"
+  ],
+  "etag": "fqGToz00QV6nAy6lPnpv8uIYHIs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.589Z",
+  "updated": "2025-12-12T07:48:03.589Z",
+  "size": 11888,
+  "md5Hash": "mw+FTKQG38NevyXagtZx0w==",
+  "crc32c": "3924882993"
+}

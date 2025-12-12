@@ -1,0 +1,19 @@
+{
+  "name": "cries/vanillish-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683660,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5d251b6a-86b0-4725-a4d1-3110700896b5"
+  ],
+  "etag": "kICT7550ddokgNRqVnKqWmvVroA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.660Z",
+  "updated": "2025-12-12T07:48:03.660Z",
+  "size": 4301,
+  "md5Hash": "v/66DwW5yIBJrZ+qM7PU7Q==",
+  "crc32c": "976560309"
+}

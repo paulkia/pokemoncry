@@ -1,0 +1,19 @@
+{
+  "name": "cries/lickitung-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685917,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cc1ea350-ba16-4f64-939a-9ab7e671ea80"
+  ],
+  "etag": "VGk7PKfuPqt7PEGqkOzLelxSQwk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.917Z",
+  "updated": "2025-12-12T07:48:05.917Z",
+  "size": 1924,
+  "md5Hash": "RqpfFUomEvn3g0jq6MSr4g==",
+  "crc32c": "1696409876"
+}

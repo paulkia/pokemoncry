@@ -1,0 +1,19 @@
+{
+  "name": "cries/gumshoos-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683739,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e668864a-53e1-4cdb-982b-5a4f80fe54a1"
+  ],
+  "etag": "KzsdQl+qriNA6Oey78VpTYEvyUY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.739Z",
+  "updated": "2025-12-12T07:48:03.739Z",
+  "size": 11888,
+  "md5Hash": "A2ZyPB5C777qkaWxPlx3Pw==",
+  "crc32c": "2750089000"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/maschiff-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684024,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "596db366-7dc9-49ca-acd7-79a58f31483c"
+  ],
+  "etag": "fJ/j2YSA+Yaw17MNMoNeAYsPt2w",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.024Z",
+  "updated": "2025-12-12T07:48:04.024Z",
+  "size": 12536,
+  "md5Hash": "72ICZlkXo5td9smT9ZHQ9g==",
+  "crc32c": "2333293534"
+}

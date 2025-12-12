@@ -1,0 +1,19 @@
+{
+  "name": "cries/turtwig-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683987,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "22816385-5e44-4fcf-8aee-9c47a31c965d"
+  ],
+  "etag": "5fBeh8U3Y6IgUArbQ3Fc/5Swiyw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.987Z",
+  "updated": "2025-12-12T07:48:03.987Z",
+  "size": 4544,
+  "md5Hash": "slVRY34YiY4sTd4xew1LQA==",
+  "crc32c": "3821111911"
+}

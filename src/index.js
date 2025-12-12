@@ -2,13 +2,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { connectStorageEmulator } from "firebase/storage";
 
 // Import Firebase SDKs
 import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 import { connectAuthEmulator } from "firebase/auth";
 import { connectFirestoreEmulator } from "firebase/firestore";
-import { app, db, auth } from "./firebase";
+import { app, db, storage, auth } from "./firebase";
 
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
@@ -29,6 +29,9 @@ if (
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
 
   connectFirestoreEmulator(db, "127.0.0.1", 8080);
+
+  // Connect to Storage Emulator
+  connectStorageEmulator(storage, "127.0.0.1", 9199);
 
   // Important: If you use the Firebase Admin SDK for any client-side mocks
   // or a hybrid approach (less common), you might need more specific setup

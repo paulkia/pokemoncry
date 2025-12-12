@@ -1,0 +1,19 @@
+{
+  "name": "cries/cramorant-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683770,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4f7c1851-8aae-4b92-80d8-32a21c0645e1"
+  ],
+  "etag": "2Kriy3ge4Dkdm+bacwkysah4slM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.770Z",
+  "updated": "2025-12-12T07:48:03.770Z",
+  "size": 6495,
+  "md5Hash": "fw+jSaL68vrxIlY3jQ5Gqg==",
+  "crc32c": "1457329485"
+}

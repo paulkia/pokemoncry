@@ -1,0 +1,19 @@
+{
+  "name": "cries/rattata-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683766,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "727fef5b-5102-4b58-b08a-b6f905fdccf2"
+  ],
+  "etag": "pw5ULqGeCVW9RSAtJaCt8nVf9Dc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.766Z",
+  "updated": "2025-12-12T07:48:03.766Z",
+  "size": 3248,
+  "md5Hash": "dgHdHvydgkKAQAYUutMQYg==",
+  "crc32c": "1370995304"
+}

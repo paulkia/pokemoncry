@@ -1,0 +1,19 @@
+{
+  "name": "cries/persian-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685754,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1ab9b45c-9148-4ca0-9f78-1c4a25475722"
+  ],
+  "etag": "NuTaZb5iV0UifTHo6duqBdVLB4E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.754Z",
+  "updated": "2025-12-12T07:48:05.754Z",
+  "size": 2342,
+  "md5Hash": "pWGutl9KZWtIazLIXe8KHw==",
+  "crc32c": "1393041498"
+}

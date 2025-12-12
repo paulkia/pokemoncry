@@ -1,0 +1,19 @@
+{
+  "name": "cries/buizel-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684110,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cba11916-08dc-419a-b501-c7a53be871e9"
+  ],
+  "etag": "LyD8EllYEssh6M6H+Nx2IAvCsBk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.110Z",
+  "updated": "2025-12-12T07:48:04.110Z",
+  "size": 6056,
+  "md5Hash": "k+Mjc24+o2qrkd12W4YaAQ==",
+  "crc32c": "1088738719"
+}

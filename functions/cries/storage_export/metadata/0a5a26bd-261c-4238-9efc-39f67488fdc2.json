@@ -1,0 +1,19 @@
+{
+  "name": "cries/igglybuff-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685910,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9301768d-a459-4c3a-963d-9a96cc92d6ea"
+  ],
+  "etag": "JPqey4Q61v/MCAque4I/ITseTko",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.910Z",
+  "updated": "2025-12-12T07:48:05.910Z",
+  "size": 4328,
+  "md5Hash": "+apqJWQR8xOlvd0PmI1Tsg==",
+  "crc32c": "646952677"
+}

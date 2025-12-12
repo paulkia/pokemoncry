@@ -1,0 +1,19 @@
+{
+  "name": "cries/cubone-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686108,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cc38bb08-5aa2-44ec-b32a-8c76e6e07806"
+  ],
+  "etag": "YJEamijeaBHXRm27Se8FJZpi1FA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.108Z",
+  "updated": "2025-12-12T07:48:06.108Z",
+  "size": 1924,
+  "md5Hash": "d9h2WgsN3g+qyOdgr6/FVg==",
+  "crc32c": "1394898625"
+}

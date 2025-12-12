@@ -1,0 +1,19 @@
+{
+  "name": "cries/iron-treads-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683743,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3ecdd33b-8ba9-4930-81ad-f9bd8b4b4167"
+  ],
+  "etag": "tXJCtnGBDTZjfJFF3HJnaElzioc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.743Z",
+  "updated": "2025-12-12T07:48:03.743Z",
+  "size": 13832,
+  "md5Hash": "p3Fv6sIxoBNypqEySoHlUg==",
+  "crc32c": "1955098188"
+}

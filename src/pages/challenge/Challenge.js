@@ -18,28 +18,26 @@ import {
   SHINY_AUDIO_SOUND,
   PAUSE_TIME,
   NEUTRAL_RESULT_COLOR,
-  DISABLE_ANIMATION_SWITCH,
-  getRandomElement,
-  shuffle,
-  LOCAL_STORAGE_UTIL,
   SHINY_PROBABILITY,
   ROUTER_UTIL,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForPokemon } from "../../library/audioviz";
+import { playCryForMon, playCryFromByteUrl } from "../../library/audioviz";
 
-import AppHeader from "../../components/AppHeader";
-import Settings from "../../components/Settings";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";
 import AudioDisplay from "../../components/AudioDisplay";
 import PokeButton, { OUTLINE_TYPE } from "../../components/PokeButton";
 import Clock from "../../components/Clock";
+import { getFunctions, httpsCallable } from "firebase/functions";
+
+const functions = getFunctions();
+const startSession = httpsCallable(functions, "startSession");
+const checkAnswer = httpsCallable(functions, "checkAnswer");
 
 const ACTION_TYPES = {
   INITIAL_SETUP: "INITIAL_SETUP",
   UPDATE_INPUT: "UPDATE_INPUT",
-  NEXT_POKEMON: "NEXT_POKEMON",
   ADD_CORRECT: "ADD_CORRECT",
   ADD_INCORRECT: "ADD_INCORRECT",
   DISABLE_INPUT: "DISABLE_INPUT",
@@ -52,33 +50,38 @@ const initialState = {
   input: "",
   // Whether input should be disabled. True when loading, or after game completion.
   inputDisabled: true,
-  // All relevant pokemon data. Maps from pokemon name to cries, sprites, etc.
-  preloadedPokemon: {},
-  // List of pokemon the user will guess.
-  pokemonInGameOrder: [],
-  // Index of pokemon the user is currently guessing.
-  pokeNum: 20,
-  // Set of all pokemon names.
+  // All relevant mon data. Maps from mon name to cries, sprites, etc.
+  preloadedMon: {},
+  // Index of mon the user is currently guessing.
+  pokeNum: 0,
+  // Set of all mon names.
   pokeTrie: new Trie(),
-  // List of correctly guessed pokemon.
+  // List of correctly guessed mon.
   correct: [],
-  // List of incorrectly guessed pokemon.
+  // List of incorrectly guessed mon.
   incorrect: [],
+
+  previousMon: [],
+  // Url for current cry.
+  currentCryUrl: null,
   // Suggestion remainder (autocomplete) based on current input + trie.
   suggestionRemainder: "",
-  // Verdict
-  verdict: "",
   // Previous guess
   previousGuess: "",
-  // Tracks successful Pokemon in a row
+  // Score from server.
+  score: 0,
+  // Tracks successful Mon in a row.
   streak: 0,
-  // Score tracker
-  scoreMetrics: {
-    score: 0,
+  // Tracks whether game is complete.
+  isGameComplete: false,
+  // Metrics for end-of-game display.
+  finalStats: {
+    totalScore: 0,
     longestStreak: 0,
     fastestTimeMs: Number.MAX_SAFE_INTEGER,
-    bestMon: "",
-    correctness: 0,
+    bestMon: null,
+    correctCount: 0,
+    totalCount: 0,
   },
 };
 
@@ -87,15 +90,14 @@ function quizReducer(state, action) {
     case ACTION_TYPES.INITIAL_SETUP: {
       // Create a new Trie to avoid mutating previous state
       const newTrie = new Trie();
-      const allPokemonNames = Object.keys(action.preloadedPokemon);
-      if (Array.isArray(allPokemonNames)) {
-        newTrie.insert(allPokemonNames);
+      const allMonNames = Object.keys(action.preloadedMon);
+      if (Array.isArray(allMonNames)) {
+        newTrie.insert(allMonNames);
       }
       return {
         ...initialState,
         inputDisabled: false,
-        preloadedPokemon: action.preloadedPokemon,
-        pokemonInGameOrder: action.pokemonInGameOrder,
+        preloadedMon: action.preloadedMon,
         pokeTrie: newTrie,
       };
     }
@@ -113,67 +115,37 @@ function quizReducer(state, action) {
         suggestionRemainder: suggestion,
       };
     }
-    case ACTION_TYPES.NEXT_POKEMON: {
-      // reset input and compute suggestion remainder for empty input
-      return {
-        ...state,
-        inputDisabled: true,
-        pokeNum: state.pokeNum + 1, // state.pokemonInGameOrder.length, // for debugging
-        input: "",
-        suggestionRemainder: "",
-      };
-    }
     case ACTION_TYPES.ADD_CORRECT:
       if (Math.random() < SHINY_PROBABILITY) {
-        state.preloadedPokemon[action.pokemon].displaySprite =
-          state.preloadedPokemon[action.pokemon].shinySprite;
-        state.preloadedPokemon[action.pokemon].staticDisplaySprite =
-          state.preloadedPokemon[action.pokemon].staticShinySprite;
+        state.preloadedMon[action.mon].displaySprite =
+          state.preloadedMon[action.mon].shinySprite;
+        state.preloadedMon[action.mon].staticDisplaySprite =
+          state.preloadedMon[action.mon].staticShinySprite;
         SHINY_AUDIO_SOUND.play();
       } else {
         CORRECT_AUDIO_SOUND.play();
       }
-      let streakMultiplier = Math.min(state.streak, 10) / 5 + 1;
-      const time = action.ms;
-      let scoreIncrement = 1;
-      if (time < 2000) {
-        scoreIncrement = 5;
-      } else if (time < 5000) {
-        scoreIncrement = 3;
-      } else if (time < 10000) {
-        scoreIncrement = 2;
-      }
-      let bestMon = state.scoreMetrics.bestMon;
-      if (time < state.scoreMetrics.fastestTimeMs) {
-        bestMon = state.pokemonInGameOrder[state.pokeNum];
-      }
       return {
         ...state,
-        correct: [...state.correct, state.pokemonInGameOrder[state.pokeNum]],
-        previousGuess: action.input,
-        streak: state.streak + 1,
-        longestStreak: Math.max(state.longestStreak, state.streak + 1),
-        scoreMetrics: {
-          ...state.scoreMetrics,
-          score: state.scoreMetrics.score + scoreIncrement * streakMultiplier,
-          longestStreak: Math.max(
-            state.scoreMetrics.longestStreak,
-            state.streak + 1
-          ),
-          fastestTimeMs: Math.min(state.scoreMetrics.fastestTimeMs, time),
-          bestMon: bestMon,
-          correctness: state.scoreMetrics.correctness + 1,
-        },
+        correct: [...state.correct, action.mon],
+        previousMon: [...state.previousMon, action.mon],
+        previousGuess: action.mon,
+        pokeNum: state.pokeNum + 1,
+        input: "",
+        suggestionRemainder: "",
+        streak: action.streak,
+        score: action.score,
       };
     case ACTION_TYPES.ADD_INCORRECT:
       INCORRECT_AUDIO_SOUND.play();
       return {
         ...state,
-        incorrect: [
-          ...state.incorrect,
-          state.pokemonInGameOrder[state.pokeNum],
-        ],
+        incorrect: [...state.incorrect, action.mon],
+        previousMon: [...state.previousMon, action.mon],
         previousGuess: action.input,
+        pokeNum: state.pokeNum + 1,
+        input: "",
+        suggestionRemainder: "",
         streak: 0,
       };
     case ACTION_TYPES.DISABLE_INPUT:
@@ -199,21 +171,8 @@ function quizReducer(state, action) {
         pokeNum: state.pokeNum + 1,
         input: "",
         suggestionRemainder: "",
-        verdict:
-          state.correct.length === state.pokemonInGameOrder.length
-            ? getRandomElement([
-                "Go touch grass",
-                "Incredible stuff",
-                "You must be fun at parties",
-                "Wow",
-              ])
-            : state.correct.length / state.pokemonInGameOrder.length >= 0.8
-            ? "Great job"
-            : state.correct.length / state.pokemonInGameOrder.length >= 0.5
-            ? "Not bad"
-            : state.correct.length === 0
-            ? "That's rough buddy"
-            : "Still better than most",
+        isGameComplete: true,
+        finalStats: action.finalStats,
       };
     default:
       return state;
@@ -230,7 +189,7 @@ function formatHundredths(ms) {
 }
 
 // Display-only clock that updates unless frozen. Resets when `startMs` changes.
-function useDisplayClock(startMs, freeze) {
+function useDisplayClock(startMs, monTimeTakenAccordingToServer, freeze) {
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     if (freeze || !startMs) return;
@@ -238,15 +197,21 @@ function useDisplayClock(startMs, freeze) {
     return () => clearInterval(id);
   }, [freeze, startMs]);
   const elapsed = Math.max(0, (now || 0) - (startMs || 0));
+  if (freeze && monTimeTakenAccordingToServer !== 0) {
+    return formatHundredths(monTimeTakenAccordingToServer);
+  }
   return formatHundredths(elapsed);
 }
 
 function Challenge() {
   const location = useLocation();
-  const { numberOfMons, selectedGenerationIds } = location.state || {};
+  const { numberOfMons, selectedGenerationId } = location.state || {
+    numberOfMons: 0,
+    selectedGenerationId: -1,
+  };
   const navigate = useNavigate();
 
-  const { preloadedGenToNames, preloadedPokemon } = usePoke();
+  const { preloadedMon } = usePoke();
   const { settings } = useSettings();
 
   const [state, dispatch] = useReducer(quizReducer, initialState);
@@ -268,50 +233,102 @@ function Challenge() {
   // Local clock (display-only): start time and formatted display string
   const localStartRef = useRef(null); // kept for scoring calculations
   const [localStartMs, setLocalStartMs] = useState(null);
-  const localClockDisplay = useDisplayClock(localStartMs, state.inputDisabled);
+  const [monTimeTakenAccordingToServer, setMonTimeTakenAccordingToServer] =
+    useState(0);
+  const localClockDisplay = useDisplayClock(
+    localStartMs,
+    monTimeTakenAccordingToServer,
+    state.inputDisabled
+  );
 
-  if (!navigator.userActivation.hasBeenActive || !selectedGenerationIds) {
+  const [sessionId, setSessionId] = useState(null);
+  const [totalMonCount, setTotalMonCount] = useState(0);
+  const [currentCryData, setCurrentCryData] = useState(null);
+
+  if (!navigator.userActivation.hasBeenActive || selectedGenerationId === -1) {
     navigate(ROUTER_UTIL.HOME);
   }
 
-  let pokemonNamesForRelevantGens = [];
-  if (selectedGenerationIds) {
-    for (const gid of selectedGenerationIds) {
-      const names = preloadedGenToNames[gid] || [];
-      for (const n of names) pokemonNamesForRelevantGens.push(n);
+  function playCryFromBase64(base64Data = currentCryData) {
+    try {
+      // Convert base64 to blob
+      const byteCharacters = atob(base64Data);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "audio/mpeg" });
+      const audioUrl = URL.createObjectURL(blob);
+
+      playCryFromByteUrl(audioUrl, vizInitializedRef, audioRef, canvasRef);
+    } catch (error) {
+      console.error("Error playing cry from base64:", error);
     }
-    pokemonNamesForRelevantGens = shuffle(pokemonNamesForRelevantGens).slice(
-      0,
-      numberOfMons > 0 ? numberOfMons : pokemonNamesForRelevantGens.length
-    );
   }
 
   useEffect(() => {
-    const pokemonInGameOrder = shuffle(pokemonNamesForRelevantGens);
     // Play first cry with viz.
-    const firstPokemon = pokemonInGameOrder[0];
-    setTimeout(() => {
-      playCryForPokemon(
-        preloadedPokemon[firstPokemon],
-        vizInitializedRef,
-        audioRef,
-        canvasRef,
-        settings.preferLegacyCries
-      );
-      inputRef.current && inputRef.current.focus();
-      totalStartRef.current = Date.now() + 500;
-      // Initialize local timers for the first Pokémon
-      const start = Date.now() + 500;
-      localStartRef.current = start; // for scoring
-      setLocalStartMs(start); // for display
-      dispatch({
-        type: ACTION_TYPES.INITIAL_SETUP,
-        preloadedPokemon: preloadedPokemon,
-        pokemonInGameOrder: pokemonInGameOrder,
-        pokeNum: 20,
-      });
-    }, 500);
 
+    // setTimeout(() => {
+    //   playCryForMon(
+    //     preloadedMon[firstMon],
+    //     vizInitializedRef,
+    //     audioRef,
+    //     canvasRef,
+    //     settings.preferLegacyCries
+    //   );
+    //   inputRef.current && inputRef.current.focus();
+    //   totalStartRef.current = Date.now() + 500;
+    //   // Initialize local timers for the first Pokémon
+    //   const start = Date.now() + 500;
+    //   localStartRef.current = start; // for scoring
+    //   setLocalStartMs(start); // for display
+    //   dispatch({
+    //     type: ACTION_TYPES.INITIAL_SETUP,
+    //     preloadedMon: preloadedMon,
+    //     monInGameOrder: monInGameOrder,
+    //     pokeNum: 20,
+    //   });
+    // }, 500);
+    console.log("Initializing session...");
+
+    async function initSession() {
+      console.log("initsession call");
+      try {
+        console.log("hi?");
+        const result = await startSession({
+          generation: selectedGenerationId,
+          mode: numberOfMons === 20 ? "fast" : "full",
+          useLegacyCries: settings.preferLegacyCries,
+        });
+
+        console.log("here -- result = ", result);
+
+        dispatch({
+          type: ACTION_TYPES.INITIAL_SETUP,
+          preloadedMon: preloadedMon,
+          pokeNum: result.data.totalMonCount,
+        });
+        inputRef.current && inputRef.current.focus();
+
+        setSessionId(result.data.sessionId);
+        console.log("setting total mon count to ", result.data.totalMonCount);
+        setTotalMonCount(result.data.totalMonCount);
+        setCurrentCryData(result.data.firstMonCryData);
+
+        // Play first cry from base64 data
+        playCryFromBase64(result.data.firstMonCryData);
+
+        // Start timer
+        localStartRef.current = Date.now();
+      } catch (error) {
+        console.error("Failed to start session:", error);
+        // Handle error appropriately
+      }
+    }
+
+    initSession();
     // Inject shake CSS once
     const styleId = "quiz-shake-style";
     if (document.getElementById(styleId)) return;
@@ -410,10 +427,8 @@ function Challenge() {
   }
 
   // Unified handler for both window-level key events and input onKeyDown.
-  const handleKey = useCallback((e) => {
+  const handleKey = useCallback(async (e) => {
     if (state.inputDisabled) return;
-    const currPokemon = state.pokemonInGameOrder[state.pokeNum];
-    if (!currPokemon) return;
     const suggestion = state.suggestionRemainder;
     const input = `${state.input}${suggestion}`;
     switch (e.key) {
@@ -421,13 +436,7 @@ function Challenge() {
       case " ":
         e.preventDefault();
         setShowViz(true);
-        playCryForPokemon(
-          preloadedPokemon[currPokemon],
-          vizInitializedRef,
-          audioRef,
-          canvasRef,
-          settings.preferLegacyCries
-        );
+        playCryFromBase64();
         return;
       case "Tab": {
         e.preventDefault();
@@ -436,51 +445,73 @@ function Challenge() {
       }
       case "Enter": {
         e.preventDefault();
-        if (!state.pokeTrie.words.has(input)) {
+        if (!sessionId || !state.pokeTrie.words.has(input)) {
           dispatch({ type: ACTION_TYPES.UPDATE_INPUT, input });
           return;
         }
-        if (input === currPokemon) {
-          dispatch({
-            type: ACTION_TYPES.ADD_CORRECT,
-            pokemon: currPokemon,
-            input: input,
-            ms: Date.now() - (localStartRef.current || Date.now()),
+
+        dispatch({ type: ACTION_TYPES.DISABLE_INPUT });
+
+        try {
+          const result = await checkAnswer({
+            sessionId,
+            answer: input,
           });
-          triggerCorrectAnimation();
-        } else {
-          dispatch({
-            type: ACTION_TYPES.ADD_INCORRECT,
-            pokemon: currPokemon,
-            input: input,
-          });
-          // Trigger shake animation on the input when incorrect
-          triggerIncorrectAnimation();
-        }
-        dispatch({
-          type: ACTION_TYPES.NEXT_POKEMON,
-        });
-        // Allow users to see the result before hearing the next pokemon.
-        if (state.pokeNum + 1 < pokemonNamesForRelevantGens.length) {
-          setTimeout(() => {
-            const nextPokemon = state.pokemonInGameOrder[state.pokeNum + 1];
-            setShowViz(true);
-            playCryForPokemon(
-              preloadedPokemon[nextPokemon],
-              vizInitializedRef,
-              audioRef,
-              canvasRef,
-              settings.preferLegacyCries
-            );
-            // Reset local clock for next Pokémon and resume when input is enabled
-            const start = Date.now();
-            localStartRef.current = start; // for scoring
-            setLocalStartMs(start); // for display
-            dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
-            setTimeout(() => {
-              inputRef.current && inputRef.current.focus();
-            }, 200);
-          }, PAUSE_TIME);
+
+          const {
+            correct: isCorrect,
+            correctAnswer,
+            newStreak,
+            newTotalScore,
+            isGameComplete,
+            timeMs,
+            nextMonCryData,
+            finalStats,
+          } = result.data;
+          setMonTimeTakenAccordingToServer(timeMs);
+
+          if (isCorrect) {
+            dispatch({
+              type: ACTION_TYPES.ADD_CORRECT,
+              mon: correctAnswer,
+              streak: newStreak,
+              score: newTotalScore,
+            });
+            triggerCorrectAnimation();
+          } else {
+            dispatch({
+              type: ACTION_TYPES.ADD_INCORRECT,
+              mon: correctAnswer,
+              input: input,
+            });
+            // Trigger shake animation on the input when incorrect
+            triggerIncorrectAnimation();
+          }
+
+          if (!isGameComplete) {
+            // Store next cry data and play after delay
+            setCurrentCryData(nextMonCryData);
+            setTimeout(async () => {
+              playCryFromBase64(nextMonCryData);
+              setShowViz(true);
+              const start = Date.now();
+              localStartRef.current = start; // for scoring
+              setLocalStartMs(start); // for display
+              setMonTimeTakenAccordingToServer(0);
+              dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
+              setTimeout(() => {
+                inputRef.current && inputRef.current.focus();
+              }, 200);
+            }, PAUSE_TIME);
+          } else {
+            // Game complete - show final stats
+            dispatch({ type: ACTION_TYPES.END_GAME, finalStats: finalStats });
+            // Leaderboard already updated by server!
+          }
+        } catch (error) {
+          console.error("Error submitting answer:", error);
+          // Re-enable input on error
+          dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
         }
         return;
       }
@@ -495,7 +526,8 @@ function Challenge() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [handleKey]);
 
-  const previous = state.pokemonInGameOrder[state.pokeNum - 1];
+  const prevPoke = state.previousMon.length > 0 ? state.previousMon.at(-1) : "";
+
   // Helper to render a result row (correct / incorrect)
   const resultsPanel = () => {
     if (state.pokeNum === 0) {
@@ -503,7 +535,7 @@ function Challenge() {
     }
     return (
       <div>
-        {state.pokeNum === pokemonNamesForRelevantGens.length ? (
+        {state.isGameComplete ? (
           <Row className="mb-5 mt-4 justify-content-center">
             <Col lg={7} sm={12} className="align-items-stretch flex">
               <Row
@@ -526,11 +558,10 @@ function Challenge() {
                   <div>
                     Total score:{" "}
                     <span style={{ whiteSpace: "nowrap" }}>
-                      {Math.round(state.scoreMetrics.score)} points{" "}
-                      {state.scoreMetrics.score >
-                      (numberOfMons === 20 ? 100 : 1000)
+                      {Math.round(state.score)} points{" "}
+                      {state.score > (numberOfMons === 20 ? 100 : 1000)
                         ? `🥳`
-                        : state.scoreMetrics.score > 0
+                        : state.score > 0
                         ? `⭐`
                         : "😭"}
                     </span>
@@ -545,11 +576,10 @@ function Challenge() {
                   <div>
                     Longest streak:{" "}
                     <span style={{ whiteSpace: "nowrap" }}>
-                      {`${state.scoreMetrics.longestStreak} ${
-                        state.scoreMetrics.longestStreak ===
-                        state.pokemonInGameOrder.length
+                      {`${state.finalStats.longestStreak} ${
+                        state.finalStats.longestStreak === totalMonCount.length
                           ? "🤯"
-                          : state.scoreMetrics.longestStreak > 0
+                          : state.finalStats.longestStreak > 0
                           ? "🔥"
                           : "💩"
                       }`}
@@ -568,11 +598,11 @@ function Challenge() {
                   <div>
                     Correctness:{" "}
                     <span style={{ whiteSpace: "nowrap" }}>
-                      {`${state.scoreMetrics.correctness} / ${state.pokeNum}`}{" "}
-                      {state.scoreMetrics.correctness ===
-                      state.pokemonInGameOrder.length
+                      {`${state.finalStats.correctCount} / ${state.finalStats.totalCount}`}{" "}
+                      {state.finalStats.correctCount ===
+                      state.finalStats.totalCount
                         ? "💯"
-                        : state.scoreMetrics.correctness > 0
+                        : state.finalStats.correctCount > 0
                         ? `✅`
                         : "❌"}
                     </span>
@@ -585,23 +615,23 @@ function Challenge() {
                   style={{ backgroundColor: NEUTRAL_RESULT_COLOR }}
                 >
                   <div>
-                    {`Fastest Pokemon: ${
-                      state.scoreMetrics.bestMon
-                        ? `${state.scoreMetrics.bestMon} in `
+                    {`Fastest Mon: ${
+                      state.finalStats.bestMon
+                        ? `${state.finalStats.bestMon} in `
                         : ""
                     }`}
                     <span style={{ whiteSpace: "nowrap" }}>
-                      {state.scoreMetrics.fastestTimeMs < 1000
-                        ? `${(state.scoreMetrics.fastestTimeMs / 1000).toFixed(
+                      {state.finalStats.fastestTimeMs < 1000
+                        ? `${(state.finalStats.fastestTimeMs / 1000).toFixed(
                             2
                           )} 😱`
-                        : state.scoreMetrics.fastestTimeMs < 2000
-                        ? `${(state.scoreMetrics.fastestTimeMs / 1000).toFixed(
+                        : state.finalStats.fastestTimeMs < 2000
+                        ? `${(state.finalStats.fastestTimeMs / 1000).toFixed(
                             2
                           )} 🏎️`
-                        : state.scoreMetrics.fastestTimeMs !==
+                        : state.finalStats.fastestTimeMs !==
                           Number.MAX_SAFE_INTEGER
-                        ? `${(state.scoreMetrics.fastestTimeMs / 1000).toFixed(
+                        ? `${(state.finalStats.fastestTimeMs / 1000).toFixed(
                             2
                           )} ⏱`
                         : "uhhh"}
@@ -617,12 +647,11 @@ function Challenge() {
                   }}
                 >
                   <div>
-                    {!state.scoreMetrics.bestMon ||
-                    state.correctness === state.pokemonInGameOrder.length ? (
+                    {state.finalStats.correctCount === 0 ? (
                       <span>
                         👑
                         <br />
-                        🫵
+                        🤡
                       </span>
                     ) : (
                       <div>
@@ -631,28 +660,26 @@ function Challenge() {
                         <span style={{ whiteSpace: "nowrap" }}>
                           {
                             <PokeButton
-                              key={`best-mon-${state.scoreMetrics.bestMon}`}
-                              name={state.scoreMetrics.bestMon}
+                              key={`best-mon-${state.finalStats.bestMon}`}
+                              name={state.finalStats.bestMon}
                               sprite={
                                 settings.disableAnimations
-                                  ? state.preloadedPokemon[
-                                      state.scoreMetrics.bestMon
-                                    ]?.staticDisplaySprite
-                                  : state.preloadedPokemon[
-                                      state.scoreMetrics.bestMon
-                                    ].displaySprite
+                                  ? state.preloadedMon[state.finalStats.bestMon]
+                                      ?.staticDisplaySprite
+                                  : state.preloadedMon[state.finalStats.bestMon]
+                                      .displaySprite
                               }
                               outlineType={
                                 state.incorrect.includes(
-                                  state.scoreMetrics.bestMon
+                                  state.finalStats.bestMon
                                 )
                                   ? OUTLINE_TYPE.RED
                                   : OUTLINE_TYPE.GREEN
                               }
                               onClick={() => {
                                 setShowViz(false);
-                                playCryForPokemon(
-                                  preloadedPokemon[state.scoreMetrics.bestMon],
+                                playCryForMon(
+                                  preloadedMon[state.finalStats.bestMon],
                                   vizInitializedRef,
                                   audioRef,
                                   canvasRef,
@@ -675,18 +702,18 @@ function Challenge() {
             Previous:
             <br />
             <PokeButton
-              key={`prev-${previous}`}
-              name={previous}
+              key={`prev-${prevPoke}`}
+              name={prevPoke}
               sprite={
                 settings.disableAnimations
-                  ? state.preloadedPokemon[previous]?.staticDisplaySprite
-                  : state.preloadedPokemon[previous]?.displaySprite
+                  ? state.preloadedMon[prevPoke]?.staticDisplaySprite
+                  : state.preloadedMon[prevPoke]?.displaySprite
               }
               outlineType={OUTLINE_TYPE.GREEN}
               onClick={() => {
                 setShowViz(false);
-                playCryForPokemon(
-                  preloadedPokemon[previous],
+                playCryForMon(
+                  preloadedMon[prevPoke],
                   vizInitializedRef,
                   audioRef,
                   canvasRef,
@@ -695,9 +722,8 @@ function Challenge() {
               }}
             />
           </Col>
-          {state.previousGuess &&
-          state.pokemonInGameOrder[state.pokeNum - 1] !==
-            state.previousGuess ? (
+          {state.previousMon.length > 0 &&
+          state.previousMon.at(-1) !== state.previousGuess ? (
             <Col xs={6} sm={4} lg={2}>
               Guessed:
               <br />
@@ -706,15 +732,15 @@ function Challenge() {
                 name={state.previousGuess}
                 sprite={
                   settings.disableAnimations
-                    ? state.preloadedPokemon[state.previousGuess]
+                    ? state.preloadedMon[state.previousGuess]
                         ?.staticDisplaySprite
-                    : state.preloadedPokemon[state.previousGuess]?.displaySprite
+                    : state.preloadedMon[state.previousGuess]?.displaySprite
                 }
                 outlineType={OUTLINE_TYPE.RED}
                 onClick={() => {
                   setShowViz(false);
-                  playCryForPokemon(
-                    preloadedPokemon[state.previousGuess],
+                  playCryForMon(
+                    state.preloadedMon[state.previousGuess],
                     vizInitializedRef,
                     audioRef,
                     canvasRef,
@@ -725,53 +751,49 @@ function Challenge() {
             </Col>
           ) : null}
         </Row>
-        {
-          /*state.pokeNum === pokemonNamesForRelevantGens.length*/ true ? (
-            <Row className="justify-content-center">
-              <Col className="col-md-8">
-                <div
-                  className="p-2 rounded"
-                  style={{ backgroundColor: NEUTRAL_RESULT_COLOR }}
-                >
-                  <div className="d-flex flex-wrap justify-content-center mt-1">
-                    {state.pokemonInGameOrder
-                      .slice(0, state.pokeNum - 1)
-                      .map((name) => {
-                        let s = state.preloadedPokemon[name]?.displaySprite;
-                        if (settings.disableAnimations) {
-                          s = state.preloadedPokemon[name]?.staticDisplaySprite;
+        {state.isGameComplete ? (
+          <Row className="justify-content-center">
+            <Col className="col-md-8">
+              <div
+                className="p-2 rounded"
+                style={{ backgroundColor: NEUTRAL_RESULT_COLOR }}
+              >
+                <div className="d-flex flex-wrap justify-content-center mt-1">
+                  {state.previousMon.map((name) => {
+                    let s = state.preloadedMon[name]?.displaySprite;
+                    if (settings.disableAnimations) {
+                      s = state.preloadedMon[name]?.staticDisplaySprite;
+                    }
+                    return typeof s === "string" ? (
+                      <PokeButton
+                        key={`result-${name}`}
+                        name={name}
+                        sprite={s}
+                        outlineType={
+                          state.incorrect.includes(name)
+                            ? OUTLINE_TYPE.RED
+                            : OUTLINE_TYPE.GREEN
                         }
-                        return typeof s === "string" ? (
-                          <PokeButton
-                            key={`result-${name}`}
-                            name={name}
-                            sprite={s}
-                            outlineType={
-                              state.incorrect.includes(name)
-                                ? OUTLINE_TYPE.RED
-                                : OUTLINE_TYPE.GREEN
-                            }
-                            onClick={() => {
-                              setShowViz(false);
-                              playCryForPokemon(
-                                preloadedPokemon[name],
-                                vizInitializedRef,
-                                audioRef,
-                                canvasRef,
-                                settings.preferLegacyCries
-                              );
-                            }}
-                          />
-                        ) : (
-                          s
-                        );
-                      })}
-                  </div>
+                        onClick={() => {
+                          setShowViz(false);
+                          playCryForMon(
+                            state.preloadedMon[name],
+                            vizInitializedRef,
+                            audioRef,
+                            canvasRef,
+                            settings.preferLegacyCries
+                          );
+                        }}
+                      />
+                    ) : (
+                      s
+                    );
+                  })}
                 </div>
-              </Col>
-            </Row>
-          ) : null
-        }
+              </div>
+            </Col>
+          </Row>
+        ) : null}
       </div>
     );
   };
@@ -782,32 +804,17 @@ function Challenge() {
   } else if (autocomplete) {
     autocomplete.innerHTML = "";
   }
-  const progress = (state.pokeNum / pokemonNamesForRelevantGens.length) * 100;
+  const progress =
+    totalMonCount === 0 ? 0 : (state.pokeNum / totalMonCount) * 100;
 
   return (
-    <div className="App p-5 text-center">
-      <AppHeader />
+    <span>
       <div className="App" style={{ position: "relative" }}>
         <Row>
-          <Col>
-            {/* Back button positioned at top-left (inside padded app area) */}
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => navigate(ROUTER_UTIL.HOME)}
-            >
-              ← Back
-            </Button>
-          </Col>
-          <Col>
-            <p>Challenge Mode!</p> {/* Back button (left) */}
-          </Col>{" "}
-          <Col>
-            <Settings />
-          </Col>
+          <p>Challenge Mode!</p> {/* Back button (left) */}
         </Row>
         <br />
-        <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
+        <p>Repeat the sound for the current mon by pressing 'space'</p>
         <Row className="justify-content-center">
           <Col sm={12} md={6} lg={5}>
             <br />
@@ -817,7 +824,7 @@ function Challenge() {
               <Clock totalStartRef={totalStartRef} totalClock={totalClock} />
             </span>
             <PokeProgressBar completionPercent={progress} />
-            {state.pokeNum === pokemonNamesForRelevantGens.length && (
+            {state.isGameComplete && (
               <Button
                 onClick={() => {
                   navigate(ROUTER_UTIL.REFRESHER, {
@@ -828,10 +835,10 @@ function Challenge() {
                   });
                 }}
               >
-                Play Again <i class="bi bi-arrow-repeat"></i>
+                Play Again <i className="bi bi-arrow-repeat"></i>
               </Button>
             )}{" "}
-            {state.pokeNum === pokemonNamesForRelevantGens.length && (
+            {state.isGameComplete && (
               <OverlayTrigger
                 placement="top"
                 overlay={
@@ -844,17 +851,17 @@ function Challenge() {
                   onClick={() => {
                     navigate(ROUTER_UTIL.LEADERBOARD, {
                       state: {
-                        refreshRoute: location.pathname,
-                        refreshState: location.state,
+                        gen: selectedGenerationId,
+                        mode: numberOfMons === 20 ? "fast" : "full",
                       },
                     });
                   }}
                 >
-                  Leaderboard <i class="bi bi-trophy-fill"></i>
+                  Leaderboard <i className="bi bi-trophy-fill"></i>
                 </Button>
               </OverlayTrigger>
             )}
-            {/* Audio button for current Pokemon. */}
+            {/* Audio button for current Mon. */}
           </Col>
         </Row>
       </div>
@@ -872,13 +879,7 @@ function Challenge() {
                 <AudioDisplay
                   buttonFn={() => {
                     setShowViz(true);
-                    playCryForPokemon(
-                      preloadedPokemon[state.pokemonInGameOrder[state.pokeNum]],
-                      vizInitializedRef,
-                      audioRef,
-                      canvasRef,
-                      settings.preferLegacyCries
-                    );
+                    playCryFromBase64();
                   }}
                   canvasRef={canvasRef}
                   audioRef={audioRef}
@@ -981,13 +982,13 @@ function Challenge() {
                 </Col>
               </Row>
               <Row>
-                {state.scoreMetrics.score === 0 ? null : (
+                {state.score === 0 ? null : (
                   <Col>
                     <Score
-                      numPokemonToGuess={pokemonNamesForRelevantGens.length}
+                      numMonToGuess={totalMonCount}
                       pokeNum={state.pokeNum}
                       numerator={state.correct.length}
-                      score={state.scoreMetrics.score}
+                      score={state.score}
                     />
                   </Col>
                 )}
@@ -1000,7 +1001,7 @@ function Challenge() {
       </Row>
       {state.streak > 0 && progress < 100 ? `🔥 ${state.streak}` : null}
       {resultsPanel()}
-    </div>
+    </span>
   );
 }
 export default Challenge;

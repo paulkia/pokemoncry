@@ -1,0 +1,19 @@
+{
+  "name": "cries/staravia-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685551,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e61142c8-df50-4141-94a3-8bc87f9361c4"
+  ],
+  "etag": "R29oCxuBniP9EITGYstwBNiTKh4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.551Z",
+  "updated": "2025-12-12T07:48:05.551Z",
+  "size": 8432,
+  "md5Hash": "lXc3raqjFjWVxZHmSKFJpg==",
+  "crc32c": "120016636"
+}

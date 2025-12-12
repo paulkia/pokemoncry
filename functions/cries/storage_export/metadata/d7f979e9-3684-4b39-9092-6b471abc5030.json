@@ -1,0 +1,19 @@
+{
+  "name": "cries/crobat-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685698,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2a09353d-827d-4cd2-ad50-3d9371e5fcef"
+  ],
+  "etag": "3eZi5NWyfSrP84Wsdk9WHwwNk8s",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.698Z",
+  "updated": "2025-12-12T07:48:05.698Z",
+  "size": 2655,
+  "md5Hash": "BGTb68wR5h+vkAS7Qwd28A==",
+  "crc32c": "506569604"
+}

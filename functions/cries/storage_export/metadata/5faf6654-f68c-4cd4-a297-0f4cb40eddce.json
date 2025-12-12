@@ -1,0 +1,19 @@
+{
+  "name": "cries/nincada-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684244,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "777421d1-af81-47e4-bc4f-5305013db325"
+  ],
+  "etag": "i4AT6WAVJ21weS+elRoFyalNlGQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.244Z",
+  "updated": "2025-12-12T07:48:04.244Z",
+  "size": 3248,
+  "md5Hash": "2YoI+abP3SzRVeJVOPR5TQ==",
+  "crc32c": "1821137463"
+}

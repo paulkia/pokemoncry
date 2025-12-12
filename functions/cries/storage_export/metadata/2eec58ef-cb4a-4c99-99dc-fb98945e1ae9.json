@@ -1,0 +1,19 @@
+{
+  "name": "cries/whismur-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683344,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8f293213-1e56-498c-957b-9ed91451d00d"
+  ],
+  "etag": "d31yDoKt0RPNoqPCy29UlFR6z8c",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.344Z",
+  "updated": "2025-12-12T07:48:03.344Z",
+  "size": 3464,
+  "md5Hash": "rdUgzhP6mpvdwBEjoBfA0w==",
+  "crc32c": "941779797"
+}

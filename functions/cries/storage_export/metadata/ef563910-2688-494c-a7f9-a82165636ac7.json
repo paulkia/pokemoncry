@@ -1,0 +1,19 @@
+{
+  "name": "cries/golbat-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685921,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e8dbd4ea-3eab-4e41-95ec-7364fba2c7d3"
+  ],
+  "etag": "wSUgPdyI4rjvwJXZT/BrUWNorpA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.921Z",
+  "updated": "2025-12-12T07:48:05.921Z",
+  "size": 6704,
+  "md5Hash": "oKPOAG3JpU3YTf19Kr4JrQ==",
+  "crc32c": "1672375867"
+}

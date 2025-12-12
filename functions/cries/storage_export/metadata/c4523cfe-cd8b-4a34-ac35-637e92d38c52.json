@@ -1,0 +1,19 @@
+{
+  "name": "cries/scraggy-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683747,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4fb73e5f-5a45-4d27-8f6f-2014547dd5a4"
+  ],
+  "etag": "SM5O7MaYLD41QbykSUdXWkpIwSM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.747Z",
+  "updated": "2025-12-12T07:48:03.747Z",
+  "size": 4510,
+  "md5Hash": "ioTCIvjvGFcAF4W7eCOqwQ==",
+  "crc32c": "2130888673"
+}

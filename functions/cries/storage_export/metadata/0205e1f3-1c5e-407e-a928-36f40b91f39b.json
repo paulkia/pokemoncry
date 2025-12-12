@@ -1,0 +1,19 @@
+{
+  "name": "cries/smoliv-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684171,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5a2fc97c-3d2d-43e3-b339-ff924d5b7f5c"
+  ],
+  "etag": "/RAkmA6TLjnEDE3CIvGwBuVJy24",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.171Z",
+  "updated": "2025-12-12T07:48:04.171Z",
+  "size": 7340,
+  "md5Hash": "so7NhXQh74ryvWIZ8WwzuA==",
+  "crc32c": "4209031216"
+}

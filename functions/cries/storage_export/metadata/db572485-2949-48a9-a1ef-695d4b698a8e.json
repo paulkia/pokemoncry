@@ -1,0 +1,19 @@
+{
+  "name": "cries/eternatus-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684145,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5adabf39-0f3e-4c56-b28a-397029fc4312"
+  ],
+  "etag": "ZMcNu2Dyed/KG63H6l9lGUk5j/s",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.145Z",
+  "updated": "2025-12-12T07:48:04.145Z",
+  "size": 23004,
+  "md5Hash": "5PXoqob6D5NBQlsnnZHwAA==",
+  "crc32c": "4121016059"
+}

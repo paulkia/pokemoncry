@@ -1,0 +1,19 @@
+{
+  "name": "cries/gengar-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684010,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "998572cb-1650-475b-a2fa-bd1a58bd57cf"
+  ],
+  "etag": "iQDjJh+wDz3vEbaQjRkZ38C5aW4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.010Z",
+  "updated": "2025-12-12T07:48:04.010Z",
+  "size": 5624,
+  "md5Hash": "fp3JeRtcZXiSWC0BfEDCQQ==",
+  "crc32c": "1876145041"
+}

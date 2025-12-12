@@ -1,0 +1,19 @@
+{
+  "name": "cries/munkidori-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683391,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "28a94c0d-47c5-493c-bab2-864d3e2b72f9"
+  ],
+  "etag": "0n3rv6hJA+v3JWf4hgLOQ65ncGg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.391Z",
+  "updated": "2025-12-12T07:48:03.391Z",
+  "size": 13292,
+  "md5Hash": "prvEHgsC6nz8wmHeaLSu9w==",
+  "crc32c": "1056715236"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/sealeo-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684457,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4254dc07-8f74-4999-a2d7-5971e711937d"
+  ],
+  "etag": "Ctewn4mSH9n2iArq/Bx6ysviSR0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.457Z",
+  "updated": "2025-12-12T07:48:04.457Z",
+  "size": 1610,
+  "md5Hash": "UJPKgIEsAVZgCgZv6sGH9Q==",
+  "crc32c": "2338201144"
+}

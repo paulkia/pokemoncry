@@ -1,0 +1,19 @@
+{
+  "name": "cries/eiscue-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685602,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "efd72d65-d2da-4ace-bc12-9cbdc251e67a"
+  ],
+  "etag": "8Il2AgctFWkFzWoPPFvLeLcwXrI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.602Z",
+  "updated": "2025-12-12T07:48:05.602Z",
+  "size": 3569,
+  "md5Hash": "4DB9+WIV3KMqpEKxBghYGA==",
+  "crc32c": "2744055178"
+}

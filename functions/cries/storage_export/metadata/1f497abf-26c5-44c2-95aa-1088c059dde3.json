@@ -1,0 +1,19 @@
+{
+  "name": "cries/seedot-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683973,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "af1b4517-ce4c-4594-b3be-781f45850feb"
+  ],
+  "etag": "co8KJ+vgAmBulvO4kzipYJyT0NM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.974Z",
+  "updated": "2025-12-12T07:48:03.974Z",
+  "size": 3680,
+  "md5Hash": "QcDsZ9QT1qOLGAYVGgl1wA==",
+  "crc32c": "2950619915"
+}

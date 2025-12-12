@@ -6,9 +6,9 @@ function Refresher() {
   const location = useLocation();
   const { refreshRoute, refreshState } = location.state || {};
 
-  const { preloadedPokemon } = usePoke();
+  const { preloadedMon } = usePoke();
 
-  for (let [, pokeData] of Object.entries(preloadedPokemon)) {
+  for (let [, pokeData] of Object.entries(preloadedMon)) {
     pokeData.staticDisplaySprite = pokeData.staticSprite;
     pokeData.displaySprite = pokeData.sprite;
   }

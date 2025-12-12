@@ -1,0 +1,19 @@
+{
+  "name": "cries/glaceon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684376,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "933c7421-ed0b-472a-90e9-82da5446764d"
+  ],
+  "etag": "FLeVjsTqHTPb28idar6pt3eEBys",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.376Z",
+  "updated": "2025-12-12T07:48:04.376Z",
+  "size": 12104,
+  "md5Hash": "V8JSGw+IIvoG3cjvnkpbxQ==",
+  "crc32c": "914930151"
+}

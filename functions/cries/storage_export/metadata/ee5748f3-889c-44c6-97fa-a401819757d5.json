@@ -1,0 +1,19 @@
+{
+  "name": "cries/houndstone-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684134,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "94f18d29-2f61-4d9b-891d-960bc9d8980b"
+  ],
+  "etag": "RbrTHnQ7br/2ggMIYJ6TgVe5Dpk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.134Z",
+  "updated": "2025-12-12T07:48:04.134Z",
+  "size": 11888,
+  "md5Hash": "/mbyXlLfR9XbB4ijArMyVA==",
+  "crc32c": "2476033611"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/stoutland-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684206,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7543da1d-72e9-4c3b-b9a5-6dda3a03ba60"
+  ],
+  "etag": "JLN0V0L/orIl1OCYrREoPPaRg0A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.206Z",
+  "updated": "2025-12-12T07:48:04.206Z",
+  "size": 4719,
+  "md5Hash": "JoWQwLywueaSSD6hkWWlfg==",
+  "crc32c": "1220829849"
+}

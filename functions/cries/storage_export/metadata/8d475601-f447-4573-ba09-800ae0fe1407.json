@@ -1,0 +1,19 @@
+{
+  "name": "cries/jellicent-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683695,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d9e5b609-d908-4f48-85e3-d528e6fcb61b"
+  ],
+  "etag": "Muxk8xQoZPQkaHd1teQxS1sNrHE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.695Z",
+  "updated": "2025-12-12T07:48:03.695Z",
+  "size": 4510,
+  "md5Hash": "L5IHrHeRTaK8jJd5FvYc1g==",
+  "crc32c": "2741007120"
+}

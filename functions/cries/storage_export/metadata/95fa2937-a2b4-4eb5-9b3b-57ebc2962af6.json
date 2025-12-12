@@ -1,0 +1,19 @@
+{
+  "name": "cries/skarmory-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683763,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "94d2ac57-676a-4db5-8322-4d9d2fb6e93d"
+  ],
+  "etag": "ggC2O4YEGhhpb5Ur5D+6DgkTvbA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.763Z",
+  "updated": "2025-12-12T07:48:03.763Z",
+  "size": 7784,
+  "md5Hash": "0Ny0jKcGucTxZoIjxzLlIw==",
+  "crc32c": "3570884116"
+}

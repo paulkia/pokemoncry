@@ -1,0 +1,19 @@
+{
+  "name": "cries/geodude-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684075,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "acb858de-5a5e-462e-9469-78f551b0885b"
+  ],
+  "etag": "tyhqdC5uss8Lf6pC4Cw/ScbBVNw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.075Z",
+  "updated": "2025-12-12T07:48:04.075Z",
+  "size": 8648,
+  "md5Hash": "dAxqUpHlOFRNtb2yrtl27g==",
+  "crc32c": "3345391876"
+}

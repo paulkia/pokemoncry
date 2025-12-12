@@ -1,0 +1,19 @@
+{
+  "name": "cries/dustox-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683632,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "bb0f53b4-4657-4757-b50a-a51fdca71f53"
+  ],
+  "etag": "tlWucrhCYRqhmBMUmsbqo5lNAU4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.632Z",
+  "updated": "2025-12-12T07:48:03.632Z",
+  "size": 4760,
+  "md5Hash": "xC91KiLsjdnyPJ2PLi865g==",
+  "crc32c": "4152132143"
+}

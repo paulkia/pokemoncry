@@ -1,0 +1,19 @@
+{
+  "name": "cries/pichu-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683545,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f14c3b86-fcbb-4e90-a6f3-8cb383c706a5"
+  ],
+  "etag": "FBxzs9niEtyBx4Yo0/SKftzePVw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.545Z",
+  "updated": "2025-12-12T07:48:03.545Z",
+  "size": 1192,
+  "md5Hash": "5vdkwyJvO6BD9b30Yq9dMQ==",
+  "crc32c": "2358290319"
+}

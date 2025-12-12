@@ -1,0 +1,19 @@
+{
+  "name": "cries/iron-hands-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684399,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "752a8d9e-0ced-451c-a340-080abda8d5e3"
+  ],
+  "etag": "YLTpZ283Y4rTlWZQb69umm+VXgw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.399Z",
+  "updated": "2025-12-12T07:48:04.399Z",
+  "size": 13832,
+  "md5Hash": "IaycpqfIabdbKIacyF9dmw==",
+  "crc32c": "3702374945"
+}

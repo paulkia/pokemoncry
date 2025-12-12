@@ -1,0 +1,19 @@
+{
+  "name": "cries/vanillite-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684407,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d5341afb-87fe-492f-8b71-d0d0df0fdb20"
+  ],
+  "etag": "41XIyx3/E8gMdLzQOvu3JJhz2uk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.407Z",
+  "updated": "2025-12-12T07:48:04.407Z",
+  "size": 3256,
+  "md5Hash": "OuDfwFaEPbEO9Lz5rPZx9Q==",
+  "crc32c": "2674556702"
+}

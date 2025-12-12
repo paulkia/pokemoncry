@@ -1,0 +1,19 @@
+{
+  "name": "cries/totodile-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683544,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b9cac7d4-2216-4dfb-bf36-e9e9aa41632e"
+  ],
+  "etag": "rqiSBFOUVg7xg3yO0RU/tOYRQ5w",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.544Z",
+  "updated": "2025-12-12T07:48:03.544Z",
+  "size": 6272,
+  "md5Hash": "JtDeaBjLUqgCauQ6NoyJRg==",
+  "crc32c": "1379101442"
+}

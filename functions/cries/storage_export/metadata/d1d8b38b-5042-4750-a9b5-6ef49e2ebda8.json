@@ -1,0 +1,19 @@
+{
+  "name": "cries/swellow-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684254,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a2ff0f4f-fb91-4adc-a61a-51fdd28e0082"
+  ],
+  "etag": "OwYDBGZMdJiiQhu9AvpVlX6rRUw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.254Z",
+  "updated": "2025-12-12T07:48:04.254Z",
+  "size": 1401,
+  "md5Hash": "GsvFv1u9x4A+2QVjubgV1g==",
+  "crc32c": "3935067674"
+}

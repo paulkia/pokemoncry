@@ -1,0 +1,19 @@
+{
+  "name": "cries/cacnea-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684291,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "68c7f37b-4fa7-4b2a-b644-2d76ef9bdbc1"
+  ],
+  "etag": "zXf22+x8HyfLeiu0zM0bYJdNTpk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.291Z",
+  "updated": "2025-12-12T07:48:04.291Z",
+  "size": 1401,
+  "md5Hash": "DqmnlX8Pti/zA1XiA2xFHg==",
+  "crc32c": "1184791992"
+}

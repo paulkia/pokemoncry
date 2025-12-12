@@ -1,0 +1,19 @@
+{
+  "name": "cries/oranguru-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683398,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "bbc21b82-6986-4b72-b3d5-f2eef7e64018"
+  ],
+  "etag": "pfgd4Rh0fddZQZksKVXbQsXXchA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.398Z",
+  "updated": "2025-12-12T07:48:03.398Z",
+  "size": 10376,
+  "md5Hash": "iRktzp7EtE86y8Vy0HBLvw==",
+  "crc32c": "2226219949"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/clauncher-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684089,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f731d8da-92b0-4ea6-8752-6ac42531e138"
+  ],
+  "etag": "/XNrfK75DX4Ysqbzj9mfdLvW4QQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.089Z",
+  "updated": "2025-12-12T07:48:04.089Z",
+  "size": 3248,
+  "md5Hash": "RuPinmNmfFdF5PNxnnmPIw==",
+  "crc32c": "1833409765"
+}

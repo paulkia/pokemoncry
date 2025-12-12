@@ -1,0 +1,19 @@
+{
+  "name": "cries/hoothoot-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684074,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "828696b5-1ff8-4984-83ce-7b314db0459c"
+  ],
+  "etag": "pwsYKALRQIflr0DA7Q+NnRHzHoo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.074Z",
+  "updated": "2025-12-12T07:48:04.074Z",
+  "size": 4328,
+  "md5Hash": "FO9h3zpGV17nNueAcAd1fw==",
+  "crc32c": "3034439880"
+}

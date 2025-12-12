@@ -1,0 +1,19 @@
+{
+  "name": "cries/lucario-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684332,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "75065731-ac41-4c78-bfea-d11c7ccce5b6"
+  ],
+  "etag": "7tq2PMiFnIAcFcBeWDZuIstwEOY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.332Z",
+  "updated": "2025-12-12T07:48:04.332Z",
+  "size": 1772,
+  "md5Hash": "25fVLp7ESSYu1k8IbJ/MBA==",
+  "crc32c": "2769989390"
+}

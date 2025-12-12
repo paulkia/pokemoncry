@@ -1,0 +1,19 @@
+{
+  "name": "cries/mismagius-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684181,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "566e43c8-150d-4afe-bfbc-6d8fa055a025"
+  ],
+  "etag": "ZegDg+hsZyQgKv1A6zxxGW/S5+E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.181Z",
+  "updated": "2025-12-12T07:48:04.181Z",
+  "size": 3212,
+  "md5Hash": "fW2i5TCVY895/ieJxxMZoQ==",
+  "crc32c": "165935436"
+}

@@ -39,11 +39,6 @@ function Profile() {
     authLoading,
   ]);
 
-  const handleBackButton = () => {
-    setLoading(true);
-    navigate(ROUTER_UTIL.HOME);
-  };
-
   const handleSignOut = async () => {
     setError("");
     setSigningOut(true);
@@ -88,68 +83,57 @@ function Profile() {
   return authLoading || authUser?.isAnonymous || !authUsername ? (
     <Spinner />
   ) : (
-    <span>
-      <div className="App p-5">
-        <AppHeader disableLoginButton={true} />
-      </div>
-      <Container
-        className="d-flex align-items-center justify-content-center py-5"
-        style={{
-          maxWidth: "100%",
-          fontFamily: '"Roboto Mono", monospace',
-          fontOpticalSizing: "auto",
-          fontWeight: 600,
-          fontStyle: "normal",
-        }}
-      >
-        <Row className="w-100" style={{ maxWidth: 480 }}>
-          <Col>
-            <Card className="shadow-sm border-0">
-              <>
-                {" "}
-                <Card.Header className="bg-white border-0 pt-4 pb-0">
-                  {authUsername !== null ? (
-                    <h3 className="mb-1">{authUsername}</h3>
-                  ) : (
-                    <Spinner />
-                  )}
-                </Card.Header>
-                <Card.Body className="p-4">
-                  {error && (
-                    <div className="alert alert-danger mt-3 mb-0" role="alert">
-                      {error}
-                    </div>
-                  )}
-                </Card.Body>
-                <Card.Footer className="bg-white border-0 d-flex gap-2 p-4 pt-0">
-                  <Button
-                    variant="outline-secondary"
-                    onClick={handleBackButton}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    className="justify-content-end"
-                    variant="outline-danger"
-                    disabled={loading}
-                    onClick={handleSignOut}
-                  >
-                    {signingOut ? "Signing out..." : "Sign out"}
-                  </Button>
-                  <Button
-                    variant="danger"
-                    disabled={loading}
-                    onClick={handleDeleteAccount}
-                  >
-                    {deletingAccount ? "Deleting..." : "Delete account"}
-                  </Button>
-                </Card.Footer>
-              </>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </span>
+    <Container
+      className="d-flex align-items-center justify-content-center py-5"
+      style={{
+        maxWidth: "100%",
+        fontFamily: '"Roboto Mono", monospace',
+        fontOpticalSizing: "auto",
+        fontWeight: 600,
+        fontStyle: "normal",
+      }}
+    >
+      <Row className="w-100" style={{ maxWidth: 480 }}>
+        <Col>
+          <Card className="shadow-sm border-0">
+            <>
+              {" "}
+              <Card.Header className="bg-white border-0 pt-4 pb-0">
+                {authUsername !== null ? (
+                  <h3 className="mb-1">{authUsername}</h3>
+                ) : (
+                  <Spinner />
+                )}
+              </Card.Header>
+              <Card.Body className="p-4">
+                {error && (
+                  <div className="alert alert-danger mt-3 mb-0" role="alert">
+                    {error}
+                  </div>
+                )}
+              </Card.Body>
+              <Card.Footer className="bg-white border-0 d-flex gap-2 p-4 pt-0">
+                <Button
+                  className="justify-content-end"
+                  variant="outline-danger"
+                  disabled={loading}
+                  onClick={handleSignOut}
+                >
+                  {signingOut ? "Signing out..." : "Sign out"}
+                </Button>
+                <Button
+                  variant="danger"
+                  disabled={loading}
+                  onClick={handleDeleteAccount}
+                >
+                  {deletingAccount ? "Deleting..." : "Delete account"}
+                </Button>
+              </Card.Footer>
+            </>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

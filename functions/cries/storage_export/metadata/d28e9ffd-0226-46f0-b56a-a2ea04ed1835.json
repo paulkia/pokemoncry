@@ -1,0 +1,19 @@
+{
+  "name": "cries/kakuna-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683670,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0bf47ff0-4373-4a20-870b-61c97b9091ab"
+  ],
+  "etag": "Gvou40kZbWt88vrj1VpF3x3s3DY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.670Z",
+  "updated": "2025-12-12T07:48:03.670Z",
+  "size": 2237,
+  "md5Hash": "qXV5KgR1/knwHXMymhdzqw==",
+  "crc32c": "1970485164"
+}

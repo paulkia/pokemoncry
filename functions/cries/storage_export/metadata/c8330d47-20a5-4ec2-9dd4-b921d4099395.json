@@ -1,0 +1,19 @@
+{
+  "name": "cries/happiny-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683588,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "43d77067-355e-4b78-b918-d771473889eb"
+  ],
+  "etag": "51VOKPe0lGjQVwLe4WHTWe0OB7s",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.588Z",
+  "updated": "2025-12-12T07:48:03.588Z",
+  "size": 1484,
+  "md5Hash": "mOOHTVEb/FeN3bY7cWSvzg==",
+  "crc32c": "4112110184"
+}

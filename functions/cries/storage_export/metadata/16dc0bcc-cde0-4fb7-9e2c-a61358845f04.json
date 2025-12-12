@@ -1,0 +1,19 @@
+{
+  "name": "cries/parasect-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684388,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3acd40a5-6ecd-4368-bf00-ce228e03a9dc"
+  ],
+  "etag": "ebR0t4iObx46KUJNYEc0Z4w580o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.388Z",
+  "updated": "2025-12-12T07:48:04.388Z",
+  "size": 10808,
+  "md5Hash": "Wy/K2BzxTTjCixJmqrioyg==",
+  "crc32c": "1860042240"
+}

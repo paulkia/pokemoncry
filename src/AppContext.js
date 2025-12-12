@@ -26,7 +26,7 @@ const AuthContext = createContext({
 
 const PokeContext = createContext({
   generationCount: 0,
-  preloadedPokemon: {}, // name -> {legacyCry, latestCry, sprite}
+  preloadedMon: {}, // name -> {legacyCry, latestCry, sprite}
   preloadedGenToNames: {}, // genId -> [names]
   preloadedGenIcons: {}, // genId -> iconUrl
   gensLoading: true,
@@ -54,13 +54,13 @@ export const useSettings = () => {
   return useContext(SettingsContext);
 };
 
-// Returns preloaded Pokemon data.
+// Returns preloaded Mon data.
 // - generationCount: number of generations to load (1..8)
 // Returns:
 // - map: { name -> {legacyCry, latestCry, sprite} }
 // - allNames: [names]
 // - byGen: { genId -> [names] } }
-async function preloadPokemon(generationCount) {
+async function preloadMon(generationCount) {
   if (!generationCount || generationCount <= 0) return null;
 
   // Fetch generation resources to obtain species lists.
@@ -72,33 +72,33 @@ async function preloadPokemon(generationCount) {
 
   // Build per-gen species name lists and detail URLs
   const genToNames = {};
-  const pokemonDetailUrls = [];
+  const monDetailUrls = [];
   for (const generation of generationsFromPokedex) {
     const gid = generation.id;
     genToNames[gid] = generation.pokemon_species.map((p) => p.name);
-    pokemonDetailUrls.push(
-      ...generation.pokemon_species.map((pokemon) =>
-        pokemon.url.replace("pokemon-species", "pokemon")
+    monDetailUrls.push(
+      ...generation.pokemon_species.map((mon) =>
+        mon.url.replace("pokemon-species", "pokemon")
       )
     );
   }
 
-  // Fetch detailed pokemon resources (sprites, cries, etc.)
-  const pokemonFromPokedex = await P.getResource(pokemonDetailUrls);
-  const pokemonToData = {};
+  // Fetch detailed mon resources (sprites, cries, etc.)
+  const monFromPokedex = await P.getResource(monDetailUrls);
+  const monToData = {};
   const pokeNameToAllData = {};
-  for (const pokemon of pokemonFromPokedex) {
-    pokemonToData[pokemon.species.name] = {
-      legacyCry: pokemon.cries?.legacy ?? null,
-      latestCry: pokemon.cries?.latest ?? null,
-      displaySprite: getAnimatedSprite(pokemon),
-      staticDisplaySprite: getAnimatedShinySprite(pokemon),
-      sprite: getAnimatedSprite(pokemon),
-      staticSprite: getStaticSprite(pokemon),
-      shinySprite: getAnimatedShinySprite(pokemon),
-      staticShinySprite: getStaticShinySprite(pokemon),
+  for (const mon of monFromPokedex) {
+    monToData[mon.species.name] = {
+      legacyCry: mon.cries?.legacy ?? null,
+      latestCry: mon.cries?.latest ?? null,
+      displaySprite: getAnimatedSprite(mon),
+      staticDisplaySprite: getAnimatedShinySprite(mon),
+      sprite: getAnimatedSprite(mon),
+      staticSprite: getStaticSprite(mon),
+      shinySprite: getAnimatedShinySprite(mon),
+      staticShinySprite: getStaticShinySprite(mon),
     };
-    pokeNameToAllData[pokemon.species.name] = pokemon;
+    pokeNameToAllData[mon.species.name] = mon;
   }
 
   // Add random icons to generation buttons for decorative purposes.
@@ -117,7 +117,7 @@ async function preloadPokemon(generationCount) {
   );
 
   return {
-    pokemonToData: pokemonToData,
+    monToData: monToData,
     genToNames: genToNames,
     allIconsPerGen: genIcons,
   };
@@ -125,9 +125,9 @@ async function preloadPokemon(generationCount) {
 
 // 3. The Provider Component
 export const AppProvider = ({ children }) => {
-  // Pokemon data values.
+  // Mon data values.
   const [generationCount, setGenerationCount] = useState(0);
-  const [preloadedPokemon, setPreloadedPokemon] = useState({}); // name -> {legacyCry, latestCry, sprite}
+  const [preloadedMon, setPreloadedMon] = useState({}); // name -> {legacyCry, latestCry, sprite}
   const [preloadedGenToNames, setPreloadedGenToNames] = useState({}); // genId -> [names]
   const [preloadedGenIcons, setPreloadedGenIcons] = useState({}); // genId -> iconUrl
   const [allIconsPerGen, setAllIconsPerGen] = useState({});
@@ -143,7 +143,7 @@ export const AppProvider = ({ children }) => {
       DEFAULT_SETTINGS
   );
 
-  // Source Pokemon gens.
+  // Source Mon gens.
   useEffect(() => {
     // Poke context
     P.getResource(["https://pokeapi.co/api/v2/generation"])
@@ -156,18 +156,18 @@ export const AppProvider = ({ children }) => {
       });
   }, []);
 
-  // Source all Pokemon.
+  // Source all Mon.
   useEffect(() => {
     const isMounted = { current: true };
     let intervalId = 0;
     const runPreload = async () => {
       if (!generationCount || generationCount <= 0) return;
       try {
-        const result = await preloadPokemon(generationCount);
+        const result = await preloadMon(generationCount);
         if (!isMounted.current || !result) {
           return;
         }
-        setPreloadedPokemon(result.pokemonToData);
+        setPreloadedMon(result.monToData);
         setPreloadedGenToNames(result.genToNames);
         setPokeLoading(false);
         setAllIconsPerGen(result.allIconsPerGen);
@@ -179,8 +179,8 @@ export const AppProvider = ({ children }) => {
               genId,
               {
                 icon: getRandomElement(icons),
-                sprite: result.pokemonToData[randomName].sprite,
-                staticSprite: result.pokemonToData[randomName].staticSprite,
+                sprite: result.monToData[randomName].sprite,
+                staticSprite: result.monToData[randomName].staticSprite,
               },
             ];
           })
@@ -210,8 +210,8 @@ export const AppProvider = ({ children }) => {
         ...preloadedGenIcons,
         [randomGenId]: {
           icon: getRandomElement(allIconsPerGen[randomGenId]),
-          sprite: preloadedPokemon[randomName].sprite,
-          staticSprite: preloadedPokemon[randomName].staticSprite,
+          sprite: preloadedMon[randomName].sprite,
+          staticSprite: preloadedMon[randomName].staticSprite,
         },
       });
     }, ICON_ROTATE_INTERVAL_MS);
@@ -274,7 +274,7 @@ export const AppProvider = ({ children }) => {
 
   const pokeInfo = {
     generationCount: generationCount,
-    preloadedPokemon: preloadedPokemon,
+    preloadedMon: preloadedMon,
     preloadedGenToNames: preloadedGenToNames,
     preloadedGenIcons: preloadedGenIcons,
     gensLoading: gensLoading,

@@ -1,0 +1,19 @@
+{
+  "name": "cries/seel-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685747,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "59f07619-b238-4a1b-b0d0-63df4555f242"
+  ],
+  "etag": "v3UNVu6MRIUOVhoc47oMqSGsdlA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.747Z",
+  "updated": "2025-12-12T07:48:05.747Z",
+  "size": 6272,
+  "md5Hash": "T+f7IBk003aFGgGhfwF9KA==",
+  "crc32c": "2727157887"
+}

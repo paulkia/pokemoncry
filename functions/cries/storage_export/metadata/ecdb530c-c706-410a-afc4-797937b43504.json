@@ -1,0 +1,19 @@
+{
+  "name": "cries/toxtricity-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684341,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3a116ce3-c923-4f80-9350-ffd6b735f159"
+  ],
+  "etag": "v+oI4RIKqMPN/KPKEaAwVFdmVjk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.341Z",
+  "updated": "2025-12-12T07:48:04.341Z",
+  "size": 13600,
+  "md5Hash": "z3uj8vnBsG0uH1Jc7DaXEg==",
+  "crc32c": "8896865"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/azelf-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684116,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "850db239-3205-4fa8-91b8-fa0eed9eb408"
+  ],
+  "etag": "QRhVFm9lk5OJM0G/NstFqz1YBXg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.116Z",
+  "updated": "2025-12-12T07:48:04.116Z",
+  "size": 7784,
+  "md5Hash": "vkKEUarb1at2eW/w28avtw==",
+  "crc32c": "1474702995"
+}

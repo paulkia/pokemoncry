@@ -1,0 +1,19 @@
+{
+  "name": "cries/lampent-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684415,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f108d81e-e6c8-4358-bd57-2a24fac9bd63"
+  ],
+  "etag": "wDSohGEfOOPKIGBcf2WBCpxvj1k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.415Z",
+  "updated": "2025-12-12T07:48:04.415Z",
+  "size": 9080,
+  "md5Hash": "faeeL8+7mmlBXBvipoq0sg==",
+  "crc32c": "2521098365"
+}

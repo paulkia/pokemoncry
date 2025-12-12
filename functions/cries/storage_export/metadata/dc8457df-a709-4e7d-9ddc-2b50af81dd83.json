@@ -1,0 +1,19 @@
+{
+  "name": "cries/popplio-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684408,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "dda29a1b-0bd3-44ac-a868-3d356d1a2f5e"
+  ],
+  "etag": "qSSzGCq7P9R73s9NnY/iMITT9cQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.408Z",
+  "updated": "2025-12-12T07:48:04.408Z",
+  "size": 4976,
+  "md5Hash": "qZ6AInBdx+QEgoFUJWnZOw==",
+  "crc32c": "1190217875"
+}

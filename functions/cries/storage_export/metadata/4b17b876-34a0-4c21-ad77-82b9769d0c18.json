@@ -1,0 +1,19 @@
+{
+  "name": "cries/lilligant-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683558,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5d74014d-4d45-4af3-ba43-685d1e95cb7e"
+  ],
+  "etag": "n9D5x2RlbIUpb9KrhvSMvf4rVBM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.558Z",
+  "updated": "2025-12-12T07:48:03.558Z",
+  "size": 7784,
+  "md5Hash": "m1gopYRBCUIqVTAtuDrrdw==",
+  "crc32c": "2954123605"
+}

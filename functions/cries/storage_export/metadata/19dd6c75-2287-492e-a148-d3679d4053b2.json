@@ -1,0 +1,19 @@
+{
+  "name": "cries/kingler-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683889,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "01567be6-3630-438e-a7f8-ae8d9d75f7a2"
+  ],
+  "etag": "RfzTGQXemgebfZR6tNOWBOmuSEA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.889Z",
+  "updated": "2025-12-12T07:48:03.889Z",
+  "size": 2760,
+  "md5Hash": "hEyFOegF3tTetg/QxI05rQ==",
+  "crc32c": "2397332815"
+}

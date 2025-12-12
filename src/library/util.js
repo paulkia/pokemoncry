@@ -25,6 +25,7 @@ export const ROUTER_UTIL = {
   PROFILE: "/profile",
   REFRESHER: "/refresher",
   LEADERBOARD: "/leaderboard",
+  PRIVACY_POLICY: "/privacy-policy",
 };
 
 export const CORRECT_RESULT_COLOR = "#d4edda";
@@ -36,7 +37,7 @@ export const PAUSE_TIME = 1000; // ms
 
 export const SHINY_PROBABILITY = 1 / 69;
 
-export const DISABLE_ANIMATION_SWITCH = 152; // num pokemon
+export const DISABLE_ANIMATION_SWITCH = 152; // num mon
 export const GameModes = {
   MENU: "menu",
   PRACTICE: "practice",
@@ -63,18 +64,18 @@ export function getRandomElement(array) {
   return shuffle(array)[0];
 }
 
-export function getAnimatedSprite(pokemonData) {
+export function getAnimatedSprite(monData) {
   return (
-    pokemonData?.sprites?.versions?.["generation-v"]?.["black-white"]?.animated
+    monData?.sprites?.versions?.["generation-v"]?.["black-white"]?.animated
       ?.front_default ??
-    pokemonData?.sprites?.other?.showdown?.front_default ??
-    pokemonData?.sprites?.front_default ??
+    monData?.sprites?.other?.showdown?.front_default ??
+    monData?.sprites?.front_default ??
     null
   );
 }
 
-export function getStaticSprite(pokemonData) {
-  const v = pokemonData?.sprites?.versions;
+export function getStaticSprite(monData) {
+  const v = monData?.sprites?.versions;
   return (
     v?.["generation-i"]?.["yellow"]?.front_default ??
     v?.["generation-i"]?.["red-blue"]?.front_default ??
@@ -82,30 +83,30 @@ export function getStaticSprite(pokemonData) {
     v?.["generation-iii"]?.["emerald"]?.front_default ??
     v?.["generation-iv"]?.["platinum"]?.front_default ??
     v?.["generation-v"]?.["black-white"]?.front_default ??
-    pokemonData?.sprites?.front_default ??
+    monData?.sprites?.front_default ??
     null
   );
 }
 
-export function getAnimatedShinySprite(pokemonData) {
+export function getAnimatedShinySprite(monData) {
   return (
-    pokemonData?.sprites?.versions?.["generation-v"]?.["black-white"]?.animated
+    monData?.sprites?.versions?.["generation-v"]?.["black-white"]?.animated
       ?.front_shiny ??
-    pokemonData?.sprites?.other?.showdown?.front_shiny ??
-    pokemonData?.sprites?.front_shiny ??
-    pokemonData?.sprites?.front_default ??
+    monData?.sprites?.other?.showdown?.front_shiny ??
+    monData?.sprites?.front_shiny ??
+    monData?.sprites?.front_default ??
     null
   );
 }
 
-export function getStaticShinySprite(pokemonData) {
-  const v = pokemonData?.sprites?.versions;
+export function getStaticShinySprite(monData) {
+  const v = monData?.sprites?.versions;
   return (
     v?.["generation-ii"]?.["crystal"]?.front_shiny ??
     v?.["generation-iii"]?.["emerald"]?.front_shiny ??
     v?.["generation-iv"]?.["platinum"]?.front_shiny ??
     v?.["generation-v"]?.["black-white"]?.front_shiny ??
-    pokemonData?.sprites?.front_shiny ??
+    monData?.sprites?.front_shiny ??
     null
   );
 }

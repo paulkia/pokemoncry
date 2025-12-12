@@ -1,0 +1,19 @@
+{
+  "name": "cries/roserade-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683666,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "dd1dec95-c915-434b-8e97-42c42b9b388e"
+  ],
+  "etag": "uldaorQS7Tiv688hLNJ4aDY2hFM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.666Z",
+  "updated": "2025-12-12T07:48:03.666Z",
+  "size": 8000,
+  "md5Hash": "qiqzeY/258FdoTywugDjlA==",
+  "crc32c": "2158996233"
+}

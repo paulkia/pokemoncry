@@ -1,0 +1,19 @@
+{
+  "name": "cries/skwovet-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683623,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d6621740-033d-46e9-89b4-6df81054f9b2"
+  ],
+  "etag": "pu5OJVIycAjucxRN2GBtObgAWEc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.623Z",
+  "updated": "2025-12-12T07:48:03.623Z",
+  "size": 7331,
+  "md5Hash": "xsMrZfj1LYvzXNQtAM9MbA==",
+  "crc32c": "2263228732"
+}

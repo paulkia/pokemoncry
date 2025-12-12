@@ -1,0 +1,19 @@
+{
+  "name": "cries/magikarp-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683893,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c9978871-f397-4e9c-a273-8d2ccf2ce0ab"
+  ],
+  "etag": "9Du3x7ftPdA1n2fBCYRHnDLvEGo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.893Z",
+  "updated": "2025-12-12T07:48:03.893Z",
+  "size": 2342,
+  "md5Hash": "de66ctC5VAVgp0yeAZlOhQ==",
+  "crc32c": "3434282340"
+}

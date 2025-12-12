@@ -17,19 +17,14 @@ import {
   PAUSE_TIME,
   NEUTRAL_RESULT_COLOR,
   MASTERY_COLOR,
-  DISABLE_ANIMATION_SWITCH,
   ROUTER_UTIL,
-  LOCAL_STORAGE_UTIL,
   SHINY_PROBABILITY,
-  DEFAULT_SETTINGS,
   SHINY_AUDIO_SOUND,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForPokemon } from "../../library/audioviz";
+import { playCryForMon } from "../../library/audioviz";
 import { useSettings } from "../../AppContext";
 
-import AppHeader from "../../components/AppHeader";
-import Settings from "../../components/Settings";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import AudioDisplay from "../../components/AudioDisplay";
 import PokeButton, { OUTLINE_TYPE } from "../../components/PokeButton";
@@ -59,24 +54,24 @@ const initialState = {
   input: "",
   // Whether input should be disabled. True when loading, or after game completion.
   inputDisabled: true,
-  // All relevant pokemon data. Maps from pokemon name to cries, sprites, etc.
-  allPokemon: {},
-  // List of pokemon the user will guess.
-  pokemonInGameOrder: [],
-  // Index of pokemon the user is currently guessing.
+  // All relevant mon data. Maps from mon name to cries, sprites, etc.
+  allMon: {},
+  // List of mon the user will guess.
+  monInGameOrder: [],
+  // Index of mon the user is currently guessing.
   pokeNum: 0,
-  // Set of all pokemon names.
+  // Set of all mon names.
   pokeTrie: new Trie(),
   // Suggestion remainder (autocomplete) based on current input + trie.
   suggestionRemainder: "",
   // Previous guess
   previousGuess: "",
-  // Maps from Pokemon to mastery level.
+  // Maps from Mon to mastery level.
   mastery: {},
-  // Maps from Pokemon to error count.
+  // Maps from Mon to error count.
   errors: {},
-  // Contains mastered pokemon sorted by most to least recently mastered.
-  masteredPokemon: [],
+  // Contains mastered mon sorted by most to least recently mastered.
+  masteredMon: [],
 };
 
 function quizReducer(state, action) {
@@ -84,17 +79,17 @@ function quizReducer(state, action) {
     case ACTION_TYPES.INITIAL_SETUP: {
       // Create a new Trie to avoid mutating previous state
       const newTrie = new Trie();
-      const allPokemonNames = Object.keys(action.allPokemon);
-      if (Array.isArray(allPokemonNames)) {
-        newTrie.insert(allPokemonNames);
+      const allMonNames = Object.keys(action.allMon);
+      if (Array.isArray(allMonNames)) {
+        newTrie.insert(allMonNames);
       }
       return {
         ...initialState,
         inputDisabled: false,
-        allPokemon: action.allPokemon,
-        pokemonInGameOrder: action.pokemonInGameOrder,
+        allMon: action.allMon,
+        monInGameOrder: action.monInGameOrder,
         pokeTrie: newTrie,
-        masteredPokemon: [],
+        masteredMon: [],
       };
     }
     case ACTION_TYPES.UPDATE_INPUT: {
@@ -122,72 +117,72 @@ function quizReducer(state, action) {
       };
     }
     case ACTION_TYPES.ADD_CORRECT:
-      let pokemonMastery = -1;
-      switch (state.mastery[action.pokemon]) {
+      let monMastery = -1;
+      switch (state.mastery[action.mon]) {
         // Correct on first try: perfect.
         case undefined:
           if (Math.random() < SHINY_PROBABILITY) {
-            state.allPokemon[action.pokemon].displaySprite =
-              state.allPokemon[action.pokemon].shinySprite;
-            state.allPokemon[action.pokemon].staticDisplaySprite =
-              state.allPokemon[action.pokemon].staticShinySprite;
+            state.allMon[action.mon].displaySprite =
+              state.allMon[action.mon].shinySprite;
+            state.allMon[action.mon].staticDisplaySprite =
+              state.allMon[action.mon].staticShinySprite;
             SHINY_AUDIO_SOUND.play();
           } else {
             CORRECT_AUDIO_SOUND.play();
           }
-          pokemonMastery = PERFECT;
-          state.masteredPokemon.unshift(action.pokemon);
+          monMastery = PERFECT;
+          state.masteredMon.unshift(action.mon);
           break;
         // Correct after almost mastered: mastered.
         case ALMOST_MASTERED:
-          pokemonMastery = MASTERED;
-          state.masteredPokemon.unshift(action.pokemon);
+          monMastery = MASTERED;
+          state.masteredMon.unshift(action.mon);
           break;
         // Correct after some imperfect level of mastery: improve by a factor.
         default:
-          pokemonMastery = state.mastery[action.pokemon] * MASTERY_MULTIPLIER;
+          monMastery = state.mastery[action.mon] * MASTERY_MULTIPLIER;
       }
-      const pokemonInGameOrder = state.pokemonInGameOrder;
-      // If the Pokemon is not yet mastered, reinsert further down the list.
-      if (pokemonMastery !== MASTERED && pokemonMastery !== PERFECT) {
-        pokemonInGameOrder.splice(
-          state.pokeNum + pokemonMastery,
+      const monInGameOrder = state.monInGameOrder;
+      // If the Mon is not yet mastered, reinsert further down the list.
+      if (monMastery !== MASTERED && monMastery !== PERFECT) {
+        monInGameOrder.splice(
+          state.pokeNum + monMastery,
           action.pokeNum,
-          action.pokemon
+          action.mon
         );
-        // If the Pokemon is at the end of the list, ensure it gets mastered next time.
-        if (state.pokeNum + pokemonMastery >= state.pokemonInGameOrder.length) {
-          pokemonMastery = ALMOST_MASTERED;
+        // If the Mon is at the end of the list, ensure it gets mastered next time.
+        if (state.pokeNum + monMastery >= state.monInGameOrder.length) {
+          monMastery = ALMOST_MASTERED;
         }
       }
       return {
         ...state,
         mastery: {
           ...state.mastery,
-          [action.pokemon]: pokemonMastery,
+          [action.mon]: monMastery,
         },
-        pokemonInGameOrder: pokemonInGameOrder,
+        monInGameOrder: monInGameOrder,
         previousGuess: action.input,
       };
     case ACTION_TYPES.ADD_INCORRECT: {
-      const pokemonInGameOrder = state.pokemonInGameOrder;
-      pokemonInGameOrder.splice(
+      const monInGameOrder = state.monInGameOrder;
+      monInGameOrder.splice(
         state.pokeNum + LEAST_MASTERED,
         action.pokeNum,
-        action.pokemon
+        action.mon
       );
       INCORRECT_AUDIO_SOUND.play();
       return {
         ...state,
         mastery: {
           ...state.mastery,
-          [action.pokemon]: LEAST_MASTERED,
+          [action.mon]: LEAST_MASTERED,
         },
-        pokemonInGameOrder: pokemonInGameOrder,
+        monInGameOrder: monInGameOrder,
         previousGuess: action.input,
         errors: {
           ...state.errors,
-          [action.pokemon]: (state.errors[action.pokemon] || 0) + 1,
+          [action.mon]: (state.errors[action.mon] || 0) + 1,
         },
       };
     }
@@ -222,9 +217,9 @@ function quizReducer(state, action) {
 
 function UltimateTrainingPractice() {
   const {
-    allPokemon, // Data of all Pokemon
-    numPokemonToGuess, // Pokemon names for this quiz
-    pokemonNamesForRelevantGens,
+    allMon, // Data of all Mon
+    numMonToGuess, // Mon names for this quiz
+    monNamesForRelevantGens,
   } = useLocation().state || {};
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(quizReducer, initialState);
@@ -268,11 +263,11 @@ function UltimateTrainingPractice() {
 
   useEffect(() => {
     // Play first cry with viz.
-    if (numPokemonToGuess > 0) {
-      const firstPokemon = pokemonNamesForRelevantGens[0];
+    if (numMonToGuess > 0) {
+      const firstMon = monNamesForRelevantGens[0];
       setTimeout(() => {
-        playCryForPokemon(
-          allPokemon[firstPokemon],
+        playCryForMon(
+          allMon[firstMon],
           vizInitializedRef,
           audioRef,
           canvasRef,
@@ -283,11 +278,8 @@ function UltimateTrainingPractice() {
     }
     dispatch({
       type: ACTION_TYPES.INITIAL_SETUP,
-      allPokemon: allPokemon,
-      pokemonInGameOrder: pokemonNamesForRelevantGens.slice(
-        0,
-        numPokemonToGuess
-      ),
+      allMon: allMon,
+      monInGameOrder: monNamesForRelevantGens.slice(0, numMonToGuess),
       pokeNum: 1,
     });
   }, []);
@@ -346,8 +338,8 @@ function UltimateTrainingPractice() {
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback((e) => {
     if (state.inputDisabled) return;
-    const currPokemon = state.pokemonInGameOrder[state.pokeNum];
-    if (!currPokemon) return;
+    const currMon = state.monInGameOrder[state.pokeNum];
+    if (!currMon) return;
     const suggestion = state.suggestionRemainder;
     const input = `${state.input}${suggestion}`;
     switch (e.key) {
@@ -355,8 +347,8 @@ function UltimateTrainingPractice() {
       case " ":
         e.preventDefault();
         setShowViz(true);
-        playCryForPokemon(
-          allPokemon[currPokemon],
+        playCryForMon(
+          allMon[currMon],
           vizInitializedRef,
           audioRef,
           canvasRef,
@@ -374,38 +366,38 @@ function UltimateTrainingPractice() {
           dispatch({ type: ACTION_TYPES.UPDATE_INPUT, input });
           return;
         }
-        if (input === currPokemon) {
+        if (input === currMon) {
           dispatch({
             type: ACTION_TYPES.ADD_CORRECT,
-            pokemon: currPokemon,
+            mon: currMon,
             input: input,
           });
           triggerCorrectAnimation();
         } else {
           dispatch({
             type: ACTION_TYPES.ADD_INCORRECT,
-            pokemon: currPokemon,
+            mon: currMon,
             input: input,
           });
           // Trigger shake animation on the input when incorrect
           triggerIncorrectAnimation();
         }
         dispatch({ type: ACTION_TYPES.NEXT_POKEMON });
-        // Allow users to see the result before hearing the next pokemon.
-        const loadNextPokemon =
-          // There is a next pokemon in the list already.
-          state.pokeNum + 1 < state.pokemonInGameOrder.length ||
-          // The input was wrong, so we will repeat this pokemon after the next dispatch is finished.
-          input !== currPokemon ||
-          // The user has not yet mastered this Pokemon, even after a correct attempt.
+        // Allow users to see the result before hearing the next mon.
+        const loadNextMon =
+          // There is a next mon in the list already.
+          state.pokeNum + 1 < state.monInGameOrder.length ||
+          // The input was wrong, so we will repeat this mon after the next dispatch is finished.
+          input !== currMon ||
+          // The user has not yet mastered this Mon, even after a correct attempt.
           Object.keys(state.mastery).filter(
             (key) => !NEAR_OR_TOTAL_MASTERY.has(state.mastery[key])
           ).length > 0;
-        if (loadNextPokemon) {
+        if (loadNextMon) {
           setTimeout(() => {
-            const nextPokemon = state.pokemonInGameOrder[state.pokeNum + 1];
-            playCryForPokemon(
-              allPokemon[nextPokemon],
+            const nextMon = state.monInGameOrder[state.pokeNum + 1];
+            playCryForMon(
+              allMon[nextMon],
               vizInitializedRef,
               audioRef,
               canvasRef,
@@ -434,7 +426,7 @@ function UltimateTrainingPractice() {
   let errorComponent = null;
   if (
     state.previousGuess &&
-    state.pokemonInGameOrder[state.pokeNum - 1] !== state.previousGuess
+    state.monInGameOrder[state.pokeNum - 1] !== state.previousGuess
   ) {
     errorComponent = (
       <Col xs={6} sm={4} lg={2}>
@@ -443,12 +435,12 @@ function UltimateTrainingPractice() {
         <PokeButton
           key={`prev-guess-${state.previousGuess}`}
           name={state.previousGuess}
-          sprite={state.allPokemon[state.previousGuess].displaySprite}
+          sprite={state.allMon[state.previousGuess].displaySprite}
           outlineType={OUTLINE_TYPE.RED}
           onClick={() => {
             setShowViz(false);
-            playCryForPokemon(
-              allPokemon[state.previousGuess],
+            playCryForMon(
+              allMon[state.previousGuess],
               vizInitializedRef,
               audioRef,
               canvasRef,
@@ -462,7 +454,7 @@ function UltimateTrainingPractice() {
 
   let previousComponent = null;
   if (state.previousGuess) {
-    const previous = state.pokemonInGameOrder[state.pokeNum - 1];
+    const previous = state.monInGameOrder[state.pokeNum - 1];
     previousComponent = (
       <Row className="mb-2 justify-content-center">
         {" "}
@@ -472,12 +464,12 @@ function UltimateTrainingPractice() {
           <PokeButton
             key={`prev-${previous}`}
             name={previous}
-            sprite={state.allPokemon[previous].displaySprite}
+            sprite={state.allMon[previous].displaySprite}
             outlineType={OUTLINE_TYPE.GREEN}
             onClick={() => {
               setShowViz(false);
-              playCryForPokemon(
-                allPokemon[previous],
+              playCryForMon(
+                allMon[previous],
                 vizInitializedRef,
                 audioRef,
                 canvasRef,
@@ -497,20 +489,20 @@ function UltimateTrainingPractice() {
       <div>
         {
           <Row className="mb-2 justify-content-center">
-            <Col xl={Math.max(6, Math.min(12, state.masteredPokemon.length))}>
+            <Col xl={Math.max(6, Math.min(12, state.masteredMon.length))}>
               <div
                 className="p-2 rounded"
                 style={{ backgroundColor: MASTERY_COLOR }}
               >
                 Mastery:{" "}
-                {state.masteredPokemon.length === 0 ? (
+                {state.masteredMon.length === 0 ? (
                   "(empty)"
                 ) : (
                   <div className="d-flex flex-wrap justify-content-center mt-1">
-                    {state.masteredPokemon.map((name) => {
-                      let s = state.allPokemon[name]?.displaySprite;
+                    {state.masteredMon.map((name) => {
+                      let s = state.allMon[name]?.displaySprite;
                       if (settings.disableAnimations) {
-                        s = state.allPokemon[name]?.staticDisplaySprite;
+                        s = state.allMon[name]?.staticDisplaySprite;
                       }
                       return typeof s === "string" ? (
                         <PokeButton
@@ -524,8 +516,8 @@ function UltimateTrainingPractice() {
                           }
                           onClick={() => {
                             setShowViz(false);
-                            playCryForPokemon(
-                              allPokemon[name],
+                            playCryForMon(
+                              allMon[name],
                               vizInitializedRef,
                               audioRef,
                               canvasRef,
@@ -553,36 +545,14 @@ function UltimateTrainingPractice() {
   } else if (autocomplete) {
     autocomplete.innerHTML = "";
   }
-  const progress = (state.pokeNum / state.pokemonInGameOrder.length) * 100;
+  const progress = (state.pokeNum / state.monInGameOrder.length) * 100;
   return (
-    <div className="App p-5 text-center">
-      <AppHeader />
+    <span>
       <div className="App" style={{ position: "relative" }}>
         <Row>
-          <Col>
-            {/* Back button positioned at top-left (inside padded app area) */}
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => navigate(ROUTER_UTIL.HOME)}
-            >
-              ← Back
-            </Button>
-          </Col>
-          <Col>
-            <p>
-              Ultimate Training!
-              <br />
-              Pokemon are repeated until mastered.
-            </p>{" "}
-            {/* Back button (left) */}
-          </Col>
-          <Col>
-            {" "}
-            <Settings />
-          </Col>
+          <p>Ultimate Training! Mon are repeated until mastered.</p>{" "}
         </Row>
-        <p>Repeat the sound for the current Pokemon by pressing 'space'</p>
+        <p>Repeat the sound for the current mon by pressing 'space'</p>
         <Row className="justify-content-center">
           <Col xs={12} md={4}>
             {/* Container for relative positioning */}
@@ -605,8 +575,8 @@ function UltimateTrainingPractice() {
                 <AudioDisplay
                   buttonFn={() => {
                     setShowViz(true);
-                    playCryForPokemon(
-                      allPokemon[state.pokemonInGameOrder[state.pokeNum]],
+                    playCryForMon(
+                      allMon[state.monInGameOrder[state.pokeNum]],
                       vizInitializedRef,
                       audioRef,
                       canvasRef,
@@ -720,7 +690,7 @@ function UltimateTrainingPractice() {
       <br />
       {previousComponent}
       {resultsPanel()}
-    </div>
+    </span>
   );
 }
 export default UltimateTrainingPractice;

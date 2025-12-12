@@ -1,0 +1,19 @@
+{
+  "name": "cries/jirachi-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683547,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ebe1bada-0060-46ca-b157-d87f40cabbf4"
+  ],
+  "etag": "qtKmaVef4CXUfpUg76MZrenLBmw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.547Z",
+  "updated": "2025-12-12T07:48:03.547Z",
+  "size": 1819,
+  "md5Hash": "w9vJjTZlPhdOW23hkNb/JA==",
+  "crc32c": "2427623894"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/floatzel-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683665,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9a37d7b3-a2b3-4318-adb0-7c30d11887fe"
+  ],
+  "etag": "1sglYi6isZFzjcR/9wdIpDMFVzY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.665Z",
+  "updated": "2025-12-12T07:48:03.665Z",
+  "size": 3020,
+  "md5Hash": "VyP9QEx+YEEn7GirOR9T4Q==",
+  "crc32c": "2921309098"
+}

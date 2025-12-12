@@ -1,0 +1,19 @@
+{
+  "name": "cries/phione-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684352,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1295bde2-ae76-4451-aa21-8fff7f166a37"
+  ],
+  "etag": "OKJHwxR89LJV60ckTPdMdhZZN1Q",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.352Z",
+  "updated": "2025-12-12T07:48:04.352Z",
+  "size": 6920,
+  "md5Hash": "Lt3sK8Nrnn0F67u9QdX1TQ==",
+  "crc32c": "223686152"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/girafarig-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686306,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "04ab8e69-d817-4a6d-a610-52ff4170be50"
+  ],
+  "etag": "5dPD0dJ/Zc5bb7F0wfafeKN1Q/o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.306Z",
+  "updated": "2025-12-12T07:48:06.306Z",
+  "size": 1924,
+  "md5Hash": "EAHNjw+CGejst7TwlLFtJg==",
+  "crc32c": "2794771929"
+}

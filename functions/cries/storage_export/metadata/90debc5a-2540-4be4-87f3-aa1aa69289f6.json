@@ -1,0 +1,19 @@
+{
+  "name": "cries/nidoran-m-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685558,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a4fe291c-0f34-4888-844b-cac60a0cdf11"
+  ],
+  "etag": "1sWprFQRa7IHh7AtV6p9ighRlIk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.558Z",
+  "updated": "2025-12-12T07:48:05.558Z",
+  "size": 4112,
+  "md5Hash": "sO6CbXA7pzigKNEnmkLy8Q==",
+  "crc32c": "4096084630"
+}

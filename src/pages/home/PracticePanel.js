@@ -22,7 +22,6 @@ import {
   shuffle,
 } from "../../library/util";
 import { usePoke } from "../../AppContext";
-import AppHeader from "../../components/AppHeader";
 // import { List } from "lucide-react";
 
 const PRACTICE_TYPE = {
@@ -89,19 +88,15 @@ function GenerationsGrid({
 }
 
 function PracticePanel() {
-  const {
-    generationCount,
-    preloadedPokemon,
-    preloadedGenToNames,
-    pokeLoading,
-  } = usePoke();
+  const { generationCount, preloadedMon, preloadedGenToNames, pokeLoading } =
+    usePoke();
   const navigate = useNavigate();
   const [selectedGenerationIds, setSelectedGenerationIds] = useState([]);
   const [practiceType, setPracticeType] = useState(
     PRACTICE_TYPE.MULTIPLE_CHOICE
   );
   const [repeatMistakes, setRepeatMistakes] = useState(false);
-  const [numberOfPokemon, setNumberOfPokemon] = useState(10);
+  const [numberOfMon, setNumberOfMon] = useState(10);
 
   const allButtonNumbers = Array.from(
     { length: generationCount },
@@ -117,35 +112,31 @@ function PracticePanel() {
   };
 
   const onStart = (selectedGenerationIds) => {
-    // Get the subset of relevant Pokemon data for selected gens and Pokemon number.
-    let pokemonNamesForRelevantGens = [];
+    // Get the subset of relevant Mon data for selected gens and Mon number.
+    let monNamesForRelevantGens = [];
     for (const gid of selectedGenerationIds) {
       const names = preloadedGenToNames[gid] || [];
-      for (const n of names) pokemonNamesForRelevantGens.push(n);
+      for (const n of names) monNamesForRelevantGens.push(n);
     }
-    pokemonNamesForRelevantGens = shuffle(pokemonNamesForRelevantGens);
+    monNamesForRelevantGens = shuffle(monNamesForRelevantGens);
     switch (practiceType) {
       case PRACTICE_TYPE.SHORT_ANSWER:
         if (repeatMistakes) {
           navigate(ROUTER_UTIL.ULTIMATE_TRAINING_PRACTICE, {
             state: {
-              allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
-              numPokemonToGuess:
-                numberOfPokemon > 0
-                  ? numberOfPokemon
-                  : pokemonNamesForRelevantGens.length, // Number of Pokemon that will be guessed
-              pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
+              allMon: preloadedMon, // Data of only the relevant Mon
+              numMonToGuess:
+                numberOfMon > 0 ? numberOfMon : monNamesForRelevantGens.length, // Number of Mon that will be guessed
+              monNamesForRelevantGens: monNamesForRelevantGens, // All relevant Mon names
             },
           });
         } else {
           navigate(ROUTER_UTIL.SHORT_ANSWER_PRACTICE, {
             state: {
-              allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
-              numPokemonToGuess:
-                numberOfPokemon > 0
-                  ? numberOfPokemon
-                  : pokemonNamesForRelevantGens.length, // Number of Pokemon that will be guessed
-              pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
+              allMon: preloadedMon, // Data of only the relevant Mon
+              numMonToGuess:
+                numberOfMon > 0 ? numberOfMon : monNamesForRelevantGens.length, // Number of Mon that will be guessed
+              monNamesForRelevantGens: monNamesForRelevantGens, // All relevant Mon names
             },
           });
         }
@@ -153,12 +144,10 @@ function PracticePanel() {
       default:
         navigate(ROUTER_UTIL.MULTIPLE_CHOICE_PRACTICE, {
           state: {
-            allPokemon: preloadedPokemon, // Data of only the relevant Pokemon
-            numPokemonToGuess:
-              numberOfPokemon > 0
-                ? numberOfPokemon
-                : pokemonNamesForRelevantGens.length, // Number of Pokemon that will be guessed
-            pokemonNamesForRelevantGens: pokemonNamesForRelevantGens, // All relevant Pokemon names
+            allMon: preloadedMon, // Data of only the relevant Mon
+            numMonToGuess:
+              numberOfMon > 0 ? numberOfMon : monNamesForRelevantGens.length, // Number of Mon that will be guessed
+            monNamesForRelevantGens: monNamesForRelevantGens, // All relevant Mon names
           },
         });
         return;
@@ -166,8 +155,7 @@ function PracticePanel() {
   };
 
   return (
-    <div className="App p-5">
-      <AppHeader />
+    <span>
       {/* Four-column layout: left small column (Settings), middle-left = generations, middle-right = practice options, right small spacer */}
       <Form>
         <Row className="align-items-stretch justify-content-center mt-2 gx-2">
@@ -216,7 +204,7 @@ function PracticePanel() {
                             setPracticeType(PRACTICE_TYPE.MULTIPLE_CHOICE)
                           }
                         >
-                          With Pictures <i class="bi bi-image"></i>
+                          With Pictures <i className="bi bi-image"></i>
                         </Button>
                       </ListGroup.Item>
                       <ListGroup.Item>
@@ -231,8 +219,8 @@ function PracticePanel() {
                             setPracticeType(PRACTICE_TYPE.SHORT_ANSWER)
                           }
                         >
-                          Typing Practice{" "}
-                          <i class="bi bi-input-cursor-text"></i>
+                          No Pictures{" "}
+                          <i className="bi bi-input-cursor-text"></i>
                         </Button>
                         <Form.Group>
                           <FormCheck
@@ -259,8 +247,8 @@ function PracticePanel() {
                                   overlay={
                                     <Tooltip>
                                       <div className="App">
-                                        Personalized training for typing
-                                        practice.
+                                        Personalized training for short-answer
+                                        mode.
                                       </div>
                                     </Tooltip>
                                   }
@@ -279,32 +267,26 @@ function PracticePanel() {
             </Card>
             {/* Bottom card pinned to bottom, full height */}
             <Card className="mt-3 cute-card flex-grow-1">
-              <Card.Header>Number of Pokemon:</Card.Header>
+              <Card.Header>Number of Mons:</Card.Header>
               <Card.Body className="d-flex flex-grow-1 align-items-center justify-content-center">
                 <Button
                   className="m-1"
-                  variant={
-                    numberOfPokemon === 10 ? "primary" : "outline-secondary"
-                  }
-                  onClick={() => setNumberOfPokemon(10)}
+                  variant={numberOfMon === 10 ? "primary" : "outline-secondary"}
+                  onClick={() => setNumberOfMon(10)}
                 >
                   10 ⚡️
                 </Button>
                 <Button
                   className="m-1"
-                  variant={
-                    numberOfPokemon === 20 ? "primary" : "outline-secondary"
-                  }
-                  onClick={() => setNumberOfPokemon(20)}
+                  variant={numberOfMon === 20 ? "primary" : "outline-secondary"}
+                  onClick={() => setNumberOfMon(20)}
                 >
                   20 🔥
                 </Button>
                 <Button
                   className="m-1"
-                  variant={
-                    numberOfPokemon === 0 ? "primary" : "outline-secondary"
-                  }
-                  onClick={() => setNumberOfPokemon(0)}
+                  variant={numberOfMon === 0 ? "primary" : "outline-secondary"}
+                  onClick={() => setNumberOfMon(0)}
                 >
                   All 🌎
                 </Button>
@@ -328,7 +310,7 @@ function PracticePanel() {
           </Button>
         </Col>
       </Row>
-    </div>
+    </span>
   );
 }
 export default PracticePanel;

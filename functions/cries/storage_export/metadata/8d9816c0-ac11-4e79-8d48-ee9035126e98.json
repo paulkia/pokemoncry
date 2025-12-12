@@ -1,0 +1,19 @@
+{
+  "name": "cries/cascoon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684226,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "81557dd2-6762-48d6-88f7-b70e0b33807a"
+  ],
+  "etag": "Tr+qJ1riwBx24qgZO9cNfpg1UwE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.226Z",
+  "updated": "2025-12-12T07:48:04.226Z",
+  "size": 2028,
+  "md5Hash": "sEMw0w17KB2c0LeLEjyYgw==",
+  "crc32c": "3878927566"
+}

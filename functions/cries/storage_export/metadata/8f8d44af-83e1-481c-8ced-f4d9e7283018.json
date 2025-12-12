@@ -1,0 +1,19 @@
+{
+  "name": "cries/tatsugiri-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685700,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0956a417-2c1c-49b7-b2de-952d59176a2c"
+  ],
+  "etag": "T4LoIAZp/EBCZosnqyDvv/mPxo0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.700Z",
+  "updated": "2025-12-12T07:48:05.700Z",
+  "size": 2816,
+  "md5Hash": "fPsPSquGL+92rxG3vWCmbw==",
+  "crc32c": "360104300"
+}

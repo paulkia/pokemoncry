@@ -1,0 +1,19 @@
+{
+  "name": "cries/quilava-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684334,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d8acecae-a625-4786-ae43-6c40a062abb5"
+  ],
+  "etag": "EwVZqX2uJisYH1aGSxBLfY+GYZI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.334Z",
+  "updated": "2025-12-12T07:48:04.334Z",
+  "size": 1610,
+  "md5Hash": "SLvSqhxvjwgi51ZTI7LG8w==",
+  "crc32c": "2506036333"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/reuniclus-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684253,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "720e426b-8ceb-44a2-a933-efbab23998b5"
+  ],
+  "etag": "ywOBwtNxlYqxmXpu3+wQM7WeJ2k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.253Z",
+  "updated": "2025-12-12T07:48:04.253Z",
+  "size": 6488,
+  "md5Hash": "9GrPoD3IZ4caQC14Ym2vZw==",
+  "crc32c": "3470586130"
+}

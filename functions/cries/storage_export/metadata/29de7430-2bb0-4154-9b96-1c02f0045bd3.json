@@ -1,0 +1,19 @@
+{
+  "name": "cries/goldeen-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683680,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8ea515f5-f35c-4873-83e1-bd5169f18454"
+  ],
+  "etag": "+xhlR0svUO3vASSko798umMySo8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.680Z",
+  "updated": "2025-12-12T07:48:03.680Z",
+  "size": 4112,
+  "md5Hash": "HjlPNz4gymLm4thnBJ7y5g==",
+  "crc32c": "270279412"
+}

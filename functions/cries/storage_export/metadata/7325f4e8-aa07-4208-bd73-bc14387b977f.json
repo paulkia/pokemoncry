@@ -1,0 +1,19 @@
+{
+  "name": "cries/weezing-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683802,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f23055e8-7fcd-4eca-8e4d-9d47634740b9"
+  ],
+  "etag": "3lnguQWQx8rxu/mI61rM9ymFRf0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.802Z",
+  "updated": "2025-12-12T07:48:03.802Z",
+  "size": 7352,
+  "md5Hash": "z4SGyUi9UqdugemjaNCwwg==",
+  "crc32c": "158424121"
+}

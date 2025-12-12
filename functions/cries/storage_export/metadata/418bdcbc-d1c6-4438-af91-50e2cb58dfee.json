@@ -1,0 +1,19 @@
+{
+  "name": "cries/feebas-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684360,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "87b44df3-09b5-43f3-88b1-e7df8ae5e598"
+  ],
+  "etag": "dziGHDwWbohIPwTjct8Ct4n8Yxk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.360Z",
+  "updated": "2025-12-12T07:48:04.360Z",
+  "size": 1297,
+  "md5Hash": "dtGJqgBFPcwQTZt6EqkZlQ==",
+  "crc32c": "2358021046"
+}

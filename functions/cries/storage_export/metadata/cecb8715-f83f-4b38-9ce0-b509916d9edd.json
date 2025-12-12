@@ -1,0 +1,19 @@
+{
+  "name": "cries/unown-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683924,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ddfada2b-2c26-49ca-9d72-72fc98b56da4"
+  ],
+  "etag": "utbiufy+lxxj6EArPWIActND+FE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.924Z",
+  "updated": "2025-12-12T07:48:03.924Z",
+  "size": 4760,
+  "md5Hash": "cgFDN3EzN1cD8RiUzzBOwA==",
+  "crc32c": "645223768"
+}

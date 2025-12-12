@@ -1,0 +1,19 @@
+{
+  "name": "cries/hypno-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684411,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7deb6615-a444-4ddd-b178-e3bbc704f888"
+  ],
+  "etag": "tnOEx2wlRfOvu38xDTj49DbLlDs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.411Z",
+  "updated": "2025-12-12T07:48:04.411Z",
+  "size": 3282,
+  "md5Hash": "H8wtol8EiCAB5ShVRuRF7g==",
+  "crc32c": "2989420266"
+}

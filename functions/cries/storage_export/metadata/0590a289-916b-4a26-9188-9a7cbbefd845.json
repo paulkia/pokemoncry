@@ -1,0 +1,19 @@
+{
+  "name": "cries/jigglypuff-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683953,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "66297fb4-a2b9-414f-9f72-2eb94d5d10d5"
+  ],
+  "etag": "LH9uYFoZ2gNwyMo0SPPjHz9mBB8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.953Z",
+  "updated": "2025-12-12T07:48:03.953Z",
+  "size": 2816,
+  "md5Hash": "qprq0rHTMY4cz2Sp9QJbfA==",
+  "crc32c": "601751497"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/alakazam-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683682,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "575dcab3-2c5a-4499-a1e4-5a48c3c82d9c"
+  ],
+  "etag": "CNohhLBiE5xixz5xNg+i9GyYCXY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.682Z",
+  "updated": "2025-12-12T07:48:03.682Z",
+  "size": 10160,
+  "md5Hash": "D76iDsoAL/C9nNoLUnJIVQ==",
+  "crc32c": "2476549333"
+}

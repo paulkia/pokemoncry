@@ -1,0 +1,19 @@
+{
+  "name": "cries/sandygast-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683901,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ecf03496-e727-4a65-be76-b758cd97440a"
+  ],
+  "etag": "b2QQUpZW+VVHT88L1qJKhvTDl2Y",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.901Z",
+  "updated": "2025-12-12T07:48:03.901Z",
+  "size": 10160,
+  "md5Hash": "V1DKpH+LEyXy8w6XnEM1EQ==",
+  "crc32c": "432400279"
+}

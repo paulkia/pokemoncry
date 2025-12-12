@@ -1,0 +1,19 @@
+{
+  "name": "cries/boldore-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683651,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "dfa1bed1-6fb9-40c6-8321-f311e5c73eba"
+  ],
+  "etag": "sA5MiiDKuJafho83eIsFO2SEbfc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.651Z",
+  "updated": "2025-12-12T07:48:03.651Z",
+  "size": 4544,
+  "md5Hash": "ZC1b26ZLV2RUw+A6zXLwyQ==",
+  "crc32c": "2846992977"
+}

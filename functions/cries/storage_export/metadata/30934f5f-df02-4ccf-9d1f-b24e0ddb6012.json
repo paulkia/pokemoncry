@@ -1,0 +1,19 @@
+{
+  "name": "cries/vulpix-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684434,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1d99cee8-0a7c-4809-9d0b-f7ab90789b1a"
+  ],
+  "etag": "pICfAsc9exxl1+RdhjE5bjXKJCU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.434Z",
+  "updated": "2025-12-12T07:48:04.434Z",
+  "size": 8000,
+  "md5Hash": "beRkh1BtqHjyYzW8x9m/Lw==",
+  "crc32c": "515499592"
+}

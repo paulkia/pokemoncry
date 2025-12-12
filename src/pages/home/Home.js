@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ROUTER_UTIL } from "../../library/util";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import AppHeader from "../../components/AppHeader";
-
 // ***** MAIN MENU PANEL ***** //
-function MainMenu() {
+function Home() {
   const navigate = useNavigate();
 
   // Default main menu
@@ -40,7 +38,7 @@ function MainMenu() {
             }}
             onClick={() => navigate(ROUTER_UTIL.CHALLENGE_MENU)}
           >
-            Challenge <i class="bi bi-play-fill"></i>
+            Challenge <i className="bi bi-play-fill"></i>
           </Button>
         </Col>
       </Row>
@@ -55,21 +53,11 @@ function MainMenu() {
             }}
             onClick={() => navigate(ROUTER_UTIL.LEADERBOARD)}
           >
-            Leaderboard <i class="bi bi-trophy-fill"></i>
+            Leaderboard <i className="bi bi-trophy-fill"></i>
           </Button>
         </Col>
       </Row>
     </div>
   );
 }
-
-function Home() {
-  return (
-    <div className="App p-5">
-      <AppHeader />
-      <MainMenu />
-    </div>
-  );
-}
-
 export default Home;

@@ -1,0 +1,19 @@
+{
+  "name": "cries/thundurus-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684006,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b80360b4-1769-48a0-b915-2c7515facd60"
+  ],
+  "etag": "qex07kXVhZvB6jhaqAAdHQ8V4Jg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.006Z",
+  "updated": "2025-12-12T07:48:04.006Z",
+  "size": 12320,
+  "md5Hash": "Kx0Kb++VWCtjHGptRAK9/g==",
+  "crc32c": "1790344078"
+}

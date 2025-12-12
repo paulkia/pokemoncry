@@ -1,0 +1,19 @@
+{
+  "name": "cries/carbink-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684130,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "38716424-1350-4f76-8365-bbffdcc2a437"
+  ],
+  "etag": "T/UcPxxvsKz48rZxranX25XKOOQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.130Z",
+  "updated": "2025-12-12T07:48:04.130Z",
+  "size": 10160,
+  "md5Hash": "fN7JIlH2XpSrP34DX93Pig==",
+  "crc32c": "2551878555"
+}

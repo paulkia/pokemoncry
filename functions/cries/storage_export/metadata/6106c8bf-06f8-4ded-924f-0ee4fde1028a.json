@@ -1,0 +1,19 @@
+{
+  "name": "cries/medicham-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683628,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e2c79847-25ff-442f-9e5e-8a8b417f29d5"
+  ],
+  "etag": "8mvgUxZMx1XLb9Chdt0cMA3nspA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.628Z",
+  "updated": "2025-12-12T07:48:03.628Z",
+  "size": 2028,
+  "md5Hash": "VqSSrtCJVsLFYqQzq9i3ZA==",
+  "crc32c": "3132845556"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/electrike-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684085,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e56207f6-5a34-4bab-b0b0-15bbd7cf968e"
+  ],
+  "etag": "4+I1dHH+TVJVItJqdxyzwnS55Vk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.085Z",
+  "updated": "2025-12-12T07:48:04.085Z",
+  "size": 1715,
+  "md5Hash": "DUgejKoyEEfN0ul5dRnGOQ==",
+  "crc32c": "1139414855"
+}

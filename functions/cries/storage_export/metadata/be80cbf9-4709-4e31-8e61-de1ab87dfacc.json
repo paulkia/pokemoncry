@@ -1,0 +1,19 @@
+{
+  "name": "cries/yamask-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683647,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7c9f858f-ffb0-4845-98f1-07cecb48db1b"
+  ],
+  "etag": "+DP0qkky/tqNdZYWQxOm+HaHDvE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.647Z",
+  "updated": "2025-12-12T07:48:03.647Z",
+  "size": 3572,
+  "md5Hash": "9PuVkWrGtVGMQrw8gdSsbQ==",
+  "crc32c": "2984812123"
+}

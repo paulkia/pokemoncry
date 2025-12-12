@@ -1,0 +1,19 @@
+{
+  "name": "cries/clawitzer-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683527,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9ae648eb-1e03-4cf0-be06-bf8b1ee69053"
+  ],
+  "etag": "9/gTbwU3SL0dPUrK1yTTcSznXoo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.527Z",
+  "updated": "2025-12-12T07:48:03.527Z",
+  "size": 8000,
+  "md5Hash": "M6qiGi1egrvbsBPEfpLPjQ==",
+  "crc32c": "1812883313"
+}

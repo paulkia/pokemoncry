@@ -1,0 +1,19 @@
+{
+  "name": "cries/dialga-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683535,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7e5cd123-be74-45b7-8d8b-422022b7a191"
+  ],
+  "etag": "rqlUXn2+9dv9C9MKebiA+kzX1QU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.535Z",
+  "updated": "2025-12-12T07:48:03.535Z",
+  "size": 9944,
+  "md5Hash": "YR1KEh0w4EK2buhNQJcrPg==",
+  "crc32c": "3672180256"
+}

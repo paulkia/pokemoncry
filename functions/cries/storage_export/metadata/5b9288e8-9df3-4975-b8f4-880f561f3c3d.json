@@ -1,0 +1,19 @@
+{
+  "name": "cries/drednaw-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683849,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f122621f-0da7-4536-a2f6-bbd9f1d2e106"
+  ],
+  "etag": "lHc8+NFoookQ8bbjWvoYYWQNk4k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.849Z",
+  "updated": "2025-12-12T07:48:03.849Z",
+  "size": 16108,
+  "md5Hash": "PbUVGbKJMweA7xtWbjXQJw==",
+  "crc32c": "596160504"
+}

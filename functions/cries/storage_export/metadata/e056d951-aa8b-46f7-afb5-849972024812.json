@@ -1,0 +1,19 @@
+{
+  "name": "cries/camerupt-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686153,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "18cdff2d-2f5a-4299-ae15-6de70a46032b"
+  ],
+  "etag": "WDHHMMAc5pj8nCQPj/EGmL2Q7qY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.153Z",
+  "updated": "2025-12-12T07:48:06.153Z",
+  "size": 2655,
+  "md5Hash": "LndyovQp4nCo6aboqx+tZA==",
+  "crc32c": "3369420617"
+}

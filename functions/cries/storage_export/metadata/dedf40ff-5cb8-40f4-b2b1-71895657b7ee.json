@@ -1,0 +1,19 @@
+{
+  "name": "cries/tsareena-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686253,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ab5aaa00-0678-4bcc-8a36-6b8b75867957"
+  ],
+  "etag": "G9yqotODh4H1x4kBZRQeqHyKhhc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.253Z",
+  "updated": "2025-12-12T07:48:06.253Z",
+  "size": 9944,
+  "md5Hash": "exYX56H6PI9ybPXSGiE7sw==",
+  "crc32c": "1360055626"
+}

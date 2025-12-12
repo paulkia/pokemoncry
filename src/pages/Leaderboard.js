@@ -15,41 +15,50 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AppHeader from "../components/AppHeader";
 import { ROUTER_UTIL } from "../library/util";
 
+const disabledUsername = "Anonymous";
+
 // Modes: fast vs full
 const MODES = ["fast", "full"]; // "fast" = Fast Mode, "full" = Full Mode
 
 // Display names for generations: built dynamically from generationCount
 function buildGenLabels(generationCount) {
   const gens = Array.from({ length: generationCount }, (_, i) => {
-    const id = `gen${i + 1}`;
+    const id = i + 1;
     return { id, label: `Gen ${i + 1}` };
   });
   return [...gens, { id: "all", label: "All Gens" }];
 }
 
-// Helper for mapping label to Firestore filter value
-function toGenFilter(genId) {
-  if (!genId || genId === "all") return "all"; // treat null/undefined as all generations
-  const match = genId.match(/^gen(\d+)$/);
-  return match ? Number(match[1]) : null;
-}
-
 function Leaderboard() {
   const location = useLocation();
-  const navigate = useNavigate();
   const { authUser, authUsername } = useAuth();
   const { generationCount } = usePoke();
 
-  // Defaults from router state: { gen: 'genX'|'all', mode: 'fast'|'full' }
-  const defaultGen = location?.state?.gen || "gen1"; // ensure a gen is always selected
-  const defaultMode = location?.state?.mode || "fast";
-
   // State
-  const [selectedGen, setSelectedGen] = useState(defaultGen);
-  const [selectedMode, setSelectedMode] = useState(defaultMode);
+  const [selectedGen, setSelectedGen] = useState(location?.state?.gen || 1);
+  const [selectedMode, setSelectedMode] = useState(
+    location?.state?.mode || "fast"
+  );
+
+  if (
+    selectedGen < 0 ||
+    (generationCount !== 0 && selectedGen > generationCount)
+  ) {
+    throw new Error("Invalid generation selected");
+  }
+  if (selectedMode !== "fast" && selectedMode !== "full") {
+    throw new Error("Invalid mode selected");
+  }
+
   const [myBest, setMyBest] = useState({
     loading: true,
     data: null,
+    error: null,
+  });
+  const [nearbyScores, setNearbyScores] = useState({
+    loading: true,
+    above: [],
+    below: [],
     error: null,
   });
   const [globalTop, setGlobalTop] = useState({
@@ -57,9 +66,6 @@ function Leaderboard() {
     data: [],
     error: null,
   });
-
-  // Build Firestore filters based on selection
-  const genFilterValue = useMemo(() => toGenFilter(selectedGen), [selectedGen]);
 
   // Fetch: My best for selected gen/mode
   useEffect(() => {
@@ -72,6 +78,7 @@ function Leaderboard() {
         return;
       }
 
+      console.log(selectedGen);
       try {
         // Assumption: Firestore collection 'runs' with fields:
         // userId:string, username:string, gen:number|'all', mode:'fast'|'full', score:number, createdAt:timestamp
@@ -80,7 +87,8 @@ function Leaderboard() {
           baseRef,
           where("userId", "==", authUser.uid),
           where("mode", "==", selectedMode),
-          where("gen", "==", genFilterValue),
+          where("gen", "==", selectedGen),
+          // where("username", "!=", disabledUsername), // Exclude anonymous users from leaderboard
           orderBy("score", "desc"),
           limit(1)
         );
@@ -107,7 +115,71 @@ function Leaderboard() {
     return () => {
       isMounted = false;
     };
-  }, [authUser, selectedMode, genFilterValue]);
+  }, [authUser, selectedMode, selectedGen]);
+
+  // Fetch: Nearby scores (3 above and 3 below the player's score)
+  useEffect(() => {
+    let isMounted = true;
+    async function run() {
+      setNearbyScores({ loading: true, above: [], below: [], error: null });
+
+      // Only fetch if we have the player's best score
+      if (!myBest.data) {
+        setNearbyScores({ loading: false, above: [], below: [], error: null });
+        return;
+      }
+
+      try {
+        const baseRef = collection(db, "runs");
+        const playerScore = myBest.data.score ?? 0;
+
+        // Fetch 3 scores higher than player's score
+        const qAbove = query(
+          baseRef,
+          where("mode", "==", selectedMode),
+          where("gen", "==", selectedGen),
+          where("score", ">", playerScore),
+          orderBy("score", "asc"), // ascending to get closest higher scores
+          limit(3)
+        );
+
+        // Fetch 3 scores lower than player's score
+        const qBelow = query(
+          baseRef,
+          where("mode", "==", selectedMode),
+          where("gen", "==", selectedGen),
+          where("score", "<", playerScore),
+          orderBy("score", "desc"), // descending to get closest lower scores
+          limit(3)
+        );
+
+        const [snapAbove, snapBelow] = await Promise.all([
+          getDocs(qAbove),
+          getDocs(qBelow),
+        ]);
+
+        if (!isMounted) return;
+
+        const above = snapAbove.docs.map((d) => ({ id: d.id, ...d.data() }));
+        const below = snapBelow.docs.map((d) => ({ id: d.id, ...d.data() }));
+
+        setNearbyScores({ loading: false, above, below, error: null });
+      } catch (err) {
+        console.error("Nearby scores fetch failed", err);
+        if (!isMounted) return;
+        setNearbyScores({
+          loading: false,
+          above: [],
+          below: [],
+          error: err?.message || "Failed to fetch",
+        });
+      }
+    }
+    run();
+    return () => {
+      isMounted = false;
+    };
+  }, [myBest.data, selectedMode, selectedGen]);
 
   // Fetch: Global top 10 for selected gen/mode
   useEffect(() => {
@@ -119,7 +191,8 @@ function Leaderboard() {
         const q = query(
           baseRef,
           where("mode", "==", selectedMode),
-          where("gen", "==", genFilterValue),
+          where("gen", "==", selectedGen),
+          // where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
           orderBy("score", "desc"),
           limit(10)
         );
@@ -141,7 +214,7 @@ function Leaderboard() {
     return () => {
       isMounted = false;
     };
-  }, [selectedMode, genFilterValue]);
+  }, [selectedMode, selectedGen]);
 
   // Derived: compute my rank versus global list (simple client-side rank; server-side preferred in future)
   const myRank = useMemo(() => {
@@ -154,19 +227,7 @@ function Leaderboard() {
 
   // Styled UI
   return (
-    <div className="App p-5">
-      <AppHeader className="App" />
-      <Row className="justify-content-center">
-        <Col lg={8} className="col-4 d-flex justify-content-start">
-          {" "}
-          <Button
-            variant="secondary"
-            onClick={() => navigate(ROUTER_UTIL.HOME)}
-          >
-            ← Back to Menu
-          </Button>
-        </Col>
-      </Row>
+    <span>
       <Row className="justify-content-center">
         <Col lg={8} md={12}>
           <Card className="cute-card mt-3">
@@ -211,21 +272,17 @@ function Leaderboard() {
               {/* Two-column layout */}
               <Row className="gx-3">
                 {/* My Score */}
-                <Col md={12} lg={6} className="mb-3">
+                <Col lg={12} xl={6} className="mb-3">
                   <Card
                     className="cute-card"
                     aria-labelledby="my-score-heading"
                   >
                     <Card.Header className="d-flex justify-content-between align-items-baseline">
                       <h2 id="my-score-heading" style={styles.cardTitle}>
-                        My score
+                        Personal Best
                       </h2>
                       <span style={styles.cardSubtitle}>
-                        {labelForSelection(
-                          selectedGen,
-                          selectedMode,
-                          generationCount
-                        )}
+                        {labelForSelection(selectedGen, selectedMode)}
                       </span>
                     </Card.Header>
                     <Card.Body>
@@ -240,7 +297,7 @@ function Leaderboard() {
                           {`No runs yet. Play a round of ${
                             selectedGen === "all"
                               ? "all gens"
-                              : `gen ${toGenFilter(selectedGen)}`
+                              : `gen ${selectedGen || "all"}`
                           } in ${
                             selectedMode === "fast" ? "fast" : "full"
                           } mode to make the board!`}
@@ -259,9 +316,67 @@ function Leaderboard() {
                           <div style={styles.metaRow}>
                             <span>Player</span>
                             <span style={styles.metaValue}>
-                              {authUsername || "Anonymous"}
+                              {authUsername || "Sign in to submit your scores!"}
                             </span>
                           </div>
+
+                          {/* Nearby scores context */}
+                          {(nearbyScores.above.length > 0 ||
+                            nearbyScores.below.length > 0) && (
+                            <>
+                              <div style={styles.separator} />
+                              <div style={styles.nearbyTitle}>
+                                Nearby Players
+                              </div>
+                              <ol style={styles.nearbyList}>
+                                {/* Players above (reverse to show highest first) */}
+                                {nearbyScores.above.reverse().map((row) => (
+                                  <li key={row.id} style={styles.nearbyItem}>
+                                    <div style={styles.nearbyUser}>
+                                      <div style={styles.nearbyName}>
+                                        {row.username || "Anonymous"}
+                                      </div>
+                                    </div>
+                                    <div style={styles.nearbyScore}>
+                                      {row.score ?? 0}
+                                    </div>
+                                  </li>
+                                ))}
+
+                                {/* Current player (highlighted) */}
+                                <li
+                                  style={{
+                                    ...styles.nearbyItem,
+                                    ...styles.nearbyItemCurrent,
+                                  }}
+                                >
+                                  <div style={styles.nearbyUser}>
+                                    <div style={styles.nearbyName}>
+                                      {authUsername || "You"}{" "}
+                                      <span style={styles.youBadge}>YOU</span>
+                                    </div>
+                                  </div>
+                                  <div style={styles.nearbyScore}>
+                                    {myBest.data.score ?? 0}
+                                  </div>
+                                </li>
+
+                                {/* Players below */}
+                                {nearbyScores.below.map((row) => (
+                                  <li key={row.id} style={styles.nearbyItem}>
+                                    <div style={styles.nearbyUser}>
+                                      <div style={styles.nearbyName}>
+                                        {row.username || "Anonymous"}
+                                      </div>
+                                    </div>
+                                    <div style={styles.nearbyScore}>
+                                      {row.score ?? 0}
+                                    </div>
+                                  </li>
+                                ))}
+                              </ol>
+                            </>
+                          )}
                         </div>
                       )}
                     </Card.Body>
@@ -269,22 +384,17 @@ function Leaderboard() {
                 </Col>
 
                 {/* Global Best */}
-                <Col md={12} lg={6} className="mb-3">
+                <Col lg={12} xl={6} className="mb-3">
                   <Card
                     className="cute-card"
                     aria-labelledby="global-best-heading"
                   >
                     <Card.Header className="d-flex justify-content-between align-items-baseline">
                       <h2 id="global-best-heading" style={styles.cardTitle}>
-                        Global best
+                        Global Best
                       </h2>
                       <span style={styles.cardSubtitle}>
-                        Top 10 —{" "}
-                        {labelForSelection(
-                          selectedGen,
-                          selectedMode,
-                          generationCount
-                        )}
+                        Top 10 — {labelForSelection(selectedGen, selectedMode)}
                       </span>
                     </Card.Header>
                     <Card.Body>
@@ -333,7 +443,7 @@ function Leaderboard() {
           </Card>
         </Col>
       </Row>
-    </div>
+    </span>
   );
 }
 
@@ -354,9 +464,8 @@ function SkeletonLine({ width = 200 }) {
   );
 }
 
-function labelForSelection(genId, mode, generationCount) {
-  const genLabel =
-    !genId || genId === "all" ? "All generations" : `Gen ${toGenFilter(genId)}`;
+function labelForSelection(genId, mode) {
+  const genLabel = !genId || genId === 0 ? "All generations" : `Gen ${genId}`;
   const modeLabel = mode === "fast" ? "Fast" : "Full";
   // If generationCount known, ensure within range; else just show label
   return `${genLabel} • ${modeLabel}`;
@@ -525,6 +634,58 @@ const styles = {
   errorText: {
     color: "#b00020",
     fontSize: 14,
+  },
+  nearbyTitle: {
+    fontSize: 14,
+    fontWeight: 600,
+    color: "#444",
+    marginBottom: 8,
+  },
+  nearbyList: {
+    listStyle: "none",
+    margin: 0,
+    padding: 0,
+    display: "grid",
+    gap: 6,
+  },
+  nearbyItem: {
+    display: "grid",
+    gridTemplateColumns: "1fr 80px",
+    alignItems: "center",
+    gap: 8,
+    padding: "6px 12px",
+    borderRadius: 6,
+    background: "#fafafa",
+    border: "1px solid #eee",
+  },
+  nearbyItemCurrent: {
+    background: "#e8f4fd",
+    border: "2px solid #0d6efd",
+    fontWeight: 600,
+  },
+  nearbyUser: {
+    display: "flex",
+    alignItems: "center",
+    gap: 6,
+  },
+  nearbyName: {
+    fontSize: 14,
+    display: "flex",
+    alignItems: "center",
+    gap: 6,
+  },
+  nearbyScore: {
+    textAlign: "right",
+    fontWeight: 600,
+    fontSize: 16,
+  },
+  youBadge: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: "#0d6efd",
+    background: "#cfe1ff",
+    padding: "2px 6px",
+    borderRadius: 4,
   },
 };
 

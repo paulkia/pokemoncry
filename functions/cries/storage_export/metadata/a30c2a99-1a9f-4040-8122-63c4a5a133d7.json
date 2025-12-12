@@ -1,0 +1,19 @@
+{
+  "name": "cries/klink-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683758,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d7ce90b6-4444-40ea-9464-2f79124f2e89"
+  ],
+  "etag": "8HO7H4Rs+Tq3qDWHmG2Jra3c3kU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.758Z",
+  "updated": "2025-12-12T07:48:03.758Z",
+  "size": 2816,
+  "md5Hash": "/5x642+PsL9R8xSd3k5QfA==",
+  "crc32c": "4103366760"
+}

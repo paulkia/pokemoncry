@@ -1,0 +1,19 @@
+{
+  "name": "cries/minun-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683711,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2d1bba85-0339-41f0-b19d-9100f986aca3"
+  ],
+  "etag": "POLavpfH1mqvFFk2XSWrvJY/QoY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.711Z",
+  "updated": "2025-12-12T07:48:03.711Z",
+  "size": 5624,
+  "md5Hash": "WYMv3Znup+deJVX/ay03vw==",
+  "crc32c": "739692068"
+}

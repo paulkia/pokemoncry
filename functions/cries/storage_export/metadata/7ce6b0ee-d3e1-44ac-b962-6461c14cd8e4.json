@@ -1,0 +1,19 @@
+{
+  "name": "cries/clefable-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683887,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "25bd9071-7595-41c0-b859-7ac4e2c260ea"
+  ],
+  "etag": "LFp4qPZksaizPLyvxRjihHE5rFs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.887Z",
+  "updated": "2025-12-12T07:48:03.887Z",
+  "size": 1506,
+  "md5Hash": "mCRNflRX2nUf9v3/l+tvlw==",
+  "crc32c": "179187682"
+}

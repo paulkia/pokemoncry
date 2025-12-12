@@ -1,0 +1,19 @@
+{
+  "name": "cries/chikorita-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684207,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b777db29-27e4-4579-85aa-41fc2765a88a"
+  ],
+  "etag": "WbrqOhrqq6HS7MEUH8JrGdX+SPM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.207Z",
+  "updated": "2025-12-12T07:48:04.207Z",
+  "size": 1088,
+  "md5Hash": "GeXFVRI2TXdQ6wJusEjFKA==",
+  "crc32c": "3758712372"
+}

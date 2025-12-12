@@ -1,0 +1,19 @@
+{
+  "name": "cries/inteleon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683563,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "728d5960-7c9e-433d-91af-0836bf3596aa"
+  ],
+  "etag": "BCL/xsbjXBOBxiz7NOfWfdnb21s",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.563Z",
+  "updated": "2025-12-12T07:48:03.563Z",
+  "size": 8167,
+  "md5Hash": "IJ4LO829rM7rKtUFIzB/6A==",
+  "crc32c": "395902092"
+}
