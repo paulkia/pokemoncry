@@ -134,7 +134,9 @@ function Login() {
       });
   };
   return authLoading || authUsername || !authUser?.isAnonymous ? (
-    <Spinner />
+    <div className="d-flex justify-content-center">
+      <Spinner />
+    </div>
   ) : (
     <Container
       className="d-flex align-items-center justify-content-center py-5"

@@ -324,7 +324,8 @@ function Leaderboard() {
                           <div style={styles.metaRow}>
                             <span>Player</span>
                             <span style={styles.metaValue}>
-                              {authUsername || "Sign in to submit your scores!"}
+                              {authUsername ||
+                                "Create a username to submit scores!"}
                             </span>
                           </div>
 

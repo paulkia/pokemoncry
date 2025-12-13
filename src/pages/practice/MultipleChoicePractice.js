@@ -244,18 +244,26 @@ function MultipleChoicePractice() {
   const progress = (pokeNum / numMonToGuess) * 100;
   return (
     <span>
-      <div className="App" style={{ position: "relative" }}>
+      <div className="App mt-3" style={{ position: "relative" }}>
         <Row>
           <p>Practice Mode!</p> {/* Back button (left) */}
         </Row>
-        <p>Repeat the sound for the current mon by pressing 'space'</p>
-        <p>Press 1, 2, 3, or 4 to select an option</p>
+        {!navigator.userAgentData?.mobile && (
+          <span>
+            <p>Repeat the sound for the current mon by pressing 'space'</p>
+            <p>Press 1, 2, 3, or 4 to select an option</p>
+          </span>
+        )}
         <Row className="justify-content-center">
           <Col xs={12} md={5}>
             {/* Container for relative positioning */}
-            <PokeProgressBar completionPercent={progress} />
+            <PokeProgressBar
+              className="mt-3 mb-2"
+              completionPercent={progress}
+            />
             {pokeNum === numMonToGuess && (
               <Button
+                className="mt-4"
                 onClick={() => {
                   navigate(ROUTER_UTIL.REFRESHER, {
                     state: {
