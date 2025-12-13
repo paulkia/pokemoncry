@@ -27,21 +27,10 @@
 import { onCall, HttpsError } from "firebase-functions/https";
 
 // The Firebase Admin SDK to access Firestore.
-import { initializeApp } from "firebase-admin/app";
-import {
-  getFirestore,
-  FieldValue,
-  Transaction,
-} from "firebase-admin/firestore";
-import { getStorage } from "firebase-admin/storage";
-import { genToMons } from "./util.js";
-import { claimUsernameWithDb } from "./auth.js";
-
-const app = initializeApp();
-
-// Get the Firestore instance using the modular function
-const db = getFirestore(app);
-const storage = getStorage(app);
+import { FieldValue, Transaction } from "firebase-admin/firestore";
+import { db, storage } from "./firebase";
+import { genToMons } from "./util";
+import { claimUsername } from "./auth";
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -290,7 +279,7 @@ export const startSession = onCall(async (request: any) => {
  *
  * Validates the user's answer for the current Mon in the session,
  * updates the session state, calculates score, and provides the next cry audio data.
- * If the game is complete, updates the leaderboard if it's a high score.
+ * If the game is complete, updates the leaderboard if it's a new high score.
  *
  * @param data.sessionId - The session ID
  * @param data.answer - The user's guess (mon name)
@@ -543,14 +532,4 @@ async function updateLeaderboard(
   }
 }
 
-/**
- * Callable Cloud Function to claim a unique username for the authenticated user.
- * It uses a Firestore transaction to ensure atomicity and prevent race conditions.
- *
- * @param data The request payload, expected to contain 'username'.
- * @param context The function context, containing authentication information.
- * @returns A Promise that resolves with a success message or rejects with an HttpsError.
- */
-export const claimUsername = onCall(async (request: any) => {
-  return claimUsernameWithDb(request, db);
-});
+export { claimUsername };
