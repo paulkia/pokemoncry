@@ -1,0 +1,19 @@
+{
+  "name": "cries/dragalge-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686015,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5e0b4b20-e451-41cd-aabe-424d33289dfb"
+  ],
+  "etag": "U+e6ElQapS2H+4iI2zD0hAuk8EQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.015Z",
+  "updated": "2025-12-12T07:48:06.015Z",
+  "size": 12320,
+  "md5Hash": "/hMO/RWTKzc+4u4s3gEWGw==",
+  "crc32c": "3245392894"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/hitmontop-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683534,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "603d1f3f-fec9-4ff3-82b2-a019240be80b"
+  ],
+  "etag": "yG2V1P1OK0i86Yq19iNu546hE/Y",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.534Z",
+  "updated": "2025-12-12T07:48:03.534Z",
+  "size": 5192,
+  "md5Hash": "TafxcFGfHsc/zpruKFBfmQ==",
+  "crc32c": "189475108"
+}

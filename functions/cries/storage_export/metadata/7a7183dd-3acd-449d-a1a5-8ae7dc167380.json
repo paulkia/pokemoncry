@@ -1,0 +1,19 @@
+{
+  "name": "cries/starly-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683920,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c79aa58e-8292-4115-b792-a80679147c01"
+  ],
+  "etag": "5Ba6aWA+2EwJ+t8l/kWjZH/qx6E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.920Z",
+  "updated": "2025-12-12T07:48:03.920Z",
+  "size": 2636,
+  "md5Hash": "PBAWERTD6+K9nJ2jPVxHtw==",
+  "crc32c": "3024226122"
+}

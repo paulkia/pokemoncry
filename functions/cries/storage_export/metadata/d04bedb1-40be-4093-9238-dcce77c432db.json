@@ -1,0 +1,19 @@
+{
+  "name": "cries/tentacool-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686208,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "76e3bfd6-b584-423d-906a-cd50ff03aff3"
+  ],
+  "etag": "veOVVDYnk8sF+P5gHG/oZvZL7oM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.208Z",
+  "updated": "2025-12-12T07:48:06.208Z",
+  "size": 2028,
+  "md5Hash": "oaKSywPQ0ZYrfbsi5HgOzQ==",
+  "crc32c": "2256155282"
+}

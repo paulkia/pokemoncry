@@ -1,0 +1,19 @@
+{
+  "name": "cries/palossand-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684460,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4ffa965d-3259-45f8-8fa2-09ae25a81027"
+  ],
+  "etag": "mWhKIF3pfBUx1wVkQmEoFb7xJUY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.460Z",
+  "updated": "2025-12-12T07:48:04.460Z",
+  "size": 12536,
+  "md5Hash": "dzuQ0/YoGr2DAzW3zvj/Xg==",
+  "crc32c": "2313267795"
+}

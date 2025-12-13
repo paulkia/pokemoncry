@@ -1,0 +1,19 @@
+{
+  "name": "cries/rhydon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684443,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d5b4d934-f39f-4a64-99d5-fccd0ec4fd2c"
+  ],
+  "etag": "G4s8Hsmkx+FeMpk4Rhf2Ma0nPQU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.443Z",
+  "updated": "2025-12-12T07:48:04.443Z",
+  "size": 2446,
+  "md5Hash": "pf/wXITfw3q895CEUYAYew==",
+  "crc32c": "1158425125"
+}

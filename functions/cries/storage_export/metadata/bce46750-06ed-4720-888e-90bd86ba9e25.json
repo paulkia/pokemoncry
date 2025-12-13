@@ -1,0 +1,19 @@
+{
+  "name": "cries/wormadam-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683943,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1a633079-2b93-4e39-972b-bc91c948ce02"
+  ],
+  "etag": "pMjcflzzDVWKBkhPdnrDf6LBPGg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.943Z",
+  "updated": "2025-12-12T07:48:03.943Z",
+  "size": 8000,
+  "md5Hash": "tbEGuFWBgj2cU1xcZhZETg==",
+  "crc32c": "807522535"
+}

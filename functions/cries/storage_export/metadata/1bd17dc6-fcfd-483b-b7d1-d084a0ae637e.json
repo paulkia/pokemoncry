@@ -1,0 +1,19 @@
+{
+  "name": "cries/aurorus-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684384,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "81bfc93b-0ca4-4735-985f-22f5f348f3bc"
+  ],
+  "etag": "/4ubep8t/6DUM3nEsHVnGDp5O3k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.384Z",
+  "updated": "2025-12-12T07:48:04.384Z",
+  "size": 12968,
+  "md5Hash": "nARfVH17GiRQ6yWr0LcVsA==",
+  "crc32c": "1692607967"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/finizen-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683616,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7305762a-09cc-43cb-bd26-4aff8186a292"
+  ],
+  "etag": "kQDrNq36FoJIRp8n1lhG0eAmGKQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.616Z",
+  "updated": "2025-12-12T07:48:03.616Z",
+  "size": 6956,
+  "md5Hash": "tI2tQiynlqaqOR3U6GwRag==",
+  "crc32c": "2241114088"
+}

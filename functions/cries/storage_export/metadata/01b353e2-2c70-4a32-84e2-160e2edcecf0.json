@@ -1,0 +1,19 @@
+{
+  "name": "cries/litwick-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683669,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "52fedaa1-1f6a-4788-900d-53864c8ee9d8"
+  ],
+  "etag": "+okz0AXz/Whs6AAgZS9G2GlX57k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.669Z",
+  "updated": "2025-12-12T07:48:03.669Z",
+  "size": 5192,
+  "md5Hash": "rx91wNF9m88S1BJPZvaSdA==",
+  "crc32c": "43834507"
+}

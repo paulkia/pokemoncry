@@ -1,0 +1,19 @@
+{
+  "name": "cries/deoxys-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683548,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6fd92b33-5aa9-454e-ab7f-d3b274e51b97"
+  ],
+  "etag": "Y56tD57XyjK/n03LVrcdSPbYxrs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.548Z",
+  "updated": "2025-12-12T07:48:03.548Z",
+  "size": 2551,
+  "md5Hash": "Tu3iO8t2lq2b4pxHQjeGCQ==",
+  "crc32c": "1249086352"
+}

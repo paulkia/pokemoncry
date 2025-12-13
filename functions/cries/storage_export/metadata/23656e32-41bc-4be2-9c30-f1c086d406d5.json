@@ -1,0 +1,19 @@
+{
+  "name": "cries/swoobat-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683871,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3af4802b-e5b6-46da-8674-8a5fa490b1ce"
+  ],
+  "etag": "792cHya7uUXXg1TKTTSwzuONIDI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.871Z",
+  "updated": "2025-12-12T07:48:03.871Z",
+  "size": 4544,
+  "md5Hash": "N+7ETsgUgsAWlgY19dbxig==",
+  "crc32c": "1450489142"
+}

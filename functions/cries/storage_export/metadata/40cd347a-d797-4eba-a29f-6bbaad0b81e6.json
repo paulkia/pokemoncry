@@ -1,0 +1,19 @@
+{
+  "name": "cries/chansey-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684102,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4ef5bd94-e3f3-4789-be91-134906b020de"
+  ],
+  "etag": "zwMg7CZVX3QeVk4DNFl48gOTh8M",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.102Z",
+  "updated": "2025-12-12T07:48:04.102Z",
+  "size": 1924,
+  "md5Hash": "a5FnJ54Rm2w22N8Kz6IF0w==",
+  "crc32c": "52553053"
+}

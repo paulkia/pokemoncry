@@ -1,0 +1,19 @@
+{
+  "name": "cries/braviary-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684167,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "575aba49-c387-4e91-89b6-a0e9ba10e8f5"
+  ],
+  "etag": "7OezYLOqx30sjtz/yrTe6YLUk9E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.167Z",
+  "updated": "2025-12-12T07:48:04.167Z",
+  "size": 4406,
+  "md5Hash": "8YS8YTG4Xx5U1j+K4BQCpw==",
+  "crc32c": "1850980229"
+}

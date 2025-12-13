@@ -1,0 +1,19 @@
+{
+  "name": "cries/virizion-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684455,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "dda241b1-c6e1-44b8-bc41-2b4cb4ceb559"
+  ],
+  "etag": "IrGuAEarEOF3kwCV0WPMwY4u9Zw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.455Z",
+  "updated": "2025-12-12T07:48:04.455Z",
+  "size": 4615,
+  "md5Hash": "KsGEtV4S7WAgXBsemgZuJg==",
+  "crc32c": "2164211083"
+}

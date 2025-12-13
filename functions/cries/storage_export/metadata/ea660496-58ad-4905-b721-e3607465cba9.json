@@ -1,0 +1,19 @@
+{
+  "name": "cries/krookodile-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685493,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2577d2fc-376f-4360-b077-722e14426040"
+  ],
+  "etag": "PdGmwDjS+UHr3l8Mgl6XQQIjQYg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.493Z",
+  "updated": "2025-12-12T07:48:05.493Z",
+  "size": 4652,
+  "md5Hash": "z1Sgiomn4bk5ZuDp2LGWIw==",
+  "crc32c": "2587263558"
+}

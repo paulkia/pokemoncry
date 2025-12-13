@@ -78,7 +78,6 @@ function Leaderboard() {
         return;
       }
 
-      console.log(selectedGen);
       try {
         // Assumption: Firestore collection 'runs' with fields:
         // userId:string, username:string, gen:number|'all', mode:'fast'|'full', score:number, createdAt:timestamp
@@ -88,7 +87,6 @@ function Leaderboard() {
           where("userId", "==", authUser.uid),
           where("mode", "==", selectedMode),
           where("gen", "==", selectedGen),
-          // where("username", "!=", disabledUsername), // Exclude anonymous users from leaderboard
           orderBy("score", "desc"),
           limit(1)
         );
@@ -139,6 +137,7 @@ function Leaderboard() {
           where("mode", "==", selectedMode),
           where("gen", "==", selectedGen),
           where("score", ">", playerScore),
+          where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
           orderBy("score", "asc"), // ascending to get closest higher scores
           limit(3)
         );
@@ -149,6 +148,7 @@ function Leaderboard() {
           where("mode", "==", selectedMode),
           where("gen", "==", selectedGen),
           where("score", "<", playerScore),
+          where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
           orderBy("score", "desc"), // descending to get closest lower scores
           limit(3)
         );
@@ -160,10 +160,18 @@ function Leaderboard() {
 
         if (!isMounted) return;
 
-        const above = snapAbove.docs.map((d) => ({ id: d.id, ...d.data() }));
+        let aboveReverseOrder = snapAbove.docs.map((d) => ({
+          id: d.id,
+          ...d.data(),
+        }));
         const below = snapBelow.docs.map((d) => ({ id: d.id, ...d.data() }));
 
-        setNearbyScores({ loading: false, above, below, error: null });
+        setNearbyScores({
+          loading: false,
+          above: aboveReverseOrder.reverse(),
+          below,
+          error: null,
+        });
       } catch (err) {
         console.error("Nearby scores fetch failed", err);
         if (!isMounted) return;
@@ -192,9 +200,9 @@ function Leaderboard() {
           baseRef,
           where("mode", "==", selectedMode),
           where("gen", "==", selectedGen),
-          // where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
+          where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
           orderBy("score", "desc"),
-          limit(10)
+          limit(3)
         );
         const snap = await getDocs(q);
         if (!isMounted) return;
@@ -330,11 +338,11 @@ function Leaderboard() {
                               </div>
                               <ol style={styles.nearbyList}>
                                 {/* Players above (reverse to show highest first) */}
-                                {nearbyScores.above.reverse().map((row) => (
+                                {nearbyScores.above.map((row) => (
                                   <li key={row.id} style={styles.nearbyItem}>
                                     <div style={styles.nearbyUser}>
                                       <div style={styles.nearbyName}>
-                                        {row.username || "Anonymous"}
+                                        {row.username}
                                       </div>
                                     </div>
                                     <div style={styles.nearbyScore}>
@@ -352,7 +360,7 @@ function Leaderboard() {
                                 >
                                   <div style={styles.nearbyUser}>
                                     <div style={styles.nearbyName}>
-                                      {authUsername || "You"}{" "}
+                                      {authUsername || "Anonymous"}{" "}
                                       <span style={styles.youBadge}>YOU</span>
                                     </div>
                                   </div>
@@ -366,7 +374,7 @@ function Leaderboard() {
                                   <li key={row.id} style={styles.nearbyItem}>
                                     <div style={styles.nearbyUser}>
                                       <div style={styles.nearbyName}>
-                                        {row.username || "Anonymous"}
+                                        {row.username}
                                       </div>
                                     </div>
                                     <div style={styles.nearbyScore}>

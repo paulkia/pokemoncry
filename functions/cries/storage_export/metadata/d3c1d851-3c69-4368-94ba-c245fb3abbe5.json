@@ -1,0 +1,19 @@
+{
+  "name": "cries/croconaw-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686211,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2ebee073-df85-4edc-9fa3-739afcfeb7d3"
+  ],
+  "etag": "ItnEdmdngpxgssPQZ87IOc/FNcE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.211Z",
+  "updated": "2025-12-12T07:48:06.211Z",
+  "size": 7784,
+  "md5Hash": "GImm2Lr+rSJglkqD5+p06w==",
+  "crc32c": "2020353730"
+}

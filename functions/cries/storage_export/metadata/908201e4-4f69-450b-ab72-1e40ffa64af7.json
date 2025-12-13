@@ -1,0 +1,19 @@
+{
+  "name": "cries/drowzee-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684149,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b4c79518-c637-4984-81aa-b477d8735d4e"
+  ],
+  "etag": "+ND2tBKwCku1I/nI3z+ZGLs1zYQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.149Z",
+  "updated": "2025-12-12T07:48:04.149Z",
+  "size": 9512,
+  "md5Hash": "WzzPRh2EpAi/GPgRRVcWsg==",
+  "crc32c": "2324648111"
+}

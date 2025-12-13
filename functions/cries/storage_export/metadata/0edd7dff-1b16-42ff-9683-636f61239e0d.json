@@ -1,0 +1,19 @@
+{
+  "name": "cries/miraidon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683246,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7f0b215f-95da-4c02-835d-e506fe534c0a"
+  ],
+  "etag": "QYBcahfj+y8w5IUAANbGUQ96yIs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.246Z",
+  "updated": "2025-12-12T07:48:03.246Z",
+  "size": 16526,
+  "md5Hash": "PCN91WUvkE3h/9uuxxKyzA==",
+  "crc32c": "1087746851"
+}

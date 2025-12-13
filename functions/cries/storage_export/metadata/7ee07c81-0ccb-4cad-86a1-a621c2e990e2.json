@@ -1,0 +1,19 @@
+{
+  "name": "cries/skrelp-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683812,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4d736cac-1749-4067-b93b-9217396006f9"
+  ],
+  "etag": "aegWm3UKc9IKxrIBKq6yPgrm708",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.812Z",
+  "updated": "2025-12-12T07:48:03.812Z",
+  "size": 5624,
+  "md5Hash": "IFBtCcaK4Sxa5RC8qcliJw==",
+  "crc32c": "2493374801"
+}

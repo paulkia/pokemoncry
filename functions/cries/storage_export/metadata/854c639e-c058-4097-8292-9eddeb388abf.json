@@ -1,0 +1,19 @@
+{
+  "name": "cries/whirlipede-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683562,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8c832bcd-8faf-4834-b1ac-a1760ba1c804"
+  ],
+  "etag": "2nIDntNuJEk+paZGBg6xMxNNcUs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.562Z",
+  "updated": "2025-12-12T07:48:03.562Z",
+  "size": 8000,
+  "md5Hash": "2MIYT3IF71ZEDEq8679emQ==",
+  "crc32c": "1536000594"
+}

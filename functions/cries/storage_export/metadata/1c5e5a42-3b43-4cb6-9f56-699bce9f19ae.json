@@ -1,0 +1,19 @@
+{
+  "name": "cries/fuecoco-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685352,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f0fde7a8-9253-4285-b489-57e39c5e806a"
+  ],
+  "etag": "eXMcfU6m+E/ZSRArGT06CZwY9jM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.352Z",
+  "updated": "2025-12-12T07:48:05.352Z",
+  "size": 6860,
+  "md5Hash": "Ue6BRgPiT8Fk28QpZ8Uh4w==",
+  "crc32c": "2207771110"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/froslass-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685350,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "084c8f49-cf46-4e7b-b01c-1d1dd79d6ab9"
+  ],
+  "etag": "kURq15QwtJ+R0UriHiMo/cyFTtA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.350Z",
+  "updated": "2025-12-12T07:48:05.350Z",
+  "size": 11888,
+  "md5Hash": "fl/ZPozQIrj1jBWNaEtleg==",
+  "crc32c": "1398157409"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/makuhita-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684414,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ab45dfff-0b06-4e1e-9fa3-aa110dae1809"
+  ],
+  "etag": "fAbEFq8CsQG5KLuf1Id8YYCg8gs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.414Z",
+  "updated": "2025-12-12T07:48:04.414Z",
+  "size": 3032,
+  "md5Hash": "xHIP+uRuydk8fQv/jtr0uw==",
+  "crc32c": "2010488034"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/onix-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686252,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "69889632-a042-4b64-9274-99868a5cd70f"
+  ],
+  "etag": "0icTlAt4ila2lBZj65cMgQrX+CM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.252Z",
+  "updated": "2025-12-12T07:48:06.252Z",
+  "size": 2864,
+  "md5Hash": "BXTPiwwtE6tj95XHQYTtdQ==",
+  "crc32c": "1247780314"
+}

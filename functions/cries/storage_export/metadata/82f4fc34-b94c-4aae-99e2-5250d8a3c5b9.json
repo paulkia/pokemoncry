@@ -1,0 +1,19 @@
+{
+  "name": "cries/cobalion-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683968,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2af38da6-e8ee-46cc-99ea-9d7abef3c467"
+  ],
+  "etag": "7sz9lTpPsLzUL+jcIvPTPRAwJYQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.968Z",
+  "updated": "2025-12-12T07:48:03.968Z",
+  "size": 9944,
+  "md5Hash": "bo51bSjiErnzJXd/ULq+6A==",
+  "crc32c": "1085722027"
+}

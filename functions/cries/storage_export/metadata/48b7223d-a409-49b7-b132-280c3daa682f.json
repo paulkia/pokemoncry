@@ -1,0 +1,19 @@
+{
+  "name": "cries/plusle-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684278,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e0c46457-d710-4224-ad88-b171b6acf9bd"
+  ],
+  "etag": "cv0guVLG718r9NhUEXPf7BuA+rk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.278Z",
+  "updated": "2025-12-12T07:48:04.278Z",
+  "size": 3680,
+  "md5Hash": "295eUy8C05RbZYyn2RhB9w==",
+  "crc32c": "405111"
+}

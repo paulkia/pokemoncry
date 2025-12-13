@@ -1,0 +1,19 @@
+{
+  "name": "cries/scream-tail-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683714,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7ffad0ef-fb9b-4bb8-9404-57cff15137fd"
+  ],
+  "etag": "xQMGm981LxAKF1fF8rVhHmcNAKQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.714Z",
+  "updated": "2025-12-12T07:48:03.714Z",
+  "size": 12536,
+  "md5Hash": "y+1BiNXoMq3UHH26iMyHVg==",
+  "crc32c": "418230947"
+}

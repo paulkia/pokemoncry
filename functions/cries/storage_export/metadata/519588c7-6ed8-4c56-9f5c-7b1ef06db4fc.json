@@ -1,0 +1,19 @@
+{
+  "name": "cries/murkrow-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684177,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b9346b11-44e4-4153-84ab-d57270e8fc51"
+  ],
+  "etag": "nVMCNRaXHy6axwtvI/68//cToLk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.177Z",
+  "updated": "2025-12-12T07:48:04.177Z",
+  "size": 2133,
+  "md5Hash": "OnptKxpOyB87yHVRHLhmlQ==",
+  "crc32c": "2289244265"
+}

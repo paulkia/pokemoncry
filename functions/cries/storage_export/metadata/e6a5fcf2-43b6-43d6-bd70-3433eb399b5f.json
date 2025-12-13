@@ -1,0 +1,19 @@
+{
+  "name": "cries/krokorok-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683639,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5abca201-f328-40be-a289-0b245d2f790a"
+  ],
+  "etag": "WaaZoqfAC6c5OSks80/P20PrRxQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.639Z",
+  "updated": "2025-12-12T07:48:03.639Z",
+  "size": 3896,
+  "md5Hash": "Go+Czk9r03aBaeMUdk+z9w==",
+  "crc32c": "1962087523"
+}

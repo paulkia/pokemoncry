@@ -1,0 +1,19 @@
+{
+  "name": "cries/pawmi-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686017,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "359e7c0e-be73-458d-a94e-4406f2064255"
+  ],
+  "etag": "6H0iHNsZNR1E43VV1khdP3EH03E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.017Z",
+  "updated": "2025-12-12T07:48:06.017Z",
+  "size": 5228,
+  "md5Hash": "VSZLylTxUwO1SIpmBSNy+Q==",
+  "crc32c": "3043970008"
+}

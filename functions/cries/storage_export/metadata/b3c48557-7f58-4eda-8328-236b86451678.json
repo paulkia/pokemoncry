@@ -1,0 +1,19 @@
+{
+  "name": "cries/tynamo-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683803,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "96396826-99d2-4ced-bd4e-ac8fd563f7cf"
+  ],
+  "etag": "7ntsN0PgQ2THrjH2tTBS34OSw/c",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.803Z",
+  "updated": "2025-12-12T07:48:03.803Z",
+  "size": 4615,
+  "md5Hash": "+tpe5nyZo1FdppPZxxaevQ==",
+  "crc32c": "1993519750"
+}

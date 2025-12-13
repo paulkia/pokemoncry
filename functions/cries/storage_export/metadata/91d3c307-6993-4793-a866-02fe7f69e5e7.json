@@ -1,0 +1,19 @@
+{
+  "name": "cries/quilava-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685655,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f4af351c-a4b6-4150-9717-2266edd141c6"
+  ],
+  "etag": "CLpik6fH3iBiq3OPT3ryYM174Jw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.655Z",
+  "updated": "2025-12-12T07:48:05.655Z",
+  "size": 5624,
+  "md5Hash": "EtMCeCDhJDed2gO/+hFYSQ==",
+  "crc32c": "2454945712"
+}

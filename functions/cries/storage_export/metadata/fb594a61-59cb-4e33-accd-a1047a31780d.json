@@ -1,0 +1,19 @@
+{
+  "name": "cries/lapras-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686307,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "50796171-ddd1-4ff0-9a7b-5ec5a2c7fb8f"
+  ],
+  "etag": "eLwtdzR6K+Z4lQQIasPFCAI9dwE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.307Z",
+  "updated": "2025-12-12T07:48:06.307Z",
+  "size": 5840,
+  "md5Hash": "gyaf6CTGk8gR6exfdmBz9g==",
+  "crc32c": "2935501457"
+}

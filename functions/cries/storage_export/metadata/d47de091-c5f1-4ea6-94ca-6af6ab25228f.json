@@ -1,0 +1,19 @@
+{
+  "name": "cries/shelmet-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685648,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0b606ca5-f7f0-48ba-a0b6-b358b019af18"
+  ],
+  "etag": "x7j/0arXOGXc6+7Pumu3tQiYyYM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.648Z",
+  "updated": "2025-12-12T07:48:05.648Z",
+  "size": 4615,
+  "md5Hash": "JT+XrujoVvpsJ5PcKzBEcg==",
+  "crc32c": "3868666337"
+}

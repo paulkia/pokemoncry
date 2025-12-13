@@ -1,0 +1,19 @@
+{
+  "name": "cries/nidoqueen-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684429,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1b4f625e-f4bc-4ebd-8048-a66569559385"
+  ],
+  "etag": "wd1GiMTyHa2nn07YKR+pVaSsRT8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.429Z",
+  "updated": "2025-12-12T07:48:04.429Z",
+  "size": 2133,
+  "md5Hash": "YAu+Vo8RYO2Big9hL76EPQ==",
+  "crc32c": "918597344"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/graveler-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683656,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7f7ed997-d778-4532-a772-d73796e5c825"
+  ],
+  "etag": "H79JxW/AWITIeTYTOajBY76azaw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.656Z",
+  "updated": "2025-12-12T07:48:03.656Z",
+  "size": 3178,
+  "md5Hash": "rtU16FGrekRW8uPWPL2hBQ==",
+  "crc32c": "1697211418"
+}

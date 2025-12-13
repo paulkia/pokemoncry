@@ -1,0 +1,19 @@
+{
+  "name": "cries/sceptile-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683593,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3d09fb36-0b0a-4e6c-b933-4981aa67f987"
+  ],
+  "etag": "dpkPJtWsdX8qz7GlZ10LQIQgmb4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.593Z",
+  "updated": "2025-12-12T07:48:03.593Z",
+  "size": 2969,
+  "md5Hash": "uZFhIjfLIHT4iXYlOo29pg==",
+  "crc32c": "461361354"
+}

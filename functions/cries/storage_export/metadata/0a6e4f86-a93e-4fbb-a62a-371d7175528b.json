@@ -1,0 +1,19 @@
+{
+  "name": "cries/xerneas-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683835,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7647f03d-df95-4d72-a360-dbb44ca24e2f"
+  ],
+  "etag": "PNH3vAP3+4pmRFZIcDj+NspcDHE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.835Z",
+  "updated": "2025-12-12T07:48:03.835Z",
+  "size": 10160,
+  "md5Hash": "5m19eHAgxNZDNNIN1pUHkg==",
+  "crc32c": "486619604"
+}

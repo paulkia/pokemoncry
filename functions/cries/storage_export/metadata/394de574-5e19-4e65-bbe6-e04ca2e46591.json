@@ -1,0 +1,19 @@
+{
+  "name": "cries/mr-mime-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683589,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "be420117-2c08-4f64-a426-c5b67c521b45"
+  ],
+  "etag": "fqGToz00QV6nAy6lPnpv8uIYHIs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.589Z",
+  "updated": "2025-12-12T07:48:03.589Z",
+  "size": 6704,
+  "md5Hash": "Zp24rcRwx7wWtgGBRVTiHA==",
+  "crc32c": "1351159892"
+}

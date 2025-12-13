@@ -1,0 +1,19 @@
+{
+  "name": "cries/darkrai-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685959,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "78160138-2fd0-432d-86ed-5bf88855f9fb"
+  ],
+  "etag": "PDIKgvuLg1Bq0BK3sNsYf+6hHg4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.959Z",
+  "updated": "2025-12-12T07:48:05.959Z",
+  "size": 10160,
+  "md5Hash": "W5gHUDExjSOPIEmV3s+h4Q==",
+  "crc32c": "496590075"
+}

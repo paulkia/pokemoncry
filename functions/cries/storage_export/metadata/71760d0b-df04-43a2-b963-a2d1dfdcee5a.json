@@ -1,0 +1,19 @@
+{
+  "name": "cries/espeon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684142,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a7b78967-e2c1-4f4b-b778-c5abf065d16a"
+  ],
+  "etag": "N+irzdul1xSc/ybI2Wixhstsfvg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.142Z",
+  "updated": "2025-12-12T07:48:04.142Z",
+  "size": 2446,
+  "md5Hash": "2FJwVtH+jhMa0gHkQTu2zw==",
+  "crc32c": "1933087953"
+}

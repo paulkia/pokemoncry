@@ -1,0 +1,19 @@
+{
+  "name": "cries/iron-boulder-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683754,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f963413a-5c3d-47d9-a0e6-8d6ddc76574a"
+  ],
+  "etag": "Ki4/GFrEMGNvThV7tzxVhrs/FyI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.754Z",
+  "updated": "2025-12-12T07:48:03.754Z",
+  "size": 16108,
+  "md5Hash": "2Y36bcH5Eoc3PfuLYFAIVg==",
+  "crc32c": "289541945"
+}

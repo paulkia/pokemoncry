@@ -1,0 +1,19 @@
+{
+  "name": "cries/fidough-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683738,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4f0c1792-a3c4-40ee-983d-f5b6bd6615e3"
+  ],
+  "etag": "MKIXkuDCHw1ySKyH93kfOr2llps",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.738Z",
+  "updated": "2025-12-12T07:48:03.738Z",
+  "size": 2636,
+  "md5Hash": "E9Xbj5aWO9HyVpoN7X7y1g==",
+  "crc32c": "3301908628"
+}

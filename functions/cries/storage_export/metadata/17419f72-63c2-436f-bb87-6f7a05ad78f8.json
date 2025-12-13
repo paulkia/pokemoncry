@@ -1,0 +1,19 @@
+{
+  "name": "cries/venipede-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683858,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d416b74f-385d-4ecf-98f6-6f1d690778c1"
+  ],
+  "etag": "odnbjzlWb/2zQjDwLxdsbxq/fbg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.858Z",
+  "updated": "2025-12-12T07:48:03.858Z",
+  "size": 3896,
+  "md5Hash": "o1CXV5P/HMMysPHNyE+Jwg==",
+  "crc32c": "2050001485"
+}

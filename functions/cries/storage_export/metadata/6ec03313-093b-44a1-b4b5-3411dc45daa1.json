@@ -1,0 +1,19 @@
+{
+  "name": "cries/shroomish-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684273,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a5d1587c-b5b3-49d2-afd1-ca67dbffb8f1"
+  ],
+  "etag": "WKgG1cuCSj07xlbFABeQnHZ4qHY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.273Z",
+  "updated": "2025-12-12T07:48:04.273Z",
+  "size": 1401,
+  "md5Hash": "AY1Ks8TY0ni0BcKgfraT4g==",
+  "crc32c": "2217277656"
+}

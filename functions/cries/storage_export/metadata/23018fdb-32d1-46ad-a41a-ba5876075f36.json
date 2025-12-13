@@ -1,0 +1,19 @@
+{
+  "name": "cries/darkrai-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684132,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "bda777f4-f443-45e7-b605-c6d91175a573"
+  ],
+  "etag": "camb22BSYFH6x7MqsMacKcqQswU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.132Z",
+  "updated": "2025-12-12T07:48:04.132Z",
+  "size": 3116,
+  "md5Hash": "uNjXe5A8skwwPzXPN6tU2A==",
+  "crc32c": "2769508677"
+}

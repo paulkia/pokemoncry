@@ -1,0 +1,19 @@
+{
+  "name": "cries/kabuto-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684411,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "158f244d-9df3-4aed-8a33-a4940baed9d0"
+  ],
+  "etag": "tnOEx2wlRfOvu38xDTj49DbLlDs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.411Z",
+  "updated": "2025-12-12T07:48:04.411Z",
+  "size": 4976,
+  "md5Hash": "+r+vv33pm7Id5siLHELDAA==",
+  "crc32c": "1511476128"
+}

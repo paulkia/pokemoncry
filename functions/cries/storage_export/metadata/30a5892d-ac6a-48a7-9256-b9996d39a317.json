@@ -1,0 +1,19 @@
+{
+  "name": "cries/cacturne-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685490,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2e36d972-e08f-489c-a0ae-9ddaad48601b"
+  ],
+  "etag": "+0A2PnYa1ExCySLAL8YQC1PRJu4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.490Z",
+  "updated": "2025-12-12T07:48:05.490Z",
+  "size": 2655,
+  "md5Hash": "9MxSVKVKpxM357muTrODbw==",
+  "crc32c": "1026904702"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/aerodactyl-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685604,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "643f6522-7671-4b61-b7ec-a99a26f28e22"
+  ],
+  "etag": "4CVP8BkxaShiI5M3dSjuF8LmrvM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.604Z",
+  "updated": "2025-12-12T07:48:05.604Z",
+  "size": 2760,
+  "md5Hash": "DwJLEnIerIs8RVDF3Fcmrg==",
+  "crc32c": "367069342"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/octillery-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684139,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ef94dcbe-2b00-4168-8c90-045103bfd3c7"
+  ],
+  "etag": "6q3ASgfGwTa9fAEwq99HOF3V170",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.139Z",
+  "updated": "2025-12-12T07:48:04.139Z",
+  "size": 2969,
+  "md5Hash": "EdywXhfMUADiNiVK0at08A==",
+  "crc32c": "2084187348"
+}

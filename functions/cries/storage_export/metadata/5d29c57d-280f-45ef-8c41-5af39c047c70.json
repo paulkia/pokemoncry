@@ -1,0 +1,19 @@
+{
+  "name": "cries/magneton-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684230,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6db78702-d5fc-45e2-9d9e-dcc7afb36a1c"
+  ],
+  "etag": "CymG07l270cQMH4ewKG6pPTCQPs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.230Z",
+  "updated": "2025-12-12T07:48:04.230Z",
+  "size": 2760,
+  "md5Hash": "+kUyPyAEeK/2D1abPrfDIA==",
+  "crc32c": "2889758728"
+}

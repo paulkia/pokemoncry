@@ -1,0 +1,19 @@
+{
+  "name": "cries/koffing-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683603,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "732f6d01-4776-45e4-a4cc-606634b4e50a"
+  ],
+  "etag": "+7njJFnoYL6/JiajCqbGhBInM1k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.603Z",
+  "updated": "2025-12-12T07:48:03.603Z",
+  "size": 2446,
+  "md5Hash": "R2SdARb583vKLVQjWYnwWA==",
+  "crc32c": "3655732052"
+}

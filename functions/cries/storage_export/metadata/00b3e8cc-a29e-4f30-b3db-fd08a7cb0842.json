@@ -1,0 +1,19 @@
+{
+  "name": "cries/flareon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684182,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "989373c5-7439-4e28-9506-eaa9f5ec0739"
+  ],
+  "etag": "Ig5LN/lw17pmLmdjw3RKjI5ts+A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.182Z",
+  "updated": "2025-12-12T07:48:04.182Z",
+  "size": 1924,
+  "md5Hash": "0koV8UDnKNoukVQzOtX0kg==",
+  "crc32c": "3591483690"
+}

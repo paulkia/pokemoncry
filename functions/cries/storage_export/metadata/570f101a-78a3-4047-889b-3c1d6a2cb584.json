@@ -1,0 +1,19 @@
+{
+  "name": "cries/cufant-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683926,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "72389df8-8049-40b7-934f-82e26b71121c"
+  ],
+  "etag": "u6N1kmjerdNShQaPoXDVj3lLTWY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.926Z",
+  "updated": "2025-12-12T07:48:03.926Z",
+  "size": 7540,
+  "md5Hash": "o9WY5k35bAKgBPTCxt8RwQ==",
+  "crc32c": "4011565981"
+}

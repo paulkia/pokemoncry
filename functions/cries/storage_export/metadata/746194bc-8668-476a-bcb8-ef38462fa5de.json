@@ -1,0 +1,19 @@
+{
+  "name": "cries/iron-thorns-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684343,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c9c6c460-8457-404b-848b-3ad58898679a"
+  ],
+  "etag": "RQDzJGHGQhdvDw2LHjIS7G9WGoU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.343Z",
+  "updated": "2025-12-12T07:48:04.343Z",
+  "size": 13832,
+  "md5Hash": "m5KQ/QOy67BLwH2jj64Htw==",
+  "crc32c": "3249180105"
+}

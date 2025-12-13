@@ -1,0 +1,19 @@
+{
+  "name": "cries/marowak-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684417,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "919968e5-dd43-40fc-8604-a772e63a7409"
+  ],
+  "etag": "mKI3ADB3zgWKrNVsLRVX02SakmI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.417Z",
+  "updated": "2025-12-12T07:48:04.417Z",
+  "size": 5624,
+  "md5Hash": "pKIHe7cysuYeh5+EvAi9KA==",
+  "crc32c": "140160019"
+}

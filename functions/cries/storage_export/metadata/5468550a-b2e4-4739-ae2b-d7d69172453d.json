@@ -1,0 +1,19 @@
+{
+  "name": "cries/meowth-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684075,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "aefbb63c-5192-4a72-8b0f-874b6e375a5a"
+  ],
+  "etag": "tyhqdC5uss8Lf6pC4Cw/ScbBVNw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.075Z",
+  "updated": "2025-12-12T07:48:04.075Z",
+  "size": 1401,
+  "md5Hash": "yuIny/qihVte2kpG3HyUHg==",
+  "crc32c": "4056812361"
+}

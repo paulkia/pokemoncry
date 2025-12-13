@@ -1,0 +1,19 @@
+{
+  "name": "cries/hippowdon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683815,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4c7611e9-b9de-40d3-b600-1ab254c91f8e"
+  ],
+  "etag": "zE8rlCqhVubNb0sEKNJcfLUkv8E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.815Z",
+  "updated": "2025-12-12T07:48:03.815Z",
+  "size": 3884,
+  "md5Hash": "giZh/ZnakwzHHBYEbN9R4g==",
+  "crc32c": "3294424140"
+}

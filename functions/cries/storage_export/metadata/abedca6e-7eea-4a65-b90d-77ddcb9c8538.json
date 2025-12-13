@@ -1,0 +1,19 @@
+{
+  "name": "cries/gastrodon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685915,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "53000828-3af5-407d-83d8-02dae64e65da"
+  ],
+  "etag": "QhXw5oOFPCZ9+NfkMGqA5KzrgfA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.915Z",
+  "updated": "2025-12-12T07:48:05.915Z",
+  "size": 9080,
+  "md5Hash": "XbGpCyGlrH7Bbk5NAp7S3g==",
+  "crc32c": "1396801080"
+}

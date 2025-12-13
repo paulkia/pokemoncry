@@ -1,0 +1,19 @@
+{
+  "name": "cries/venusaur-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683819,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "707e73b5-9c95-4184-8024-eaf56d1a1708"
+  ],
+  "etag": "gx9WCGmraXtNdL+iqPuKLYa4nO4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.819Z",
+  "updated": "2025-12-12T07:48:03.819Z",
+  "size": 6920,
+  "md5Hash": "pp6lpvVlColC89lH5i/qDA==",
+  "crc32c": "1630308750"
+}

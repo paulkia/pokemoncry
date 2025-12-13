@@ -38,7 +38,6 @@ function MultipleChoicePractice() {
     monNamesForRelevantGens,
   } = location.state || {};
   const navigate = useNavigate();
-  console.log(monNamesForRelevantGens);
   const [monInGameOrder] = useState(shuffle(monNamesForRelevantGens));
   const { settings } = useSettings();
   const [pokeNum, setPokeNum] = useState(0);

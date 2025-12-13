@@ -1,0 +1,19 @@
+{
+  "name": "cries/mudbray-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683718,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8c14308c-8fe9-44b5-851c-a43d72b43fa9"
+  ],
+  "etag": "CNtmR9+Yhcx8voR2eow4D9vYJbo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.718Z",
+  "updated": "2025-12-12T07:48:03.718Z",
+  "size": 6704,
+  "md5Hash": "0kFE22ynGQV1qB68QX0s+g==",
+  "crc32c": "3016042057"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/volcanion-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684118,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "71a887d0-46f5-426f-9a55-b503ba6441eb"
+  ],
+  "etag": "J/TQsIkX1Bez7vgVYFNAUeQJfT8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.118Z",
+  "updated": "2025-12-12T07:48:04.118Z",
+  "size": 10592,
+  "md5Hash": "jRkOgmQIU4kQrrtH6N8UeQ==",
+  "crc32c": "765263110"
+}

@@ -92,7 +92,7 @@ async function preloadMon(generationCount) {
       legacyCry: mon.cries?.legacy ?? null,
       latestCry: mon.cries?.latest ?? null,
       displaySprite: getAnimatedSprite(mon),
-      staticDisplaySprite: getAnimatedShinySprite(mon),
+      staticDisplaySprite: getStaticSprite(mon),
       sprite: getAnimatedSprite(mon),
       staticSprite: getStaticSprite(mon),
       shinySprite: getAnimatedShinySprite(mon),

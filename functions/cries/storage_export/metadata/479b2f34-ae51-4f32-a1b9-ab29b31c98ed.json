@@ -1,0 +1,19 @@
+{
+  "name": "cries/obstagoon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684453,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f12e8624-b0db-484b-870e-ac9af20d424d"
+  ],
+  "etag": "Pw8hS5MhMgG3QX5Ilsm3IIY6hJM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.453Z",
+  "updated": "2025-12-12T07:48:04.453Z",
+  "size": 12555,
+  "md5Hash": "OjFlOc667L06SQi29g6tLw==",
+  "crc32c": "3610569760"
+}

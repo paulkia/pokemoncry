@@ -1,0 +1,19 @@
+{
+  "name": "cries/blitzle-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684257,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b8a7ca8b-eafc-4f70-8f45-3579e4fef714"
+  ],
+  "etag": "VPo1FQurdEtuymCPtPxlENO/dQk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.257Z",
+  "updated": "2025-12-12T07:48:04.257Z",
+  "size": 6056,
+  "md5Hash": "s05fZx0iJtPCNdXTtqKjbw==",
+  "crc32c": "1700403762"
+}

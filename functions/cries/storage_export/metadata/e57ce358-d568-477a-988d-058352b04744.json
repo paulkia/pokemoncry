@@ -1,0 +1,19 @@
+{
+  "name": "cries/raichu-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684451,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8eeb70e3-7bb5-494e-8f2e-95a83de852c9"
+  ],
+  "etag": "j1u4t6QcBB9mK8vRKXQGhISI4Sw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.451Z",
+  "updated": "2025-12-12T07:48:04.451Z",
+  "size": 2760,
+  "md5Hash": "8qVgRIM/e7r3Og4jX576pQ==",
+  "crc32c": "2345259309"
+}

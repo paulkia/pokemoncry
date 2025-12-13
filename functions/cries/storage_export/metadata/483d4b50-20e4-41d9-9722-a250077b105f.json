@@ -1,0 +1,19 @@
+{
+  "name": "cries/crawdaunt-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684179,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6f9fa8a0-f44c-4583-894e-f44f9786d648"
+  ],
+  "etag": "MN62GC6flHDYFms22UfubtHN+no",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.179Z",
+  "updated": "2025-12-12T07:48:04.179Z",
+  "size": 2864,
+  "md5Hash": "XwGJhUUyMfTvWYv5c4aByA==",
+  "crc32c": "2474246255"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/kakuna-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683861,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5dba72b1-929e-4b79-870f-94ce5a4a94e7"
+  ],
+  "etag": "Y2Zmwh+tyYgw4oPY6GHxfG6g4Ow",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.861Z",
+  "updated": "2025-12-12T07:48:03.861Z",
+  "size": 6488,
+  "md5Hash": "ruF2NCruX2H3Ei6RuXUvAw==",
+  "crc32c": "2831643248"
+}

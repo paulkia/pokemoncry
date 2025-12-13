@@ -1,0 +1,19 @@
+{
+  "name": "cries/whimsicott-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683788,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "fb491d53-d019-4eb0-81bd-02012e6bc5f8"
+  ],
+  "etag": "Usk8zAGnsSPH1kGwhYEZE26T4P8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.788Z",
+  "updated": "2025-12-12T07:48:03.788Z",
+  "size": 3980,
+  "md5Hash": "6jaUhufETpj7FJwdxCwgcA==",
+  "crc32c": "2950476807"
+}

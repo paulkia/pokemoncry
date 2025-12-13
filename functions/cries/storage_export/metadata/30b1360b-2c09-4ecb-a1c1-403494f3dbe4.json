@@ -1,0 +1,19 @@
+{
+  "name": "cries/spoink-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685560,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6da9149a-234d-4326-8d45-32fc3073b300"
+  ],
+  "etag": "BIR0AMbkshGz9OibguNRlBTmaxc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.560Z",
+  "updated": "2025-12-12T07:48:05.560Z",
+  "size": 1192,
+  "md5Hash": "YpdJWvA6lmx26CjKprDSjg==",
+  "crc32c": "3100504288"
+}

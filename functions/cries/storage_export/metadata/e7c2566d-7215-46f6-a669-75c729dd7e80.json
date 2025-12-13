@@ -1,0 +1,19 @@
+{
+  "name": "cries/riolu-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684270,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a82f24c5-2e6c-422b-a41c-57de57c5d898"
+  ],
+  "etag": "Y721KkFQsVC7lOVqgtOYsXb/UMk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.270Z",
+  "updated": "2025-12-12T07:48:04.270Z",
+  "size": 1292,
+  "md5Hash": "QhkBxI+MrcHnbeomjoG6BA==",
+  "crc32c": "1070950682"
+}

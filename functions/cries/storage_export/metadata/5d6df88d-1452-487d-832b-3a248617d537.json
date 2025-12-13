@@ -1,0 +1,19 @@
+{
+  "name": "cries/pineco-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683876,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "398a0fbd-0a5a-4aa3-a2a0-b339e4f9e719"
+  ],
+  "etag": "WsDlCif7yqHdaWffAeq92UtPTZs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.876Z",
+  "updated": "2025-12-12T07:48:03.876Z",
+  "size": 1819,
+  "md5Hash": "cM3T4XZeGE6jmZjo3RabjQ==",
+  "crc32c": "2316096425"
+}

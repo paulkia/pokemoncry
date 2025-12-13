@@ -1,0 +1,19 @@
+{
+  "name": "cries/timburr-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683622,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a268cc64-147f-47f2-8b98-d1ff301031eb"
+  ],
+  "etag": "q5drX96ttv2+kiEs3u3mRjF58Ns",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.622Z",
+  "updated": "2025-12-12T07:48:03.622Z",
+  "size": 3896,
+  "md5Hash": "k3JTv9H2FuVrBN9BDAR7aQ==",
+  "crc32c": "4237204399"
+}

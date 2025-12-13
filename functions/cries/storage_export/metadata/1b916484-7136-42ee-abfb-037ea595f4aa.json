@@ -1,0 +1,19 @@
+{
+  "name": "cries/froakie-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684364,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e2bf2aaa-9d0c-47fd-8150-1c2c9c692f56"
+  ],
+  "etag": "5JeBX1TORPsLpzGEA42ZxzT6P+Q",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.364Z",
+  "updated": "2025-12-12T07:48:04.364Z",
+  "size": 4760,
+  "md5Hash": "SH4bYBi1DF+kzdz8bGOIpQ==",
+  "crc32c": "653928360"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/electrode-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683944,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cec3ccdf-00b4-4540-991a-6f79a01e2bfa"
+  ],
+  "etag": "Yoo2FbSwPqdd9sMFUVqJLXsC5Gg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.944Z",
+  "updated": "2025-12-12T07:48:03.944Z",
+  "size": 8648,
+  "md5Hash": "RlX7RQL1M98nhEk9zIcytg==",
+  "crc32c": "3042047779"
+}

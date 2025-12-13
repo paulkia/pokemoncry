@@ -1,0 +1,19 @@
+{
+  "name": "cries/keldeo-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684269,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "876bf41a-42f6-4bc7-8eae-8eca13600dfe"
+  ],
+  "etag": "3vk19FzOy9+QC5/rjPd9ZVtftmQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.269Z",
+  "updated": "2025-12-12T07:48:04.269Z",
+  "size": 6920,
+  "md5Hash": "1LKe6OWl7STQqJG9NJe/Dg==",
+  "crc32c": "1258629810"
+}

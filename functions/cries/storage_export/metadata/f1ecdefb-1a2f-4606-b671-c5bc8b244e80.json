@@ -1,0 +1,19 @@
+{
+  "name": "cries/lurantis-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686257,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4a3c0a4b-5af2-4a7e-a27b-9b8a4f66d330"
+  ],
+  "etag": "zsiRKhAlsg9HgipmTHIQ5XVpZio",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.257Z",
+  "updated": "2025-12-12T07:48:06.257Z",
+  "size": 7136,
+  "md5Hash": "kUVCXN+DCrGx/4ddTEzxfQ==",
+  "crc32c": "300301116"
+}

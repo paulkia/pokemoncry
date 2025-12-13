@@ -1,0 +1,19 @@
+{
+  "name": "cries/diancie-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684022,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d915de59-5a55-4894-9006-84a66c6d8c84"
+  ],
+  "etag": "aApLr8yaYmX4GCqIkPWSViz5Ft4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.022Z",
+  "updated": "2025-12-12T07:48:04.022Z",
+  "size": 12104,
+  "md5Hash": "Y+HKkVploHH0A94r99+vzQ==",
+  "crc32c": "2201327037"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/whismur-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683984,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b5644110-1b5a-4a92-b777-615d2896dd3c"
+  ],
+  "etag": "vDoORZdzarT+qJvKrXJhblwYk+Y",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.984Z",
+  "updated": "2025-12-12T07:48:03.984Z",
+  "size": 1297,
+  "md5Hash": "PuHZOiN1tQ0WNTkZITvbrQ==",
+  "crc32c": "3713655546"
+}

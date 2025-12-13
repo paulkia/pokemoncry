@@ -1,0 +1,19 @@
+{
+  "name": "cries/rapidash-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683664,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "dc19d04b-9629-42f5-96dd-2764584d6c8f"
+  ],
+  "etag": "2+8PjpJpO+tN9KMYWZFbNVEr7xc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.664Z",
+  "updated": "2025-12-12T07:48:03.664Z",
+  "size": 8216,
+  "md5Hash": "rBVN5XtwD9Ud3BdYemSUMQ==",
+  "crc32c": "1538828997"
+}

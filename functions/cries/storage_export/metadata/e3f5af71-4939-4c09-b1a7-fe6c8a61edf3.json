@@ -1,0 +1,19 @@
+{
+  "name": "cries/skuntank-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683549,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cd6c65a9-69fd-4aa5-b411-a4ed71f6359f"
+  ],
+  "etag": "cjnIWzgl4dolmV4dqmWE3uWZRc0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.549Z",
+  "updated": "2025-12-12T07:48:03.549Z",
+  "size": 3692,
+  "md5Hash": "4tKXKH9v9Ks5OhObaLtaRQ==",
+  "crc32c": "1193236963"
+}

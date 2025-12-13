@@ -1,0 +1,19 @@
+{
+  "name": "cries/misdreavus-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683867,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "487e3ce5-efba-4373-b5b0-5d129837cbcc"
+  ],
+  "etag": "qZwfVyGlYEv/Oc6VpQ8W/Pehpuo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.867Z",
+  "updated": "2025-12-12T07:48:03.867Z",
+  "size": 4760,
+  "md5Hash": "C6sPd8yMyAd3hb2EaldSLw==",
+  "crc32c": "1831008336"
+}

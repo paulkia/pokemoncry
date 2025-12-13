@@ -1,0 +1,19 @@
+{
+  "name": "cries/pidgeot-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683270,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "fbcbb47d-5be9-4836-8297-e44c5d0f48c1"
+  ],
+  "etag": "LbfN28PVVEYWWiWLozKPY5GEozI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.270Z",
+  "updated": "2025-12-12T07:48:03.270Z",
+  "size": 2133,
+  "md5Hash": "lyT9z+HraQb+HoIzz4uLhg==",
+  "crc32c": "278562486"
+}

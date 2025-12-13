@@ -1,0 +1,19 @@
+{
+  "name": "cries/jellicent-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683829,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1c5cb016-c3bb-442c-bc2d-545d126ae0d0"
+  ],
+  "etag": "g+SmNn+/DqYyFpF42F0g8NKTUS4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.829Z",
+  "updated": "2025-12-12T07:48:03.829Z",
+  "size": 6488,
+  "md5Hash": "mI25YEIhDHO/jORsWfNGuA==",
+  "crc32c": "1655532179"
+}

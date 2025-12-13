@@ -1,0 +1,19 @@
+{
+  "name": "cries/magmortar-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684116,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "96fa9f2c-170d-4b7c-826f-70580b8b9da3"
+  ],
+  "etag": "QRhVFm9lk5OJM0G/NstFqz1YBXg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.116Z",
+  "updated": "2025-12-12T07:48:04.116Z",
+  "size": 9080,
+  "md5Hash": "lz+xI+spP1sPKiiqdBysgQ==",
+  "crc32c": "1951665822"
+}

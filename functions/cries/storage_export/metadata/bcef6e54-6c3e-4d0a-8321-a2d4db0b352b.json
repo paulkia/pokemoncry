@@ -1,0 +1,19 @@
+{
+  "name": "cries/caterpie-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684277,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e12a887d-a4a2-43a5-9502-9bfcaeed919d"
+  ],
+  "etag": "8vqggIBgbFo7y3K6GvNw0f/a0iM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.277Z",
+  "updated": "2025-12-12T07:48:04.277Z",
+  "size": 1297,
+  "md5Hash": "fls+S5QzcaP74XuT1vQDZg==",
+  "crc32c": "3340718479"
+}

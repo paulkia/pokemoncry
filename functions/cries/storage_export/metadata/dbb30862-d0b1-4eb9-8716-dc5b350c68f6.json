@@ -1,0 +1,19 @@
+{
+  "name": "cries/exeggcute-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683762,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "399e7c52-bb19-4a55-9569-79d79a359094"
+  ],
+  "etag": "3XQykg0/ox1Ltthbn7ksiBFFsaI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.762Z",
+  "updated": "2025-12-12T07:48:03.762Z",
+  "size": 7568,
+  "md5Hash": "Ov5Kks9o18x0Y+r+xKrEmw==",
+  "crc32c": "4195375155"
+}

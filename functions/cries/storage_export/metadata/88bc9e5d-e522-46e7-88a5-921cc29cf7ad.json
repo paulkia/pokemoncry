@@ -1,0 +1,19 @@
+{
+  "name": "cries/altaria-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684211,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "12a29392-713c-4871-be3d-392191bd18b4"
+  ],
+  "etag": "5iHQuz7MaBzbEO06jFQqyEUvj3w",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.211Z",
+  "updated": "2025-12-12T07:48:04.211Z",
+  "size": 4328,
+  "md5Hash": "EfH7iihxR54EsJjgO1KU+A==",
+  "crc32c": "1240263686"
+}

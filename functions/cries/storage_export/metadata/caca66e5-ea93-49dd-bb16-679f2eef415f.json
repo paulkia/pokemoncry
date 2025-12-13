@@ -1,0 +1,19 @@
+{
+  "name": "cries/seviper-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684111,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "74a8f4c7-6b4d-42e1-9c95-b3f18d897715"
+  ],
+  "etag": "DkpJ5ll/Yuee1mwI0dRdGKO0SEM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.111Z",
+  "updated": "2025-12-12T07:48:04.111Z",
+  "size": 4544,
+  "md5Hash": "vMkPa6XJFAGbs88eVJf2kA==",
+  "crc32c": "3293236932"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/guzzlord-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684185,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "907a3192-e1fc-4b72-a76c-cb2556cbc956"
+  ],
+  "etag": "hmHx8HzDRjIPcYOhgwnp9pI8xr4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.185Z",
+  "updated": "2025-12-12T07:48:04.185Z",
+  "size": 14264,
+  "md5Hash": "KkMwWdevV9v4x10mEGWviQ==",
+  "crc32c": "1924985355"
+}

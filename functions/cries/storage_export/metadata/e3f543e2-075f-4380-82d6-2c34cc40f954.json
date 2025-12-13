@@ -1,0 +1,19 @@
+{
+  "name": "cries/skuntank-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683972,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d798f877-8f74-4e5d-822a-092c2f6b6687"
+  ],
+  "etag": "g29eOZOMkzcVp9MAarUI3trB5VM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.972Z",
+  "updated": "2025-12-12T07:48:03.972Z",
+  "size": 10376,
+  "md5Hash": "1Us2VlJGB/e++vrB+Evzow==",
+  "crc32c": "3247790508"
+}

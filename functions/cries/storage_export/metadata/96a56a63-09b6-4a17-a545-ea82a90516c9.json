@@ -1,0 +1,19 @@
+{
+  "name": "cries/sinistcha-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683821,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ae5f7618-06c6-437f-b71f-e583364d9176"
+  ],
+  "etag": "XOASmsPveMUtaQNcfXO2gwrNmPQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.821Z",
+  "updated": "2025-12-12T07:48:03.821Z",
+  "size": 13292,
+  "md5Hash": "bRp9k3VCt2aLJBtZ5W8qOg==",
+  "crc32c": "2984535863"
+}

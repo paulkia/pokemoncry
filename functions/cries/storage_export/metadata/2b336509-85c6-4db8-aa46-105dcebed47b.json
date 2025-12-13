@@ -1,0 +1,19 @@
+{
+  "name": "cries/raichu-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684276,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "199ce08d-1bd3-48bc-af23-55a179ea8fbe"
+  ],
+  "etag": "/XQXUrkOE9FwW6Bv4YtQq8WBV5M",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.276Z",
+  "updated": "2025-12-12T07:48:04.276Z",
+  "size": 7352,
+  "md5Hash": "t9tXG1jhUWvQqVjMDLo7KA==",
+  "crc32c": "2140268199"
+}

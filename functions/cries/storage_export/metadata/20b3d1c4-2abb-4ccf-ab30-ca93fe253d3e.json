@@ -1,0 +1,19 @@
+{
+  "name": "cries/serperior-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683615,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5e6c3e3b-6741-4621-ade0-ab0bcd908246"
+  ],
+  "etag": "k9V/x6lKTs/AThHMW2nRqkEm4n4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.615Z",
+  "updated": "2025-12-12T07:48:03.615Z",
+  "size": 8216,
+  "md5Hash": "QQnLl1dLgdOZVV+q/lfWHQ==",
+  "crc32c": "287049505"
+}

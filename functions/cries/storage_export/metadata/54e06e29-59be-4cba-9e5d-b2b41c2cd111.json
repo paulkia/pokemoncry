@@ -1,0 +1,19 @@
+{
+  "name": "cries/roaring-moon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684085,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c8e80464-ae42-45fe-bf3c-6278df00f81b"
+  ],
+  "etag": "4+I1dHH+TVJVItJqdxyzwnS55Vk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.085Z",
+  "updated": "2025-12-12T07:48:04.085Z",
+  "size": 12536,
+  "md5Hash": "cKifu4SO3MsdgdkVTvP6Fg==",
+  "crc32c": "1680107404"
+}

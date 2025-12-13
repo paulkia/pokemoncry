@@ -1,0 +1,19 @@
+{
+  "name": "cries/dreepy-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683675,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b18c692b-5d2b-418b-a057-da5188568c69"
+  ],
+  "etag": "7SSIyeqGYgpC/K8T5kBOV9MtH/A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.675Z",
+  "updated": "2025-12-12T07:48:03.675Z",
+  "size": 12137,
+  "md5Hash": "tJ3H0TEP0wpBFQIpT0elew==",
+  "crc32c": "2150857374"
+}

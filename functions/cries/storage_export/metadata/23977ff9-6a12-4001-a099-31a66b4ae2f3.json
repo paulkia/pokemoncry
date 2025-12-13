@@ -1,0 +1,19 @@
+{
+  "name": "cries/indeedee-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683682,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "10476403-46b3-4b92-a10b-f2b903fcd597"
+  ],
+  "etag": "CNohhLBiE5xixz5xNg+i9GyYCXY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.682Z",
+  "updated": "2025-12-12T07:48:03.682Z",
+  "size": 11092,
+  "md5Hash": "lg7DDw+1NClYVDZwPHvUhA==",
+  "crc32c": "2262234367"
+}

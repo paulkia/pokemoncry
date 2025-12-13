@@ -1,0 +1,19 @@
+{
+  "name": "cries/dewpider-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683806,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c880474c-86dc-4df9-9902-c8ac69936d54"
+  ],
+  "etag": "fmz/7Vh8Smz+4dHPVTs8A3IfodE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.806Z",
+  "updated": "2025-12-12T07:48:03.806Z",
+  "size": 3464,
+  "md5Hash": "HRZ7i9MDS/49n3qn9g7Pig==",
+  "crc32c": "4211367080"
+}

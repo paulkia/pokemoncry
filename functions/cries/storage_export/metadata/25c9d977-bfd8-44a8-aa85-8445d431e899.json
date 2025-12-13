@@ -1,0 +1,19 @@
+{
+  "name": "cries/shuckle-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684335,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e88d7483-2c4f-4a80-8b2d-528417ce55dc"
+  ],
+  "etag": "LAucI5yGylk6+szkGkvKJT30UFk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.335Z",
+  "updated": "2025-12-12T07:48:04.335Z",
+  "size": 1506,
+  "md5Hash": "Gv7+bFyhoUonedGTp7lmTw==",
+  "crc32c": "801830455"
+}

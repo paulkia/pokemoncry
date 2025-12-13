@@ -1,0 +1,19 @@
+{
+  "name": "cries/weavile-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683890,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e7f0808f-a42c-4bed-aa16-564773629da2"
+  ],
+  "etag": "s2VBsLqjq/v2YAAM+AmoguZV0Ak",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.890Z",
+  "updated": "2025-12-12T07:48:03.890Z",
+  "size": 1772,
+  "md5Hash": "vXTtC4q2u4hzMmIQQ2ItEQ==",
+  "crc32c": "3293537206"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/roserade-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683866,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "36316ced-0da5-4b35-956e-7dfe98fa0e3d"
+  ],
+  "etag": "AIZgL7ZWf89/FxweZT4Lv3ZTkvo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.866Z",
+  "updated": "2025-12-12T07:48:03.866Z",
+  "size": 2060,
+  "md5Hash": "2dUssuNKr+1ajnPKq1Bp4w==",
+  "crc32c": "1104181003"
+}

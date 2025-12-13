@@ -1,0 +1,19 @@
+{
+  "name": "cries/chingling-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683250,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4efec773-eff5-4178-853d-15b23bd43b25"
+  ],
+  "etag": "VhEW/ujwF7Flh+xukhHSGfYk/lU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.250Z",
+  "updated": "2025-12-12T07:48:03.250Z",
+  "size": 3116,
+  "md5Hash": "C+RyonGA/b3IU11f/aTA8Q==",
+  "crc32c": "3385486470"
+}

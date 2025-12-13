@@ -1,0 +1,19 @@
+{
+  "name": "cries/chikorita-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685800,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c207a2ad-1fca-4f89-8c81-782797072ba7"
+  ],
+  "etag": "qR+QQ0EINYloFs6LeCEeWvn4WFo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.800Z",
+  "updated": "2025-12-12T07:48:05.800Z",
+  "size": 3032,
+  "md5Hash": "n4ULAPzENwSR3IxByBRSlA==",
+  "crc32c": "2831328228"
+}

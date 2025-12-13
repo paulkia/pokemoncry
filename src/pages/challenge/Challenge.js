@@ -268,43 +268,13 @@ function Challenge() {
   }
 
   useEffect(() => {
-    // Play first cry with viz.
-
-    // setTimeout(() => {
-    //   playCryForMon(
-    //     preloadedMon[firstMon],
-    //     vizInitializedRef,
-    //     audioRef,
-    //     canvasRef,
-    //     settings.preferLegacyCries
-    //   );
-    //   inputRef.current && inputRef.current.focus();
-    //   totalStartRef.current = Date.now() + 500;
-    //   // Initialize local timers for the first Pokémon
-    //   const start = Date.now() + 500;
-    //   localStartRef.current = start; // for scoring
-    //   setLocalStartMs(start); // for display
-    //   dispatch({
-    //     type: ACTION_TYPES.INITIAL_SETUP,
-    //     preloadedMon: preloadedMon,
-    //     monInGameOrder: monInGameOrder,
-    //     pokeNum: 20,
-    //   });
-    // }, 500);
-    console.log("Initializing session...");
-
     async function initSession() {
-      console.log("initsession call");
       try {
-        console.log("hi?");
         const result = await startSession({
           generation: selectedGenerationId,
           mode: numberOfMons === 20 ? "fast" : "full",
           useLegacyCries: settings.preferLegacyCries,
         });
-
-        console.log("here -- result = ", result);
-
         dispatch({
           type: ACTION_TYPES.INITIAL_SETUP,
           preloadedMon: preloadedMon,
@@ -313,7 +283,6 @@ function Challenge() {
         inputRef.current && inputRef.current.focus();
 
         setSessionId(result.data.sessionId);
-        console.log("setting total mon count to ", result.data.totalMonCount);
         setTotalMonCount(result.data.totalMonCount);
         setCurrentCryData(result.data.firstMonCryData);
 

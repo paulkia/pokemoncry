@@ -1,0 +1,19 @@
+{
+  "name": "cries/shiftry-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683643,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f7514e35-f82a-4145-8502-6334e7b4e27b"
+  ],
+  "etag": "ddHTX3t+2JAM1z/IV5ul4P14Dbo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.643Z",
+  "updated": "2025-12-12T07:48:03.643Z",
+  "size": 6272,
+  "md5Hash": "/eE8+rm3nS99G/XTnYM8iw==",
+  "crc32c": "2886373254"
+}

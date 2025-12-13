@@ -1,0 +1,19 @@
+{
+  "name": "cries/deerling-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685749,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6c07b2aa-af2c-4477-b952-4e7f133c5e40"
+  ],
+  "etag": "bUUDRvd1S23xwzMwmCWQu/+VVhE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.749Z",
+  "updated": "2025-12-12T07:48:05.749Z",
+  "size": 2708,
+  "md5Hash": "fn5jsM88vXQQ/qykNg2fWA==",
+  "crc32c": "1071246201"
+}

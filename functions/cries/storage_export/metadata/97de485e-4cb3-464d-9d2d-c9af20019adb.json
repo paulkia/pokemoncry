@@ -1,0 +1,19 @@
+{
+  "name": "cries/politoed-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684400,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d23087dc-22bd-4913-ad8c-fa454b48ef47"
+  ],
+  "etag": "KwRu8jGCx9msM+yfMnmf9tK/43w",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.400Z",
+  "updated": "2025-12-12T07:48:04.400Z",
+  "size": 2237,
+  "md5Hash": "l7wlz6VJcE/nPZ7OBhCE5g==",
+  "crc32c": "4184770814"
+}

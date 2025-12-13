@@ -1,0 +1,19 @@
+{
+  "name": "cries/ribombee-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684014,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7b6098dc-f195-4309-8011-b37f8dde1efd"
+  ],
+  "etag": "SqoQNU0qKhnACHZB94EdJ2WJ1ww",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.014Z",
+  "updated": "2025-12-12T07:48:04.014Z",
+  "size": 9512,
+  "md5Hash": "YPTtfu0UNuGQpJZ3+eSuag==",
+  "crc32c": "2159499518"
+}

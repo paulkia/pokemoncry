@@ -1,0 +1,19 @@
+{
+  "name": "cries/cofagrigus-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683794,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "13ce2358-e635-4f8b-b3b6-e540af7d48e3"
+  ],
+  "etag": "4ltRUQ4WcwPVARmh/ChyhWy8MyQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.794Z",
+  "updated": "2025-12-12T07:48:03.794Z",
+  "size": 10376,
+  "md5Hash": "VjS2xGEKhJQXg+cECW+uSQ==",
+  "crc32c": "2255816074"
+}

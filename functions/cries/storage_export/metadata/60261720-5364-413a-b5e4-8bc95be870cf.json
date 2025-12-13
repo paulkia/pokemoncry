@@ -1,0 +1,19 @@
+{
+  "name": "cries/joltik-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686061,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "029286d6-9d18-4c24-a0a4-1be2be85463c"
+  ],
+  "etag": "fbzCJ8JYNTmi0fVVB1yV5Qt9NVE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.061Z",
+  "updated": "2025-12-12T07:48:06.061Z",
+  "size": 4823,
+  "md5Hash": "B72fvG5RWiN6AtEUlGqMsg==",
+  "crc32c": "4283503416"
+}

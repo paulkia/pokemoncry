@@ -1,0 +1,19 @@
+{
+  "name": "cries/grotle-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683996,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3a7f670a-3292-417e-91e5-1fa6e3d0ea09"
+  ],
+  "etag": "K+I9imgKhk+21DYeoMf6iogL+RY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.996Z",
+  "updated": "2025-12-12T07:48:03.996Z",
+  "size": 4976,
+  "md5Hash": "19Ngn2/tFU7ljr/FPVRqpA==",
+  "crc32c": "3265751411"
+}

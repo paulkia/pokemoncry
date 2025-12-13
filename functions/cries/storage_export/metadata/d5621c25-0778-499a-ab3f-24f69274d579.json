@@ -1,0 +1,19 @@
+{
+  "name": "cries/pancham-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685756,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ccadaa23-720c-4ebc-865b-39910009b0ba"
+  ],
+  "etag": "VwBpfWxHKk1vCh4gnEwRrl+PhrQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.756Z",
+  "updated": "2025-12-12T07:48:05.756Z",
+  "size": 4976,
+  "md5Hash": "8wX6OrYNU2mt9FKijPhbvw==",
+  "crc32c": "3816434856"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/dondozo-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683913,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "93040637-af67-4b17-9578-4561b2180bf0"
+  ],
+  "etag": "3gNTNid/RSo60kGoBp9u4TEO6D0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.913Z",
+  "updated": "2025-12-12T07:48:03.913Z",
+  "size": 24467,
+  "md5Hash": "+OT0ppR9pP7LLOOdPZ4IJg==",
+  "crc32c": "2112334590"
+}

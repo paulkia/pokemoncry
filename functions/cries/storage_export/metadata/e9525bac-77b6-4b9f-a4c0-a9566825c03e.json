@@ -1,0 +1,19 @@
+{
+  "name": "cries/shaymin-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684103,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0433bb38-c600-403b-a2f0-b8e714df9347"
+  ],
+  "etag": "AreHRih3+lkvgGmjplMk1gInW+U",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.103Z",
+  "updated": "2025-12-12T07:48:04.103Z",
+  "size": 11456,
+  "md5Hash": "mZgxc28ge9sF2p3Vo8yCRw==",
+  "crc32c": "1261888318"
+}

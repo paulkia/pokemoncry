@@ -1,0 +1,19 @@
+{
+  "name": "cries/butterfree-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685331,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b6cf3dbf-44b3-42ca-a075-dda02da877b0"
+  ],
+  "etag": "z0zyeHPtK5nxth6HbJ9VBYHRUf0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.331Z",
+  "updated": "2025-12-12T07:48:05.331Z",
+  "size": 4760,
+  "md5Hash": "2kgphkDuTEWOj25gGLKZJQ==",
+  "crc32c": "293339771"
+}

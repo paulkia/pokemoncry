@@ -1,0 +1,19 @@
+{
+  "name": "cries/spidops-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683897,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2ef1a45a-16e6-49b4-a25d-81121f46ad8d"
+  ],
+  "etag": "MCZKDfOqqMuY15w23QYehZi8l3U",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.897Z",
+  "updated": "2025-12-12T07:48:03.897Z",
+  "size": 17324,
+  "md5Hash": "Wfq5DlmSzRsMT/ZFvD3YTw==",
+  "crc32c": "3189257249"
+}
