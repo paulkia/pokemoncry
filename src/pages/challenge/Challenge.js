@@ -22,7 +22,7 @@ import {
   ROUTER_UTIL,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForMon, playCryFromByteUrl } from "../../library/audioviz";
+import { playCryForMon, playCryFromByteUrl } from "../../library/audioViz";
 
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";

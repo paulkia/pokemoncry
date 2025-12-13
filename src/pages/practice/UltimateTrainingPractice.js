@@ -22,7 +22,7 @@ import {
   SHINY_AUDIO_SOUND,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForMon } from "../../library/audioviz";
+import { playCryForMon } from "../../library/audioViz";
 import { useSettings } from "../../AppContext";
 
 import PokeProgressBar from "../../components/PokeProgressBar";

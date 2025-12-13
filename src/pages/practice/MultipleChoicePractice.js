@@ -11,7 +11,7 @@ import {
   NEUTRAL_RESULT_COLOR,
 } from "../../library/util";
 import { useSettings } from "../../AppContext";
-import { playCryForMon } from "../../library/audioviz";
+import { playCryForMon } from "../../library/audioViz";
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import correctSound from "../../audio/correct.mp3";

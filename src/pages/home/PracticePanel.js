@@ -12,13 +12,9 @@ import {
   ListGroup,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Settings from "../../components/Settings";
 import { useNavigate } from "react-router-dom";
 import {
-  LOCAL_STORAGE_UTIL,
-  DEFAULT_SETTINGS,
   ROUTER_UTIL,
-  NEUTRAL_RESULT_COLOR,
   shuffle,
 } from "../../library/util";
 import { usePoke } from "../../AppContext";

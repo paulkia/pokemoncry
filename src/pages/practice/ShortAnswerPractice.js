@@ -21,10 +21,9 @@ import {
   NEUTRAL_RESULT_COLOR,
   SHINY_PROBABILITY,
   shuffle,
-  getRandomElement,
 } from "../../library/util";
 import { Trie } from "../../library/trie";
-import { playCryForMon } from "../../library/audioviz";
+import { playCryForMon } from "../../library/audioViz";
 
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";

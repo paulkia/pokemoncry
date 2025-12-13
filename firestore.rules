@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      // Users can read their own data.
+      allow read: if request.auth.uid == userId;
+
+      // Users can create their profile, but cannot set a score initially.
+      // Scores should only be added by a trusted cloud function.
+      allow create: if request.auth.uid == userId
+                    && !("score" in request.resource.data);
+
+      // Users can update their profile (e.g. username), but cannot change their score.
+      allow update: if request.auth.uid == userId
+                    && request.resource.data.score == resource.data.score;
+                    
+      // Disallow client-side deletion for safety. 
+      // Handle this with a Cloud Function if needed.
+      allow delete: if false;
+    }
+    
+    match /runs/{runId} {
+      allow read: if true;
+      allow write: if false; // Only cloud functions can write
+    }
+
+    match /sessions/{sessionId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false; // Only cloud functions can write
+    }
+  }
+}
