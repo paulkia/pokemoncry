@@ -1,0 +1,19 @@
+{
+  "name": "cries/frogadier-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683973,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1bcd27f9-731c-440f-8e8d-14279c398904"
+  ],
+  "etag": "co8KJ+vgAmBulvO4kzipYJyT0NM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.973Z",
+  "updated": "2025-12-12T07:48:03.973Z",
+  "size": 6272,
+  "md5Hash": "lubZzKDXOZ3ZABXs7/8mLQ==",
+  "crc32c": "3067181947"
+}

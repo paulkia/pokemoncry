@@ -1,0 +1,19 @@
+{
+  "name": "cries/revavroom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683748,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f79563f2-fa35-444d-a720-74e9d72ef9b5"
+  ],
+  "etag": "9yJsIfMOW7Fe/bzbrzjZNXQQSWw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.748Z",
+  "updated": "2025-12-12T07:48:03.748Z",
+  "size": 17516,
+  "md5Hash": "cv7exg+lTSbiV0QOtY1t/A==",
+  "crc32c": "787257042"
+}

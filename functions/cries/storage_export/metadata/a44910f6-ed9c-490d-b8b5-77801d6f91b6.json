@@ -1,0 +1,19 @@
+{
+  "name": "cries/buneary-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683933,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "04517954-7a74-4f55-941e-1c68e4fa1440"
+  ],
+  "etag": "H1cx4i5B2Z9aApga4IqIRd5Rx4I",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.933Z",
+  "updated": "2025-12-12T07:48:03.933Z",
+  "size": 2444,
+  "md5Hash": "vXSFOSLpq7Ky66ACsDLeCQ==",
+  "crc32c": "580340855"
+}

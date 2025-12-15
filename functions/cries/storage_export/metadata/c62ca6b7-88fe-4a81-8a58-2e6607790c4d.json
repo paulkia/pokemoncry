@@ -1,0 +1,19 @@
+{
+  "name": "cries/crocalor-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684320,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7207a357-e93e-4560-84ec-e3e6cb9c8176"
+  ],
+  "etag": "cir6C0tpvrpzdxBpxVv+n3B0UBM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.320Z",
+  "updated": "2025-12-12T07:48:04.320Z",
+  "size": 7568,
+  "md5Hash": "GM5aMKSlBLRPSgV0IQXZqQ==",
+  "crc32c": "3699230571"
+}

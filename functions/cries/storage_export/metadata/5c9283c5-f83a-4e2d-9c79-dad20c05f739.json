@@ -1,0 +1,19 @@
+{
+  "name": "cries/kabutops-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685909,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "55c097f3-e762-4918-8124-9aff384ecd23"
+  ],
+  "etag": "kpMxhe9sooR+57MaTDX9bKXAuVk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.909Z",
+  "updated": "2025-12-12T07:48:05.909Z",
+  "size": 1819,
+  "md5Hash": "zAtakhT3XqfqhSQYSd0Nug==",
+  "crc32c": "4224323712"
+}

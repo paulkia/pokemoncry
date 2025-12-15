@@ -1,0 +1,19 @@
+{
+  "name": "cries/clefairy-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684245,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1fd77bd1-7203-49fd-991b-3dd3760ab767"
+  ],
+  "etag": "YxgWdyu4W7we2kzLiRRNKc8JIW0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.245Z",
+  "updated": "2025-12-12T07:48:04.245Z",
+  "size": 3896,
+  "md5Hash": "3IWYMBVRQsy3Qfjx5q/PiA==",
+  "crc32c": "3833163624"
+}

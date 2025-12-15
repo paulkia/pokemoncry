@@ -1,0 +1,19 @@
+{
+  "name": "cries/giratina-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685807,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c05419e7-8e5b-404c-a5e9-188c5634f59b"
+  ],
+  "etag": "goV5HnrD7v0jkfG5tjuYE81fhm4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.807Z",
+  "updated": "2025-12-12T07:48:05.807Z",
+  "size": 3596,
+  "md5Hash": "Noz5XIBaasBqIeOlCet/Fw==",
+  "crc32c": "564607642"
+}

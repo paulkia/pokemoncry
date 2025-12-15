@@ -1,0 +1,19 @@
+{
+  "name": "cries/ursaluna-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684204,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5c6a0460-1444-4c2c-b67b-5b0d43e7d138"
+  ],
+  "etag": "+Um5VJFnbYcoFPvfZ/Yi0ViIM6I",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.204Z",
+  "updated": "2025-12-12T07:48:04.204Z",
+  "size": 9452,
+  "md5Hash": "4LVkyge3KaN62hC0BRTrCQ==",
+  "crc32c": "1161016471"
+}

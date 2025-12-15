@@ -1,0 +1,19 @@
+{
+  "name": "cries/steenee-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683601,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "97decdc1-d3b6-4896-bc18-0998482d94f9"
+  ],
+  "etag": "qtvd8GRTclHCQuvLbhxtOHi2PRA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.601Z",
+  "updated": "2025-12-12T07:48:03.601Z",
+  "size": 7784,
+  "md5Hash": "LlumIXtamGNXVCAXUT64vg==",
+  "crc32c": "3913984815"
+}

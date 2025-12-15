@@ -1,0 +1,19 @@
+{
+  "name": "cries/electivire-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684052,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9aea3762-2e1c-490d-91fc-c98e767ccd3f"
+  ],
+  "etag": "Nasbpw9gw+VygCYeiYRrvSJG5Vw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.052Z",
+  "updated": "2025-12-12T07:48:04.052Z",
+  "size": 12536,
+  "md5Hash": "fqf79lcHbAUr+P17p3LF9g==",
+  "crc32c": "3562071082"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/hoppip-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685859,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "71b36a0e-5e81-4b4b-8b9b-cb496b51212c"
+  ],
+  "etag": "XAfeVCSc1j5l2L5nnTwvSfA51Vo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.859Z",
+  "updated": "2025-12-12T07:48:05.859Z",
+  "size": 3464,
+  "md5Hash": "1vFBwjvyhzkMQHq6brL4TQ==",
+  "crc32c": "1991108001"
+}

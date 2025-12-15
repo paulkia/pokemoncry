@@ -1,0 +1,19 @@
+{
+  "name": "cries/omanyte-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684439,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b66e66de-b801-4355-b342-b5c14b6fe7b1"
+  ],
+  "etag": "9d5wATJAx0hOToUg94ZxK6PAz7s",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.439Z",
+  "updated": "2025-12-12T07:48:04.439Z",
+  "size": 5408,
+  "md5Hash": "dbGKuzpsZhswHBa0zsyFfw==",
+  "crc32c": "2042644025"
+}

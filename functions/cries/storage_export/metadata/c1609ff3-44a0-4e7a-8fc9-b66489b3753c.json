@@ -1,0 +1,19 @@
+{
+  "name": "cries/swellow-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684431,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f6398731-2d67-4273-936f-5e236554ce6e"
+  ],
+  "etag": "n3Dek3ToqWEtGszl6hbQFqSSctU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.431Z",
+  "updated": "2025-12-12T07:48:04.431Z",
+  "size": 3680,
+  "md5Hash": "22Pnzvhkkn8rir5bC3b0sQ==",
+  "crc32c": "422827475"
+}

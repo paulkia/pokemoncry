@@ -1,0 +1,19 @@
+{
+  "name": "cries/lilligant-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684081,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b3f6eedb-f65b-4204-8786-7291fab57030"
+  ],
+  "etag": "1eLIVQWhWx9bs5RPUgBbhR4WKaY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.081Z",
+  "updated": "2025-12-12T07:48:04.081Z",
+  "size": 3464,
+  "md5Hash": "DROQw6b1b+LCsRlt/pjKVw==",
+  "crc32c": "3602854022"
+}

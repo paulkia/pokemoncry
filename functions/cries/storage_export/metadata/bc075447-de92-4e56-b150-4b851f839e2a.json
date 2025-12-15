@@ -1,0 +1,19 @@
+{
+  "name": "cries/slither-wing-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684200,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0d8576be-7355-4379-acf3-66951f697189"
+  ],
+  "etag": "XcgfCbgmGv0LTjpvr5cu6qiYzxQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.200Z",
+  "updated": "2025-12-12T07:48:04.200Z",
+  "size": 12536,
+  "md5Hash": "/CCkCHnR085N0r6fvAwn9Q==",
+  "crc32c": "1123656129"
+}

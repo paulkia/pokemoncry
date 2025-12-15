@@ -1,0 +1,19 @@
+{
+  "name": "cries/gardevoir-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683585,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a2e0348d-6278-4dde-aea3-49dbd7d159b8"
+  ],
+  "etag": "okmQ/go3/KMQUWlp9ejDuIdS91U",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.585Z",
+  "updated": "2025-12-12T07:48:03.585Z",
+  "size": 8432,
+  "md5Hash": "VFgy1jbLi/1LReeCFPYBAw==",
+  "crc32c": "3088613331"
+}

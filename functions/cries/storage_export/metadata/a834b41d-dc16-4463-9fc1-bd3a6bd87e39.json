@@ -1,0 +1,19 @@
+{
+  "name": "cries/dedenne-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684387,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0d7911d5-08dc-444b-9b83-875699e7ac2b"
+  ],
+  "etag": "Dhk4VyC34Uq8YYzf39/Z9fI+bC4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.387Z",
+  "updated": "2025-12-12T07:48:04.387Z",
+  "size": 4544,
+  "md5Hash": "OCenZFbG1VDaOWmUV/SXPg==",
+  "crc32c": "4271511537"
+}

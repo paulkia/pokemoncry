@@ -1,0 +1,19 @@
+{
+  "name": "cries/salandit-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684265,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9fd10d74-6139-4d29-baa7-5b7a603e0d64"
+  ],
+  "etag": "ZMxJIefreYZ+YBWEVPlHU8K2gmM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.265Z",
+  "updated": "2025-12-12T07:48:04.265Z",
+  "size": 8648,
+  "md5Hash": "DphC6VEhh5whgVoTvaj2gA==",
+  "crc32c": "948395120"
+}

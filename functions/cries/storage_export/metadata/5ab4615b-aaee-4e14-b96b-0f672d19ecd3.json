@@ -1,0 +1,19 @@
+{
+  "name": "cries/mareep-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684426,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "40152e11-5f58-4f35-a5fb-6d81f9b57518"
+  ],
+  "etag": "Q0JyYhQbDYvC8wotH52NGSqLpsQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.426Z",
+  "updated": "2025-12-12T07:48:04.426Z",
+  "size": 1192,
+  "md5Hash": "7uB/9wQaMCfbKGZhKjCfoA==",
+  "crc32c": "1970234065"
+}

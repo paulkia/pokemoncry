@@ -1,0 +1,19 @@
+{
+  "name": "cries/groudon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684024,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "32804be7-ad50-4f0e-a416-aeb03206259d"
+  ],
+  "etag": "fJ/j2YSA+Yaw17MNMoNeAYsPt2w",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.024Z",
+  "updated": "2025-12-12T07:48:04.024Z",
+  "size": 4014,
+  "md5Hash": "xWLbJIQgAwdaEwF+fQrFlg==",
+  "crc32c": "2147817312"
+}

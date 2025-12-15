@@ -1,0 +1,19 @@
+{
+  "name": "cries/lanturn-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685503,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "dc5fab30-3145-4fc1-8a8d-4a49edfb5f15"
+  ],
+  "etag": "P0dsVAoeKb8CtDnfwtI7KqJWRuA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.503Z",
+  "updated": "2025-12-12T07:48:05.503Z",
+  "size": 4760,
+  "md5Hash": "EtY/27X1k1Jlueqx4DoE8A==",
+  "crc32c": "574851767"
+}

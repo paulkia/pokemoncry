@@ -1,0 +1,19 @@
+{
+  "name": "cries/luvdisc-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684438,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ef3c42fc-b5b7-49a4-ad2f-4c8a3b8aabc2"
+  ],
+  "etag": "V2iQu4zNEDaa/s5jAXoAMsWL5CA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.438Z",
+  "updated": "2025-12-12T07:48:04.438Z",
+  "size": 983,
+  "md5Hash": "V+Hf8oXUaemM1W/Yvg/qDA==",
+  "crc32c": "3358200921"
+}

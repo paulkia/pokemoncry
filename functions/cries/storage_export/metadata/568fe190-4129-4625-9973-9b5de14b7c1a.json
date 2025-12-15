@@ -1,0 +1,19 @@
+{
+  "name": "cries/treecko-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683729,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f27100aa-f55e-4306-9c92-64b384978c03"
+  ],
+  "etag": "XGV32515pJfq21AHLIOJDGlNgR4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.729Z",
+  "updated": "2025-12-12T07:48:03.729Z",
+  "size": 1610,
+  "md5Hash": "6/jkYRI2qSxRi8TorkiTgw==",
+  "crc32c": "1168507269"
+}

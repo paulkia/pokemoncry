@@ -1,0 +1,19 @@
+{
+  "name": "cries/arctibax-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684111,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "44b0247f-4ceb-4401-8850-7eb30e92a8da"
+  ],
+  "etag": "DkpJ5ll/Yuee1mwI0dRdGKO0SEM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.111Z",
+  "updated": "2025-12-12T07:48:04.111Z",
+  "size": 10604,
+  "md5Hash": "D4EB4ncUAyBoLO/9Y4tt+Q==",
+  "crc32c": "3196586750"
+}

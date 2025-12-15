@@ -1,0 +1,19 @@
+{
+  "name": "cries/solrock-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525682984,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "339096ed-633b-4880-90d2-5a2e6077826d"
+  ],
+  "etag": "p1kouc5kdMs7ziXzFJd7rWEpxQk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:02.984Z",
+  "updated": "2025-12-12T07:48:02.984Z",
+  "size": 5408,
+  "md5Hash": "kaOTz6QUVkycR8zS7nQPgw==",
+  "crc32c": "2974938261"
+}

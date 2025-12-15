@@ -1,0 +1,19 @@
+{
+  "name": "cries/dunsparce-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684300,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b47c5325-7360-4b61-bf56-7c1bb167fe0b"
+  ],
+  "etag": "gSM+yxQgkLe2A97RK3gvXNI0jBE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.300Z",
+  "updated": "2025-12-12T07:48:04.300Z",
+  "size": 5840,
+  "md5Hash": "mQIRMwj+AsXjg1RIVb0FHA==",
+  "crc32c": "4220902315"
+}

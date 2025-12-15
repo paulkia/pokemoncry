@@ -1,0 +1,19 @@
+{
+  "name": "cries/zoroark-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684158,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4267bc16-ab4f-4582-a5f1-d685b07fdc46"
+  ],
+  "etag": "wjUFcbuy0+P4hcPdLIoPgRUxdw0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.158Z",
+  "updated": "2025-12-12T07:48:04.158Z",
+  "size": 4652,
+  "md5Hash": "f9pT+SG7tu7eqMNC5lo5Zw==",
+  "crc32c": "1896698485"
+}

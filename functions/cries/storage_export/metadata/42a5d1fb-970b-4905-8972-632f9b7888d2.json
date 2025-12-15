@@ -1,0 +1,19 @@
+{
+  "name": "cries/scrafty-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683906,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2f7d41e9-747f-4e7a-8e87-ad86b125990e"
+  ],
+  "etag": "zIBZIPkDXM7iGkJxmidDcYq6F/Q",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.906Z",
+  "updated": "2025-12-12T07:48:03.906Z",
+  "size": 6920,
+  "md5Hash": "f0jCzPTGHfpFv690ePVqwA==",
+  "crc32c": "2579529784"
+}

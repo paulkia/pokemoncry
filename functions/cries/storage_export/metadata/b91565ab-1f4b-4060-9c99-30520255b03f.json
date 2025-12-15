@@ -1,0 +1,19 @@
+{
+  "name": "cries/illumise-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685695,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c6aea73c-8e81-4b1c-bcb7-a6f64cb92699"
+  ],
+  "etag": "ibAS6W6Y9Va0aH3aP5A7VK4BCxI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.695Z",
+  "updated": "2025-12-12T07:48:05.695Z",
+  "size": 6272,
+  "md5Hash": "6n39hz8RIH6CIz7+bY6qMg==",
+  "crc32c": "3126236651"
+}

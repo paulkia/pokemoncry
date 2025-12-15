@@ -1,0 +1,19 @@
+{
+  "name": "cries/phanpy-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684277,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "42886c4f-5026-44b8-91f0-3165cbb19d04"
+  ],
+  "etag": "8vqggIBgbFo7y3K6GvNw0f/a0iM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.277Z",
+  "updated": "2025-12-12T07:48:04.277Z",
+  "size": 1610,
+  "md5Hash": "UXnuRNGll/G8xQzaChEQfg==",
+  "crc32c": "1047594725"
+}

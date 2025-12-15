@@ -1,0 +1,19 @@
+{
+  "name": "cries/pangoro-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684361,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1bc3e09b-964c-464c-851e-7464e0bee4ed"
+  ],
+  "etag": "vMtvPlXvg0L5tz855uSjOGvLK1w",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.361Z",
+  "updated": "2025-12-12T07:48:04.361Z",
+  "size": 6488,
+  "md5Hash": "f0daK6QZZdtKH6Fu6ETIxg==",
+  "crc32c": "1470069293"
+}

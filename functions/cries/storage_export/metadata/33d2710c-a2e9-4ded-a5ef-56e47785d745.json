@@ -1,0 +1,19 @@
+{
+  "name": "cries/hydreigon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683606,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "43b93e56-f8da-46d3-a5aa-b4b99ca53c49"
+  ],
+  "etag": "BEyKtTMmtukDs5n9pQW+WIzaLjE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.606Z",
+  "updated": "2025-12-12T07:48:03.606Z",
+  "size": 3980,
+  "md5Hash": "C3m+xRkAjjJREKporxnlOg==",
+  "crc32c": "118359762"
+}

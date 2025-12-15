@@ -1,0 +1,19 @@
+{
+  "name": "cries/linoone-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685871,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "101022c1-adf1-48a1-8e6b-7206f7f65b59"
+  ],
+  "etag": "q/8CctsFHmvVz9ofYHPMrv04c9Q",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.871Z",
+  "updated": "2025-12-12T07:48:05.871Z",
+  "size": 9728,
+  "md5Hash": "ltJRF8VOfmT1VW9/kEpHfg==",
+  "crc32c": "93058077"
+}

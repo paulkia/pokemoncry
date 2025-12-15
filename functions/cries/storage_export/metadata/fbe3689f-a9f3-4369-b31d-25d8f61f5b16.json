@@ -1,0 +1,19 @@
+{
+  "name": "cries/deino-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684216,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c2f03da5-7672-4b42-a762-d904881c4780"
+  ],
+  "etag": "z0pI2FcJ5xwoWuPQYps1Mnn78Pc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.216Z",
+  "updated": "2025-12-12T07:48:04.216Z",
+  "size": 9728,
+  "md5Hash": "SvPX0ewdBskjZ9d6iwSGRw==",
+  "crc32c": "3118677463"
+}

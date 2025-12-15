@@ -1,0 +1,19 @@
+{
+  "name": "cries/skiploom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683684,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8e443439-1017-4576-b2c5-890b9a374131"
+  ],
+  "etag": "b++ZnMvSOV9UchkRzCpN9wqDWE4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.684Z",
+  "updated": "2025-12-12T07:48:03.684Z",
+  "size": 4760,
+  "md5Hash": "GYH8v6ofiNEoSKijX8c34A==",
+  "crc32c": "3878802112"
+}

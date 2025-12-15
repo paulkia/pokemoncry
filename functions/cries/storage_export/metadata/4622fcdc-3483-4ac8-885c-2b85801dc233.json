@@ -1,0 +1,19 @@
+{
+  "name": "cries/corsola-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683361,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ae362c8a-4609-4c76-b6f6-664d8745bd11"
+  ],
+  "etag": "qMLLG4DnOZWPtqRVLE18pBr2V9U",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.361Z",
+  "updated": "2025-12-12T07:48:03.361Z",
+  "size": 1715,
+  "md5Hash": "dPVc/PpzmRnnE3ux46RKRw==",
+  "crc32c": "3174450588"
+}

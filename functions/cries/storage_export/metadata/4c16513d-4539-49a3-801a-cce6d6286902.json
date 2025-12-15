@@ -1,0 +1,19 @@
+{
+  "name": "cries/ariados-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684131,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "390ab2a9-eae4-43d4-a091-44aef1c954e8"
+  ],
+  "etag": "4PlrC2k6brQ13wzWozk4e67wcIg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.131Z",
+  "updated": "2025-12-12T07:48:04.131Z",
+  "size": 5192,
+  "md5Hash": "aX6phD04I0vH7Nfsuf+hqA==",
+  "crc32c": "1424456666"
+}

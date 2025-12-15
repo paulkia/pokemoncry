@@ -1,0 +1,19 @@
+{
+  "name": "cries/blaziken-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684371,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9d9252dd-3d75-41e6-93f6-7603662d6f19"
+  ],
+  "etag": "qfFFgk6XgDaSF4NBwXtGFH1ZF7o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.371Z",
+  "updated": "2025-12-12T07:48:04.371Z",
+  "size": 12104,
+  "md5Hash": "4zgxZNsZja6e4P7OtyK/3A==",
+  "crc32c": "94208077"
+}

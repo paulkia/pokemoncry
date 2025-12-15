@@ -1,0 +1,19 @@
+{
+  "name": "cries/wynaut-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683687,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "36585af1-ed39-4905-acf1-eb2ef9e38ac6"
+  ],
+  "etag": "iJnoWGQ/Jth6TH77xQeBMZ8BIls",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.687Z",
+  "updated": "2025-12-12T07:48:03.687Z",
+  "size": 1819,
+  "md5Hash": "uz2XVj2DNeLAfM4nYhbrug==",
+  "crc32c": "3143273888"
+}

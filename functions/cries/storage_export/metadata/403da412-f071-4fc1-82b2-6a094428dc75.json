@@ -1,0 +1,19 @@
+{
+  "name": "cries/tauros-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683666,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a979cbb7-a3e3-486b-95cb-638e1b9e836a"
+  ],
+  "etag": "uldaorQS7Tiv688hLNJ4aDY2hFM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.666Z",
+  "updated": "2025-12-12T07:48:03.666Z",
+  "size": 6920,
+  "md5Hash": "zEqvsnoiuFpSP1/5MAFNgg==",
+  "crc32c": "1912532486"
+}

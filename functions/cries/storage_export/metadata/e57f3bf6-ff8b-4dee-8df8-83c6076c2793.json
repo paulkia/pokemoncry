@@ -1,0 +1,19 @@
+{
+  "name": "cries/milcery-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683759,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1d822e0a-4ed8-47a9-90ff-92c2a8de1c9d"
+  ],
+  "etag": "DPyunx4VoGnYmMyP4uaA/bgIE5g",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.759Z",
+  "updated": "2025-12-12T07:48:03.759Z",
+  "size": 7331,
+  "md5Hash": "lLPU+NNpT3mB/xWTjUI+6A==",
+  "crc32c": "641880930"
+}

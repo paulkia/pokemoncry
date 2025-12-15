@@ -1,0 +1,19 @@
+{
+  "name": "cries/vikavolt-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684057,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1fe0eba3-75f6-4063-9e62-247238181b4e"
+  ],
+  "etag": "8cY34lawrxyMj1Kscwtg0Jq8YX4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.057Z",
+  "updated": "2025-12-12T07:48:04.057Z",
+  "size": 11240,
+  "md5Hash": "mO7MFSEg2PClFraoR7lTkg==",
+  "crc32c": "2829578760"
+}

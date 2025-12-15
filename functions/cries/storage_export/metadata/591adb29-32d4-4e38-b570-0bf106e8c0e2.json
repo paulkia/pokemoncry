@@ -1,0 +1,19 @@
+{
+  "name": "cries/aggron-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684287,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c502830a-2953-4d71-a0a0-e734ead68bf2"
+  ],
+  "etag": "4T81T563YHMKu4+T5q1v0w+fcDI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.287Z",
+  "updated": "2025-12-12T07:48:04.287Z",
+  "size": 2969,
+  "md5Hash": "f6BqzMhm97X0xvNcs/cnZw==",
+  "crc32c": "109868560"
+}

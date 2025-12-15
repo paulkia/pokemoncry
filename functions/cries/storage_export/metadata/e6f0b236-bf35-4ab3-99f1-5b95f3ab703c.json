@@ -1,0 +1,19 @@
+{
+  "name": "cries/delcatty-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684331,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "16ec6755-d70d-4033-8377-5e924af3eb01"
+  ],
+  "etag": "xftekIbfBFXFsEUEO8Al1z+wzy8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.331Z",
+  "updated": "2025-12-12T07:48:04.331Z",
+  "size": 2551,
+  "md5Hash": "8UD/zr28F9AMryqr9H8wjw==",
+  "crc32c": "270705486"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/swadloon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684389,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c37cbc94-43b7-4f03-a4fb-f6bbc8108a02"
+  ],
+  "etag": "bvQ5F/wDFMI0aos1rg55G14a4dA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.389Z",
+  "updated": "2025-12-12T07:48:04.389Z",
+  "size": 2708,
+  "md5Hash": "sjPpGuFjnsXBh7ETUFYniA==",
+  "crc32c": "1158783849"
+}

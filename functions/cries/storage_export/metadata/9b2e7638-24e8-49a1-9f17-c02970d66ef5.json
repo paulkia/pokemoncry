@@ -1,0 +1,19 @@
+{
+  "name": "cries/marill-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684404,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "067bfcf7-060f-4f7f-93a2-4e488cf62325"
+  ],
+  "etag": "fSVwg9IPoLkS/EMAh4xub/nLCHQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.404Z",
+  "updated": "2025-12-12T07:48:04.404Z",
+  "size": 1819,
+  "md5Hash": "lwXiumwNkZsheSHTYFnhwg==",
+  "crc32c": "2787280315"
+}

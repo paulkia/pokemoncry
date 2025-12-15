@@ -1,0 +1,19 @@
+{
+  "name": "cries/nidorino-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684136,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8b37ab5b-c06f-4b8d-acc0-f1a02eaa5c7d"
+  ],
+  "etag": "+gNYAy4WVe/Iv5li1rHfJvqoWjw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.136Z",
+  "updated": "2025-12-12T07:48:04.136Z",
+  "size": 1715,
+  "md5Hash": "vlWW+GiiYjEJxW3NoquMrQ==",
+  "crc32c": "2756729305"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/taillow-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684375,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ebeda5ba-3abe-43cb-b691-4bd47dde78c5"
+  ],
+  "etag": "ViZAm+Ng1ey1goJX3OKq0VDZbSs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.375Z",
+  "updated": "2025-12-12T07:48:04.375Z",
+  "size": 1088,
+  "md5Hash": "cpdW5gQNWAFH0AsPt7qA5Q==",
+  "crc32c": "1052234060"
+}

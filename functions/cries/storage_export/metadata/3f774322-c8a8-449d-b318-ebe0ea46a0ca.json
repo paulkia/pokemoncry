@@ -1,0 +1,19 @@
+{
+  "name": "cries/gastly-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685554,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d61d5654-3c1d-4d54-aa7d-533de919fe61"
+  ],
+  "etag": "3sTvD7ZUiDC4QVOB5ZUBgi+YQx4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.554Z",
+  "updated": "2025-12-12T07:48:05.554Z",
+  "size": 2760,
+  "md5Hash": "jTZXPQNY94Aqds/fwBYtXg==",
+  "crc32c": "407463108"
+}

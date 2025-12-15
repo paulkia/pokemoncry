@@ -1,0 +1,19 @@
+{
+  "name": "cries/palkia-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684438,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "35b0be1d-cc24-40e6-a50c-a9100e3af06d"
+  ],
+  "etag": "V2iQu4zNEDaa/s5jAXoAMsWL5CA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.438Z",
+  "updated": "2025-12-12T07:48:04.438Z",
+  "size": 10160,
+  "md5Hash": "blukdIsIosru6k59NDY/qw==",
+  "crc32c": "1199169207"
+}

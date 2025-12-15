@@ -1,0 +1,19 @@
+{
+  "name": "cries/type-null-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684283,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6061ac6f-8ada-4c24-8f32-f2d1387ee33d"
+  ],
+  "etag": "FNB4elk0KxILD42YbJzakUsekZc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.283Z",
+  "updated": "2025-12-12T07:48:04.283Z",
+  "size": 12764,
+  "md5Hash": "H9/VQDZf3ENCFw92qhzQHA==",
+  "crc32c": "976701809"
+}

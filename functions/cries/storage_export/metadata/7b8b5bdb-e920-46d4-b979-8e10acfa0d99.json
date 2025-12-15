@@ -1,0 +1,19 @@
+{
+  "name": "cries/charmeleon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685613,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "96356f85-57c3-44ae-b119-8991ea377d6d"
+  ],
+  "etag": "15YuNgitIUnwrB29R5ok8BoA68M",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.613Z",
+  "updated": "2025-12-12T07:48:05.613Z",
+  "size": 1819,
+  "md5Hash": "RQZRS7h2IE15VfKUrexk5A==",
+  "crc32c": "1749893451"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/delibird-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684253,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5f83dfb9-7a69-4b71-b590-629ce2583f96"
+  ],
+  "etag": "ywOBwtNxlYqxmXpu3+wQM7WeJ2k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.253Z",
+  "updated": "2025-12-12T07:48:04.253Z",
+  "size": 2028,
+  "md5Hash": "HYI5r47gqVn8IZb/gR3sAQ==",
+  "crc32c": "269213579"
+}

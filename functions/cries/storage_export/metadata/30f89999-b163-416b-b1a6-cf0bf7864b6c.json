@@ -1,0 +1,19 @@
+{
+  "name": "cries/unown-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683735,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "95ed3cc1-4ab7-4f86-86f3-18094b1e23a0"
+  ],
+  "etag": "cea7svK9xvISGVKCAlhRgulCK5A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.735Z",
+  "updated": "2025-12-12T07:48:03.735Z",
+  "size": 1819,
+  "md5Hash": "1rEijndZ5Zdmax7o8kLz9g==",
+  "crc32c": "141145298"
+}

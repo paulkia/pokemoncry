@@ -1,0 +1,19 @@
+{
+  "name": "cries/venipede-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683661,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "26a9144b-9774-45e2-842e-49ed73365256"
+  ],
+  "etag": "MMue8W1QaKoJsq11W+oyua6svOo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.661Z",
+  "updated": "2025-12-12T07:48:03.661Z",
+  "size": 4760,
+  "md5Hash": "K37T9aJsv9s7F570Vq1uKQ==",
+  "crc32c": "3805762409"
+}

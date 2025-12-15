@@ -1,0 +1,19 @@
+{
+  "name": "cries/morelull-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684163,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5664cbc3-0efc-4060-9b1d-bbf1949f1e25"
+  ],
+  "etag": "J6BhFJ3oQgErkw6ZdsacgslBN3s",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.163Z",
+  "updated": "2025-12-12T07:48:04.163Z",
+  "size": 8432,
+  "md5Hash": "goUBSNhw5JVwxLWbtZKpzA==",
+  "crc32c": "3167922699"
+}

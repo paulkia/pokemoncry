@@ -8,9 +8,8 @@ import {
 } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../AppContext";
-import { LOCAL_STORAGE_UTIL, ROUTER_UTIL } from "../library/util";
+import { ROUTER_UTIL } from "../library/util";
 import Settings from "./Settings";
-import BuyCoffeeButton from "./BuyCoffeeButton";
 
 const backRoutes = {
   [ROUTER_UTIL.MULTIPLE_CHOICE_PRACTICE]: ROUTER_UTIL.PRACTICE_MENU,

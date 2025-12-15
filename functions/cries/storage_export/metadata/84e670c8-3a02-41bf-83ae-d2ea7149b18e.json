@@ -1,0 +1,19 @@
+{
+  "name": "cries/oinkologne-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683951,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f6f75237-074f-4e6a-88d3-02e11910e665"
+  ],
+  "etag": "cXWD12l2LC9emUTlqJ0VtNeEUkU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.951Z",
+  "updated": "2025-12-12T07:48:03.951Z",
+  "size": 10048,
+  "md5Hash": "ZQoKFliotJu0lzw/ANamqQ==",
+  "crc32c": "1197604066"
+}

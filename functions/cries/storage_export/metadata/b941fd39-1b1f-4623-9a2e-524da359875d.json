@@ -1,0 +1,19 @@
+{
+  "name": "cries/hakamo-o-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684274,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "bba04032-a1f0-441d-a80c-5cd685529da3"
+  ],
+  "etag": "K7k+IfgeEfNNkTR3eYiD5PkbeYs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.274Z",
+  "updated": "2025-12-12T07:48:04.274Z",
+  "size": 12764,
+  "md5Hash": "pzxQcDsdis+OjAgzuRGkbQ==",
+  "crc32c": "1499575448"
+}

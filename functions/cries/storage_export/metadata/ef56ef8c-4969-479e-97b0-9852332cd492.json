@@ -1,0 +1,19 @@
+{
+  "name": "cries/gogoat-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683608,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e7a542ab-0a42-4c6d-b4cc-e03ffe191a46"
+  ],
+  "etag": "JQF5XJ/1nbZOHZLH/uCvhq9ESrg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.608Z",
+  "updated": "2025-12-12T07:48:03.608Z",
+  "size": 9080,
+  "md5Hash": "uN57UdMerwuvrNPBzxN0BQ==",
+  "crc32c": "2164247318"
+}

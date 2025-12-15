@@ -1,0 +1,19 @@
+{
+  "name": "cries/tympole-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683549,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f428bb4a-2383-442e-beb6-90e7e41d3c63"
+  ],
+  "etag": "cjnIWzgl4dolmV4dqmWE3uWZRc0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.549Z",
+  "updated": "2025-12-12T07:48:03.549Z",
+  "size": 4760,
+  "md5Hash": "A8KAtKYGSxFJ5qfzl1+4nA==",
+  "crc32c": "1599210530"
+}

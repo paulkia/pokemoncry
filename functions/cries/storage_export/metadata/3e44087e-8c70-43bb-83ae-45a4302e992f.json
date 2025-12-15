@@ -1,0 +1,19 @@
+{
+  "name": "cries/swoobat-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683755,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "23b6154a-30cb-4d66-96c8-c9079d9856aa"
+  ],
+  "etag": "e8HMRGvtCLthXq6nuLxs+JBqAkA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.755Z",
+  "updated": "2025-12-12T07:48:03.755Z",
+  "size": 7136,
+  "md5Hash": "1Da7qC2t+/CBUnaEj5egCQ==",
+  "crc32c": "1517929566"
+}

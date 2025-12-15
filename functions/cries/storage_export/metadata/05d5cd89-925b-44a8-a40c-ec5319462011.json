@@ -1,0 +1,19 @@
+{
+  "name": "cries/rabsca-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683525,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5af9f89b-09d9-4474-8ea9-f1132b4cc15f"
+  ],
+  "etag": "2aLoxVni+FjiJTZ4OsHJgDhGyx0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.525Z",
+  "updated": "2025-12-12T07:48:03.525Z",
+  "size": 18092,
+  "md5Hash": "cPcAOqO57iIqqBn53V9tBQ==",
+  "crc32c": "2434425950"
+}

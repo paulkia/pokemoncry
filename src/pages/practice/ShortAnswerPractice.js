@@ -484,13 +484,13 @@ function ShortAnswerPractice() {
   const progress = (state.pokeNum / numMonToGuess) * 100;
   return (
     <span>
-      <div className="App" style={{ position: "relative" }}>
+      <div className="App mt-3" style={{ position: "relative" }}>
         <Row>
           <p>Practice Mode!</p> {/* Back button (left) */}
         </Row>
         <p>Repeat the sound for the current mon by pressing 'space'</p>
         <Row className="justify-content-center">
-          <Col xs={12} md={4}>
+          <Col xs={12} md={4} className="mt-3 mb-3">
             {/* Container for relative positioning */}
             <PokeProgressBar completionPercent={progress} />
             {state.pokeNum === numMonToGuess && (
@@ -517,6 +517,13 @@ function ShortAnswerPractice() {
           </Col>
         </Row>
       </div>
+      {state.pokeNum !== numMonToGuess && navigator.userAgentData?.mobile && (
+        <Row>
+          <Col className="text-center m-3" style={{ fontSize: "14px" }}>
+            Please turn on ringers / disable silent mode.
+          </Col>
+        </Row>
+      )}
       <Row className="justify-content-center">
         <Col xs={12} md={4}>
           {" "}

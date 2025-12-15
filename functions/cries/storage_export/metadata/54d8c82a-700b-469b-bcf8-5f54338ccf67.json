@@ -1,0 +1,19 @@
+{
+  "name": "cries/arceus-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683897,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "fa679297-aaa7-4184-ab25-2bf181e9bd88"
+  ],
+  "etag": "MCZKDfOqqMuY15w23QYehZi8l3U",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.897Z",
+  "updated": "2025-12-12T07:48:03.897Z",
+  "size": 10592,
+  "md5Hash": "AQV+8n7+bPEPAZ3OzuHrDA==",
+  "crc32c": "1023093615"
+}

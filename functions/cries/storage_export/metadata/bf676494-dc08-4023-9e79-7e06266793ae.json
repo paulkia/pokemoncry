@@ -1,0 +1,19 @@
+{
+  "name": "cries/hariyama-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683914,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "78a3f1fc-77ac-445d-892d-90ddea5aa156"
+  ],
+  "etag": "rG5iVbsMc8SJqqjlk6MueckKp94",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.914Z",
+  "updated": "2025-12-12T07:48:03.914Z",
+  "size": 5624,
+  "md5Hash": "Odz9LsJKYfMGKd2ctX3sbA==",
+  "crc32c": "3621609474"
+}

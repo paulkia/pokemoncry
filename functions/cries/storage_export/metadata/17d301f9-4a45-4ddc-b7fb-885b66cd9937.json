@@ -1,0 +1,19 @@
+{
+  "name": "cries/charizard-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684122,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c0abe775-628a-4473-9067-53a502213cb6"
+  ],
+  "etag": "Ifu0iqSEl4XFcWcow1mTVpF1yF4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.122Z",
+  "updated": "2025-12-12T07:48:04.122Z",
+  "size": 2342,
+  "md5Hash": "Zpb17VUUEvAzttMSDd+Xag==",
+  "crc32c": "2083930614"
+}

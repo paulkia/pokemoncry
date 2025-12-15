@@ -1,0 +1,19 @@
+{
+  "name": "cries/varoom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683681,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "813ca43b-0e9b-45dc-b8b2-26bdce6daf6e"
+  ],
+  "etag": "aTYFRwx12+5MhXtvNgAkaMyNkaM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.681Z",
+  "updated": "2025-12-12T07:48:03.681Z",
+  "size": 13868,
+  "md5Hash": "9QM3xQDZ1Bee+35t+vHmfw==",
+  "crc32c": "589352944"
+}

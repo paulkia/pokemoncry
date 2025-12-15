@@ -1,0 +1,19 @@
+{
+  "name": "cries/tapu-lele-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686261,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b5e3565b-a9e3-4405-8b83-e5c8c5fbeef5"
+  ],
+  "etag": "H/h/fZqyuutcFVvKdAGfrGLYNSs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.261Z",
+  "updated": "2025-12-12T07:48:06.261Z",
+  "size": 16748,
+  "md5Hash": "Hra+yLUcxsY8c5vOEgTA/w==",
+  "crc32c": "1535240932"
+}

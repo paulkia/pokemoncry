@@ -1,0 +1,19 @@
+{
+  "name": "cries/yanmega-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684415,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5c8f965a-7855-4881-815c-43fbe9181c83"
+  ],
+  "etag": "wDSohGEfOOPKIGBcf2WBCpxvj1k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.415Z",
+  "updated": "2025-12-12T07:48:04.415Z",
+  "size": 3884,
+  "md5Hash": "fWYH3K5HLns1h29fvJCHHg==",
+  "crc32c": "2550942771"
+}

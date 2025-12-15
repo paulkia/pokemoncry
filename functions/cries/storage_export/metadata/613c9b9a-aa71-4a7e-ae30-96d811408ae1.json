@@ -1,0 +1,19 @@
+{
+  "name": "cries/deoxys-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683969,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "33e242c4-574b-4b89-bf5d-feb4158c513b"
+  ],
+  "etag": "KyZGehaIkbuLrdjB8fZrBMS1fCI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.969Z",
+  "updated": "2025-12-12T07:48:03.969Z",
+  "size": 6920,
+  "md5Hash": "58y6SiEUI6VO+pLsKPeMIw==",
+  "crc32c": "490146036"
+}

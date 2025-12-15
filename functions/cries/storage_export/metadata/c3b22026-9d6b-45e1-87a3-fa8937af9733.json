@@ -1,0 +1,19 @@
+{
+  "name": "cries/klefki-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683389,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c52750ad-a902-4157-925f-543376de554d"
+  ],
+  "etag": "DTA32uC393cU/6fdcCVjEnB0WoY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.389Z",
+  "updated": "2025-12-12T07:48:03.389Z",
+  "size": 7568,
+  "md5Hash": "cDk2s40lBqE2GrEsWP32eQ==",
+  "crc32c": "2557166418"
+}

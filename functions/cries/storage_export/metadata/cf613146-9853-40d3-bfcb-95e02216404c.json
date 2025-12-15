@@ -1,0 +1,19 @@
+{
+  "name": "cries/zarude-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684229,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "41798b51-5ae9-4c3a-b59e-f41b08d35cc9"
+  ],
+  "etag": "570WjLrEylwWqLRP+h+xNmlIJ0A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.229Z",
+  "updated": "2025-12-12T07:48:04.229Z",
+  "size": 12764,
+  "md5Hash": "rqCSjoBiOK+yJPnz5fcpjQ==",
+  "crc32c": "2090919539"
+}

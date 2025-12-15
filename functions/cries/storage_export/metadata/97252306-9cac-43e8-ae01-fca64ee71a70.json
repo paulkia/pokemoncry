@@ -1,0 +1,19 @@
+{
+  "name": "cries/frigibax-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683647,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "606b7434-aa86-4631-ac74-6bd5c30f0258"
+  ],
+  "etag": "+DP0qkky/tqNdZYWQxOm+HaHDvE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.647Z",
+  "updated": "2025-12-12T07:48:03.647Z",
+  "size": 7148,
+  "md5Hash": "/wBwSU3qm1mbSRQezqKuFw==",
+  "crc32c": "1427450089"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/komala-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683793,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "10a8b322-a473-4d2e-9f35-d1f48cad84fc"
+  ],
+  "etag": "UTPfKYRzPkA0LlEn3ViAv0a7bFU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.793Z",
+  "updated": "2025-12-12T07:48:03.793Z",
+  "size": 6920,
+  "md5Hash": "a7UI3KStihLJ89FmhipHsw==",
+  "crc32c": "2762155583"
+}

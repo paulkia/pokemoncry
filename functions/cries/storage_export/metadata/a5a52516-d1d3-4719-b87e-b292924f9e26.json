@@ -1,0 +1,19 @@
+{
+  "name": "cries/reshiram-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683713,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ec9ad2b9-bad5-4dc9-a2fa-110c23894d1f"
+  ],
+  "etag": "75giLojupTwjs3OorG6S7wXAZE4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.713Z",
+  "updated": "2025-12-12T07:48:03.713Z",
+  "size": 12536,
+  "md5Hash": "rj+1kl4vRmb6jcFs7WxgpA==",
+  "crc32c": "4194649109"
+}

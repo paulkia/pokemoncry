@@ -1,0 +1,19 @@
+{
+  "name": "cries/honchkrow-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684421,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8fe0e866-344d-4fe9-9fa6-ee460da33712"
+  ],
+  "etag": "RvJOPnqyCx27rufDwYAav0dyDrs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.421Z",
+  "updated": "2025-12-12T07:48:04.421Z",
+  "size": 8216,
+  "md5Hash": "CUtQQYbcjQCoIuFquSAg0A==",
+  "crc32c": "2868068477"
+}

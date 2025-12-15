@@ -1,0 +1,19 @@
+{
+  "name": "cries/gothorita-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683696,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a85faa3b-dd0f-4942-866c-0e082950cee6"
+  ],
+  "etag": "thTujX125spZQWAicxO7x/Oo8Ts",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.696Z",
+  "updated": "2025-12-12T07:48:03.696Z",
+  "size": 4760,
+  "md5Hash": "4fDKqj8RJ/SBTXklhaA0qw==",
+  "crc32c": "3159787563"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/duraludon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683603,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "01ee1ea1-8950-4637-8a70-d4dfe6aac709"
+  ],
+  "etag": "+7njJFnoYL6/JiajCqbGhBInM1k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.603Z",
+  "updated": "2025-12-12T07:48:03.603Z",
+  "size": 13391,
+  "md5Hash": "K3pB+pBy+VDMh1abmStBhA==",
+  "crc32c": "207347685"
+}

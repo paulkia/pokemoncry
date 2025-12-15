@@ -1,0 +1,19 @@
+{
+  "name": "cries/hydrapple-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684256,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ecc9b34e-390f-4601-9a89-a494109bf52d"
+  ],
+  "etag": "0Nm21eIerqubhdB0zua8zNKmR+Y",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.256Z",
+  "updated": "2025-12-12T07:48:04.256Z",
+  "size": 15690,
+  "md5Hash": "I24Z5S050mpD+KX6viIlyg==",
+  "crc32c": "1935392412"
+}

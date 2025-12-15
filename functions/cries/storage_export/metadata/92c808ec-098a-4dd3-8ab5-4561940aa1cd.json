@@ -1,0 +1,19 @@
+{
+  "name": "cries/lumineon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684059,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "48e31bda-b71a-4f8b-bc86-882ede86d249"
+  ],
+  "etag": "4JlpDcAkRqAFHxZR5/zBKh+NbPQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.059Z",
+  "updated": "2025-12-12T07:48:04.059Z",
+  "size": 3884,
+  "md5Hash": "HaO1NbOvrEKVKEAoWCGhDQ==",
+  "crc32c": "1273093604"
+}

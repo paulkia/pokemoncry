@@ -1,0 +1,19 @@
+{
+  "name": "cries/ferroseed-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684132,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9819d996-65e6-454d-846b-7c33698b950c"
+  ],
+  "etag": "camb22BSYFH6x7MqsMacKcqQswU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.132Z",
+  "updated": "2025-12-12T07:48:04.132Z",
+  "size": 5408,
+  "md5Hash": "rqRx/mxxvJI9WZlwj/gsyw==",
+  "crc32c": "2192528194"
+}

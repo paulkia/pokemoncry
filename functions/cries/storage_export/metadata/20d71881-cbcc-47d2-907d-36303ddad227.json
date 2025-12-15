@@ -1,0 +1,19 @@
+{
+  "name": "cries/sunkern-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684034,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f6ebb374-a927-4162-b3a8-0be33cd74d68"
+  ],
+  "etag": "ZHvMHgPV20HS6AYYdjU0WoyKoYE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.034Z",
+  "updated": "2025-12-12T07:48:04.034Z",
+  "size": 3680,
+  "md5Hash": "sm37Kx8zVA3R6FcqOILpNA==",
+  "crc32c": "1064360993"
+}

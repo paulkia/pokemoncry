@@ -1,0 +1,19 @@
+{
+  "name": "cries/pidove-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683747,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9a3cbe0f-6503-4770-b3c1-a6623fab1366"
+  ],
+  "etag": "SM5O7MaYLD41QbykSUdXWkpIwSM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.747Z",
+  "updated": "2025-12-12T07:48:03.747Z",
+  "size": 3464,
+  "md5Hash": "h9wVaTV5AIC9gRvFT0lk/Q==",
+  "crc32c": "4207418913"
+}

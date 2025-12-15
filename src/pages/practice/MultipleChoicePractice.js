@@ -258,7 +258,7 @@ function MultipleChoicePractice() {
           <Col xs={12} md={5}>
             {/* Container for relative positioning */}
             <PokeProgressBar
-              className="mt-3 mb-2"
+              className="mt-2 mb-2"
               completionPercent={progress}
             />
             {pokeNum === numMonToGuess && (
@@ -288,12 +288,18 @@ function MultipleChoicePractice() {
                 ).length
               }
             />
-            <br />
+            {pokeNum !== numMonToGuess && navigator.userAgentData?.mobile && (
+              <Row>
+                <Col className="text-center m-3" style={{ fontSize: "14px" }}>
+                  Please turn on ringers / disable silent mode.
+                </Col>
+              </Row>
+            )}
             {/* Audio button for current Mon. */}
             {pokeNum !== numMonToGuess ? (
               // Audio display. Reveals either the waveform (current cry) or name of previous cry.
               <Row
-                className="align-items-center rounded p-2 pb-3 mb-2"
+                className="align-items-center rounded p-2 pb-3 mb-2 mt-4"
                 style={{
                   outlineColor: NEUTRAL_RESULT_COLOR,
                   outlineStyle: "dashed",

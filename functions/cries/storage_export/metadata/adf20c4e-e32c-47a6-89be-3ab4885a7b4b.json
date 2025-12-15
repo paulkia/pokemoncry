@@ -1,0 +1,19 @@
+{
+  "name": "cries/melmetal-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684273,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "57eb6c55-f720-45a6-bbf8-d0fdd6de427a"
+  ],
+  "etag": "WKgG1cuCSj07xlbFABeQnHZ4qHY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.273Z",
+  "updated": "2025-12-12T07:48:04.273Z",
+  "size": 30572,
+  "md5Hash": "UezaaXuWTbgZql/rWXtibA==",
+  "crc32c": "3620334558"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/snivy-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683985,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cdfc5ef8-4d90-40cc-a2f7-09b71f06d5f1"
+  ],
+  "etag": "XbCUlsMC1T444/snn1ViX2fHTSA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.985Z",
+  "updated": "2025-12-12T07:48:03.985Z",
+  "size": 4112,
+  "md5Hash": "E/0GxMpT6f0bGhYi3gyy0Q==",
+  "crc32c": "584864050"
+}

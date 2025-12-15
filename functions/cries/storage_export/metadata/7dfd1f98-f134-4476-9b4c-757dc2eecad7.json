@@ -1,0 +1,19 @@
+{
+  "name": "cries/tentacruel-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683758,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "81ec7255-57bc-409f-b6d2-2fe7144425d7"
+  ],
+  "etag": "8HO7H4Rs+Tq3qDWHmG2Jra3c3kU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.758Z",
+  "updated": "2025-12-12T07:48:03.758Z",
+  "size": 8864,
+  "md5Hash": "hUCp8+5NDJPrhmusH8yH9w==",
+  "crc32c": "3202465122"
+}

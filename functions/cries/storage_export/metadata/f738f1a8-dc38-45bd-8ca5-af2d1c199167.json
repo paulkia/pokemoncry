@@ -1,0 +1,19 @@
+{
+  "name": "cries/wigglytuff-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683567,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "43f8c030-c05e-429e-9cac-f502cc0b242b"
+  ],
+  "etag": "4Q3IT1JcYfeoggkNy/WEDcwWSa0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.567Z",
+  "updated": "2025-12-12T07:48:03.567Z",
+  "size": 3464,
+  "md5Hash": "73oAHNMxxzVKrAmQEPnFxg==",
+  "crc32c": "4041886858"
+}

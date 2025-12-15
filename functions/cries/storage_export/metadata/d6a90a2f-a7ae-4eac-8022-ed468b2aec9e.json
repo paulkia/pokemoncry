@@ -1,0 +1,19 @@
+{
+  "name": "cries/sawk-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685610,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6cdd97f3-9820-4fce-a6b9-908a3a8c875a"
+  ],
+  "etag": "EPCSy0T1KnGWLvkRjv77+nA7hHM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.610Z",
+  "updated": "2025-12-12T07:48:05.610Z",
+  "size": 6488,
+  "md5Hash": "G815B+dzTPxt2RmalAM4bQ==",
+  "crc32c": "1291350589"
+}

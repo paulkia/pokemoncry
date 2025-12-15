@@ -1,0 +1,19 @@
+{
+  "name": "cries/mienshao-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683644,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "274681f4-bba0-4267-8f06-ae7d38bbed1f"
+  ],
+  "etag": "9PpDnntB+jJSL6TDfb68Hh0QGsQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.644Z",
+  "updated": "2025-12-12T07:48:03.644Z",
+  "size": 4510,
+  "md5Hash": "RH5V4rEc5y43dr4jfm1TFQ==",
+  "crc32c": "3352534122"
+}

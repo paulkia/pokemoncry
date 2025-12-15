@@ -1,0 +1,19 @@
+{
+  "name": "cries/kartana-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684228,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d2b0c79d-76d9-4a4e-b662-b682eebffe74"
+  ],
+  "etag": "K0O+KtPQOt6F4VV0viEgJdvr3J4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.228Z",
+  "updated": "2025-12-12T07:48:04.228Z",
+  "size": 12536,
+  "md5Hash": "5B26hs6qKYpnEQYN1IYd/A==",
+  "crc32c": "1921179193"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/togetic-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684202,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9debb6cc-8b75-4e10-b53a-afee295ee18f"
+  ],
+  "etag": "Ir5Dkx7mGOnfPWXvOxRrQQMfAks",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.202Z",
+  "updated": "2025-12-12T07:48:04.202Z",
+  "size": 1192,
+  "md5Hash": "ZTEXxCSw8XcIGsDAaekonA==",
+  "crc32c": "4123658055"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/shelgon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683948,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "fcade587-7797-4d44-9c33-9cb34b3b6ce5"
+  ],
+  "etag": "cIJlctTDMkDhDH67zidilL010vw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.948Z",
+  "updated": "2025-12-12T07:48:03.948Z",
+  "size": 2446,
+  "md5Hash": "BGuoDJbrNjQvFoNw5G3mUA==",
+  "crc32c": "2667422638"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/slakoth-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683901,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5e81ad70-6de0-4b33-aba1-f5416ee70c79"
+  ],
+  "etag": "b2QQUpZW+VVHT88L1qJKhvTDl2Y",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.901Z",
+  "updated": "2025-12-12T07:48:03.901Z",
+  "size": 1297,
+  "md5Hash": "Yv7vUKwivvWlR/eX+x3GTg==",
+  "crc32c": "580722558"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/sableye-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683358,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f0ac23ae-64cd-45c9-a753-864452971906"
+  ],
+  "etag": "07jUx6LljUFGFZtik+Qp5nzsM1I",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.358Z",
+  "updated": "2025-12-12T07:48:03.358Z",
+  "size": 1610,
+  "md5Hash": "2xwpfwrmAxxfdvrXKLRTTQ==",
+  "crc32c": "843762653"
+}

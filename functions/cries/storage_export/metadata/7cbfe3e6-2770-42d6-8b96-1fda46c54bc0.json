@@ -1,0 +1,19 @@
+{
+  "name": "cries/geodude-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683630,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "61c076c2-bc04-4db9-8563-015ed2cb566b"
+  ],
+  "etag": "ZEgjsQZ9bx91+pJnTp4EEpy82HY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.630Z",
+  "updated": "2025-12-12T07:48:03.630Z",
+  "size": 2760,
+  "md5Hash": "bca+l95P7uZpTe/Fnhf1eg==",
+  "crc32c": "796317382"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/poipole-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684435,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8342c750-71ba-4320-8f3a-b02bc02cd106"
+  ],
+  "etag": "wpZtoVhOO58QU5vvPHHiXSGacZc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.435Z",
+  "updated": "2025-12-12T07:48:04.435Z",
+  "size": 8864,
+  "md5Hash": "9A75ej8xNUHERsrgdpdCiA==",
+  "crc32c": "2906491064"
+}

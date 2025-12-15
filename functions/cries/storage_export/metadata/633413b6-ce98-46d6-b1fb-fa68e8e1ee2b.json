@@ -1,0 +1,19 @@
+{
+  "name": "cries/loudred-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683814,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "13a7538c-8046-4aa9-99fd-61e1b7fb5004"
+  ],
+  "etag": "HAK33Zq6q3ggjw4XBxCNDa7h3Mo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.814Z",
+  "updated": "2025-12-12T07:48:03.814Z",
+  "size": 5624,
+  "md5Hash": "GB9+EXCQpX1gZv9JIUEDFA==",
+  "crc32c": "1534928246"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/castform-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683652,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d1c5081f-8645-4cfd-8fb7-798fe0365e38"
+  ],
+  "etag": "Nnz+O1NMezppDsr/vNiDEDh8V18",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.652Z",
+  "updated": "2025-12-12T07:48:03.652Z",
+  "size": 4544,
+  "md5Hash": "Acap4ImXl6mYd/88oZX7dg==",
+  "crc32c": "1957929500"
+}

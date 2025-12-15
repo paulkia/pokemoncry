@@ -1,0 +1,19 @@
+{
+  "name": "cries/bewear-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684436,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8f0908da-0b1f-46c2-b1ab-ac702deb4f46"
+  ],
+  "etag": "jB7EBO+fpRoS2Bnr1+deOPUf5zk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.436Z",
+  "updated": "2025-12-12T07:48:04.436Z",
+  "size": 7352,
+  "md5Hash": "WdWnbIH3wbf9xwKIKZFmtQ==",
+  "crc32c": "1517598160"
+}

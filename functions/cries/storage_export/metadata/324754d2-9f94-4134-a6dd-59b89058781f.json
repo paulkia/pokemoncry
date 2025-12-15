@@ -1,0 +1,19 @@
+{
+  "name": "cries/bayleef-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683399,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "630b930a-7d21-4fb5-bdc4-e0251a52b263"
+  ],
+  "etag": "StLwWVQdAVcungsDToKgHVPWaTk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.399Z",
+  "updated": "2025-12-12T07:48:03.399Z",
+  "size": 1297,
+  "md5Hash": "6kOcSaMBkreM+TZnLZdIYA==",
+  "crc32c": "1002743376"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/bellossom-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685955,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0e127fd1-7c81-4060-8687-9013b9699ded"
+  ],
+  "etag": "EDbs6TBWdGKoCuFjXlJ6SKM6u9c",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.955Z",
+  "updated": "2025-12-12T07:48:05.955Z",
+  "size": 1924,
+  "md5Hash": "kCNgwjfFXBaejXZ+WIf3/Q==",
+  "crc32c": "623098278"
+}

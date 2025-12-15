@@ -1,0 +1,19 @@
+{
+  "name": "cries/larvitar-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684060,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "821cab6b-08d0-40b9-b33c-4824e057ea97"
+  ],
+  "etag": "ft4+yrge+9xtXO1k2A381mZ0xSw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.060Z",
+  "updated": "2025-12-12T07:48:04.060Z",
+  "size": 4976,
+  "md5Hash": "rdce8YhlfSXqS5bh+MoMFQ==",
+  "crc32c": "3307206792"
+}

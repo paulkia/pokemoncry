@@ -1,0 +1,19 @@
+{
+  "name": "cries/quagsire-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683539,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "390150e3-a33a-489d-9054-79b39d013f37"
+  ],
+  "etag": "Fx8e+FhNLocdLbhOo9BVuk3pJAY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.539Z",
+  "updated": "2025-12-12T07:48:03.539Z",
+  "size": 4976,
+  "md5Hash": "q7VVTe+9v3a5/hix44NdgQ==",
+  "crc32c": "3692881678"
+}

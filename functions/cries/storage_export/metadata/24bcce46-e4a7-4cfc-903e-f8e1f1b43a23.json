@@ -1,0 +1,19 @@
+{
+  "name": "cries/eevee-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683413,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e61e192b-79ba-474a-baf6-6b23eec40d76"
+  ],
+  "etag": "F5EQjU/8oLAiZkJKkzQ5478RFhQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.413Z",
+  "updated": "2025-12-12T07:48:03.413Z",
+  "size": 5192,
+  "md5Hash": "Hucfa0zELvfvSCTOHY2Zwg==",
+  "crc32c": "2542710753"
+}

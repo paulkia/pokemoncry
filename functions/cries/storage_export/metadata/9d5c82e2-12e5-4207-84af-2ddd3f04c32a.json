@@ -1,0 +1,19 @@
+{
+  "name": "cries/houndoom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683977,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9f2815f3-a9fc-473c-a65a-6e1089191856"
+  ],
+  "etag": "6jmg8swTy0bZCizcEqK6FVGulqg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.977Z",
+  "updated": "2025-12-12T07:48:03.977Z",
+  "size": 7136,
+  "md5Hash": "2mP51keYdX1euM5TFS6Q+g==",
+  "crc32c": "2538043600"
+}

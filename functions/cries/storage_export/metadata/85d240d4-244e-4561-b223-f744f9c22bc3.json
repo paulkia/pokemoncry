@@ -1,0 +1,19 @@
+{
+  "name": "cries/snivy-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683277,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9a414fdb-b475-4278-a3bf-0bd60a9e1121"
+  ],
+  "etag": "YhZUKg+XioOALCBYM6ojT1klWgA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.277Z",
+  "updated": "2025-12-12T07:48:03.277Z",
+  "size": 2708,
+  "md5Hash": "gN4Wmgy/CiV1A6UioCJiLQ==",
+  "crc32c": "4192008763"
+}

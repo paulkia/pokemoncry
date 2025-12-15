@@ -1,0 +1,19 @@
+{
+  "name": "cries/tirtouga-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683584,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1c0ba297-1181-4693-8d85-1b98c43b71fa"
+  ],
+  "etag": "z12d2FBHq6Zy+HqhcJ7Eeg0RVHA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.584Z",
+  "updated": "2025-12-12T07:48:03.584Z",
+  "size": 4328,
+  "md5Hash": "gd6YTLAk9mppj586RorczQ==",
+  "crc32c": "3916180960"
+}

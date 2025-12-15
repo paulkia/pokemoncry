@@ -1,0 +1,19 @@
+{
+  "name": "cries/dialga-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683964,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "dae6193d-f0d7-44ab-b482-f63b5ebd4739"
+  ],
+  "etag": "zzgcMDrf9BPdbs0Wur7TEHFpg2E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.964Z",
+  "updated": "2025-12-12T07:48:03.964Z",
+  "size": 3692,
+  "md5Hash": "Zmc9D43HoXqMabqDVhGH1Q==",
+  "crc32c": "2107536833"
+}

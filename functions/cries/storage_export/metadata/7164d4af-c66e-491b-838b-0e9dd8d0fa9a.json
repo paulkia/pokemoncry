@@ -1,0 +1,19 @@
+{
+  "name": "cries/rufflet-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684203,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a16b9dc4-94c0-48ae-bf4f-4c6b662199ee"
+  ],
+  "etag": "aC1WTmdnC4IeS1s2b/D6KGNyoiM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.203Z",
+  "updated": "2025-12-12T07:48:04.203Z",
+  "size": 4112,
+  "md5Hash": "aVwsAuyrlTeDfb3V8HTIKg==",
+  "crc32c": "2806365027"
+}

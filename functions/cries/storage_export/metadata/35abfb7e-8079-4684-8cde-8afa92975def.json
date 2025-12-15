@@ -1,0 +1,19 @@
+{
+  "name": "cries/beheeyem-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684146,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a927f53a-bf7d-4046-a04e-6c04fe37d653"
+  ],
+  "etag": "mp9IDHBVk9Gy1sU82zN+elGRdSY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.146Z",
+  "updated": "2025-12-12T07:48:04.146Z",
+  "size": 4652,
+  "md5Hash": "Orlbjt9wlFgmThjqWKXDAw==",
+  "crc32c": "998176379"
+}

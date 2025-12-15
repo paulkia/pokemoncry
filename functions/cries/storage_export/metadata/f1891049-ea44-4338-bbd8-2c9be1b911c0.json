@@ -1,0 +1,19 @@
+{
+  "name": "cries/torkoal-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684005,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8e0bafb9-492c-4f08-9a7a-3aa435b1ae5f"
+  ],
+  "etag": "1GmA77HW+5Uh3QKeze4bY0kF4uQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.005Z",
+  "updated": "2025-12-12T07:48:04.005Z",
+  "size": 4328,
+  "md5Hash": "375Q/nesEa/l504HAm8eWA==",
+  "crc32c": "2940265938"
+}

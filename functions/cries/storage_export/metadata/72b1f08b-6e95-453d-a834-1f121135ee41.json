@@ -1,0 +1,19 @@
+{
+  "name": "cries/clamperl-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684281,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5a34efd1-fddc-4c78-a062-66a60c94c868"
+  ],
+  "etag": "awlRIEx3UTrvvhK4O6elu3Bz1aM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.281Z",
+  "updated": "2025-12-12T07:48:04.281Z",
+  "size": 2237,
+  "md5Hash": "Vh72NKpaxG71TE/1U3OQQQ==",
+  "crc32c": "227617325"
+}

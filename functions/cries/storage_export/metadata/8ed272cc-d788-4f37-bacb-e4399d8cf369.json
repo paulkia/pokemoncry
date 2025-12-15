@@ -1,0 +1,19 @@
+{
+  "name": "cries/hippopotas-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684365,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f5f2a153-9150-44f5-9690-c74bef317372"
+  ],
+  "etag": "aQYuDqNoX8vLvVYfzLdRD0bH5cw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.365Z",
+  "updated": "2025-12-12T07:48:04.365Z",
+  "size": 9080,
+  "md5Hash": "AEvI40UVLvqUZxtsTAZhMg==",
+  "crc32c": "4251456137"
+}

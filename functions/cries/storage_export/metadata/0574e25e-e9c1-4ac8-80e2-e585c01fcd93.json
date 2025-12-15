@@ -1,0 +1,19 @@
+{
+  "name": "cries/bombirdier-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683690,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a9c7d145-f19b-42d1-9af3-96137f8da03c"
+  ],
+  "etag": "PMznwz23100vwp1v0Ea0DkO+dNA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.690Z",
+  "updated": "2025-12-12T07:48:03.690Z",
+  "size": 19820,
+  "md5Hash": "III+8nQrUWjfTSL5vrDPrA==",
+  "crc32c": "3322984157"
+}

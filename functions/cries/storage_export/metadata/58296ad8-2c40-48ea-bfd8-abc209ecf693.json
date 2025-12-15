@@ -1,0 +1,19 @@
+{
+  "name": "cries/galvantula-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686100,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "923712ca-4105-427f-990a-f10747861cfe"
+  ],
+  "etag": "6+5bA3B0jmf4P7kOYN0wpX6TNBs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.100Z",
+  "updated": "2025-12-12T07:48:06.100Z",
+  "size": 6488,
+  "md5Hash": "DuzNA8x9iPu9xR1Q8gwEvw==",
+  "crc32c": "477615121"
+}

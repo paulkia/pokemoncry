@@ -1,0 +1,19 @@
+{
+  "name": "cries/rillaboom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683662,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ab1a90b6-a51c-496d-9573-95928d226831"
+  ],
+  "etag": "4eCFsXIV3egxF+7eOoFKzP1NeJ4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.662Z",
+  "updated": "2025-12-12T07:48:03.662Z",
+  "size": 12555,
+  "md5Hash": "9fqlWB7r5YeK81cd96RKVQ==",
+  "crc32c": "3387060308"
+}

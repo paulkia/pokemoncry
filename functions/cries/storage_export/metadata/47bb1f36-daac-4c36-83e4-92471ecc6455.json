@@ -1,0 +1,19 @@
+{
+  "name": "cries/umbreon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683844,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d88f1399-c55c-44bd-96c3-1f836c49b4bf"
+  ],
+  "etag": "FsBGaJYPQmYlSANpw2g9X9byDEo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.844Z",
+  "updated": "2025-12-12T07:48:03.844Z",
+  "size": 1924,
+  "md5Hash": "F0b+kMUN+5T0dbmCoT/tpQ==",
+  "crc32c": "813072371"
+}

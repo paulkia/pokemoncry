@@ -1,0 +1,19 @@
+{
+  "name": "cries/jolteon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683956,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "66b94cd0-13f9-4d14-8742-4fa6c175bd6d"
+  ],
+  "etag": "KmRhyiqm0qT1yxq3688Z79MZT+0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.956Z",
+  "updated": "2025-12-12T07:48:03.956Z",
+  "size": 2028,
+  "md5Hash": "k8vjDHBmR5QV2KegryuxAA==",
+  "crc32c": "4038153927"
+}

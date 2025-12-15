@@ -1,0 +1,19 @@
+{
+  "name": "cries/machoke-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684119,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "19097810-33d8-4031-bc2a-13dfea1e590a"
+  ],
+  "etag": "EewjsnypJp/a5jCMGQT4lVZLD/M",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.119Z",
+  "updated": "2025-12-12T07:48:04.119Z",
+  "size": 1819,
+  "md5Hash": "1dRVEw6oUmblKGfw8TeFIQ==",
+  "crc32c": "292664097"
+}

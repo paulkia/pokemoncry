@@ -1,0 +1,19 @@
+{
+  "name": "cries/golisopod-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684098,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b89ed307-d1dd-42b4-9cea-eda3b4e96e60"
+  ],
+  "etag": "zGpLAAyvv1wFimSbuophR3v0Udw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.098Z",
+  "updated": "2025-12-12T07:48:04.098Z",
+  "size": 9728,
+  "md5Hash": "4ErziJ4QqeM4/j9cbw2uGA==",
+  "crc32c": "862733997"
+}

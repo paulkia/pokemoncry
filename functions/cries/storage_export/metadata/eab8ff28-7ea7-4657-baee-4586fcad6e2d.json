@@ -1,0 +1,19 @@
+{
+  "name": "cries/ampharos-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684425,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "da06c79f-9e0a-4ba0-8579-0e1f7afb04c0"
+  ],
+  "etag": "SRPqbvGqDO2txCTMgB7VhWj6wJs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.425Z",
+  "updated": "2025-12-12T07:48:04.425Z",
+  "size": 6056,
+  "md5Hash": "QIGG8uB9TVqxWua3zcniPQ==",
+  "crc32c": "1825916348"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/alcremie-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684026,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2a6ef2e4-30f6-4f66-9e0c-aa3146deeb02"
+  ],
+  "etag": "2T6rwTfTFkm4LENhCZRwGbWLr7I",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.026Z",
+  "updated": "2025-12-12T07:48:04.026Z",
+  "size": 12764,
+  "md5Hash": "rGPgi9NHM7wNq8RXCVTwtA==",
+  "crc32c": "916982095"
+}

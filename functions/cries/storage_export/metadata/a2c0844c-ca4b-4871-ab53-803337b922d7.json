@@ -1,0 +1,19 @@
+{
+  "name": "cries/toxel-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685960,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "db47d555-4c37-4995-b314-b72d361d1b22"
+  ],
+  "etag": "wiorKRuP7nF9ZhnJe83KH2VqZwQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.960Z",
+  "updated": "2025-12-12T07:48:05.960Z",
+  "size": 7331,
+  "md5Hash": "5sO/VE9OEswlPNFyatgVng==",
+  "crc32c": "1092353367"
+}

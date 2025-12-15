@@ -1,0 +1,19 @@
+{
+  "name": "cries/malamar-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684391,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "deb20c79-f6db-486d-98e5-30c33d9afdfb"
+  ],
+  "etag": "N1iR24o++J2eae1K+YR2Aslb0J4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.391Z",
+  "updated": "2025-12-12T07:48:04.391Z",
+  "size": 9512,
+  "md5Hash": "eEqiD9W6RZ3wQnZhrQR4uQ==",
+  "crc32c": "2972485308"
+}

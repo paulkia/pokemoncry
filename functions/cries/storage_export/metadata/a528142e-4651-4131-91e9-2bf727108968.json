@@ -1,0 +1,19 @@
+{
+  "name": "cries/silicobra-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683497,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "42e2ab1f-41fc-47b8-a961-1821fc7e7eb8"
+  ],
+  "etag": "5+POy/1hvUf6gvzfLkafjSbFtRs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.497Z",
+  "updated": "2025-12-12T07:48:03.497Z",
+  "size": 9630,
+  "md5Hash": "zlMTCa/7kmsplyfDmJ1MYA==",
+  "crc32c": "1321623383"
+}

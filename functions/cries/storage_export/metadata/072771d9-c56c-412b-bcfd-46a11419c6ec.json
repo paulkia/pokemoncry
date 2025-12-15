@@ -1,0 +1,19 @@
+{
+  "name": "cries/gothitelle-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685495,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a8d13f91-a7e4-47e2-86b4-00a1944b8b3f"
+  ],
+  "etag": "uYFbeFgYTBmuezBMOBwB4aST+Lg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.495Z",
+  "updated": "2025-12-12T07:48:05.495Z",
+  "size": 4076,
+  "md5Hash": "feyBZiiS9o28GK4q1qPIwg==",
+  "crc32c": "3826519301"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/simisear-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686163,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5b3e6356-90fe-424b-a080-d7430fb450c5"
+  ],
+  "etag": "jzDvXBKJ3aEUqki1+2w+yv9Wg8o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.163Z",
+  "updated": "2025-12-12T07:48:06.163Z",
+  "size": 4760,
+  "md5Hash": "/obB2p8EBxe+3l2Xlbl/og==",
+  "crc32c": "2163365188"
+}

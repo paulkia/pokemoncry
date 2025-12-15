@@ -1,0 +1,19 @@
+{
+  "name": "cries/zweilous-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683388,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "008d8c9b-e1e2-4462-b8ec-db9a4e5e0c41"
+  ],
+  "etag": "t4O9yJuwvgR7/chIszCp/cg1QzA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.388Z",
+  "updated": "2025-12-12T07:48:03.388Z",
+  "size": 7784,
+  "md5Hash": "WdYPkf2XmWOA7Uq2EKEubg==",
+  "crc32c": "284169645"
+}

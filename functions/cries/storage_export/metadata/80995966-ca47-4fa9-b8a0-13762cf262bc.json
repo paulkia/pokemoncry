@@ -1,0 +1,19 @@
+{
+  "name": "cries/carracosta-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683801,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "12b6ec41-0ac9-45f7-a400-e887697ff328"
+  ],
+  "etag": "G/tSWOHPL3R2e8EAQu9u13T1Lyg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.801Z",
+  "updated": "2025-12-12T07:48:03.801Z",
+  "size": 4112,
+  "md5Hash": "V5zbwWlvpUd2FN3x+GfO2w==",
+  "crc32c": "3399520456"
+}

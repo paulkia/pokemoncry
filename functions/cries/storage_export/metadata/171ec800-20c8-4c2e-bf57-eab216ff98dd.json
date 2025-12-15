@@ -1,0 +1,19 @@
+{
+  "name": "cries/solosis-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684355,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "fe33535e-f969-48a8-a596-812a4cb70147"
+  ],
+  "etag": "v1JC8LMeaF5RpilVk2a+oJuXSa8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.355Z",
+  "updated": "2025-12-12T07:48:04.355Z",
+  "size": 2600,
+  "md5Hash": "HcM/BFDN/o9VGdAubgpUmg==",
+  "crc32c": "1411487005"
+}

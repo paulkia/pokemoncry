@@ -1,0 +1,19 @@
+{
+  "name": "cries/chimchar-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683700,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "467e2332-bb5a-410c-a96f-8c268c5207b5"
+  ],
+  "etag": "UoObBW47sOy+8K+LxVzQ3X23Muo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.700Z",
+  "updated": "2025-12-12T07:48:03.700Z",
+  "size": 2636,
+  "md5Hash": "MAe1Tmo6F/9nufizxlW9EQ==",
+  "crc32c": "2376076477"
+}

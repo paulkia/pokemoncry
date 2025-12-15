@@ -1,0 +1,19 @@
+{
+  "name": "cries/durant-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685649,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "968fd6d6-923d-416a-a62a-c3543fcff5b1"
+  ],
+  "etag": "MKjthNjmefLyx5t4RB59QS0b3mM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.649Z",
+  "updated": "2025-12-12T07:48:05.649Z",
+  "size": 4301,
+  "md5Hash": "awDaz3pip1ruac6b4Nlajg==",
+  "crc32c": "1294984310"
+}

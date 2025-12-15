@@ -1,0 +1,19 @@
+{
+  "name": "cries/pikachu-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684359,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "79fdf86f-ebb9-455e-9d2e-cfeea1e4ef42"
+  ],
+  "etag": "LEijvn76s6mRctSJLeiNvTN5jE4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.359Z",
+  "updated": "2025-12-12T07:48:04.359Z",
+  "size": 2133,
+  "md5Hash": "pHKM6eP1OC63ZHi1aIiatg==",
+  "crc32c": "86938248"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/spiritomb-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684354,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "94cf1a18-906c-49c2-839c-df4495becf39"
+  ],
+  "etag": "AfXyOFpaXJThiWVawUpvcLwE968",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.354Z",
+  "updated": "2025-12-12T07:48:04.354Z",
+  "size": 3884,
+  "md5Hash": "w3g7vs3mpyQ0wQZGZzDwfg==",
+  "crc32c": "3204032231"
+}

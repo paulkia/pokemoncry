@@ -1,0 +1,19 @@
+{
+  "name": "cries/vivillon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685870,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e575dd9c-7e1c-43df-b911-fbb0ae821f87"
+  ],
+  "etag": "LJPiiCgb6gni53ALA9qnMo4wcS8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.870Z",
+  "updated": "2025-12-12T07:48:05.870Z",
+  "size": 10592,
+  "md5Hash": "97ceEOv2/XaaRVdASEyuvQ==",
+  "crc32c": "2713491775"
+}

@@ -9,6 +9,10 @@ import AppHeader from "../../components/AppHeader";
 import { useAuth } from "../../AppContext";
 import { auth, db } from "../../firebase";
 import { ROUTER_UTIL } from "../../library/util";
+import { getFunctions, httpsCallable } from "firebase/functions";
+
+const functions = getFunctions();
+const deleteUserCallable = httpsCallable(functions, "deleteUser");
 
 function Profile() {
   const navigate = useNavigate();
@@ -60,19 +64,14 @@ function Profile() {
 
     const user = auth.currentUser;
     if (user) {
-      // Remove user document from Firestore 'users' collection
-      try {
-        await deleteDoc(doc(db, "users", user.uid));
-      } catch (firestoreErr) {
-        console.warn("Could not delete Firestore user doc", firestoreErr);
-        // Continue; we still attempt to delete the auth user
-      }
       // Delete the Firebase Auth user account
       try {
         await user.delete();
+        // Cloud function to delete user data auth trigger called.
+        // Nothing more to do here.
       } catch (authErr) {
         // Deletion may fail if re-auth is required
-        console.error("Firebase Auth user deletion failed", authErr);
+        console.error("Firebase auth user deletion failed", authErr);
       }
     } else {
       console.error("No authenticated user to delete");

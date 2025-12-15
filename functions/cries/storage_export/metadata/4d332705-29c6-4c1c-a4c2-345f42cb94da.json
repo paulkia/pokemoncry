@@ -1,0 +1,19 @@
+{
+  "name": "cries/latias-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683823,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e657f066-ddcc-4add-a4a9-94ebfb9e035d"
+  ],
+  "etag": "+YJWzL3NLuWF/90Oy4MAbAM5rTc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.823Z",
+  "updated": "2025-12-12T07:48:03.823Z",
+  "size": 1715,
+  "md5Hash": "zbsm7wO5jGmo1EoqFMbc9A==",
+  "crc32c": "1457860937"
+}
