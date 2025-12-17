@@ -1,0 +1,19 @@
+{
+  "name": "cries/minccino-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683854,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "049d2b37-0331-4437-b926-be5480874cb1"
+  ],
+  "etag": "cBPzuX4uQk2HVFywkL8xGDhXa7k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.854Z",
+  "updated": "2025-12-12T07:48:03.854Z",
+  "size": 3140,
+  "md5Hash": "FujDSJinfX84Kv9MX9ldyA==",
+  "crc32c": "451966257"
+}

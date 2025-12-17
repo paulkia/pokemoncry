@@ -1,0 +1,19 @@
+{
+  "name": "cries/blissey-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684081,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6057bc47-e273-42e5-843e-b60052cf6d5e"
+  ],
+  "etag": "1eLIVQWhWx9bs5RPUgBbhR4WKaY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.082Z",
+  "updated": "2025-12-12T07:48:04.082Z",
+  "size": 6056,
+  "md5Hash": "akKILqlk7YEnVQ64nIYNZw==",
+  "crc32c": "3596733491"
+}

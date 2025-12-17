@@ -1,0 +1,19 @@
+{
+  "name": "cries/spearow-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684155,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f6f3a6bf-c7ad-44e0-88d7-cfd4e4a62c9b"
+  ],
+  "etag": "YqtOQN+ookjxkPLVzhexnvNPLi4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.155Z",
+  "updated": "2025-12-12T07:48:04.155Z",
+  "size": 6272,
+  "md5Hash": "+JIJP0eKSi5u9CU3NPkGyQ==",
+  "crc32c": "858515141"
+}

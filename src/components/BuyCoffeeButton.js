@@ -1,8 +1,9 @@
 import { Button } from "react-bootstrap";
 
-function BuyCoffeeButton() {
+function BuyCoffeeButton({ className = "" }) {
   return (
     <Button
+      className={className}
       variant="outline-info"
       href="https://www.buymeacoffee.com/zechla"
       target="_blank"

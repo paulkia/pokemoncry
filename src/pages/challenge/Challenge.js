@@ -23,17 +23,18 @@ import {
 } from "../../library/util";
 import { Trie } from "../../library/trie";
 import { playCryForMon, playCryFromByteUrl } from "../../library/audioViz";
-
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";
 import AudioDisplay from "../../components/AudioDisplay";
 import PokeButton, { OUTLINE_TYPE } from "../../components/PokeButton";
 import Clock from "../../components/Clock";
 import { getFunctions, httpsCallable } from "firebase/functions";
+import { db } from "../../firebase";
 
 const functions = getFunctions();
-const startSession = httpsCallable(functions, "startSession");
-const checkAnswer = httpsCallable(functions, "checkAnswer");
+const createSession = httpsCallable(functions, "createSession");
+const updateSession = httpsCallable(functions, "updateSession");
 
 const ACTION_TYPES = {
   INITIAL_SETUP: "INITIAL_SETUP",
@@ -221,7 +222,6 @@ function Challenge() {
 
   // Required for audio sound and visualization.
   const canvasRef = useRef(null);
-  const audioRef = useRef(new Audio());
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
 
@@ -261,36 +261,83 @@ function Challenge() {
       const blob = new Blob([byteArray], { type: "audio/mpeg" });
       const audioUrl = URL.createObjectURL(blob);
 
-      playCryFromByteUrl(audioUrl, vizInitializedRef, audioRef, canvasRef);
+      playCryFromByteUrl(audioUrl, vizInitializedRef, canvasRef);
     } catch (error) {
       console.error("Error playing cry from base64:", error);
     }
   }
 
+  function startGameListener(sessionId) {
+    const sessionRef = doc(db, "protected-sessions", sessionId);
+    const unsubscribe = onSnapshot(
+      sessionRef,
+      (docSnapshot) => {
+        if (!docSnapshot.exists()) {
+          unsubscribe();
+          return;
+        }
+        const data = docSnapshot.data();
+        if (!data.nextMonCryData) {
+          return;
+        }
+        setCurrentCryData(data.nextMonCryData);
+        playCryFromBase64(data.nextMonCryData);
+        setShowViz(true);
+        const start = Date.now();
+        localStartRef.current = start; // for scoring
+        setLocalStartMs(start); // for display
+        setMonTimeTakenAccordingToServer(0);
+        dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
+        setTimeout(() => {
+          inputRef.current && inputRef.current.focus();
+        }, 200);
+        console.log("update");
+      },
+      (error) => {
+        console.error("Snapshot error:", error);
+      }
+    );
+
+    // Return the unsubscribe function so you can stop listening when the game ends
+    return unsubscribe;
+  }
+
   useEffect(() => {
     async function initSession() {
       try {
-        const result = await startSession({
+        const startSessionResult = await createSession({
           generation: selectedGenerationId,
           mode: numberOfMons === 20 ? "fast" : "full",
           useLegacyCries: settings.preferLegacyCries,
         });
+
+        const { totalMonCount, sessionId } = startSessionResult.data;
+
+        const activateSessionResult = await updateSession({
+          sessionId,
+          answer: null,
+        });
+
+        const { nextMonCryData } = activateSessionResult.data;
+
         dispatch({
           type: ACTION_TYPES.INITIAL_SETUP,
           preloadedMon: preloadedMon,
-          pokeNum: result.data.totalMonCount,
+          pokeNum: totalMonCount,
         });
         inputRef.current && inputRef.current.focus();
 
-        setSessionId(result.data.sessionId);
-        setTotalMonCount(result.data.totalMonCount);
-        setCurrentCryData(result.data.firstMonCryData);
+        setSessionId(sessionId);
+        setTotalMonCount(totalMonCount);
+        setCurrentCryData(nextMonCryData);
 
         // Play first cry from base64 data
-        playCryFromBase64(result.data.firstMonCryData);
-
+        playCryFromBase64(nextMonCryData);
         // Start timer
         localStartRef.current = Date.now();
+        // Listen to updates in Pokemon cries
+
+        startGameListener(sessionId);
       } catch (error) {
         console.error("Failed to start session:", error);
         // Handle error appropriately
@@ -422,7 +469,7 @@ function Challenge() {
         dispatch({ type: ACTION_TYPES.DISABLE_INPUT });
 
         try {
-          const result = await checkAnswer({
+          const result = await updateSession({
             sessionId,
             answer: input,
           });
@@ -457,22 +504,7 @@ function Challenge() {
             triggerIncorrectAnimation();
           }
 
-          if (!isGameComplete) {
-            // Store next cry data and play after delay
-            setCurrentCryData(nextMonCryData);
-            setTimeout(async () => {
-              playCryFromBase64(nextMonCryData);
-              setShowViz(true);
-              const start = Date.now();
-              localStartRef.current = start; // for scoring
-              setLocalStartMs(start); // for display
-              setMonTimeTakenAccordingToServer(0);
-              dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
-              setTimeout(() => {
-                inputRef.current && inputRef.current.focus();
-              }, 200);
-            }, PAUSE_TIME);
-          } else {
+          if (isGameComplete) {
             // Game complete - show final stats
             dispatch({ type: ACTION_TYPES.END_GAME, finalStats: finalStats });
             // Leaderboard already updated by server!
@@ -650,7 +682,6 @@ function Challenge() {
                                 playCryForMon(
                                   preloadedMon[state.finalStats.bestMon],
                                   vizInitializedRef,
-                                  audioRef,
                                   canvasRef,
                                   settings.preferLegacyCries
                                 );
@@ -684,7 +715,6 @@ function Challenge() {
                 playCryForMon(
                   preloadedMon[prevPoke],
                   vizInitializedRef,
-                  audioRef,
                   canvasRef,
                   settings.preferLegacyCries
                 );
@@ -711,7 +741,6 @@ function Challenge() {
                   playCryForMon(
                     state.preloadedMon[state.previousGuess],
                     vizInitializedRef,
-                    audioRef,
                     canvasRef,
                     settings.preferLegacyCries
                   );
@@ -748,7 +777,6 @@ function Challenge() {
                           playCryForMon(
                             state.preloadedMon[name],
                             vizInitializedRef,
-                            audioRef,
                             canvasRef,
                             settings.preferLegacyCries
                           );
@@ -777,7 +805,7 @@ function Challenge() {
     totalMonCount === 0 ? 0 : (state.pokeNum / totalMonCount) * 100;
 
   return (
-    <span>
+    <span className="text-center">
       <div className="App" style={{ position: "relative" }}>
         <Row>
           <p>Challenge Mode!</p> {/* Back button (left) */}
@@ -792,7 +820,10 @@ function Challenge() {
               Total Time:{" "}
               <Clock totalStartRef={totalStartRef} totalClock={totalClock} />
             </span>
-            <PokeProgressBar completionPercent={progress} />
+            <PokeProgressBar
+              className="mt-4 mb-3"
+              completionPercent={progress}
+            />
             {state.isGameComplete && (
               <Button
                 onClick={() => {
@@ -851,7 +882,6 @@ function Challenge() {
                     playCryFromBase64();
                   }}
                   canvasRef={canvasRef}
-                  audioRef={audioRef}
                   vizInitializedRef={vizInitializedRef}
                   showViz={showViz}
                 />
@@ -968,7 +998,9 @@ function Challenge() {
           ) : null}
         </Col>
       </Row>
-      {state.streak > 0 && progress < 100 ? `🔥 ${state.streak}` : null}
+      <Col className="justify-content-center mb-2">
+        {state.streak > 0 && progress < 100 ? `🔥 ${state.streak}` : null}
+      </Col>
       {resultsPanel()}
     </span>
   );

@@ -1,0 +1,19 @@
+{
+  "name": "cries/finneon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683746,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a4eb8014-6d59-4e9a-9b13-afa7a8d4383d"
+  ],
+  "etag": "h+mA4wzs1d0mpSCpGWIr5zmHGyI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.746Z",
+  "updated": "2025-12-12T07:48:03.746Z",
+  "size": 3116,
+  "md5Hash": "iw3I/hz095Y/f7kvKUsvhA==",
+  "crc32c": "2983015095"
+}

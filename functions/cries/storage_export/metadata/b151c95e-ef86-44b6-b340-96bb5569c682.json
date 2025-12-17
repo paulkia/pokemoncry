@@ -1,0 +1,19 @@
+{
+  "name": "cries/tyranitar-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684002,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d1abf765-cb75-4be8-973a-bcf6ddaa290a"
+  ],
+  "etag": "ppo8HLWpDKlZ2Zu3nYtv1utbf0o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.002Z",
+  "updated": "2025-12-12T07:48:04.002Z",
+  "size": 8432,
+  "md5Hash": "y0YJXG9A5wFata6Qq10I1Q==",
+  "crc32c": "2478006499"
+}

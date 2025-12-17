@@ -1,0 +1,19 @@
+{
+  "name": "cries/kangaskhan-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683714,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0bda4915-dda6-4687-8f82-b4d06306b393"
+  ],
+  "etag": "xQMGm981LxAKF1fF8rVhHmcNAKQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.714Z",
+  "updated": "2025-12-12T07:48:03.714Z",
+  "size": 6488,
+  "md5Hash": "lPOYnVapPNKezHk/eWXkhg==",
+  "crc32c": "1415715513"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/skiddo-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683012,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "882c75f5-31c9-4685-9d44-557d967db0f3"
+  ],
+  "etag": "YIKrd4d4l0oIMTUwp8QXrbb7bdM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.012Z",
+  "updated": "2025-12-12T07:48:03.012Z",
+  "size": 4760,
+  "md5Hash": "2JT6YvF9kwPXErvFzetymA==",
+  "crc32c": "2806154857"
+}

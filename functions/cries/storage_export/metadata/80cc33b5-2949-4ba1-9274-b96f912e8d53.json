@@ -1,0 +1,19 @@
+{
+  "name": "cries/beheeyem-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685607,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b95e30ae-9f39-4c98-a27c-b80ab5dccb6d"
+  ],
+  "etag": "eY45gz2l1TDhdBq2rh8dxWVWj2Y",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.607Z",
+  "updated": "2025-12-12T07:48:05.607Z",
+  "size": 9944,
+  "md5Hash": "FSTR3Z8j5+n0JIxEk4tV4w==",
+  "crc32c": "993065412"
+}

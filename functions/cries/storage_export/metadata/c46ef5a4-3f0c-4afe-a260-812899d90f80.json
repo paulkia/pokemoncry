@@ -1,0 +1,19 @@
+{
+  "name": "cries/vullaby-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683744,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "24950a7b-3291-4832-977a-b6b3e676c2df"
+  ],
+  "etag": "4s8JKoS0dhkGvsYPkIHNlLustDY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.744Z",
+  "updated": "2025-12-12T07:48:03.744Z",
+  "size": 4652,
+  "md5Hash": "PLn6ignkKjrm7vSlveY/QA==",
+  "crc32c": "1501185354"
+}

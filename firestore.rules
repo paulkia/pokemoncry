@@ -1,32 +1,30 @@
+// For the most part, we want to reject all reads and writes.
+// Clients should do these via server functions.
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{userId} {
-      // Users can read their own data.
-      allow read: if request.auth.uid == userId;
-
-      // Users can create their profile, but cannot set a score initially.
-      // Scores should only be added by a trusted cloud function.
-      allow create: if request.auth.uid == userId
-                    && !("score" in request.resource.data);
-
-      // Users can update their profile (e.g. username), but cannot change their score.
-      allow update: if request.auth.uid == userId
-                    && request.resource.data.score == resource.data.score;
-                    
-      // Disallow client-side deletion for safety. 
-      // Handle this with a Cloud Function if needed.
-      allow delete: if false;
-    }
-    
-    match /runs/{runId} {
+    // Allow users to view best global runs.
+    match /public-runs/{runId} {
       allow read: if true;
-      allow write: if false; // Only cloud functions can write
+      allow write: if false;
     }
 
-    match /sessions/{sessionId} {
-      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
-      allow write: if false; // Only cloud functions can write
+    // Session use-case: user should be able to read the next cry,
+    // written by a cloud task.
+    match /protected-sessions/{sessionId} {
+      // ALLOW READ IF:
+      // 1. User is logged in (request.auth != null)
+      // 2. The 'uid' field on the PARENT document matches their UID
+      allow read: if request.auth != null &&
+        exists(/databases/$(database)/documents/sessions/$(sessionId)) &&
+        get(/databases/$(database)/documents/sessions/$(sessionId)).data.uid == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /protected-users/{uid} {
+      allow read: if uid == request.auth.uid;
+      allow write: if uid == request.auth.uid;
     }
   }
 }

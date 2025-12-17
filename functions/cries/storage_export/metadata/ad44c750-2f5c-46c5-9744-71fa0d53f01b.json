@@ -1,0 +1,19 @@
+{
+  "name": "cries/tangela-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684331,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "963f576b-bda3-4aea-820b-59b11f027eb1"
+  ],
+  "etag": "xftekIbfBFXFsEUEO8Al1z+wzy8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.331Z",
+  "updated": "2025-12-12T07:48:04.331Z",
+  "size": 6272,
+  "md5Hash": "q/UZ6/fE/om0JhFhmsMr4Q==",
+  "crc32c": "974208846"
+}

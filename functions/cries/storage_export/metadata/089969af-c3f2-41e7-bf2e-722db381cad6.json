@@ -1,0 +1,19 @@
+{
+  "name": "cries/seadra-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683490,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "283c146f-abe4-41de-9d37-a6ea28302f40"
+  ],
+  "etag": "mmywWmip8FY6H9fHrlPcznjyP+o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.490Z",
+  "updated": "2025-12-12T07:48:03.490Z",
+  "size": 1297,
+  "md5Hash": "4wQSzRMbC0f9IvvU32Dr1A==",
+  "crc32c": "3556696405"
+}

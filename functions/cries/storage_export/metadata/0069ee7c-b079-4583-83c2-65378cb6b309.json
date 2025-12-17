@@ -1,0 +1,19 @@
+{
+  "name": "cries/wailmer-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683594,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8c1181f7-8ddd-447d-a0be-9b7f4db1c288"
+  ],
+  "etag": "5dZL5pBXs9wDYxWNMmDo6w/zGqo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.594Z",
+  "updated": "2025-12-12T07:48:03.594Z",
+  "size": 3178,
+  "md5Hash": "ZWukIgc9xOetsGErR4eLXg==",
+  "crc32c": "4160713538"
+}

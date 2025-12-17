@@ -46,7 +46,6 @@ function MultipleChoicePractice() {
 
   // Required for audio sound and visualization.
   const canvasRef = useRef(null);
-  const audioRef = useRef(new Audio());
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
 
@@ -73,7 +72,6 @@ function MultipleChoicePractice() {
           playCryForMon(
             allMon[correctMon],
             vizInitializedRef,
-            audioRef,
             canvasRef,
             settings.preferLegacyCries
           );
@@ -101,7 +99,6 @@ function MultipleChoicePractice() {
           playCryForMon(
             allMon[monInGameOrder[pokeNum]],
             vizInitializedRef,
-            audioRef,
             canvasRef,
             settings.preferLegacyCries
           );
@@ -188,24 +185,22 @@ function MultipleChoicePractice() {
       );
     });
     return (
-      <div
-        className="p-2 rounded mb-2"
+      <Col
+        xs={12}
+        className="p-2 rounded mb-2 justify-content-center"
         key={multipleChoiceOptions.join("-")}
         style={{
           backgroundColor: backgroundColor,
         }}
       >
-        <div className="d-flex flex-wrap justify-content-center mt-1">
-          {
-            <span>
-              {multipleChoiceRawComponent.slice(0, 2)}
-              <span style={{ whiteSpace: "nowrap" }}>
-                {multipleChoiceRawComponent.slice(2, 4)}
-              </span>
-            </span>
-          }
-        </div>
-      </div>
+        {" "}
+        <span style={{ whiteSpace: "nowrap" }}>
+          {multipleChoiceRawComponent.slice(0, 2)}
+        </span>
+        <span style={{ whiteSpace: "nowrap" }}>
+          {multipleChoiceRawComponent.slice(2, 4)}
+        </span>
+      </Col>
     );
   };
 
@@ -224,7 +219,6 @@ function MultipleChoicePractice() {
             playCryForMon(
               allMon[name],
               vizInitializedRef,
-              audioRef,
               canvasRef,
               settings.preferLegacyCries
             );
@@ -243,7 +237,7 @@ function MultipleChoicePractice() {
 
   const progress = (pokeNum / numMonToGuess) * 100;
   return (
-    <span>
+    <span className="text-center">
       <div className="App mt-3" style={{ position: "relative" }}>
         <Row>
           <p>Practice Mode!</p> {/* Back button (left) */}
@@ -299,7 +293,7 @@ function MultipleChoicePractice() {
             {pokeNum !== numMonToGuess ? (
               // Audio display. Reveals either the waveform (current cry) or name of previous cry.
               <Row
-                className="align-items-center rounded p-2 pb-3 mb-2 mt-4"
+                className="align-items-center rounded p-2 pb-3 mb-2 mt-4 justify-content-center"
                 style={{
                   outlineColor: NEUTRAL_RESULT_COLOR,
                   outlineStyle: "dashed",
@@ -311,18 +305,16 @@ function MultipleChoicePractice() {
                     playCryForMon(
                       allMon[monInGameOrder[pokeNum]],
                       vizInitializedRef,
-                      audioRef,
                       canvasRef,
                       settings.preferLegacyCries
                     );
                   }}
                   canvasRef={canvasRef}
-                  audioRef={audioRef}
                   vizInitializedRef={vizInitializedRef}
                   showViz={showViz}
                 />
                 {/* Multiple choice options, only displayed if not all Mon have been guessed. */}
-                <div>
+                <div className="justify-content-center d-flex">
                   {multipleChoiceRow({
                     multipleChoiceOptions: multipleChoiceOptions,
                     onClick: evaluateChoice,

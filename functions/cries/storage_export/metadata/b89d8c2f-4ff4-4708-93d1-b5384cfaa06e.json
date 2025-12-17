@@ -1,0 +1,19 @@
+{
+  "name": "cries/sunflora-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684360,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3e275676-f51f-4c53-b9a2-40ccaf463ac5"
+  ],
+  "etag": "dziGHDwWbohIPwTjct8Ct4n8Yxk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.360Z",
+  "updated": "2025-12-12T07:48:04.360Z",
+  "size": 5840,
+  "md5Hash": "Jvr/WezpWaSdBjnxmhgRCg==",
+  "crc32c": "1659740592"
+}

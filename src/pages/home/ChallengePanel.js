@@ -34,7 +34,7 @@ function GenerationsGrid({
       rows.push(
         <Row key={i} className="justify-content-center">
           {buttonNumbers.slice(i, i + 3).map((buttonId) => (
-            <Col key={buttonId} xs={3} className="p-2">
+            <Col key={buttonId} xs={4} sm={3} className="p-2">
               <Button
                 key={`gen-btn-${buttonId}`}
                 variant={
@@ -118,7 +118,7 @@ function ChallengePanel() {
             </Card.Body>
             <Card.Footer>
               <Row className="justify-content-center align-items-center">
-                <Col className="d-flex justify-content-center">
+                <Col className="d-flex justify-content-center" xs={12}>
                   {gensLoading ? (
                     <Spinner />
                   ) : (
@@ -129,7 +129,7 @@ function ChallengePanel() {
                     </Button>
                   )}
                 </Col>
-                <Col className="d-flex justify-content-center">
+                <Col className="d-flex justify-content-center mt-2">
                   <ButtonGroup>
                     {[
                       { name: "Fast ⚡️", value: 20 },

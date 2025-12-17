@@ -1,0 +1,19 @@
+{
+  "name": "cries/flutter-mane-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684269,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "bcde7162-c5fa-4ac8-bf5d-322626abf201"
+  ],
+  "etag": "3vk19FzOy9+QC5/rjPd9ZVtftmQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.269Z",
+  "updated": "2025-12-12T07:48:04.269Z",
+  "size": 12536,
+  "md5Hash": "vwyPydc4OhTgJxw4zLoAfA==",
+  "crc32c": "3877647334"
+}

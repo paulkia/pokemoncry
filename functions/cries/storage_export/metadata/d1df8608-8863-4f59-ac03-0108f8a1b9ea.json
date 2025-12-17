@@ -1,0 +1,19 @@
+{
+  "name": "cries/vanilluxe-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683784,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d42886c1-26a9-419f-b374-0a47715a353a"
+  ],
+  "etag": "teOHf7fbBlAO5fg6ak0zRKtqSEc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.784Z",
+  "updated": "2025-12-12T07:48:03.784Z",
+  "size": 4197,
+  "md5Hash": "szNc59DQp5jF7SwW3T5WKw==",
+  "crc32c": "1671913931"
+}

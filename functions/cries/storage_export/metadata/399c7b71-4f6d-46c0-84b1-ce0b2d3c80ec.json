@@ -1,0 +1,19 @@
+{
+  "name": "cries/octillery-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685500,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "677a73ec-0fd1-4e9d-8781-66a1f09d5a24"
+  ],
+  "etag": "Z8uB7LfJ4VZdEOlih2qSY6ZV32A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.500Z",
+  "updated": "2025-12-12T07:48:05.500Z",
+  "size": 8000,
+  "md5Hash": "Mq+417h4QHBfOBGUCMBzHg==",
+  "crc32c": "931402600"
+}

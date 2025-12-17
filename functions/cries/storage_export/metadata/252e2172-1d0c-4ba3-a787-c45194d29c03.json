@@ -1,0 +1,19 @@
+{
+  "name": "cries/lairon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683646,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "de1ddee1-b5aa-486a-a435-db8cb2c07f7b"
+  ],
+  "etag": "y1ND8loV6iVRbFLy01qAuxM7lUg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.646Z",
+  "updated": "2025-12-12T07:48:03.646Z",
+  "size": 2551,
+  "md5Hash": "lp1I3YopcoEo9n/iUI8Yeg==",
+  "crc32c": "150907121"
+}

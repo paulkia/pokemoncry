@@ -178,7 +178,6 @@ function ShortAnswerPractice() {
 
   // Required for audio sound and visualization.
   const canvasRef = useRef(null);
-  const audioRef = useRef(new Audio());
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
 
@@ -217,7 +216,6 @@ function ShortAnswerPractice() {
         playCryForMon(
           allMon[firstMon],
           vizInitializedRef,
-          audioRef,
           canvasRef,
           settings.preferLegacyCries
         );
@@ -297,7 +295,6 @@ function ShortAnswerPractice() {
         playCryForMon(
           allMon[currMon],
           vizInitializedRef,
-          audioRef,
           canvasRef,
           settings.preferLegacyCries
         );
@@ -339,7 +336,6 @@ function ShortAnswerPractice() {
             playCryForMon(
               allMon[nextMon],
               vizInitializedRef,
-              audioRef,
               canvasRef,
               settings.preferLegacyCries
             );
@@ -385,7 +381,6 @@ function ShortAnswerPractice() {
             playCryForMon(
               allMon[state.previousGuess],
               vizInitializedRef,
-              audioRef,
               canvasRef,
               settings.preferLegacyCries
             );
@@ -419,7 +414,6 @@ function ShortAnswerPractice() {
                 playCryForMon(
                   allMon[previous],
                   vizInitializedRef,
-                  audioRef,
                   canvasRef,
                   settings.preferLegacyCries
                 );
@@ -456,7 +450,6 @@ function ShortAnswerPractice() {
                           playCryForMon(
                             allMon[name],
                             vizInitializedRef,
-                            audioRef,
                             canvasRef,
                             settings.preferLegacyCries
                           );
@@ -484,7 +477,7 @@ function ShortAnswerPractice() {
   const progress = (state.pokeNum / numMonToGuess) * 100;
   return (
     <span>
-      <div className="App mt-3" style={{ position: "relative" }}>
+      <div className="App mt-3 text-center" style={{ position: "relative" }}>
         <Row>
           <p>Practice Mode!</p> {/* Back button (left) */}
         </Row>
@@ -542,13 +535,11 @@ function ShortAnswerPractice() {
                     playCryForMon(
                       allMon[monInGameOrder[state.pokeNum]],
                       vizInitializedRef,
-                      audioRef,
                       canvasRef,
                       settings.preferLegacyCries
                     );
                   }}
                   canvasRef={canvasRef}
-                  audioRef={audioRef}
                   vizInitializedRef={vizInitializedRef}
                   showViz={showViz}
                 />

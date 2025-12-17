@@ -1,0 +1,19 @@
+{
+  "name": "cries/archeops-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684018,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9960a2b2-27a8-4b5f-b9bd-912508c8acaa"
+  ],
+  "etag": "V+4fbQfWWZlic9Hp6gIcQV3EKO8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.018Z",
+  "updated": "2025-12-12T07:48:04.018Z",
+  "size": 7568,
+  "md5Hash": "Bd6BsmE/9x6vxC0I2xwnXg==",
+  "crc32c": "1979534746"
+}

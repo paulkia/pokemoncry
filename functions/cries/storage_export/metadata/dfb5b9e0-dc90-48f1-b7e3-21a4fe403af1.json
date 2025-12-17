@@ -1,0 +1,19 @@
+{
+  "name": "cries/fearow-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683824,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7c9ffe74-f5a6-4f3a-9072-78a3159d834c"
+  ],
+  "etag": "RfTLzBduM4vllh2r7358VwIzH5E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.824Z",
+  "updated": "2025-12-12T07:48:03.824Z",
+  "size": 2133,
+  "md5Hash": "6NPUDk4/8+k3LRjYY5vA8A==",
+  "crc32c": "1777879210"
+}

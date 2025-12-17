@@ -1,0 +1,19 @@
+{
+  "name": "cries/excadrill-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683901,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "87cb20ac-015e-446d-b0b0-d1ae620ffe9d"
+  ],
+  "etag": "b2QQUpZW+VVHT88L1qJKhvTDl2Y",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.901Z",
+  "updated": "2025-12-12T07:48:03.901Z",
+  "size": 4868,
+  "md5Hash": "TWnE5m+e5JGrEdcOOa1q3g==",
+  "crc32c": "2432765968"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/gligar-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683527,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6cced8b9-dc7c-4fea-b061-a7da079c1034"
+  ],
+  "etag": "9/gTbwU3SL0dPUrK1yTTcSznXoo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.527Z",
+  "updated": "2025-12-12T07:48:03.527Z",
+  "size": 1715,
+  "md5Hash": "nTKC9RvKtR0tFmipn6f6kA==",
+  "crc32c": "1046495939"
+}

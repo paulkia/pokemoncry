@@ -1,0 +1,19 @@
+{
+  "name": "cries/petilil-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683806,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c6fd70cd-1e67-41e6-9ae2-ca8777482973"
+  ],
+  "etag": "fmz/7Vh8Smz+4dHPVTs8A3IfodE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.806Z",
+  "updated": "2025-12-12T07:48:03.806Z",
+  "size": 1520,
+  "md5Hash": "WfvlKNM+63tfdtQkjxzPYQ==",
+  "crc32c": "4037347996"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/aipom-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684187,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7ab0774a-fafb-46a1-a935-491b701a3315"
+  ],
+  "etag": "0+qd6zL0Vy7gVNduUZWkzugc3CQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.187Z",
+  "updated": "2025-12-12T07:48:04.187Z",
+  "size": 5192,
+  "md5Hash": "FC1Nibwl5pLlaaIG1e73SQ==",
+  "crc32c": "390734192"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/basculin-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684380,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "61a146b0-67ff-41a6-af6d-569afa875a14"
+  ],
+  "etag": "oPvSCBUJ3rBuZTLJxJGXdeaqO4A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.380Z",
+  "updated": "2025-12-12T07:48:04.380Z",
+  "size": 4196,
+  "md5Hash": "HsEEcD9uZmjducSUVYYXEw==",
+  "crc32c": "1176381639"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/liepard-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684439,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "06c61a70-4fea-4c13-8c48-dff303a4bca9"
+  ],
+  "etag": "9d5wATJAx0hOToUg94ZxK6PAz7s",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.439Z",
+  "updated": "2025-12-12T07:48:04.439Z",
+  "size": 3256,
+  "md5Hash": "Zw6mbKy7giRuaYftEsKU9Q==",
+  "crc32c": "3101552112"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/cleffa-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685651,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f7a6b685-2d1b-4372-86d0-ae72ec50c1b0"
+  ],
+  "etag": "2Z33BTsPjqYQ10SLIhhwZfL4Lgk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.651Z",
+  "updated": "2025-12-12T07:48:05.651Z",
+  "size": 1088,
+  "md5Hash": "BUnv7IvLJO5wOSDZ40FS0g==",
+  "crc32c": "4178745402"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/swampert-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684236,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7d89a782-caa8-4b5a-8fcf-d60c113f1787"
+  ],
+  "etag": "nMHzpvAjYCzjenr7nNcrJ2kYubY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.236Z",
+  "updated": "2025-12-12T07:48:04.236Z",
+  "size": 7784,
+  "md5Hash": "kcquVGcgAwE3+sWlqXhRiw==",
+  "crc32c": "4291834258"
+}

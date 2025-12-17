@@ -1,0 +1,19 @@
+{
+  "name": "cries/sudowoodo-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684332,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f5101f3c-1e17-4c9c-80f8-f1fafecd7295"
+  ],
+  "etag": "7tq2PMiFnIAcFcBeWDZuIstwEOY",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.332Z",
+  "updated": "2025-12-12T07:48:04.332Z",
+  "size": 5624,
+  "md5Hash": "4skdLHZTm14U0G7R7Lm9xw==",
+  "crc32c": "2272125467"
+}

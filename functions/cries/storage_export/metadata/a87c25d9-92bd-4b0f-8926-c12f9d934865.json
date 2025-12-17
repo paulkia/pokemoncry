@@ -1,0 +1,19 @@
+{
+  "name": "cries/kricketot-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684123,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "37677452-9380-4aa6-a866-d6b202796c11"
+  ],
+  "etag": "RxKPDCfFm3MN03XUshLXl797jlM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.123Z",
+  "updated": "2025-12-12T07:48:04.123Z",
+  "size": 6488,
+  "md5Hash": "RiTr2fIX1pplxztITWraIA==",
+  "crc32c": "281356551"
+}

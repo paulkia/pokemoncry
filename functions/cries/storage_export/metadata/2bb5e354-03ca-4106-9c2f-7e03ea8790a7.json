@@ -1,0 +1,19 @@
+{
+  "name": "cries/ditto-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685801,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "bc568f02-4555-4933-b826-8f2dbbd5bcb1"
+  ],
+  "etag": "6r9czk/9Hopxe1ODsrswjzJTfrc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.801Z",
+  "updated": "2025-12-12T07:48:05.801Z",
+  "size": 4544,
+  "md5Hash": "Mjuj1hd8VjAsKwxutNUC1A==",
+  "crc32c": "925423530"
+}

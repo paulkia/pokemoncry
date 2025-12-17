@@ -1,0 +1,19 @@
+{
+  "name": "cries/mamoswine-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683681,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5cbc0251-9c78-46ad-913f-806e5957a811"
+  ],
+  "etag": "aTYFRwx12+5MhXtvNgAkaMyNkaM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.681Z",
+  "updated": "2025-12-12T07:48:03.681Z",
+  "size": 10592,
+  "md5Hash": "Kk8N6tfh7vygYDrYQ+d7yg==",
+  "crc32c": "1365398777"
+}

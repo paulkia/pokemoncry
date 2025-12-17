@@ -1,0 +1,19 @@
+{
+  "name": "cries/chinchou-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685758,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5b6f5310-80d6-430e-b8ab-2535f067a873"
+  ],
+  "etag": "qgWaIVoAkejwLP3FSrNinBfHJh0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.758Z",
+  "updated": "2025-12-12T07:48:05.758Z",
+  "size": 1715,
+  "md5Hash": "k4Z0oy50BRpzMpD7UGoyhA==",
+  "crc32c": "2212695644"
+}

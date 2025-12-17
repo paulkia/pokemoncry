@@ -1,0 +1,19 @@
+{
+  "name": "cries/nymble-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683574,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9223144c-7d99-4a2a-ab2b-cbdc6b9b360a"
+  ],
+  "etag": "cfVtJKf31C4krCQTw3pC2RPfh00",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.574Z",
+  "updated": "2025-12-12T07:48:03.574Z",
+  "size": 6572,
+  "md5Hash": "y3SjIsvdC4Cq0wUSN2PdBg==",
+  "crc32c": "1686383149"
+}

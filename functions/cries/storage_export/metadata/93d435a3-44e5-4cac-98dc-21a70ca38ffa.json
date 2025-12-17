@@ -1,0 +1,19 @@
+{
+  "name": "cries/munchlax-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683690,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "50c23b8e-3567-4ec3-a0ce-ac7a0eabf54b"
+  ],
+  "etag": "PMznwz23100vwp1v0Ea0DkO+dNA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.690Z",
+  "updated": "2025-12-12T07:48:03.690Z",
+  "size": 1610,
+  "md5Hash": "6v+3LXn93ubq23Ra2ra7Xg==",
+  "crc32c": "1331155161"
+}

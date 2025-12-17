@@ -1,0 +1,19 @@
+{
+  "name": "cries/steelix-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683877,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4039ced9-4fad-45dd-b9a7-6ad042055c44"
+  ],
+  "etag": "WAa0LaixrHjwQ2VE903XHEjil9o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.877Z",
+  "updated": "2025-12-12T07:48:03.877Z",
+  "size": 4118,
+  "md5Hash": "md/nlNmQK2AxYrPabS+82A==",
+  "crc32c": "3692063830"
+}

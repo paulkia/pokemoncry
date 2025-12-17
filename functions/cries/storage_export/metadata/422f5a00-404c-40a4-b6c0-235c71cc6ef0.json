@@ -1,0 +1,19 @@
+{
+  "name": "cries/venusaur-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683686,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d35fd2b4-42b2-42a1-9b05-29d8d6745157"
+  ],
+  "etag": "FPX0sScpzZm5kS1EIHM3Xoy1dI0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.686Z",
+  "updated": "2025-12-12T07:48:03.686Z",
+  "size": 2342,
+  "md5Hash": "YrY0T/CpanxF0+O2AghYUw==",
+  "crc32c": "3280780532"
+}

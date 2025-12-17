@@ -1,0 +1,19 @@
+{
+  "name": "cries/rampardos-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683776,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0ed6c448-1769-4aa0-94b5-e59e23a23c93"
+  ],
+  "etag": "vJGpE1sTGecMdtbSJ6HCs6bar3M",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.776Z",
+  "updated": "2025-12-12T07:48:03.776Z",
+  "size": 3500,
+  "md5Hash": "9d+XtuXn748Zas+ywrWXtA==",
+  "crc32c": "2917233439"
+}

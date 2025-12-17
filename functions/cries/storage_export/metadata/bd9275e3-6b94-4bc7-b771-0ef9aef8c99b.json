@@ -1,0 +1,19 @@
+{
+  "name": "cries/diglett-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683721,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "1fd4a918-d11b-4a0c-a8bf-133408263d1b"
+  ],
+  "etag": "uQUZE1c5WOOfFxodBUC2kzaeNMk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.721Z",
+  "updated": "2025-12-12T07:48:03.721Z",
+  "size": 6920,
+  "md5Hash": "dH0Tmn0rE4iOviWhDb381g==",
+  "crc32c": "2651332508"
+}

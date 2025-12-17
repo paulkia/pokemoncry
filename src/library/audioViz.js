@@ -23,8 +23,8 @@ export function stopAudioViz() {
   // keeping the context open is safer for iOS user-interaction rules.
 }
 
-export async function playAudioWithViz(url, canvas) {
-  if (!url || !canvas) return;
+async function playAudioWithViz(url, canvas) {
+  if (!url) return;
 
   try {
     // 1. Stop previous sound
@@ -41,21 +41,29 @@ export async function playAudioWithViz(url, canvas) {
       await audioCtx.resume();
     }
 
-    // 4. Create Analyser (if not exists)
-    if (!analyser) {
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 2048;
-    }
-
-    // 5. Fetch and Decode Audio (The Fix for iOS)
+    // 4. Fetch and Decode Audio (The Fix for iOS)
     // We fetch the blob/url and decode it fully. This bypasses the streaming bugs.
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
     const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
 
-    // 6. Create Buffer Source & Connect
+    // 5. Create Buffer Source & Connect
     sourceNode = audioCtx.createBufferSource();
     sourceNode.buffer = audioBuffer;
+
+    if (!canvas) {
+      // Just play with no vizualization.
+      sourceNode.connect(audioCtx.destination);
+      // 6. Start Playback
+      sourceNode.start(0);
+      return;
+    }
+
+    // 6. Create Analyser if needed
+    if (!analyser) {
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 2048;
+    }
 
     sourceNode.connect(analyser);
     analyser.connect(audioCtx.destination);
@@ -110,18 +118,12 @@ export async function playAudioWithViz(url, canvas) {
   }
 }
 
-export function playCryFromByteUrl(
-  cryUrl,
-  vizInitializedRef,
-  audioRef, // We keep this argument to avoid breaking your call sites, but we ignore it.
-  canvasRef
-) {
+export function playCryFromByteUrl(cryUrl, vizInitializedRef, canvasRef) {
   // We ignore audioRef completely now.
   // Using the HTML <audio> tag is what caused the bug.
   // We always use the Web Audio path (playAudioWithViz) for every play.
-
+  playAudioWithViz(cryUrl, canvasRef.current);
   if (canvasRef.current) {
-    playAudioWithViz(cryUrl, canvasRef.current);
     vizInitializedRef.current = true;
   }
 }
@@ -130,7 +132,6 @@ export function playCryFromByteUrl(
 export function playCryForMon(
   monData,
   vizInitializedRef,
-  audioRef,
   canvasRef,
   preferLegacyCries
 ) {
@@ -142,5 +143,5 @@ export function playCryForMon(
     cryUrl = monData.legacyCry || monData.latestCry || null;
   }
 
-  playCryFromByteUrl(cryUrl, vizInitializedRef, audioRef, canvasRef);
+  playCryFromByteUrl(cryUrl, vizInitializedRef, canvasRef);
 }

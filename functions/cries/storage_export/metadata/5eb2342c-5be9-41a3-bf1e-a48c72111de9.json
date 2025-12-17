@@ -1,0 +1,19 @@
+{
+  "name": "cries/volbeat-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685658,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3b1abb63-306b-480e-a447-ea91b999860d"
+  ],
+  "etag": "yBV8zZ8Gxy6N5xjSm0Q1Cu8lFys",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.658Z",
+  "updated": "2025-12-12T07:48:05.658Z",
+  "size": 1610,
+  "md5Hash": "MutPuGwVzLxa+eRitw16tA==",
+  "crc32c": "3696860581"
+}

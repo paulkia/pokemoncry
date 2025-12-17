@@ -1,0 +1,19 @@
+{
+  "name": "cries/thundurus-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683396,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "40651856-5e79-47e6-85b3-c05b20a13ab0"
+  ],
+  "etag": "MWIlyWnAbnOsXAdZ4UFOwuDbLsU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.396Z",
+  "updated": "2025-12-12T07:48:03.396Z",
+  "size": 3980,
+  "md5Hash": "CGSCV2/Qn+K6RRmBGKqv9A==",
+  "crc32c": "2683481737"
+}

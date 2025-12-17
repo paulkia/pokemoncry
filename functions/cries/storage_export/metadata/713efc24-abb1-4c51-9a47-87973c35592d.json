@@ -1,0 +1,19 @@
+{
+  "name": "cries/salamence-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684168,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5727ca21-7da5-4ca8-ae15-55ef5d2ef63a"
+  ],
+  "etag": "DoKKAuEU2xe7tlKr0X+0DwCN5d4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.168Z",
+  "updated": "2025-12-12T07:48:04.168Z",
+  "size": 8432,
+  "md5Hash": "dSg2ffFSJXjB7n927LsEhQ==",
+  "crc32c": "2738425070"
+}

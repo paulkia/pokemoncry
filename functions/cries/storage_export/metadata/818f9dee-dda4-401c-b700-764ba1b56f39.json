@@ -1,0 +1,19 @@
+{
+  "name": "cries/tyrogue-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683243,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a63dea31-be1b-4b8e-a4d4-5f819778d769"
+  ],
+  "etag": "43f1utPA27UK028k0K9exrNPVm4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.243Z",
+  "updated": "2025-12-12T07:48:03.243Z",
+  "size": 6056,
+  "md5Hash": "CDoySHn6luNvY1+FuD19+A==",
+  "crc32c": "3730034391"
+}

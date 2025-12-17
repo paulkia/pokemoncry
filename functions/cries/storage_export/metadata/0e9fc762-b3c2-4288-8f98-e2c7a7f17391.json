@@ -1,0 +1,19 @@
+{
+  "name": "cries/regigigas-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684138,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9e06334e-5c61-435c-acb1-aa9346a1fb7d"
+  ],
+  "etag": "NIMJf00vsU5gzO1wpdwYMUxWKg0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.138Z",
+  "updated": "2025-12-12T07:48:04.138Z",
+  "size": 3980,
+  "md5Hash": "hpQXMIR63leEDIjjUeXlYw==",
+  "crc32c": "2799832218"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/starly-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683742,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "28ea6b5d-341d-474b-b6f8-23ffb6cf3112"
+  ],
+  "etag": "hu+G2N9oxEL2FHnYhfyfvrmHebo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.742Z",
+  "updated": "2025-12-12T07:48:03.742Z",
+  "size": 7352,
+  "md5Hash": "2p51JTZMmfFidJ5Xj74X3w==",
+  "crc32c": "2145498492"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/lillipup-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686306,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c793108c-fc97-434b-929f-0a5168e7d4da"
+  ],
+  "etag": "5dPD0dJ/Zc5bb7F0wfafeKN1Q/o",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.306Z",
+  "updated": "2025-12-12T07:48:06.306Z",
+  "size": 3988,
+  "md5Hash": "a8oT9cWYqktZmV0v4JiWPg==",
+  "crc32c": "1131686501"
+}

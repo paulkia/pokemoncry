@@ -1,0 +1,19 @@
+{
+  "name": "cries/shinx-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684152,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c90731f4-4619-4eda-97a6-9532bae77647"
+  ],
+  "etag": "DOlXZsp05eKAoAQFEaPhe0TMack",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.152Z",
+  "updated": "2025-12-12T07:48:04.152Z",
+  "size": 1964,
+  "md5Hash": "bg5upceoHmWvI4SgVhVerA==",
+  "crc32c": "2890824602"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/dragonite-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686209,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "01429193-9cd5-4730-8f82-69c6771e586f"
+  ],
+  "etag": "ol1xlR1Qb/soMvzPV29TL4rRomA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.209Z",
+  "updated": "2025-12-12T07:48:06.209Z",
+  "size": 6920,
+  "md5Hash": "Df9Ggfs9HlsjWSi6Hhk1XQ==",
+  "crc32c": "2457271061"
+}

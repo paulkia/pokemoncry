@@ -1,0 +1,19 @@
+{
+  "name": "cries/durant-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684214,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "791a70ac-b9f5-436d-ad20-4d9fc5b3a706"
+  ],
+  "etag": "9+9lY/CT81kHlYpkExehLsEaoSs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.214Z",
+  "updated": "2025-12-12T07:48:04.214Z",
+  "size": 7136,
+  "md5Hash": "b35N3MjIPxwdY1KBq4Uzmg==",
+  "crc32c": "3734449524"
+}

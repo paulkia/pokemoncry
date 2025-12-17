@@ -1,0 +1,19 @@
+{
+  "name": "cries/snorunt-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684138,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "0119b61a-4923-4c3d-9013-10a081cb37b2"
+  ],
+  "etag": "NIMJf00vsU5gzO1wpdwYMUxWKg0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.138Z",
+  "updated": "2025-12-12T07:48:04.138Z",
+  "size": 2133,
+  "md5Hash": "1yChV6VNKdlLg025rmAKUg==",
+  "crc32c": "2322692897"
+}

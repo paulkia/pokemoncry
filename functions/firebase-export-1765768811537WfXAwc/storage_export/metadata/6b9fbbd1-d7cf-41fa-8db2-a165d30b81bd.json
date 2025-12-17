@@ -1,0 +1,19 @@
+{
+  "name": "cries/emboar-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685344,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "aae95d74-364e-4022-b9a4-709798cf25da"
+  ],
+  "etag": "5uJsfaOS05FK0G2tBeag6yAFir4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.344Z",
+  "updated": "2025-12-12T07:48:05.344Z",
+  "size": 3680,
+  "md5Hash": "pl1EFeI0kkSmpoZ1xUxcMA==",
+  "crc32c": "3039384977"
+}

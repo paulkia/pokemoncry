@@ -1,0 +1,19 @@
+{
+  "name": "cries/incineroar-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683791,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4a3790ca-c877-4f0b-9202-3f845737faeb"
+  ],
+  "etag": "Hn4Ltn0rKIRabbVPpg9ODD3Opbw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.791Z",
+  "updated": "2025-12-12T07:48:03.791Z",
+  "size": 11456,
+  "md5Hash": "tQXP2QeNJQaVivcPmSdq/g==",
+  "crc32c": "2735287983"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/exeggcute-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683881,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "56143102-fea4-4956-8d8b-d438ac9925d5"
+  ],
+  "etag": "/kAgO6myCEHdGpzVV99A0oSPWZQ",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.881Z",
+  "updated": "2025-12-12T07:48:03.881Z",
+  "size": 2342,
+  "md5Hash": "pKoqGyGMaEInOCH1bT8DMQ==",
+  "crc32c": "2916192105"
+}

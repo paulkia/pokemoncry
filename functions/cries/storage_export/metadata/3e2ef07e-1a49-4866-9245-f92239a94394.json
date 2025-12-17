@@ -1,0 +1,19 @@
+{
+  "name": "cries/poliwag-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685354,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "29ae1de1-54e3-4163-b9cf-9af1d99738fd"
+  ],
+  "etag": "yVoZ3l19IV067yGkSFcuF6BG4h8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.354Z",
+  "updated": "2025-12-12T07:48:05.354Z",
+  "size": 4544,
+  "md5Hash": "NeFhxRlQkMJBAYpw9te5GA==",
+  "crc32c": "525267193"
+}

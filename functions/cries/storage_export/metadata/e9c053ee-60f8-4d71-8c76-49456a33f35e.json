@@ -1,0 +1,19 @@
+{
+  "name": "cries/teddiursa-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684307,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ef641a72-81e7-442b-bb9d-48b878cad13a"
+  ],
+  "etag": "GFCIMJxTzxeSoJKPgBM2CqEgTIc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.307Z",
+  "updated": "2025-12-12T07:48:04.307Z",
+  "size": 5624,
+  "md5Hash": "9YiX15HHkhMhn6oNgW/vrQ==",
+  "crc32c": "368848037"
+}

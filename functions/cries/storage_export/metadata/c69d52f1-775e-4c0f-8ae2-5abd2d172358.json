@@ -1,0 +1,19 @@
+{
+  "name": "cries/urshifu-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684309,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "15f51e49-bbf2-4cd6-8809-e59e4cb816ee"
+  ],
+  "etag": "Echt1RDJrEnlj+5kR0NnUyh8jag",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.309Z",
+  "updated": "2025-12-12T07:48:04.309Z",
+  "size": 8167,
+  "md5Hash": "20Kw+i8gA+GimJ+TtIVASg==",
+  "crc32c": "41191457"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/granbull-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684246,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b2f5c1d9-0365-4bcf-9af4-e743c89af6ff"
+  ],
+  "etag": "wRS5zhOgNjkxgFowZLbgEvkxZa0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.246Z",
+  "updated": "2025-12-12T07:48:04.246Z",
+  "size": 2760,
+  "md5Hash": "HT8GzhN100KGdzRzk+6CEw==",
+  "crc32c": "1088456982"
+}

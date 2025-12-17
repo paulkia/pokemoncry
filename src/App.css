@@ -4,9 +4,8 @@
   font-family: "Roboto Mono", monospace;
 }
 
-.mb-n20 {
-  margin-bottom: -5rem !important;
-  z-index: 2;
+.mb-custom-for-audio-display {
+  margin-bottom: -4rem !important;
 }
 
 .App-logo {

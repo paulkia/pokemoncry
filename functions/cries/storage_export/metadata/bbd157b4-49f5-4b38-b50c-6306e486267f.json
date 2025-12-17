@@ -1,0 +1,19 @@
+{
+  "name": "cries/braixen-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684313,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "637e90e4-88e7-4efc-bddb-0a6296d127f6"
+  ],
+  "etag": "lTbdfowDDBobhsC33uHVhovyZYE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.313Z",
+  "updated": "2025-12-12T07:48:04.313Z",
+  "size": 6488,
+  "md5Hash": "skRgFtW5elEvaQ4HeS3Mlg==",
+  "crc32c": "3221643105"
+}

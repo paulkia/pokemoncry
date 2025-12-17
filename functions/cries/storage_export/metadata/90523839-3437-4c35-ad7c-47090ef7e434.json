@@ -1,0 +1,19 @@
+{
+  "name": "cries/baltoy-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683604,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3aef07d4-dead-4c15-ac40-2f3c9832a917"
+  ],
+  "etag": "+8X4gqeWLxLP3UhJcjTuiFJDclM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.604Z",
+  "updated": "2025-12-12T07:48:03.604Z",
+  "size": 1715,
+  "md5Hash": "stQpfjUE4luqjsx1kxKz+Q==",
+  "crc32c": "4245258717"
+}

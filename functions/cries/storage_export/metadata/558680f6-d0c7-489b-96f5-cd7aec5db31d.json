@@ -1,0 +1,19 @@
+{
+  "name": "cries/coalossal-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683783,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "57201f01-3161-4d8a-ab46-24ce7cae92ee"
+  ],
+  "etag": "W0hDOiY0jssx1RBqM2A8WOg/qs4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.783Z",
+  "updated": "2025-12-12T07:48:03.783Z",
+  "size": 18407,
+  "md5Hash": "3DV3Io0m8QX0UhKLtmsINw==",
+  "crc32c": "1998163748"
+}

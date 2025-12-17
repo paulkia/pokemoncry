@@ -1,0 +1,19 @@
+{
+  "name": "cries/goomy-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685599,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3f15e4de-2a5d-48eb-9fa2-4655c65871f0"
+  ],
+  "etag": "12DzijNuotIfyP1NaVuDBP8wf3M",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.599Z",
+  "updated": "2025-12-12T07:48:05.599Z",
+  "size": 6488,
+  "md5Hash": "ZLp/0a+SksKOXynLr250Ag==",
+  "crc32c": "152565842"
+}

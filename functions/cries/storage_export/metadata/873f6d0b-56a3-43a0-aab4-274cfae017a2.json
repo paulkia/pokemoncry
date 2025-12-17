@@ -1,0 +1,19 @@
+{
+  "name": "cries/vibrava-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685424,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "07680f7f-d601-4654-86c7-7fc1c6633efb"
+  ],
+  "etag": "uCUcvyJcie5uP4TVmq+x0hyiKt8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.424Z",
+  "updated": "2025-12-12T07:48:05.424Z",
+  "size": 1924,
+  "md5Hash": "kb3s/NQsYSO9Ms6SJsKhiw==",
+  "crc32c": "4227775540"
+}

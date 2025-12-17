@@ -1,0 +1,19 @@
+{
+  "name": "cries/shuppet-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685957,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4fc738b3-092e-42d3-9669-5054afb52eac"
+  ],
+  "etag": "juN4V2aCKmZxm25ttcojama+grI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.957Z",
+  "updated": "2025-12-12T07:48:05.957Z",
+  "size": 1297,
+  "md5Hash": "IwJFF3h3hlKETxgHJm1prQ==",
+  "crc32c": "3872201171"
+}

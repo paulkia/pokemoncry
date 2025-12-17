@@ -1,0 +1,19 @@
+{
+  "name": "cries/cranidos-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683657,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f9e14103-dfae-49c7-ab53-92de61b55b87"
+  ],
+  "etag": "QzBuEN13FUQSYpwpAzMpOz/um3U",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.657Z",
+  "updated": "2025-12-12T07:48:03.657Z",
+  "size": 4760,
+  "md5Hash": "8ZO0t4x8ZabvhrZnNnngqQ==",
+  "crc32c": "1762368522"
+}

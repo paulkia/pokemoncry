@@ -1,0 +1,19 @@
+{
+  "name": "cries/corviknight-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685802,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "fca53d83-9fe5-4f2f-82a6-0ccdb2f28574"
+  ],
+  "etag": "usKRc4fSfbSN2+BhVAiIAOR/ABM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.802Z",
+  "updated": "2025-12-12T07:48:05.802Z",
+  "size": 12137,
+  "md5Hash": "FBxWJlcJWAoobbebV7l27A==",
+  "crc32c": "1653090362"
+}

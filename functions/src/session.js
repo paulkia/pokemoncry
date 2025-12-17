@@ -1,10 +1,25 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and triggers.
 import { onCall, HttpsError } from "firebase-functions/https";
-
 // The Firebase Admin SDK to access Firestore.
 import { FieldValue } from "firebase-admin/firestore";
-import { db, storage } from "./firebase.js";
+// Local imports
+import { db, functions, storage } from "./firebase.js";
 import { genToMons } from "./util.js";
+// Cloud Tasks client library
+import { CloudTasksClient } from "@google-cloud/tasks";
+import { logger } from "firebase-functions";
+import { onTaskDispatched } from "firebase-functions/tasks";
+
+// Instantiates a client
+const client = new CloudTasksClient();
+
+const ANONYMOUS_USERNAME = "Anonymous";
+
+const SESSION_STATUS = {
+  INITIALIZED: 0,
+  ACTIVE: 1,
+  COMPLETED: 2,
+};
 
 // ============================================================================
 // HELPER FUNCTIONS
@@ -46,6 +61,114 @@ function getMonList(generation, mode) {
 }
 
 /**
+ * Cloud Function: createSession
+ *
+ * Creates a new game session for the authenticated user.
+ *
+ * @param data.generation - Generation to play: 1-9 or 0 ("all")
+ *   Note: Client currently supports selecting multiple generations (e.g., [1,2,3]).
+ *   For now, if you need multi-gen support, either:
+ *   1. Pass 0 when multiple generations are selected, or
+ *   2. Modify this function to accept an array of generation numbers
+ * @param data.mode - "fast" (20 mon) or "full" (all mon)
+ * @param data.useLegacyCries - boolean, whether to use legacy cries
+ *
+ * @returns sessionId, firstMonCryUrl, totalMonCount
+ */
+export const createSession = onCall(async (request) => {
+  // 1. Authenticate the user
+  if (!request.auth) {
+    throw new HttpsError(
+      "unauthenticated",
+      "You must be authenticated to start a session."
+    );
+  }
+
+  const uid = request.auth.uid;
+  const { generation, mode, useLegacyCries } = request.data;
+
+  // 2. Validate inputs
+  if (
+    generation !== 0 &&
+    (typeof generation !== "number" || generation < 1 || generation > 9)
+  ) {
+    throw new HttpsError(
+      "invalid-argument",
+      "Generation must be a number between 1-9 or 0."
+    );
+  }
+
+  if (mode !== "fast" && mode !== "full") {
+    throw new HttpsError(
+      "invalid-argument",
+      "Mode must be either 'fast' or 'full'."
+    );
+  }
+
+  if (typeof useLegacyCries !== "boolean") {
+    throw new HttpsError(
+      "invalid-argument",
+      "useLegacyCries must be a boolean."
+    );
+  }
+
+  try {
+    // 4. Generate Mon list
+    const monList = getMonList(generation, mode);
+
+    if (monList.length === 0) {
+      throw new HttpsError(
+        "internal",
+        "Failed to generate Mon list for the session."
+      );
+    }
+
+    // 5. Create session document
+    const sessionData = {
+      uid: uid,
+      generation,
+      mode,
+      useLegacyCries,
+      monList,
+      currentIndex: 0,
+      correct: [],
+      incorrect: [],
+      answerTimes: [],
+      streak: 0,
+      longestStreak: 0,
+      score: 0,
+      fastestTimeMs: Number.MAX_SAFE_INTEGER,
+      bestMon: "",
+      startedAt: FieldValue.serverTimestamp(),
+      lastActivityAt: FieldValue.serverTimestamp(),
+      status: SESSION_STATUS.INITIALIZED,
+    };
+
+    const sessionRef = await db.collection("sessions").add(sessionData);
+    const protectedSessionRef = db
+      .collection("protected-sessions")
+      .doc(sessionRef.id);
+    await protectedSessionRef.set({}); // Create empty protected session doc
+
+    return {
+      success: true,
+      sessionId: sessionRef.id,
+      totalMonCount: monList.length,
+    };
+  } catch (error) {
+    if (error.code) {
+      throw error;
+    }
+    console.error("Error starting session:", error);
+    throw new HttpsError(
+      "internal",
+      "An unexpected error occurred while starting the session.",
+      error.message
+    );
+  }
+});
+
+/**
  * Calculates score increment based on answer time
  */
 function calculateScoreIncrement(timeMs) {
@@ -84,122 +207,79 @@ async function getCryAudioData(monName, useLegacy) {
   }
 }
 
-// ============================================================================
-// CLOUD FUNCTIONS
-// ============================================================================
-
 /**
- * Cloud Function: startSession
- *
- * Creates a new game session for the authenticated user.
- *
- * @param data.generation - Generation to play: 1-9 or 0 ("all")
- *   Note: Client currently supports selecting multiple generations (e.g., [1,2,3]).
- *   For now, if you need multi-gen support, either:
- *   1. Pass 0 when multiple generations are selected, or
- *   2. Modify this function to accept an array of generation numbers
- * @param data.mode - "fast" (20 mon) or "full" (all mon)
- * @param data.useLegacyCries - boolean, whether to use legacy cries
- *
- * @returns sessionId, firstMonCryUrl, totalMonCount
+ * Helper function to update leaderboard if this is a new high score
+ * Replaces all previous runs for the same user/gen/mode with the new run if score is higher
  */
-export const startSession = onCall(async (request) => {
-  // 1. Authenticate the user
-  if (!request.auth) {
-    throw new HttpsError(
-      "unauthenticated",
-      "You must be authenticated to start a session."
-    );
-  }
-
-  const uid = request.auth.uid;
-  const { generation, mode, useLegacyCries } = request.data;
-
-  // 2. Validate inputs
-  if (
-    generation !== 0 &&
-    (typeof generation !== "number" || generation < 1 || generation > 9)
-  ) {
-    throw new HttpsError(
-      "invalid-argument",
-      "Generation must be a number between 1-9 or 0."
-    );
-  }
-
-  if (mode !== "fast" && mode !== "full") {
-    throw new HttpsError(
-      "invalid-argument",
-      "Mode must be either 'fast' or 'full'."
-    );
-  }
-
-  if (typeof useLegacyCries !== "boolean") {
-    throw new HttpsError(
-      "invalid-argument",
-      "useLegacyCries must be a boolean."
-    );
-  }
-
+async function updateLeaderboard(
+  uid,
+  username,
+  sessionId,
+  finalStats,
+  sessionDocId
+) {
   try {
-    // 3. Get user's username from Firestore
-    const userDoc = await db.collection("users").doc(uid).get();
-    const username = userDoc.exists ? userDoc.data()?.username || null : null;
+    // Get session to determine generation and mode
+    const sessionDoc = await db.collection("sessions").doc(sessionDocId).get();
+    if (!sessionDoc.exists) return;
 
-    // 4. Generate Mon list
-    const monList = getMonList(generation, mode);
+    const session = sessionDoc.data();
+    const { generation, mode } = session;
 
-    if (monList.length === 0) {
-      throw new HttpsError(
-        "internal",
-        "Failed to generate Mon list for the session."
+    // Get all existing runs for this user/gen/mode
+    const existingRunsQuery = await db
+      .collection("public-runs")
+      .where("uid", "==", uid)
+      .where("gen", "==", generation)
+      .where("mode", "==", mode)
+      .get();
+
+    // Check if new score beats the previous best
+    let shouldUpdateLeaderboard = true;
+
+    if (!existingRunsQuery.empty) {
+      const bestScore = Math.max(
+        ...existingRunsQuery.docs.map((doc) => doc.data().score)
       );
+      if (bestScore >= finalStats.totalScore) {
+        shouldUpdateLeaderboard = false;
+      }
     }
 
-    // 5. Create session document
-    const sessionData = {
-      userId: uid,
-      username,
-      generation,
-      mode,
-      useLegacyCries,
-      monList,
-      currentIndex: 0,
-      correct: [],
-      incorrect: [],
-      answerTimes: [],
-      streak: 0,
-      longestStreak: 0,
-      score: 0,
-      fastestTimeMs: Number.MAX_SAFE_INTEGER,
-      bestMon: "",
-      startedAt: FieldValue.serverTimestamp(),
-      lastActivityAt: FieldValue.serverTimestamp(),
-      status: "active",
-    };
+    if (shouldUpdateLeaderboard) {
+      // Delete all old runs for this user/gen/mode, then add the new one
+      const batch = db.batch();
 
-    const sessionRef = await db.collection("sessions").add(sessionData);
+      existingRunsQuery.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
 
-    // 6. Get the first Mon's cry audio data
-    const firstMonCryData = await getCryAudioData(monList[0], useLegacyCries);
+      // Add new run to leaderboard
+      const newRunRef = db.collection("public-runs").doc();
+      batch.set(newRunRef, {
+        uid,
+        sessionId,
+        longestStreak: finalStats.longestStreak,
+        fastestTimeMs: finalStats.fastestTimeMs,
+        bestMon: finalStats.bestMon,
+        correctCount: finalStats.correctCount,
+        totalCount: finalStats.totalCount,
+        createdAt: FieldValue.serverTimestamp(),
+        public: {
+          username: username || ANONYMOUS_USERNAME,
+          gen: generation,
+          mode,
+          score: finalStats.totalScore,
+        },
+      });
 
-    return {
-      success: true,
-      sessionId: sessionRef.id,
-      firstMonCryData, // Base64 encoded audio
-      totalMonCount: monList.length,
-    };
+      await batch.commit();
+    }
   } catch (error) {
-    if (error.code) {
-      throw error;
-    }
-    console.error("Error starting session:", error);
-    throw new HttpsError(
-      "internal",
-      "An unexpected error occurred while starting the session.",
-      error.message
-    );
+    console.error("Error updating leaderboard:", error);
+    // Don't throw - leaderboard update failure shouldn't break the game
   }
-});
+}
 
 /**
  * Cloud Function: checkAnswer
@@ -213,7 +293,7 @@ export const startSession = onCall(async (request) => {
  *
  * @returns AnswerResult with correctness, score updates, and next cry data (base64) or final stats
  */
-export const checkAnswer = onCall(async (request) => {
+export const updateSession = onCall(async (request) => {
   // 1. Authenticate the user
   if (!request.auth) {
     throw new HttpsError(
@@ -223,15 +303,14 @@ export const checkAnswer = onCall(async (request) => {
   }
 
   const uid = request.auth.uid;
+  const user = await db.collection("protected-users").doc(uid).get();
+  const username = user.exists ? user.data()?.username || null : null;
+
   const { sessionId, answer } = request.data;
 
   // 2. Validate inputs
   if (!sessionId || typeof sessionId !== "string") {
     throw new HttpsError("invalid-argument", "Valid sessionId is required.");
-  }
-
-  if (!answer || typeof answer !== "string") {
-    throw new HttpsError("invalid-argument", "Valid answer is required.");
   }
 
   try {
@@ -248,19 +327,42 @@ export const checkAnswer = onCall(async (request) => {
       const session = sessionDoc.data();
 
       // Verify session belongs to user
-      if (session.userId !== uid) {
+      if (session.uid !== uid) {
         throw new HttpsError(
           "permission-denied",
           "You do not have permission to access this session."
         );
       }
 
+      if (session.status === SESSION_STATUS.INITIALIZED) {
+        // Get the first Mon's cry audio data
+        const firstMonCryData = await getCryAudioData(
+          session.monList[0],
+          session.useLegacyCries
+        );
+        // Activate the session.
+        const updates = {
+          startedAt: FieldValue.serverTimestamp(),
+          lastActivityAt: FieldValue.serverTimestamp(),
+          status: SESSION_STATUS.ACTIVE,
+        };
+
+        transaction.update(sessionRef, updates);
+        return {
+          nextMonCryData: firstMonCryData,
+        };
+      }
+
       // Check if session is still active
-      if (session.status !== "active") {
+      if (session.status !== SESSION_STATUS.ACTIVE) {
         throw new HttpsError(
           "failed-precondition",
           "Session is not active. It may have already been completed."
         );
+      }
+
+      if (!answer || typeof answer !== "string") {
+        throw new HttpsError("invalid-argument", "Valid answer is required.");
       }
 
       const timeMs = Date.now() - session.lastActivityAt.toMillis();
@@ -325,7 +427,7 @@ export const checkAnswer = onCall(async (request) => {
       };
 
       if (isGameComplete) {
-        updates.status = "completed";
+        updates.status = SESSION_STATUS.COMPLETED;
         updates.completedAt = FieldValue.serverTimestamp();
       }
 
@@ -339,16 +441,21 @@ export const checkAnswer = onCall(async (request) => {
         newStreak,
         newTotalScore: newScore,
         isGameComplete,
+        nextMonCryData: null,
       };
 
       if (!isGameComplete) {
-        // Provide next Mon cry audio data
-        const nextMon = session.monList[newIndex];
-        const nextCryData = await getCryAudioData(
-          nextMon,
-          session.useLegacyCries
+        const queue = functions.taskQueue("revealNextQuestion");
+        await queue.enqueue(
+          { sessionId },
+          {
+            scheduleDelaySeconds: 1,
+            dispatchDeadlineSeconds: 15, // 15 seconds
+          }
         );
-        answerResult.nextMonCryData = nextCryData;
+        logger.info(
+          `Task enqueued to run in 1 second for session ${sessionId}`
+        );
       } else {
         // Game complete - provide final stats
         answerResult.finalStats = {
@@ -368,6 +475,7 @@ export const checkAnswer = onCall(async (request) => {
     if (result.isGameComplete && result.finalStats) {
       await updateLeaderboard(
         uid,
+        username,
         sessionId,
         result.finalStats,
         sessionId // We'll fetch session data again for generation/mode
@@ -388,68 +496,65 @@ export const checkAnswer = onCall(async (request) => {
   }
 });
 
-/**
- * Helper function to update leaderboard if this is a new high score
- * Replaces all previous runs for the same user/gen/mode with the new run if score is higher
- */
-async function updateLeaderboard(userId, sessionId, finalStats, sessionDocId) {
-  try {
-    // Get session to determine generation and mode
-    const sessionDoc = await db.collection("sessions").doc(sessionDocId).get();
-    if (!sessionDoc.exists) return;
+export const revealNextQuestion = onTaskDispatched(async (request) => {
+  const { sessionId } = request.data;
 
-    const session = sessionDoc.data();
-    const { generation, mode, username } = session;
-
-    // Get all existing runs for this user/gen/mode
-    const existingRunsQuery = await db
-      .collection("runs")
-      .where("userId", "==", userId)
-      .where("gen", "==", generation)
-      .where("mode", "==", mode)
-      .get();
-
-    // Check if new score beats the previous best
-    let shouldUpdateLeaderboard = true;
-
-    if (!existingRunsQuery.empty) {
-      const bestScore = Math.max(
-        ...existingRunsQuery.docs.map((doc) => doc.data().score)
-      );
-      if (bestScore >= finalStats.totalScore) {
-        shouldUpdateLeaderboard = false;
-      }
-    }
-
-    if (shouldUpdateLeaderboard) {
-      // Delete all old runs for this user/gen/mode, then add the new one
-      const batch = db.batch();
-
-      existingRunsQuery.docs.forEach((doc) => {
-        batch.delete(doc.ref);
-      });
-
-      // Add new run to leaderboard
-      const newRunRef = db.collection("runs").doc();
-      batch.set(newRunRef, {
-        userId,
-        username: username || "Anonymous",
-        gen: generation,
-        mode,
-        score: finalStats.totalScore,
-        longestStreak: finalStats.longestStreak,
-        fastestTimeMs: finalStats.fastestTimeMs,
-        bestMon: finalStats.bestMon,
-        correctCount: finalStats.correctCount,
-        totalCount: finalStats.totalCount,
-        sessionId,
-        createdAt: FieldValue.serverTimestamp(),
-      });
-
-      await batch.commit();
-    }
-  } catch (error) {
-    console.error("Error updating leaderboard:", error);
-    // Don't throw - leaderboard update failure shouldn't break the game
+  // 2. Validate inputs
+  if (!sessionId || typeof sessionId !== "string") {
+    logger.error("Invalid sessionId in revealNextQuestion", sessionId);
+    return;
   }
-}
+
+  try {
+    const sessionRef = db.collection("sessions").doc(sessionId);
+    const protectedSessionRef = db
+      .collection("protected-sessions")
+      .doc(sessionId);
+    // 3. Use a transaction to ensure atomicity
+    const result = await db.runTransaction(async (transaction) => {
+      const sessionDoc = await transaction.get(sessionRef);
+
+      if (!sessionDoc.exists) {
+        logger.error("Session not found in revealNextQuestion", sessionId);
+        return;
+      }
+
+      const session = sessionDoc.data();
+
+      if (session.status === SESSION_STATUS.INITIALIZED) {
+        logger.error(
+          "Session not active in revealNextQuestion",
+          sessionId,
+          session.status
+        );
+        return;
+      }
+      if (session.status === SESSION_STATUS.COMPLETED) {
+        logger.error(
+          "Session already completed in revealNextQuestion",
+          sessionId
+        );
+        return;
+      }
+
+      const nextMon = session.monList[session.currentIndex];
+      const nextCryData = await getCryAudioData(
+        nextMon,
+        session.useLegacyCries
+      );
+
+      const updates = {
+        nextMonCryData: nextCryData,
+        questionTimestamp: FieldValue.serverTimestamp(), // For validation
+      };
+
+      transaction.set(protectedSessionRef, updates);
+      return {};
+    });
+
+    return result;
+  } catch (error) {
+    logger.error("Error in revealNextQuestion:", error);
+    return;
+  }
+});

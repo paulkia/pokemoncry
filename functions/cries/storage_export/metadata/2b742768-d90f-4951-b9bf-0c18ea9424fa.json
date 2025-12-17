@@ -1,0 +1,19 @@
+{
+  "name": "cries/mudsdale-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684315,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "faf11560-8c1b-464a-9502-4cdf686af88a"
+  ],
+  "etag": "I+xrWa/tGqO0sh7zk1+yoLjoLa0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.315Z",
+  "updated": "2025-12-12T07:48:04.315Z",
+  "size": 8432,
+  "md5Hash": "KevZSaUTrtS3B+8bW+FfYg==",
+  "crc32c": "669469194"
+}

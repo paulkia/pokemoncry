@@ -1,6 +1,7 @@
 import { onCall, HttpsError } from "firebase-functions/v2/https";
-import { FieldValue, Transaction } from "firebase-admin/firestore";
-import { auth as v1Auth } from "firebase-functions/v1";
+import { logger } from "firebase-functions";
+import { FieldValue } from "firebase-admin/firestore";
+import { auth as authTrigger } from "firebase-functions/v1";
 import { db } from "./firebase.js";
 
 export const claimUsername = onCall(async (request) => {
@@ -27,7 +28,7 @@ export const claimUsername = onCall(async (request) => {
     );
   }
 
-  const userDocRef = db.collection("users").doc(uid);
+  const userDocRef = db.collection("protected-users").doc(uid);
   const usernameSentinelDocRef = db.collection("usernames").doc(newUsername);
 
   try {
@@ -55,20 +56,24 @@ export const claimUsername = onCall(async (request) => {
           .doc(oldUsername);
         transaction.delete(oldUsernameSentinelRef);
       }
-
       transaction.set(usernameSentinelDocRef, {
         uid,
         timestamp: FieldValue.serverTimestamp(),
       });
-      transaction.update(userDocRef, {
-        username: newUsername,
-        updateTimestamp: FieldValue.serverTimestamp(),
-      });
+      transaction.set(
+        userDocRef,
+        {
+          uid: uid,
+          username: newUsername,
+          updateTimestamp: FieldValue.serverTimestamp(),
+        },
+        { merge: true }
+      );
 
       // Update leaderboard runs within the same transaction
       const runsQuery = await db
-        .collection("runs")
-        .where("userId", "==", uid)
+        .collection("public-runs")
+        .where("uid", "==", uid)
         .get();
 
       if (!runsQuery.empty) {
@@ -82,10 +87,7 @@ export const claimUsername = onCall(async (request) => {
       message: `Username "${newUsername}" successfully claimed.`,
     };
   } catch (error) {
-    if (error.code) {
-      throw error;
-    }
-    console.error("Error claiming username:", error);
+    logger.error("Error claiming username:", error);
     throw new HttpsError(
       "internal",
       "An unexpected error occurred while claiming the username.",
@@ -96,29 +98,33 @@ export const claimUsername = onCall(async (request) => {
 
 // Authentication trigger to delete user data upon account deletion.
 // Only supported with v1 functions. https://firebase.google.com/docs/functions/1st-gen/auth-events
-export const deleteUser = v1Auth.user().onDelete(async (user) => {
+export const deleteUser = authTrigger.user().onDelete(async (user) => {
   // Get uid from request.
   const uid = user.uid;
   // Get user's doc.
-  const userDocRef = db.collection("users").doc(uid);
+  const userDocRef = db.collection("protected-users").doc(uid);
 
   try {
     await db.runTransaction(async (transaction) => {
+      // Query all runs for this user.
+      const runsQuery = await db
+        .collection("public-runs")
+        .where("uid", "==", uid)
+        .get();
+
       // Query the user document.
       const currentUserDoc = await transaction.get(userDocRef);
 
       if (!currentUserDoc.exists) {
-        throw new HttpsError(
-          "not-found",
-          `User document for uid "${uid}" does not exist.`
-        );
+        logger.error(`User document for uid "${uid}" does not exist.`);
+        // Delete all runs for this user.
+        if (!runsQuery.empty) {
+          runsQuery.docs.forEach((doc) => {
+            transaction.delete(doc.ref);
+          });
+        }
+        return;
       }
-
-      // Query all runs for this user.
-      const runsQuery = await db
-        .collection("runs")
-        .where("userId", "==", uid)
-        .get();
 
       // If the username exists, query it from the sentinel document.
       const username = currentUserDoc.data()?.username;
@@ -126,7 +132,7 @@ export const deleteUser = v1Auth.user().onDelete(async (user) => {
       let usernameSentinelDoc = null;
 
       if (username === null) {
-        console.warn(
+        logger.warn(
           `User with uid "${uid}" does not have a username. Cancelling deletion of sentinel document.`
         );
       } else {
@@ -137,17 +143,15 @@ export const deleteUser = v1Auth.user().onDelete(async (user) => {
           usernameSentinelDoc.exists &&
           usernameSentinelDoc.data()?.uid !== uid
         ) {
-          throw new HttpsError(
-            "internal",
+          logger.error(
             `The username "${username}" is owned by a different user.`
           );
+          return;
         }
       }
 
       // Delete the user doc.
-      if (currentUserDoc.exists) {
-        transaction.delete(userDocRef);
-      }
+      transaction.delete(userDocRef);
 
       // Delete all runs for this user.
       if (!runsQuery.empty) {
@@ -167,14 +171,6 @@ export const deleteUser = v1Auth.user().onDelete(async (user) => {
       message: `User ${uid} successfully deleted.`,
     };
   } catch (error) {
-    if (error.code) {
-      throw error;
-    }
-    console.error("Error deleting user:", error);
-    throw new HttpsError(
-      "internal",
-      "An unexpected error occurred while deleting the user.",
-      error.message
-    );
+    logger.error("Error deleting user:", error);
   }
 });

@@ -230,7 +230,6 @@ function UltimateTrainingPractice() {
 
   // Required for audio sound and visualization.
   const canvasRef = useRef(null);
-  const audioRef = useRef(new Audio());
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
 
@@ -269,7 +268,6 @@ function UltimateTrainingPractice() {
         playCryForMon(
           allMon[firstMon],
           vizInitializedRef,
-          audioRef,
           canvasRef,
           settings.preferLegacyCries
         );
@@ -350,7 +348,6 @@ function UltimateTrainingPractice() {
         playCryForMon(
           allMon[currMon],
           vizInitializedRef,
-          audioRef,
           canvasRef,
           settings.preferLegacyCries
         );
@@ -399,7 +396,6 @@ function UltimateTrainingPractice() {
             playCryForMon(
               allMon[nextMon],
               vizInitializedRef,
-              audioRef,
               canvasRef,
               settings.preferLegacyCries
             );
@@ -442,7 +438,6 @@ function UltimateTrainingPractice() {
             playCryForMon(
               allMon[state.previousGuess],
               vizInitializedRef,
-              audioRef,
               canvasRef,
               settings.preferLegacyCries
             );
@@ -471,7 +466,6 @@ function UltimateTrainingPractice() {
               playCryForMon(
                 allMon[previous],
                 vizInitializedRef,
-                audioRef,
                 canvasRef,
                 settings.preferLegacyCries
               );
@@ -519,7 +513,6 @@ function UltimateTrainingPractice() {
                             playCryForMon(
                               allMon[name],
                               vizInitializedRef,
-                              audioRef,
                               canvasRef,
                               settings.preferLegacyCries
                             );
@@ -548,7 +541,7 @@ function UltimateTrainingPractice() {
   const progress = (state.pokeNum / state.monInGameOrder.length) * 100;
   return (
     <span>
-      <div className="App" style={{ position: "relative" }}>
+      <div className="App text-center" style={{ position: "relative" }}>
         <Row>
           <p>Ultimate Training! Mon are repeated until mastered.</p>{" "}
         </Row>
@@ -578,13 +571,11 @@ function UltimateTrainingPractice() {
                     playCryForMon(
                       allMon[state.monInGameOrder[state.pokeNum]],
                       vizInitializedRef,
-                      audioRef,
                       canvasRef,
                       settings.preferLegacyCries
                     );
                   }}
                   canvasRef={canvasRef}
-                  audioRef={audioRef}
                   vizInitializedRef={vizInitializedRef}
                   showViz={showViz}
                 />

@@ -1,0 +1,19 @@
+{
+  "name": "cries/bellsprout-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683599,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a9c12492-c040-4d96-9623-73869ffd6104"
+  ],
+  "etag": "KjjUYG0ikedsZEws8ESnI4eqxHU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.599Z",
+  "updated": "2025-12-12T07:48:03.599Z",
+  "size": 3464,
+  "md5Hash": "5fJ1NDB0lummKUbNciRR8w==",
+  "crc32c": "149549434"
+}

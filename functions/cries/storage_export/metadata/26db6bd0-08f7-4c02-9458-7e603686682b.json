@@ -1,0 +1,19 @@
+{
+  "name": "cries/trumbeak-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684052,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8a2a5abd-f766-4366-9a96-c59e69b96cda"
+  ],
+  "etag": "Nasbpw9gw+VygCYeiYRrvSJG5Vw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.052Z",
+  "updated": "2025-12-12T07:48:04.052Z",
+  "size": 8648,
+  "md5Hash": "CyLK3B1fWalOqlInR2K5lw==",
+  "crc32c": "1747431946"
+}

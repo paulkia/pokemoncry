@@ -1,0 +1,19 @@
+{
+  "name": "cries/mewtwo-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686206,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e8078ec4-cd10-42f2-aa07-5472d7520eeb"
+  ],
+  "etag": "SbcPKDXeYTpoE3w8q0OXqDe5zms",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.206Z",
+  "updated": "2025-12-12T07:48:06.206Z",
+  "size": 3387,
+  "md5Hash": "GFUUSwLtu1gjGrAH7Lx06w==",
+  "crc32c": "2736468170"
+}

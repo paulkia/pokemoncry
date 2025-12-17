@@ -1,0 +1,19 @@
+{
+  "name": "cries/darumaka-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684218,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "eff65291-2817-40cb-a3ba-28a573d2e9b0"
+  ],
+  "etag": "FwuT2LVm02rBvvdxWP2sPwEuxdI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.218Z",
+  "updated": "2025-12-12T07:48:04.218Z",
+  "size": 4652,
+  "md5Hash": "TI7h0yJZFANy4qcNpfd2WQ==",
+  "crc32c": "1275144289"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/bidoof-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684300,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2480d7ff-b2e4-49b0-9263-91282663b7f9"
+  ],
+  "etag": "gSM+yxQgkLe2A97RK3gvXNI0jBE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.300Z",
+  "updated": "2025-12-12T07:48:04.300Z",
+  "size": 6272,
+  "md5Hash": "32fSSxZqRl2nfoP7E2ssNw==",
+  "crc32c": "3756943877"
+}

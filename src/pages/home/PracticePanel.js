@@ -13,10 +13,7 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import {
-  ROUTER_UTIL,
-  shuffle,
-} from "../../library/util";
+import { ROUTER_UTIL, shuffle } from "../../library/util";
 import { usePoke } from "../../AppContext";
 // import { List } from "lucide-react";
 
@@ -36,13 +33,20 @@ function GenerationsGrid({
     (_, index) => index + 1
   );
 
+  const getColumnsPerRow = () => {
+    // Use window.innerWidth to determine columns: 2 for mobile, 3 for larger screens
+
+    return 3;
+  };
+
   const generateRows = () => {
     const rows = [];
-    for (let i = 0; i < buttonNumbers.length; i += 3) {
+    const colsPerRow = getColumnsPerRow();
+    for (let i = 0; i < buttonNumbers.length; i += colsPerRow) {
       rows.push(
         <Row key={i} className="justify-content-center">
-          {buttonNumbers.slice(i, i + 3).map((buttonId) => (
-            <Col key={buttonId} xs={3} className="p-2">
+          {buttonNumbers.slice(i, i + colsPerRow).map((buttonId) => (
+            <Col key={buttonId} sm={3} xs={4} className="p-2">
               <Button
                 variant={
                   selectedGenerationIds.includes(buttonId)

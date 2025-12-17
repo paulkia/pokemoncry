@@ -1,0 +1,19 @@
+{
+  "name": "cries/bellibolt-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683913,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "9a671d0f-714f-4a8a-bac0-0ad6062f0432"
+  ],
+  "etag": "3gNTNid/RSo60kGoBp9u4TEO6D0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.913Z",
+  "updated": "2025-12-12T07:48:03.913Z",
+  "size": 11564,
+  "md5Hash": "D7TtuzllcqFkvOyiFGHrbw==",
+  "crc32c": "1333763720"
+}

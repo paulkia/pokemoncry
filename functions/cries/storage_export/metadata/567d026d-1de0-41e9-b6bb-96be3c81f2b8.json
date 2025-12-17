@@ -1,0 +1,19 @@
+{
+  "name": "cries/sentret-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683753,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cfd6d182-67a9-4e0f-845e-085ac35607fb"
+  ],
+  "etag": "+/i2VH78W+gK7JhUqi9UIQNxIhs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.753Z",
+  "updated": "2025-12-12T07:48:03.753Z",
+  "size": 879,
+  "md5Hash": "rCaBEWeM1PgkXlTTdX51SQ==",
+  "crc32c": "3054778465"
+}

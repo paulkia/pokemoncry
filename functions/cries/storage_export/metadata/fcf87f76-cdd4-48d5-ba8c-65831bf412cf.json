@@ -1,0 +1,19 @@
+{
+  "name": "cries/duskull-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684088,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "66d91974-4077-44bc-94f8-fab184036259"
+  ],
+  "etag": "L6IqjOyroFNEJQmk0pG7Tls3iRc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.088Z",
+  "updated": "2025-12-12T07:48:04.088Z",
+  "size": 1506,
+  "md5Hash": "vimz5uMQxOFX2EG9XbdTCA==",
+  "crc32c": "17002616"
+}

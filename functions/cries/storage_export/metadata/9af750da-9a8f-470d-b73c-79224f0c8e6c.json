@@ -1,0 +1,19 @@
+{
+  "name": "cries/grovyle-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683985,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e8581db2-9f7f-4256-a92f-beaaf6083c21"
+  ],
+  "etag": "XbCUlsMC1T444/snn1ViX2fHTSA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.985Z",
+  "updated": "2025-12-12T07:48:03.985Z",
+  "size": 7136,
+  "md5Hash": "1Y0AsNEpGasCGdXDNGtC/A==",
+  "crc32c": "3550540336"
+}

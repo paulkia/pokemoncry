@@ -1,0 +1,19 @@
+{
+  "name": "cries/quaxly-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684372,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cf36428c-e039-41f9-abbf-6834f3af111c"
+  ],
+  "etag": "6aoi+9KGBfaxvsCsoLn12TkwI6A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.372Z",
+  "updated": "2025-12-12T07:48:04.372Z",
+  "size": 6956,
+  "md5Hash": "rKZBwCX97/s8xB6kJZXiRw==",
+  "crc32c": "3484053077"
+}

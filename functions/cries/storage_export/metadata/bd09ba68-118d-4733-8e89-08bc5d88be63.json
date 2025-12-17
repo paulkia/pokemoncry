@@ -1,0 +1,19 @@
+{
+  "name": "cries/yanmega-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684311,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "10ffb7fe-1d49-4b32-b102-da5401d3e431"
+  ],
+  "etag": "xDS0uuVL9cTzloR1vZgI/9iKe44",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.311Z",
+  "updated": "2025-12-12T07:48:04.311Z",
+  "size": 11024,
+  "md5Hash": "lo3twBKEiCXrt3CPQecZ/w==",
+  "crc32c": "1019578802"
+}

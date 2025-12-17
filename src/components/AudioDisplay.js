@@ -1,28 +1,7 @@
 import { useEffect } from "react";
 import { Button, Row, Col } from "react-bootstrap";
-import { NEUTRAL_RESULT_COLOR } from "../library/util";
 
-function AudioDisplay({
-  buttonFn,
-  canvasRef,
-  audioRef,
-  vizInitializedRef,
-  showViz,
-}) {
-  // Pause and reset audio on unmount
-  useEffect(() => {
-    return () => {
-      const a = audioRef.current;
-      if (a) {
-        try {
-          a.pause();
-        } catch (_) {}
-        a.removeAttribute("src");
-        a.load();
-      }
-    };
-  }, []);
-
+function AudioDisplay({ buttonFn, canvasRef, showViz }) {
   // Toggle between real viz canvas and placeholder canvas (flat line when no viz)
   useEffect(() => {
     const real = canvasRef.current;
@@ -34,40 +13,41 @@ function AudioDisplay({
     }
   }, [showViz]);
 
-  let soundButtonPlacement = "col-2";
+  let colClass = "col-xs-1 col-sm-2";
   if (!showViz) {
-    soundButtonPlacement = "col-12 mt-1 mb-n20";
+    colClass =
+      "col-12 mb-custom-for-audio-display justify-content-center d-flex";
   }
   return (
-    <Row className="align-items-center rounded ">
-      <Col className={soundButtonPlacement}>
-        <Button variant="outline-primary" onClick={buttonFn}>
+    <Row className="align-items-center rounded justify-content-center">
+      <Col xs={2} className={colClass}>
+        <Button
+          variant="outline-primary"
+          onClick={buttonFn}
+          className="height-auto"
+        >
           <i className="bi bi-play-fill"></i>
         </Button>
       </Col>
-      <Col>
-        {" "}
-        <div
+      <Col
+        xs={10}
+        sm={9}
+        className="pr-3s"
+        style={{
+          zIndex: -1,
+          position: "relative",
+          height: "64px",
+        }}
+      >
+        {"  "}
+        <canvas
+          ref={canvasRef}
           style={{
-            margin: "8px auto",
-            position: "relative",
             width: "100%",
-            height: "64px",
-            zIndex: -1,
+            height: "100%",
+            background: "transparent",
           }}
-        >
-          {" "}
-          <canvas
-            ref={canvasRef}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              background: "transparent",
-            }}
-          />{" "}
-        </div>
+        />{" "}
       </Col>
     </Row>
   );

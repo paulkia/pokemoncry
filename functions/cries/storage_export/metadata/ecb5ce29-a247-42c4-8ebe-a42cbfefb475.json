@@ -1,0 +1,19 @@
+{
+  "name": "cries/linoone-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684182,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "32138902-8855-4765-9285-ca7a9577669a"
+  ],
+  "etag": "Ig5LN/lw17pmLmdjw3RKjI5ts+A",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.182Z",
+  "updated": "2025-12-12T07:48:04.182Z",
+  "size": 3387,
+  "md5Hash": "H1jFsqMg8CCzcKzYZ8AHnw==",
+  "crc32c": "259382540"
+}

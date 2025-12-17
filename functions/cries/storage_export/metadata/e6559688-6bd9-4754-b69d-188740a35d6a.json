@@ -1,0 +1,19 @@
+{
+  "name": "cries/smoochum-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684400,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "27a9fd4a-8b7e-43d6-9ce2-1ecd5db67637"
+  ],
+  "etag": "KwRu8jGCx9msM+yfMnmf9tK/43w",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.400Z",
+  "updated": "2025-12-12T07:48:04.400Z",
+  "size": 4760,
+  "md5Hash": "DnQ/+FvTfLsYsEqFH+UYBg==",
+  "crc32c": "393958225"
+}

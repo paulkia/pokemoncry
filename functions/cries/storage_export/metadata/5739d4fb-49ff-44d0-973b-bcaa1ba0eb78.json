@@ -1,0 +1,19 @@
+{
+  "name": "cries/chimecho-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683734,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c4a4eb7f-c635-44c9-b015-75bb7ad5893f"
+  ],
+  "etag": "ss38zEHsLGkADY4l/x09zgzKVzo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.734Z",
+  "updated": "2025-12-12T07:48:03.734Z",
+  "size": 4760,
+  "md5Hash": "b/89+HzSz/krsBHmeJbVfg==",
+  "crc32c": "3304633729"
+}

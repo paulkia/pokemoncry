@@ -1,0 +1,19 @@
+{
+  "name": "cries/foongus-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683998,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "63253cbe-36c7-414e-94e4-8f748674578f"
+  ],
+  "etag": "xEtbFy3ec/EirFuYM61w0Xo/+Lk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.998Z",
+  "updated": "2025-12-12T07:48:03.998Z",
+  "size": 2734,
+  "md5Hash": "S2kz7tXkuTEPYKohVNJ1yA==",
+  "crc32c": "2066978891"
+}

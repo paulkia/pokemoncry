@@ -1,0 +1,19 @@
+{
+  "name": "cries/boltund-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684212,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "62582b4f-9590-4288-900c-687e72412ee3"
+  ],
+  "etag": "zpfUuYsYt75uYPesFsPJa0IMF10",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.212Z",
+  "updated": "2025-12-12T07:48:04.212Z",
+  "size": 6913,
+  "md5Hash": "2yKfOUT1DD8pF653GCpm5g==",
+  "crc32c": "2743164040"
+}

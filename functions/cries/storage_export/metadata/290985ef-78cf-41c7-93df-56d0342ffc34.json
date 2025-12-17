@@ -1,0 +1,19 @@
+{
+  "name": "cries/shroomish-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684445,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "678d5563-1717-4c3f-9e8f-f30ea1790e7a"
+  ],
+  "etag": "Pvv9ctNfXSUz8LIqnCA9GV4rVbI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.445Z",
+  "updated": "2025-12-12T07:48:04.445Z",
+  "size": 3896,
+  "md5Hash": "Z/u9DLsNBRms2X+Fbxzpew==",
+  "crc32c": "4286479224"
+}

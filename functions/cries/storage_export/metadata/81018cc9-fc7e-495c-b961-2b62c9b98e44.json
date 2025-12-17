@@ -1,0 +1,19 @@
+{
+  "name": "cries/doduo-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683571,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "26b9d0cf-108a-4e01-ad86-fd56159de8f0"
+  ],
+  "etag": "don6d81ygBHSajpKXCvhmBn7lZo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.571Z",
+  "updated": "2025-12-12T07:48:03.571Z",
+  "size": 6920,
+  "md5Hash": "ei1aNcP22Q/T99TSxQyKLA==",
+  "crc32c": "1565660139"
+}

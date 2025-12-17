@@ -1,0 +1,19 @@
+{
+  "name": "cries/pignite-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685912,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a2aadb93-0cdf-4d7a-bfd5-06c79ab4db51"
+  ],
+  "etag": "1wLX6szxFf7p34a/U3iKWXmS7Fg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.912Z",
+  "updated": "2025-12-12T07:48:05.912Z",
+  "size": 7136,
+  "md5Hash": "b5+X+ex/sZREAL1ANEAaHw==",
+  "crc32c": "154024980"
+}

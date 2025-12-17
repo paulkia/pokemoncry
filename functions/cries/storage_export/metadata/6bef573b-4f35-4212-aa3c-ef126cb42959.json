@@ -1,0 +1,19 @@
+{
+  "name": "cries/staryu-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685550,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "77992d70-e9d3-423f-8b35-f51267af820c"
+  ],
+  "etag": "BuNU6mBZ1EZdgNjQxZ9CN9s71I0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.550Z",
+  "updated": "2025-12-12T07:48:05.550Z",
+  "size": 6488,
+  "md5Hash": "BKA4NvD+pSxW0vmekGucog==",
+  "crc32c": "2900295630"
+}

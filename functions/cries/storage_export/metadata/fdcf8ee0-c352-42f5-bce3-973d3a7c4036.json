@@ -1,0 +1,19 @@
+{
+  "name": "cries/ledyba-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684425,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "272ace4a-6e2d-4ee0-9087-4b2e73336fc7"
+  ],
+  "etag": "SRPqbvGqDO2txCTMgB7VhWj6wJs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.425Z",
+  "updated": "2025-12-12T07:48:04.425Z",
+  "size": 3032,
+  "md5Hash": "Kyi8/J32zw2w8f220b57iQ==",
+  "crc32c": "2687328697"
+}

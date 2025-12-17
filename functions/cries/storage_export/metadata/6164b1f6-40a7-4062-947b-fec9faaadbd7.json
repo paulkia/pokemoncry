@@ -1,0 +1,19 @@
+{
+  "name": "cries/flittle-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683699,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "bffa9261-6bd1-4420-9823-086fc98fe018"
+  ],
+  "etag": "51MexfcORBI36JM1KnBKIzA/Bbg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.699Z",
+  "updated": "2025-12-12T07:48:03.699Z",
+  "size": 8300,
+  "md5Hash": "3gn2bWdYHcIcNWMwWBFENQ==",
+  "crc32c": "679278398"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/metapod-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684331,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8eaceff3-60df-49d9-80b0-0b0b3c6596de"
+  ],
+  "etag": "xftekIbfBFXFsEUEO8Al1z+wzy8",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.331Z",
+  "updated": "2025-12-12T07:48:04.331Z",
+  "size": 7784,
+  "md5Hash": "gJuQhOmqUeJ0GggU6MLxBg==",
+  "crc32c": "1995615204"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/hitmonlee-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685864,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "691b5d99-4bb7-436b-a760-566ce836a26c"
+  ],
+  "etag": "LFWBoxO0SJEJs9KcfEThKf2aVEs",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.864Z",
+  "updated": "2025-12-12T07:48:05.864Z",
+  "size": 2342,
+  "md5Hash": "onqDhS2+MMSh8WFP+NMRJA==",
+  "crc32c": "298872620"
+}

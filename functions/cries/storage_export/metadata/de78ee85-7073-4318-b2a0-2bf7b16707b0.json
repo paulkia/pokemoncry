@@ -1,0 +1,19 @@
+{
+  "name": "cries/beautifly-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684438,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a4b2cedf-89ef-4422-84f7-7a393c3d2531"
+  ],
+  "etag": "V2iQu4zNEDaa/s5jAXoAMsWL5CA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.438Z",
+  "updated": "2025-12-12T07:48:04.438Z",
+  "size": 1297,
+  "md5Hash": "LtP0aiwcPMPjfTXskXnLJA==",
+  "crc32c": "3446333246"
+}

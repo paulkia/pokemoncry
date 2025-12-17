@@ -1,0 +1,19 @@
+{
+  "name": "cries/dartrix-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684053,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "81969ba0-80ce-4242-b05b-941730c3f8b0"
+  ],
+  "etag": "ihd/Pqu8IaaHfYEvsmiDmLqk9Nc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.053Z",
+  "updated": "2025-12-12T07:48:04.053Z",
+  "size": 9080,
+  "md5Hash": "vUzvOh96Vx2eE5eh9OdLQg==",
+  "crc32c": "2561710421"
+}

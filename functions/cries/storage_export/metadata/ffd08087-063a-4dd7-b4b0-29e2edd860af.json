@@ -1,0 +1,19 @@
+{
+  "name": "cries/qwilfish-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683810,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c52c917b-bf73-4ae5-ac99-a3fb95312e02"
+  ],
+  "etag": "uL4IKImYX2yYrYwf9v0C+/nZXx0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.810Z",
+  "updated": "2025-12-12T07:48:03.810Z",
+  "size": 4760,
+  "md5Hash": "G79X6DZcQbIfkNJ2JC3kWQ==",
+  "crc32c": "3153847397"
+}

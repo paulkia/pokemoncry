@@ -1,0 +1,19 @@
+{
+  "name": "cries/blissey-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683566,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f2b83fb9-2943-47ac-a950-9e6ec8d87e63"
+  ],
+  "etag": "3hJxW+llCQbTKB/kNYELmMJXY1k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.566Z",
+  "updated": "2025-12-12T07:48:03.566Z",
+  "size": 2133,
+  "md5Hash": "cKVn4D2zpAn6CJTW04TOnw==",
+  "crc32c": "3063688750"
+}

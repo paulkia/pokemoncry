@@ -1,0 +1,19 @@
+{
+  "name": "cries/silcoon-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683905,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ee81946d-1ee7-4f1c-bf5f-d0ec619dceef"
+  ],
+  "etag": "Th+e/qqaw3bxJ2PlQxip4CkBalU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.905Z",
+  "updated": "2025-12-12T07:48:03.905Z",
+  "size": 5840,
+  "md5Hash": "5i+IbXUCk3ES5OZztYtu2w==",
+  "crc32c": "3006427455"
+}

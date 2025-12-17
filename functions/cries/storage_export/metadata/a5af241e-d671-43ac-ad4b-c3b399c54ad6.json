@@ -1,0 +1,19 @@
+{
+  "name": "cries/lampent-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684312,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6b4d1510-4be8-4a54-8402-cdce19ee2a5d"
+  ],
+  "etag": "QMkA7x8vMnk7ecBe4TcGxpOscVc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.312Z",
+  "updated": "2025-12-12T07:48:04.312Z",
+  "size": 4868,
+  "md5Hash": "dgYcQJZo0wvBPMblX3Q33A==",
+  "crc32c": "223605943"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/gigalith-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683741,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4d47750b-40d0-4a9b-8a5c-3c0990bc6a4a"
+  ],
+  "etag": "hxSEhoue38xY1+mlXmNkdzd2pnM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.741Z",
+  "updated": "2025-12-12T07:48:03.741Z",
+  "size": 4760,
+  "md5Hash": "ARu2E56pOpjGVsXA6SMMvw==",
+  "crc32c": "1868587362"
+}

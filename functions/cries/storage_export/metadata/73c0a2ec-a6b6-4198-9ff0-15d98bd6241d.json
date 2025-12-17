@@ -1,0 +1,19 @@
+{
+  "name": "cries/larvitar-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683627,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ff43e06f-5ecb-413e-99e2-74857992af4f"
+  ],
+  "etag": "TTC2bpGs1q0YDcxpjF/iJ6en+Vk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.627Z",
+  "updated": "2025-12-12T07:48:03.627Z",
+  "size": 1715,
+  "md5Hash": "5zvW/9HulTyLN/TKOVojgA==",
+  "crc32c": "4135930338"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/audino-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684139,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "35c59bb7-48fd-4bec-a502-4f36e8bdc54e"
+  ],
+  "etag": "6q3ASgfGwTa9fAEwq99HOF3V170",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.139Z",
+  "updated": "2025-12-12T07:48:04.139Z",
+  "size": 3256,
+  "md5Hash": "OR1Sg4c3nAz4/yaAjLk9MA==",
+  "crc32c": "172472422"
+}

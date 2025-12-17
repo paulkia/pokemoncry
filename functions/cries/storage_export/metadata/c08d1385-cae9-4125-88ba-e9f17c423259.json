@@ -1,0 +1,19 @@
+{
+  "name": "cries/celebi-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685490,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "42b629d3-d64d-4ccc-a229-06d3645adf4b"
+  ],
+  "etag": "+0A2PnYa1ExCySLAL8YQC1PRJu4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.490Z",
+  "updated": "2025-12-12T07:48:05.490Z",
+  "size": 1924,
+  "md5Hash": "qfYp6n7Qcx7jqhl/SInbqA==",
+  "crc32c": "354814418"
+}

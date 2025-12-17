@@ -1,0 +1,19 @@
+{
+  "name": "cries/pansage-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686058,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "685eaa9c-d900-4f9c-85b5-c8b03972a385"
+  ],
+  "etag": "W0Qi86QYeNxOp71XLGCQhNhE29E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.059Z",
+  "updated": "2025-12-12T07:48:06.059Z",
+  "size": 3464,
+  "md5Hash": "Rch/0Fdq6IHXpGLwgJaLZg==",
+  "crc32c": "1462001899"
+}

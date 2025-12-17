@@ -1,0 +1,19 @@
+{
+  "name": "cries/solgaleo-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685914,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "f44527e6-2fd7-4914-aaad-ebdb550f2959"
+  ],
+  "etag": "5zcTAXMxSb9A1L0j1pMf5l4T01E",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.914Z",
+  "updated": "2025-12-12T07:48:05.914Z",
+  "size": 12536,
+  "md5Hash": "ReUy7k68RZy3yTrpkwhNFw==",
+  "crc32c": "2271199346"
+}

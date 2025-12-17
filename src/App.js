@@ -47,7 +47,7 @@ function App() {
                   <div className="flex-grow-1">
                     <Home />
                   </div>
-                  <AppFooter />
+                  <AppFooter disableBuyMeACoffee={true} />
                 </div>
               }
             />
@@ -85,7 +85,7 @@ function App() {
               path={ROUTER_UTIL.MULTIPLE_CHOICE_PRACTICE}
               element={
                 <div
-                  className="App p-5 text-center d-flex flex-column"
+                  className="App p-5 d-flex flex-column"
                   style={{ minHeight: "100vh" }}
                 >
                   <AppHeader />
@@ -100,7 +100,7 @@ function App() {
               path={ROUTER_UTIL.SHORT_ANSWER_PRACTICE}
               element={
                 <div
-                  className="App p-5 text-center d-flex flex-column"
+                  className="App p-5 d-flex flex-column"
                   style={{ minHeight: "100vh" }}
                 >
                   <AppHeader />
@@ -115,7 +115,7 @@ function App() {
               path={ROUTER_UTIL.ULTIMATE_TRAINING_PRACTICE}
               element={
                 <div
-                  className="App p-5 text-center d-flex flex-column"
+                  className="App p-5 d-flex flex-column"
                   style={{ minHeight: "100vh" }}
                 >
                   <AppHeader />
@@ -130,7 +130,7 @@ function App() {
               path={ROUTER_UTIL.CHALLENGE}
               element={
                 <div
-                  className="App p-5 text-center d-flex flex-column"
+                  className="App p-5 d-flex flex-column"
                   style={{ minHeight: "100vh" }}
                 >
                   <AppHeader />

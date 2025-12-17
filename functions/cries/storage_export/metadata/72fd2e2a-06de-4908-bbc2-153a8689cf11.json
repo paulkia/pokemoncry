@@ -1,0 +1,19 @@
+{
+  "name": "cries/kadabra-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685752,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "5aebcfc4-0ca0-4add-850b-5de8d7d67136"
+  ],
+  "etag": "LWNUIJVProua9o3dok7n3d8D49k",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.752Z",
+  "updated": "2025-12-12T07:48:05.752Z",
+  "size": 3073,
+  "md5Hash": "Ofym/rcBCK4emkaeR2KYOw==",
+  "crc32c": "397916316"
+}

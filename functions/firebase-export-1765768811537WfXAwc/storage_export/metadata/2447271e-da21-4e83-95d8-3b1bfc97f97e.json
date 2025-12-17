@@ -1,0 +1,19 @@
+{
+  "name": "cries/kyogre-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683424,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "829d5334-95c6-4fc4-8850-1d55155ef1f9"
+  ],
+  "etag": "Zg3GSguYLVxw5xMlyWDSG5InaMM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.424Z",
+  "updated": "2025-12-12T07:48:03.424Z",
+  "size": 3909,
+  "md5Hash": "ZpWs7oSmWAItPfwXj6lJaw==",
+  "crc32c": "2927693850"
+}

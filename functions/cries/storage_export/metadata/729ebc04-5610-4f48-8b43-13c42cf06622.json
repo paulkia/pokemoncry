@@ -1,0 +1,19 @@
+{
+  "name": "cries/suicune-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685341,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "62a9918b-feb7-42a9-900c-d7cfb4205e09"
+  ],
+  "etag": "EIaRTQofQ0N7CwB9JpNNcugc/oU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.341Z",
+  "updated": "2025-12-12T07:48:05.341Z",
+  "size": 6704,
+  "md5Hash": "dvdMOqoXP9hlNtgQODAEIg==",
+  "crc32c": "2607585495"
+}

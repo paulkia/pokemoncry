@@ -1,0 +1,19 @@
+{
+  "name": "cries/arcanine-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683541,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "c4a1e76b-82db-46c0-850b-1baebd58fd48"
+  ],
+  "etag": "dSJyGbCj2NnCeavRgVG/oO2maCk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.541Z",
+  "updated": "2025-12-12T07:48:03.541Z",
+  "size": 2133,
+  "md5Hash": "XX9SFByOWP+ErjKB/yQC0A==",
+  "crc32c": "1769897901"
+}

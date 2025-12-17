@@ -17,6 +17,9 @@ import { ROUTER_UTIL } from "../library/util";
 
 const disabledUsername = "Anonymous";
 
+const GLOBAL_LIMIT = 10;
+const NEARBY_LIMIT = 3;
+
 // Modes: fast vs full
 const MODES = ["fast", "full"]; // "fast" = Fast Mode, "full" = Full Mode
 
@@ -80,11 +83,11 @@ function Leaderboard() {
 
       try {
         // Assumption: Firestore collection 'runs' with fields:
-        // userId:string, username:string, gen:number|'all', mode:'fast'|'full', score:number, createdAt:timestamp
-        const baseRef = collection(db, "runs");
+        // uid:string, username:string, gen:number|'all', mode:'fast'|'full', score:number, createdAt:timestamp
+        const baseRef = collection(db, "public-runs");
         const q = query(
           baseRef,
-          where("userId", "==", authUser.uid),
+          where("uid", "==", authUser.uid),
           where("mode", "==", selectedMode),
           where("gen", "==", selectedGen),
           orderBy("score", "desc"),
@@ -128,7 +131,7 @@ function Leaderboard() {
       }
 
       try {
-        const baseRef = collection(db, "runs");
+        const baseRef = collection(db, "public-runs");
         const playerScore = myBest.data.score ?? 0;
 
         // Fetch 3 scores higher than player's score
@@ -139,7 +142,7 @@ function Leaderboard() {
           where("score", ">", playerScore),
           where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
           orderBy("score", "asc"), // ascending to get closest higher scores
-          limit(3)
+          limit(NEARBY_LIMIT)
         );
 
         // Fetch 3 scores lower than player's score
@@ -150,7 +153,7 @@ function Leaderboard() {
           where("score", "<", playerScore),
           where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
           orderBy("score", "desc"), // descending to get closest lower scores
-          limit(3)
+          limit(NEARBY_LIMIT)
         );
 
         const [snapAbove, snapBelow] = await Promise.all([
@@ -195,14 +198,14 @@ function Leaderboard() {
     async function run() {
       setGlobalTop({ loading: true, data: [], error: null });
       try {
-        const baseRef = collection(db, "runs");
+        const baseRef = collection(db, "public-runs");
         const q = query(
           baseRef,
           where("mode", "==", selectedMode),
           where("gen", "==", selectedGen),
           where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
           orderBy("score", "desc"),
-          limit(3)
+          limit(GLOBAL_LIMIT)
         );
         const snap = await getDocs(q);
         if (!isMounted) return;

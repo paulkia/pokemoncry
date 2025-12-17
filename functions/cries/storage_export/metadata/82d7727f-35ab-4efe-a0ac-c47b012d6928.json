@@ -1,0 +1,19 @@
+{
+  "name": "cries/snover-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686012,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "45641703-ec22-466f-b288-b157a6e1e049"
+  ],
+  "etag": "bBscOGNdtadKLbZimDWrJBYa9yg",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.012Z",
+  "updated": "2025-12-12T07:48:06.012Z",
+  "size": 1580,
+  "md5Hash": "zQMrGcelYkR0eZBA0jUqMQ==",
+  "crc32c": "62824243"
+}

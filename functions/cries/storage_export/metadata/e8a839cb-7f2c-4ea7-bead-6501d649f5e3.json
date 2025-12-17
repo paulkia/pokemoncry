@@ -1,0 +1,19 @@
+{
+  "name": "cries/grafaiai-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684368,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "cfb88bf1-966c-4f30-8c9b-1e432e8241f6"
+  ],
+  "etag": "67SylEuMAlODVEzTFnDIH67BXIw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.368Z",
+  "updated": "2025-12-12T07:48:04.368Z",
+  "size": 13868,
+  "md5Hash": "UZb80jP5Ho/L5/Sh5LCTCA==",
+  "crc32c": "1681084394"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/slugma-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683972,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "8689142a-b4db-4613-bd76-8e006d4a6af0"
+  ],
+  "etag": "g29eOZOMkzcVp9MAarUI3trB5VM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.972Z",
+  "updated": "2025-12-12T07:48:03.972Z",
+  "size": 6272,
+  "md5Hash": "qO/ygnaoe0cInAKyfpFDXA==",
+  "crc32c": "4136038655"
+}

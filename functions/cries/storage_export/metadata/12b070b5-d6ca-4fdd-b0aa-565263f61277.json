@@ -1,0 +1,19 @@
+{
+  "name": "cries/nuzleaf-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683755,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ad6eebe1-4819-4af4-8fad-3f530052e8f9"
+  ],
+  "etag": "e8HMRGvtCLthXq6nuLxs+JBqAkA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.755Z",
+  "updated": "2025-12-12T07:48:03.755Z",
+  "size": 4544,
+  "md5Hash": "rP4GmD03WwDYwtXqZjyShA==",
+  "crc32c": "1215187238"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/celebi-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684138,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "78fd78f1-3ee2-4547-b5f6-ddecbeeba440"
+  ],
+  "etag": "NIMJf00vsU5gzO1wpdwYMUxWKg0",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.138Z",
+  "updated": "2025-12-12T07:48:04.138Z",
+  "size": 5624,
+  "md5Hash": "cKFnhbt9Emxj4zGAFdAqwA==",
+  "crc32c": "3313752362"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/snubbull-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686262,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "506ca05c-aa43-4efd-b603-831469be42e2"
+  ],
+  "etag": "AZubbMOvzDnVVNyLRtLAJMUdcXA",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.262Z",
+  "updated": "2025-12-12T07:48:06.262Z",
+  "size": 1924,
+  "md5Hash": "kizd4lFlLQiHIWbIGF8Sjw==",
+  "crc32c": "289829791"
+}

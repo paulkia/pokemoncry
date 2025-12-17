@@ -235,7 +235,7 @@ export const AppProvider = ({ children }) => {
       }
 
       if (user) {
-        const userDocRef = doc(db, "users", user.uid);
+        const userDocRef = doc(db, "protected-users", user.uid);
         // Real-time listener for profile updates (e.g., username added later)
         userDocUnsub = onSnapshot(
           userDocRef,

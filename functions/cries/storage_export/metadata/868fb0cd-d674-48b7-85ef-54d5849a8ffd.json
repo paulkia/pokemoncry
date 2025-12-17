@@ -1,0 +1,19 @@
+{
+  "name": "cries/drampa-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683990,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4cb288e0-5a81-4fde-a3f9-7a03a8fcd9e7"
+  ],
+  "etag": "I/Eq0SUQwblohO5om6pRAGnNrdI",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.990Z",
+  "updated": "2025-12-12T07:48:03.990Z",
+  "size": 10808,
+  "md5Hash": "n+cQ4CjcxitIjnzt8kAhxw==",
+  "crc32c": "794762033"
+}

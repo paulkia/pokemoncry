@@ -1,0 +1,19 @@
+{
+  "name": "cries/poochyena-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683520,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "11f3c772-2d62-420c-91eb-c363be203c16"
+  ],
+  "etag": "o2gU6lnc/a9YjLGAdoAhMolYGMU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.520Z",
+  "updated": "2025-12-12T07:48:03.520Z",
+  "size": 1401,
+  "md5Hash": "hJj26uO3DUA7zGKNFWKoAQ==",
+  "crc32c": "263855812"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/skorupi-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683640,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4917ccf3-0e2f-4ac5-bd66-ba9908a5bec8"
+  ],
+  "etag": "XY1e3bOQDgcOsgZUKPq2uMTwWU4",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.640Z",
+  "updated": "2025-12-12T07:48:03.640Z",
+  "size": 2636,
+  "md5Hash": "t/Cv7OztNa62CBUJeAypqg==",
+  "crc32c": "913141686"
+}

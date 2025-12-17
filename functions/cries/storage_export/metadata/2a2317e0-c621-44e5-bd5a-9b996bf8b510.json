@@ -1,0 +1,19 @@
+{
+  "name": "cries/barboach-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684296,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "d752262b-fb5f-4b24-80fc-e36e8d408a20"
+  ],
+  "etag": "b8TRXlSHbZxbgeSNbNkKPPR3i+M",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.296Z",
+  "updated": "2025-12-12T07:48:04.296Z",
+  "size": 1401,
+  "md5Hash": "UxS6P7TG6RlOkkh/mM+n+A==",
+  "crc32c": "4171946380"
+}

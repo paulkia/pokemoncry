@@ -1,0 +1,19 @@
+{
+  "name": "cries/inkay-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686255,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "ea548b42-5069-4848-9dd4-d2e221b7c3f5"
+  ],
+  "etag": "9j1NnpKQhcE+BuHIBK2hiN1Otnw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.255Z",
+  "updated": "2025-12-12T07:48:06.255Z",
+  "size": 2384,
+  "md5Hash": "He7NTNyP7EBa4peas19yTA==",
+  "crc32c": "2281598807"
+}

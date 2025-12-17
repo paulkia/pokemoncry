@@ -1,0 +1,19 @@
+{
+  "name": "cries/whirlipede-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684085,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "caa6df4c-f6f0-439a-bdc6-2a44bcdeb2a5"
+  ],
+  "etag": "4+I1dHH+TVJVItJqdxyzwnS55Vk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.085Z",
+  "updated": "2025-12-12T07:48:04.085Z",
+  "size": 4004,
+  "md5Hash": "80fL1XIUqXZgs5zK+sPjzA==",
+  "crc32c": "958169723"
+}

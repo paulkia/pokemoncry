@@ -1,0 +1,19 @@
+{
+  "name": "cries/roggenrola-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684159,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "6b27e910-da85-44e9-99ae-f5ad7ba942f9"
+  ],
+  "etag": "FUfrcnX21D7+UpLKA1PdLy4tYSE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.159Z",
+  "updated": "2025-12-12T07:48:04.159Z",
+  "size": 6056,
+  "md5Hash": "F/umppuMO0zpJKUp7InzZQ==",
+  "crc32c": "3823516022"
+}

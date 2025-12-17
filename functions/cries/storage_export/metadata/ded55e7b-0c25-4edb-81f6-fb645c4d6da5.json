@@ -1,0 +1,19 @@
+{
+  "name": "cries/ivysaur-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683661,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "e7391f55-195d-47be-a3ef-c93464f1e74d"
+  ],
+  "etag": "MMue8W1QaKoJsq11W+oyua6svOo",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.661Z",
+  "updated": "2025-12-12T07:48:03.661Z",
+  "size": 5840,
+  "md5Hash": "JqSpZ9EUD6/DnJXZIVFOiQ==",
+  "crc32c": "3746145662"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cries/grimer-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684060,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "49489132-85a0-476e-b0e2-fba626c58f6c"
+  ],
+  "etag": "ft4+yrge+9xtXO1k2A381mZ0xSw",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.060Z",
+  "updated": "2025-12-12T07:48:04.060Z",
+  "size": 1506,
+  "md5Hash": "CyWdX6FTXtqAQLWjPiZLSA==",
+  "crc32c": "2408385067"
+}

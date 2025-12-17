@@ -1,0 +1,19 @@
+{
+  "name": "cries/phanpy-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684449,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "b961d7cd-255e-454b-9bc9-1fb5c9e9c90b"
+  ],
+  "etag": "ImYHAADA5YcB9Ha1pEYLnhWTeMU",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.449Z",
+  "updated": "2025-12-12T07:48:04.449Z",
+  "size": 4760,
+  "md5Hash": "5tGxhLGFo4XX3hUECTucRw==",
+  "crc32c": "767728828"
+}

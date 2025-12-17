@@ -1,0 +1,19 @@
+{
+  "name": "cries/druddigon-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525684316,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "2256f3c5-4b54-4026-be13-616b7f322bfd"
+  ],
+  "etag": "9VD6L2kXOc8GseS9oPLT/+D+CeM",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:04.316Z",
+  "updated": "2025-12-12T07:48:04.316Z",
+  "size": 4760,
+  "md5Hash": "+O/nShI8i+rQwVOcneVX/g==",
+  "crc32c": "2910272981"
+}

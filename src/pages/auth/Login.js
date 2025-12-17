@@ -10,20 +10,10 @@ import {
   linkWithPopup,
 } from "firebase/auth";
 import { auth, db, analytics } from "../../firebase";
-import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
+import { logEvent } from "firebase/analytics";
+import { doc, getDoc } from "firebase/firestore";
 import GoogleIcon from "../../components/GoogleIcon";
 import { ROUTER_UTIL } from "../../library/util";
-
-const updateLoginDoc = (firebaseId) => ({
-  firebase_id: firebaseId,
-  latestLoginTime: serverTimestamp(),
-});
-
-const newUserDoc = (firebaseId) => ({
-  firebase_id: firebaseId,
-  username: null,
-  latestLoginTime: serverTimestamp(),
-});
 
 function Login() {
   const navigate = useNavigate();
@@ -62,20 +52,8 @@ function Login() {
     // For users that are not yet in the firebase system.
     linkWithPopup(authUser, provider)
       .then(() => {
-        const firebaseId = authUser.uid;
-        const userDocRef = doc(db, "users", firebaseId);
-        setDoc(userDocRef, newUserDoc(firebaseId), { merge: true })
-          .then(() => {
-            analytics.logEvent("sign_up", { linkWithPopup });
-            navigate(ROUTER_UTIL.COMPLETE_PROFILE);
-          })
-          .catch((err) => {
-            setError(
-              "Failed to create user profile in database, please try again later."
-            );
-            console.error("Creating userdoc profile failed", err);
-            setLoading(false);
-          });
+        logEvent(analytics, "sign_up", { linkWithPopup });
+        navigate(ROUTER_UTIL.COMPLETE_PROFILE);
       })
       .catch((linkError) => {
         if (linkError.code !== "auth/credential-already-in-use") {
@@ -91,38 +69,16 @@ function Login() {
           .then((cred) => {
             const firebaseId = cred.user.uid;
             // If the user already has a profile with a username, log them in.
-            const userDocRef = doc(db, "users", firebaseId);
+            const userDocRef = doc(db, "protected-users", firebaseId);
             getDoc(userDocRef).then((userDoc) => {
               if (userDoc.exists() && userDoc.data().username) {
                 // TODO: MERGE SCORE DATA.
-                setDoc(userDocRef, updateLoginDoc(firebaseId), {
-                  merge: true,
-                })
-                  .then(() => {
-                    analytics.logEvent("login", { signInWithCredential });
-                    navigate(ROUTER_UTIL.HOME);
-                  })
-                  .catch((err) => {
-                    setError(
-                      "Failed to update login time in database, please try again later."
-                    );
-                    console.error("Updating login time failed", err);
-                    setLoading(false);
-                  });
+                logEvent(analytics, "login", { signInWithCredential });
+                navigate(ROUTER_UTIL.HOME);
               } else {
                 // Create new user profile and navigate to complete-profile.
-                setDoc(userDocRef, newUserDoc(firebaseId), { merge: true })
-                  .then(() => {
-                    analytics.logEvent("sign_up", { signInWithCredential });
-                    navigate(ROUTER_UTIL.COMPLETE_PROFILE);
-                  })
-                  .catch((err) => {
-                    setError(
-                      "Failed to create user profile in database, please try again later."
-                    );
-                    console.error("Creating userdoc profile failed", err);
-                    setLoading(false);
-                  });
+                logEvent(analytics, "sign_up", { signInWithCredential });
+                navigate(ROUTER_UTIL.COMPLETE_PROFILE);
               }
             });
           })
@@ -154,7 +110,7 @@ function Login() {
             <>
               <Card.Header className="bg-white border-0 pt-4 pb-0">
                 <h3 className="mb-1">Welcome</h3>
-                <div className="text-muted">Sign in to continue</div>
+                <div className="text-muted">Sign in to continue.</div>
               </Card.Header>
               <Card.Body
                 className="p-4"

@@ -1,0 +1,19 @@
+{
+  "name": "cries/emolga-legacy.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525683695,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "87be143b-c916-43ec-a9d2-76b9b2c8ebc8"
+  ],
+  "etag": "Muxk8xQoZPQkaHd1teQxS1sNrHE",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:03.695Z",
+  "updated": "2025-12-12T07:48:03.695Z",
+  "size": 1898,
+  "md5Hash": "KPbhe0XAqFTw7dpmNB0L8A==",
+  "crc32c": "19921718"
+}

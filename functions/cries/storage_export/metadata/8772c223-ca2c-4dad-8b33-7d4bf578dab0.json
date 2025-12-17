@@ -1,0 +1,19 @@
+{
+  "name": "cries/leavanny-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525685917,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "4caf4fb5-f406-4ec1-b051-695b1943726f"
+  ],
+  "etag": "VGk7PKfuPqt7PEGqkOzLelxSQwk",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:05.917Z",
+  "updated": "2025-12-12T07:48:05.917Z",
+  "size": 8648,
+  "md5Hash": "eRZCUAMfK+5yJYZdz2+HXQ==",
+  "crc32c": "2481472023"
+}

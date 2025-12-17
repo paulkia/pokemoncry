@@ -1,0 +1,19 @@
+{
+  "name": "cries/hatenna-latest.mp3",
+  "bucket": "guessthecry.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1765525686253,
+  "contentType": "audio/mpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "08d4812e-9bf3-4449-bca8-b501a5e94b35"
+  ],
+  "etag": "G9yqotODh4H1x4kBZRQeqHyKhhc",
+  "customMetadata": {},
+  "timeCreated": "2025-12-12T07:48:06.253Z",
+  "updated": "2025-12-12T07:48:06.253Z",
+  "size": 12555,
+  "md5Hash": "A9DYTuYsTTLGCYSL2cS8pw==",
+  "crc32c": "2422790240"
+}
