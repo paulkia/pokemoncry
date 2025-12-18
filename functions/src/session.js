@@ -6,12 +6,8 @@ import { FieldValue } from "firebase-admin/firestore";
 import { db, functions, storage } from "./firebase.js";
 import { genToMons } from "./util.js";
 // Cloud Tasks client library
-import { CloudTasksClient } from "@google-cloud/tasks";
 import { logger } from "firebase-functions";
 import { onTaskDispatched } from "firebase-functions/tasks";
-
-// Instantiates a client
-const client = new CloudTasksClient();
 
 const ANONYMOUS_USERNAME = "Anonymous";
 
@@ -140,7 +136,6 @@ export const createSession = onCall(async (request) => {
       fastestTimeMs: Number.MAX_SAFE_INTEGER,
       bestMon: "",
       startedAt: FieldValue.serverTimestamp(),
-      lastActivityAt: FieldValue.serverTimestamp(),
       status: SESSION_STATUS.INITIALIZED,
     };
 
@@ -315,16 +310,21 @@ export const updateSession = onCall(async (request) => {
 
   try {
     const sessionRef = db.collection("sessions").doc(sessionId);
+    const protectedSessionRef = db
+      .collection("protected-sessions")
+      .doc(sessionId);
 
     // 3. Use a transaction to ensure atomicity
     const result = await db.runTransaction(async (transaction) => {
       const sessionDoc = await transaction.get(sessionRef);
+      const protectedSessionDoc = await transaction.get(protectedSessionRef);
 
       if (!sessionDoc.exists) {
         throw new HttpsError("not-found", "Session not found.");
       }
 
       const session = sessionDoc.data();
+      const protectedSession = protectedSessionDoc.data();
 
       // Verify session belongs to user
       if (session.uid !== uid) {
@@ -335,22 +335,23 @@ export const updateSession = onCall(async (request) => {
       }
 
       if (session.status === SESSION_STATUS.INITIALIZED) {
-        // Get the first Mon's cry audio data
-        const firstMonCryData = await getCryAudioData(
-          session.monList[0],
-          session.useLegacyCries
-        );
         // Activate the session.
         const updates = {
           startedAt: FieldValue.serverTimestamp(),
-          lastActivityAt: FieldValue.serverTimestamp(),
           status: SESSION_STATUS.ACTIVE,
         };
-
         transaction.update(sessionRef, updates);
-        return {
-          nextMonCryData: firstMonCryData,
-        };
+
+        // Enqueue sending the cry.
+        const queue = functions.taskQueue("revealNextQuestion");
+        await queue.enqueue(
+          { sessionId },
+          {
+            scheduleDelaySeconds: 1,
+            dispatchDeadlineSeconds: 15, // 15 seconds
+          }
+        );
+        return {};
       }
 
       // Check if session is still active
@@ -365,7 +366,7 @@ export const updateSession = onCall(async (request) => {
         throw new HttpsError("invalid-argument", "Valid answer is required.");
       }
 
-      const timeMs = Date.now() - session.lastActivityAt.toMillis();
+      const timeMs = Date.now() - protectedSession.questionTimestamp.toMillis();
 
       // Get current Mon
       const currentMon = session.monList[session.currentIndex];
@@ -423,7 +424,6 @@ export const updateSession = onCall(async (request) => {
         score: newScore,
         fastestTimeMs: newFastestTimeMs,
         bestMon: newBestMon,
-        lastActivityAt: FieldValue.serverTimestamp(),
       };
 
       if (isGameComplete) {
@@ -441,7 +441,6 @@ export const updateSession = onCall(async (request) => {
         newStreak,
         newTotalScore: newScore,
         isGameComplete,
-        nextMonCryData: null,
       };
 
       if (!isGameComplete) {
@@ -521,14 +520,14 @@ export const revealNextQuestion = onTaskDispatched(async (request) => {
 
       const session = sessionDoc.data();
 
-      if (session.status === SESSION_STATUS.INITIALIZED) {
-        logger.error(
-          "Session not active in revealNextQuestion",
-          sessionId,
-          session.status
-        );
-        return;
-      }
+      // if (session.status === SESSION_STATUS.INITIALIZED) {
+      //   logger.error(
+      //     "Session not active in revealNextQuestion",
+      //     sessionId,
+      //     session.status
+      //   );
+      //   return;
+      // }
       if (session.status === SESSION_STATUS.COMPLETED) {
         logger.error(
           "Session already completed in revealNextQuestion",
