@@ -267,41 +267,6 @@ function Challenge() {
     }
   }
 
-  function startGameListener(sessionId) {
-    const sessionRef = doc(db, "protected-sessions", sessionId);
-    const unsubscribe = onSnapshot(
-      sessionRef,
-      (docSnapshot) => {
-        if (!docSnapshot.exists()) {
-          unsubscribe();
-          return;
-        }
-        const data = docSnapshot.data();
-        if (!data.nextMonCryData) {
-          return;
-        }
-        setCurrentCryData(data.nextMonCryData);
-        playCryFromBase64(data.nextMonCryData);
-        setShowViz(true);
-        const start = Date.now();
-        localStartRef.current = start; // for scoring
-        setLocalStartMs(start); // for display
-        setMonTimeTakenAccordingToServer(0);
-        dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
-        setTimeout(() => {
-          inputRef.current && inputRef.current.focus();
-        }, 200);
-        console.log("update");
-      },
-      (error) => {
-        console.error("Snapshot error:", error);
-      }
-    );
-
-    // Return the unsubscribe function so you can stop listening when the game ends
-    return unsubscribe;
-  }
-
   useEffect(() => {
     async function initSession() {
       try {
@@ -313,12 +278,10 @@ function Challenge() {
 
         const { totalMonCount, sessionId } = startSessionResult.data;
 
-        const activateSessionResult = await updateSession({
+        await updateSession({
           sessionId,
           answer: null,
         });
-
-        const { nextMonCryData } = activateSessionResult.data;
 
         dispatch({
           type: ACTION_TYPES.INITIAL_SETUP,
@@ -327,30 +290,22 @@ function Challenge() {
         });
         inputRef.current && inputRef.current.focus();
 
-        setSessionId(sessionId);
         setTotalMonCount(totalMonCount);
-        setCurrentCryData(nextMonCryData);
-
-        // Play first cry from base64 data
-        playCryFromBase64(nextMonCryData);
-        // Start timer
-        localStartRef.current = Date.now();
-        // Listen to updates in Pokemon cries
-
-        startGameListener(sessionId);
+        setSessionId(sessionId);
+        return;
       } catch (error) {
         console.error("Failed to start session:", error);
-        // Handle error appropriately
       }
+      return () => {};
     }
 
     initSession();
     // Inject shake CSS once
     const styleId = "quiz-shake-style";
-    if (document.getElementById(styleId)) return;
-    const style = document.createElement("style");
-    style.id = styleId;
-    style.innerHTML = `
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.innerHTML = `
       @keyframes shake {
         0% { transform: translateX(0); }
         15% { transform: translateX(-8px); }
@@ -364,8 +319,51 @@ function Challenge() {
         animation: shake 600ms ease;
       }
     `;
-    document.head.appendChild(style);
+      document.head.appendChild(style);
+    }
   }, []);
+
+  useEffect(() => {
+    function startGameListener(sessionId) {
+      const sessionRef = doc(db, "protected-sessions", sessionId);
+      const unsubscribe = onSnapshot(
+        sessionRef,
+        (docSnapshot) => {
+          if (!docSnapshot.exists()) {
+            unsubscribe();
+            return;
+          }
+          const data = docSnapshot.data();
+          if (!data.nextMonCryData) {
+            return;
+          }
+          setCurrentCryData(data.nextMonCryData);
+          playCryFromBase64(data.nextMonCryData);
+          setShowViz(true);
+          const start = Date.now();
+          localStartRef.current = start; // for scoring
+          setLocalStartMs(start); // for display
+          setMonTimeTakenAccordingToServer(0);
+          dispatch({ type: ACTION_TYPES.ENABLE_INPUT });
+          setTimeout(() => {
+            inputRef.current && inputRef.current.focus();
+          }, 200);
+        },
+        (error) => {
+          console.error("Snapshot error:", error);
+        }
+      );
+
+      // Return the unsubscribe function so you can stop listening when the game ends
+      return unsubscribe;
+    }
+
+    if (sessionId === null) return;
+    const unsubscribe = startGameListener(sessionId);
+    return () => {
+      unsubscribe();
+    };
+  }, [sessionId]);
 
   // Start a high-resolution timer for the total clock only (local clock handled by hook)
   useEffect(() => {
@@ -481,7 +479,6 @@ function Challenge() {
             newTotalScore,
             isGameComplete,
             timeMs,
-            nextMonCryData,
             finalStats,
           } = result.data;
           setMonTimeTakenAccordingToServer(timeMs);
@@ -814,12 +811,12 @@ function Challenge() {
         <p>Repeat the sound for the current mon by pressing 'space'</p>
         <Row className="justify-content-center">
           <Col sm={12} md={6} lg={5}>
-            <br />
-            {/* Container for relative positioning */}
-            <span>
+            {/* <br /> */}
+            {/* Container for relative positionings */}
+            {/* <span>
               Total Time:{" "}
               <Clock totalStartRef={totalStartRef} totalClock={totalClock} />
-            </span>
+            </span> */}
             <PokeProgressBar
               className="mt-4 mb-3"
               completionPercent={progress}
