@@ -306,7 +306,7 @@ function PracticePanel() {
             <PokeProgressBar
               visuallyHidden={true}
               completionPercent={
-                (pokeLoadingGen / (generationCount || 1)) * 100 || 100
+                (pokeLoadingGen / (generationCount || 1)) * 100
               }
             />
           </Col>

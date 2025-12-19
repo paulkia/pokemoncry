@@ -99,7 +99,6 @@ function ChallengePanel() {
       },
     });
   };
-
   return (
     <span>
       <Row className="justify-content-center">
@@ -181,7 +180,7 @@ function ChallengePanel() {
             <PokeProgressBar
               visuallyHidden={true}
               completionPercent={
-                (pokeLoadingGen / (generationCount || 1)) * 100 || 100
+                (pokeLoadingGen / (generationCount || 1)) * 100
               }
             />
           </Col>
