@@ -65,7 +65,7 @@ function GenerationsGrid({
                 }
               >
                 Gen {buttonId} {console.log(pokeLoadingGen)}
-                {pokeLoadingGen ? null : (
+                {pokeLoadingGen !== null ? null : (
                   <img
                     src={preloadedGenIcons[buttonId].icon || ""}
                     alt={"↻"}
@@ -297,11 +297,11 @@ function PracticePanel() {
           </Col>
         </Row>
       </Form>
-      {pokeLoadingGen && (
+      {pokeLoadingGen !== null && (
         <Row className="justify-content-center mt-4">
           <Col xl={3} sm={8} xs={12} className="text-center mb-1">
             <div className="mb-2">
-              {pokeLoadingGen && genLoadingMessage[pokeLoadingGen]}
+              {pokeLoadingGen !== null && genLoadingMessage[pokeLoadingGen]}
             </div>
             <PokeProgressBar
               visuallyHidden={true}
@@ -316,13 +316,17 @@ function PracticePanel() {
       <Row className="justify-content-center mt-3">
         <Col xs={6} md={4} lg={3} className="p-2 d-flex justify-content-center">
           <Button
-            disabled={selectedGenerationIds.length === 0 || pokeLoadingGen}
+            disabled={
+              selectedGenerationIds.length === 0 || pokeLoadingGen !== null
+            }
             variant="success"
             onClick={() => onStart(selectedGenerationIds)}
             className="w-100"
           >
             Practice{" "}
-            {pokeLoadingGen ? <Spinner animation="border" size="sm" /> : null}
+            {pokeLoadingGen !== null ? (
+              <Spinner animation="border" size="sm" />
+            ) : null}
           </Button>
         </Col>
       </Row>

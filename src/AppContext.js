@@ -17,8 +17,6 @@ const P = new Pokedex();
 
 const ICON_ROTATE_INTERVAL_MS = 1000;
 
-const POKE_LOADING_GEN = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 // 1. Create the Context
 const AuthContext = createContext({
   authUser: null,
@@ -32,7 +30,7 @@ const PokeContext = createContext({
   preloadedGenToNames: {}, // genId -> [names]
   preloadedGenIcons: {}, // genId -> iconUrl
   gensLoading: true,
-  pokeLoadingGen: POKE_LOADING_GEN[0],
+  pokeLoadingGen: 0,
 });
 
 const SettingsContext = createContext({
@@ -71,7 +69,6 @@ async function preloadMon(generationCount, setPokeLoadingGen) {
     (gen) => `https://pokeapi.co/api/v2/generation/${gen}`
   );
   const generationsFromPokedex = await P.getResource(genUrls);
-  const totalGens = generationsFromPokedex.length;
   let completedGens = 0;
 
   const pokemonPromises = generationsFromPokedex.map(async (generation) => {
@@ -152,7 +149,7 @@ export const AppProvider = ({ children }) => {
   const [preloadedGenIcons, setPreloadedGenIcons] = useState({}); // genId -> iconUrl
   const [allIconsPerGen, setAllIconsPerGen] = useState({});
   const [gensLoading, setGensLoading] = useState(true);
-  const [pokeLoadingGen, setPokeLoadingGen] = useState(POKE_LOADING_GEN[0]);
+  const [pokeLoadingGen, setPokeLoadingGen] = useState(0);
   // Auth data values.
   const [currentUser, setCurrentUser] = useState(null);
   const [username, setUsername] = useState(null);
@@ -189,7 +186,7 @@ export const AppProvider = ({ children }) => {
         }
         setPreloadedMon(result.monToData);
         setPreloadedGenToNames(result.genToNames);
-        setPokeLoadingGen("");
+        setPokeLoadingGen(null);
         setAllIconsPerGen(result.allIconsPerGen);
 
         const someIconPerGen = Object.fromEntries(

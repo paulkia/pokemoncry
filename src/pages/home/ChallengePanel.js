@@ -48,7 +48,7 @@ function GenerationsGrid({
               >
                 Gen {buttonId}
                 {<br />}
-                {pokeLoadingGen ? null : (
+                {pokeLoadingGen !== null ? null : (
                   <img
                     src={
                       settings.disableAnimations
@@ -172,11 +172,11 @@ function ChallengePanel() {
           </Card>
         </Col>
       </Row>
-      {pokeLoadingGen && (
+      {pokeLoadingGen !== null && (
         <Row className="justify-content-center mt-4">
           <Col xl={3} sm={8} xs={12} className="text-center mb-1">
             <div className="mb-2">
-              {pokeLoadingGen && genLoadingMessage[pokeLoadingGen]}
+              {pokeLoadingGen !== null && genLoadingMessage[pokeLoadingGen]}
             </div>
             <PokeProgressBar
               visuallyHidden={true}
@@ -190,12 +190,14 @@ function ChallengePanel() {
       <Row className="justify-content-center mt-3">
         <Col xs={6} md={4} lg={3} className="p-2 d-flex justify-content-center">
           <Button
-            disabled={selectedGenerationId === -1 || pokeLoadingGen}
+            disabled={selectedGenerationId === -1 || pokeLoadingGen !== null}
             variant="success"
             onClick={() => onStart()}
           >
             Challenge{" "}
-            {pokeLoadingGen ? <Spinner animation="border" size="sm" /> : null}
+            {pokeLoadingGen !== null ? (
+              <Spinner animation="border" size="sm" />
+            ) : null}
           </Button>
         </Col>
       </Row>
