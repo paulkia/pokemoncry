@@ -397,7 +397,7 @@ function ShortAnswerPractice() {
     }
     return (
       <div>
-        <Row className="mb-2 justify-content-center">
+        <Row className="mb-2 justify-content-center text-center">
           <Col xs={6} sm={4} lg={2}>
             Previous:
             <br />
@@ -485,26 +485,28 @@ function ShortAnswerPractice() {
         <Row className="justify-content-center">
           <Col xs={12} md={4} className="mt-3 mb-3">
             {/* Container for relative positioning */}
-            <PokeProgressBar completionPercent={progress} />
+            <PokeProgressBar className="mb-4" completionPercent={progress} />
             {state.pokeNum === numMonToGuess && (
-              <Button
-                onClick={() => {
-                  navigate(ROUTER_UTIL.REFRESHER, {
-                    state: {
-                      refreshRoute: location.pathname,
-                      refreshState: location.state,
-                    },
-                  });
-                }}
-              >
-                Play Again
-              </Button>
+              <div>
+                <Button
+                  className="mb-4"
+                  onClick={() => {
+                    navigate(ROUTER_UTIL.REFRESHER, {
+                      state: {
+                        refreshRoute: location.pathname,
+                        refreshState: location.state,
+                      },
+                    });
+                  }}
+                >
+                  Play Again
+                </Button>
+              </div>
             )}
             {/* Score, only displayed if all Mon have been guessed. */}
             <Score
-              numMonToGuess={numMonToGuess}
-              pokeNum={state.pokeNum}
               numerator={state.correct.length}
+              denominator={numMonToGuess}
             />
             {/* Audio button for current Mon. */}
           </Col>
@@ -642,7 +644,6 @@ function ShortAnswerPractice() {
           ) : null}
         </Col>
       </Row>
-      <br />
       {resultsPanel()}
     </span>
   );

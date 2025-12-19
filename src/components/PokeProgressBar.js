@@ -1,6 +1,10 @@
 import { ProgressBar } from "react-bootstrap";
 
-function PokeProgressBar({ className = "", completionPercent }) {
+function PokeProgressBar({
+  className = "",
+  completionPercent,
+  visuallyHidden = false,
+}) {
   const label =
     completionPercent === 100 ? `Done!` : `${Math.round(completionPercent)}%`;
   return (
@@ -9,7 +13,7 @@ function PokeProgressBar({ className = "", completionPercent }) {
         className={className}
         animated
         now={completionPercent}
-        label={label}
+        label={visuallyHidden ? null : label}
       />
     </div>
   );

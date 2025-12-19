@@ -17,6 +17,8 @@ const P = new Pokedex();
 
 const ICON_ROTATE_INTERVAL_MS = 1000;
 
+const POKE_LOADING_GEN = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 // 1. Create the Context
 const AuthContext = createContext({
   authUser: null,
@@ -30,7 +32,7 @@ const PokeContext = createContext({
   preloadedGenToNames: {}, // genId -> [names]
   preloadedGenIcons: {}, // genId -> iconUrl
   gensLoading: true,
-  pokeLoading: true,
+  pokeLoadingGen: POKE_LOADING_GEN[0],
 });
 
 const SettingsContext = createContext({
@@ -60,7 +62,7 @@ export const useSettings = () => {
 // - map: { name -> {legacyCry, latestCry, sprite} }
 // - allNames: [names]
 // - byGen: { genId -> [names] } }
-async function preloadMon(generationCount) {
+async function preloadMon(generationCount, setPokeLoadingGen) {
   if (!generationCount || generationCount <= 0) return null;
 
   // Fetch generation resources to obtain species lists.
@@ -69,22 +71,40 @@ async function preloadMon(generationCount) {
     (gen) => `https://pokeapi.co/api/v2/generation/${gen}`
   );
   const generationsFromPokedex = await P.getResource(genUrls);
+  const totalGens = generationsFromPokedex.length;
+  let completedGens = 0;
 
-  // Build per-gen species name lists and detail URLs
-  const genToNames = {};
-  const monDetailUrls = [];
-  for (const generation of generationsFromPokedex) {
-    const gid = generation.id;
-    genToNames[gid] = generation.pokemon_species.map((p) => p.name);
-    monDetailUrls.push(
-      ...generation.pokemon_species.map((mon) =>
-        mon.url.replace("pokemon-species", "pokemon")
-      )
+  const pokemonPromises = generationsFromPokedex.map(async (generation) => {
+    const pokemonUrls = generation.pokemon_species.map((mon) =>
+      mon.url.replace("pokemon-species", "pokemon")
     );
-  }
+
+    const data = await P.getResource(pokemonUrls);
+
+    // Increment counter and update progress percentage
+    completedGens++;
+    setPokeLoadingGen(completedGens);
+
+    return {
+      gid: generation.id,
+      names: generation.pokemon_species.map((p) => p.name),
+      pokemonData: data,
+    };
+  });
+
+  // Wait for all to finish
+  const results = await Promise.all(pokemonPromises);
+
+  // Build final structures
+  const genToNames = {};
+  const monFromPokedex = [];
+
+  results.forEach((res) => {
+    genToNames[res.gid] = res.names;
+    monFromPokedex.push(...res.pokemonData);
+  });
 
   // Fetch detailed mon resources (sprites, cries, etc.)
-  const monFromPokedex = await P.getResource(monDetailUrls);
   const monToData = {};
   const pokeNameToAllData = {};
   for (const mon of monFromPokedex) {
@@ -132,7 +152,7 @@ export const AppProvider = ({ children }) => {
   const [preloadedGenIcons, setPreloadedGenIcons] = useState({}); // genId -> iconUrl
   const [allIconsPerGen, setAllIconsPerGen] = useState({});
   const [gensLoading, setGensLoading] = useState(true);
-  const [pokeLoading, setPokeLoading] = useState(true);
+  const [pokeLoadingGen, setPokeLoadingGen] = useState(POKE_LOADING_GEN[0]);
   // Auth data values.
   const [currentUser, setCurrentUser] = useState(null);
   const [username, setUsername] = useState(null);
@@ -156,20 +176,20 @@ export const AppProvider = ({ children }) => {
       });
   }, []);
 
-  // Source all Mon.
+  // Source all Mons.
   useEffect(() => {
     const isMounted = { current: true };
     let intervalId = 0;
     const runPreload = async () => {
       if (!generationCount || generationCount <= 0) return;
       try {
-        const result = await preloadMon(generationCount);
+        const result = await preloadMon(generationCount, setPokeLoadingGen);
         if (!isMounted.current || !result) {
           return;
         }
         setPreloadedMon(result.monToData);
         setPreloadedGenToNames(result.genToNames);
-        setPokeLoading(false);
+        setPokeLoadingGen("");
         setAllIconsPerGen(result.allIconsPerGen);
 
         const someIconPerGen = Object.fromEntries(
@@ -196,7 +216,7 @@ export const AppProvider = ({ children }) => {
       isMounted.current = false;
       clearInterval(intervalId);
     };
-  }, [generationCount]);
+  }, [generationCount, setPokeLoadingGen]);
 
   // Rotate generation icons periodically.
   useEffect(() => {
@@ -278,7 +298,7 @@ export const AppProvider = ({ children }) => {
     preloadedGenToNames: preloadedGenToNames,
     preloadedGenIcons: preloadedGenIcons,
     gensLoading: gensLoading,
-    pokeLoading: pokeLoading,
+    pokeLoadingGen: pokeLoadingGen,
   };
 
   const authInfo = {

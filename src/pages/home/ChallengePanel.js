@@ -11,17 +11,17 @@ import {
   Button,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Settings from "../../components/Settings";
 import { useNavigate } from "react-router-dom";
-import { ROUTER_UTIL, LOCAL_STORAGE_UTIL } from "../../library/util";
+import { ROUTER_UTIL } from "../../library/util";
 import { usePoke, useSettings } from "../../AppContext";
-import AppHeader from "../../components/AppHeader";
+import PokeProgressBar from "../../components/PokeProgressBar";
+import { genLoadingMessage } from "./Home";
 
 function GenerationsGrid({
   selectedGenerationId = -1,
   setSelectedGenerationId,
 }) {
-  const { generationCount, preloadedGenIcons, pokeLoading } = usePoke();
+  const { generationCount, preloadedGenIcons, pokeLoadingGen } = usePoke();
   const { settings } = useSettings();
   // Pure grid renderer. Expects generationCount and selection handlers from parent.
   const buttonNumbers = Array.from(
@@ -48,7 +48,7 @@ function GenerationsGrid({
               >
                 Gen {buttonId}
                 {<br />}
-                {pokeLoading ? null : (
+                {pokeLoadingGen ? null : (
                   <img
                     src={
                       settings.disableAnimations
@@ -81,7 +81,7 @@ function ChallengePanel() {
   const navigate = useNavigate();
   const [numberOfMons, setNumberOfMons] = useState(20);
   const [selectedGenerationId, setSelectedGenerationId] = useState(-1);
-  const { gensLoading, pokeLoading } = usePoke();
+  const { generationCount, gensLoading, pokeLoadingGen } = usePoke();
 
   const handleSelectAll = () => {
     if (selectedGenerationId === 0) {
@@ -172,15 +172,30 @@ function ChallengePanel() {
           </Card>
         </Col>
       </Row>
+      {pokeLoadingGen && (
+        <Row className="justify-content-center mt-4">
+          <Col xl={3} sm={8} xs={12} className="text-center mb-1">
+            <div className="mb-2">
+              {pokeLoadingGen && genLoadingMessage[pokeLoadingGen]}
+            </div>
+            <PokeProgressBar
+              visuallyHidden={true}
+              completionPercent={
+                (pokeLoadingGen / (generationCount || 1)) * 100 || 100
+              }
+            />
+          </Col>
+        </Row>
+      )}
       <Row className="justify-content-center mt-3">
         <Col xs={6} md={4} lg={3} className="p-2 d-flex justify-content-center">
           <Button
-            disabled={selectedGenerationId === -1 || pokeLoading}
+            disabled={selectedGenerationId === -1 || pokeLoadingGen}
             variant="success"
             onClick={() => onStart()}
           >
             Challenge{" "}
-            {pokeLoading ? <Spinner animation="border" size="sm" /> : null}
+            {pokeLoadingGen ? <Spinner animation="border" size="sm" /> : null}
           </Button>
         </Col>
       </Row>

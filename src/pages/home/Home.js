@@ -4,6 +4,18 @@ import { ROUTER_UTIL } from "../../library/util";
 import BuyCoffeeButton from "../../components/BuyCoffeeButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+export const genLoadingMessage = {
+  0: "Loading Kanto...",
+  1: "Loading Johto...",
+  2: "Loading Hoenn...",
+  3: "Loading Sinnoh...",
+  4: "Loading Unova...",
+  5: "Loading Kalos...",
+  6: "Loading Alola...",
+  7: "Loading Galar...",
+  8: "Loading Paldea...",
+};
+
 // ***** MAIN MENU PANEL ***** //
 function Home() {
   const navigate = useNavigate();

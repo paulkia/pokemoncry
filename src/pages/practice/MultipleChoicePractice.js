@@ -272,8 +272,6 @@ function MultipleChoicePractice() {
             )}
             {/* Score, only displayed if all Mon have been guessed. */}
             <Score
-              numMonToGuess={numMonToGuess}
-              pokeNum={pokeNum}
               numerator={
                 Object.entries(multipleChoiceResults).filter(
                   ([_pokeName, pokeResult]) =>
@@ -281,6 +279,7 @@ function MultipleChoicePractice() {
                     pokeResult[MultipleChoiceResult.ACTUAL_POKEMON]
                 ).length
               }
+              denominator={numMonToGuess}
             />
             {pokeNum !== numMonToGuess && navigator.userAgentData?.mobile && (
               <Row>

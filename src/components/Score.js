@@ -1,12 +1,11 @@
-function Score({ numMonToGuess, pokeNum, numerator, score }) {
-  if (score > 0) {
-    return <div>Score: {Math.round(score)} points</div>;
-  }
-  if (pokeNum < numMonToGuess) {
-    return null;
+function Score({ points, numerator = 0, denominator = 1 }) {
+  if (points !== undefined) {
+    return <div>Score: {Math.round(points)} points</div>;
   }
   return (
-    <div className="mb-2 mt-4">{`Score: ${numerator} / ${numMonToGuess}`}</div>
+    <span>
+      Score: {numerator} / {denominator}
+    </span>
   );
 }
 export default Score;

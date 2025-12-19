@@ -8,6 +8,7 @@ import {
   InputGroup,
   Row,
   Col,
+  Spinner,
   FormControl,
 } from "react-bootstrap";
 import { useState, useReducer, useEffect, useCallback, useRef } from "react";
@@ -61,7 +62,7 @@ const initialState = {
   correct: [],
   // List of incorrectly guessed mon.
   incorrect: [],
-
+  // Previous mons guessed.
   previousMon: [],
   // Url for current cry.
   currentCryUrl: null,
@@ -169,7 +170,6 @@ function quizReducer(state, action) {
       return {
         ...state,
         inputDisabled: true,
-        pokeNum: state.pokeNum + 1,
         input: "",
         suggestionRemainder: "",
         isGameComplete: true,
@@ -197,6 +197,7 @@ function useDisplayClock(startMs, monTimeTakenAccordingToServer, freeze) {
     const id = setInterval(() => setNow(Date.now()), 10);
     return () => clearInterval(id);
   }, [freeze, startMs]);
+  if (!startMs) return formatHundredths(0);
   const elapsed = Math.max(0, (now || 0) - (startMs || 0));
   if (freeze && monTimeTakenAccordingToServer !== 0) {
     return formatHundredths(monTimeTakenAccordingToServer);
@@ -225,11 +226,6 @@ function Challenge() {
   const vizInitializedRef = useRef(false);
   const [showViz, setShowViz] = useState(true);
 
-  // Ref to store timer start (ms since epoch). Set when initial setup completes.
-  const totalStartRef = useRef(null);
-  // Clock state: mm:ss:hh (hundredths). Start at 00:00:00 until game begins.
-  const [totalClock, setTotalClock] = useState("00:00:00");
-
   // Local clock (display-only): start time and formatted display string
   const localStartRef = useRef(null); // kept for scoring calculations
   const [localStartMs, setLocalStartMs] = useState(null);
@@ -244,6 +240,8 @@ function Challenge() {
   const [sessionId, setSessionId] = useState(null);
   const [totalMonCount, setTotalMonCount] = useState(0);
   const [currentCryData, setCurrentCryData] = useState(null);
+
+  const [loadingMessage, setLoadingMessage] = useState("");
 
   if (!navigator.userActivation.hasBeenActive || selectedGenerationId === -1) {
     navigate(ROUTER_UTIL.HOME);
@@ -270,19 +268,20 @@ function Challenge() {
   useEffect(() => {
     async function initSession() {
       try {
+        setLoadingMessage("Initializing session...");
         const startSessionResult = await createSession({
           generation: selectedGenerationId,
           mode: numberOfMons === 20 ? "fast" : "full",
           useLegacyCries: settings.preferLegacyCries,
         });
-
         const { totalMonCount, sessionId } = startSessionResult.data;
 
+        setLoadingMessage("Fetching first cry...");
         await updateSession({
           sessionId,
           answer: null,
         });
-
+        setLoadingMessage("");
         dispatch({
           type: ACTION_TYPES.INITIAL_SETUP,
           preloadedMon: preloadedMon,
@@ -364,30 +363,6 @@ function Challenge() {
       unsubscribe();
     };
   }, [sessionId]);
-
-  // Start a high-resolution timer for the total clock only (local clock handled by hook)
-  useEffect(() => {
-    let totalTimerId = null;
-    if (totalStartRef.current && !state.inputDisabled) {
-      const pad2 = (n) => n.toString().padStart(2, "0");
-      const updateTotal = () => {
-        const elapsed = Date.now() - totalStartRef.current;
-        const hours = Math.floor(elapsed / 3600000);
-        const minutes = Math.floor((elapsed % 3600000) / 60000);
-        const seconds = Math.floor((elapsed % 60000) / 1000);
-        const hundredths = Math.floor((elapsed % 1000) / 10);
-        const timeStr =
-          (hours > 0 ? `${pad2(hours)}:` : "") +
-          `${pad2(minutes)}:${pad2(seconds)}:${pad2(hundredths)}`;
-        setTotalClock(timeStr);
-      };
-      updateTotal();
-      totalTimerId = setInterval(updateTotal, 10);
-    }
-    return () => {
-      if (totalTimerId) clearInterval(totalTimerId);
-    };
-  }, [state.inputDisabled]);
 
   function triggerCorrectAnimation() {
     // Grab confirm answer button
@@ -807,7 +782,6 @@ function Challenge() {
         <Row>
           <p>Challenge Mode!</p> {/* Back button (left) */}
         </Row>
-        <br />
         <p>Repeat the sound for the current mon by pressing 'space'</p>
         <Row className="justify-content-center">
           <Col sm={12} md={6} lg={5}>
@@ -864,7 +838,7 @@ function Challenge() {
       </div>
       <Row className="justify-content-center">
         <Col xs={12} md={4}>
-          {progress < 100 ? (
+          {progress < 100 && !loadingMessage && (
             <div
               className="align-items-center rounded p-2 pb-3 mt-3 mb-3"
               style={{
@@ -978,21 +952,30 @@ function Challenge() {
                 </Col>
               </Row>
               <Row>
-                {state.score === 0 ? null : (
-                  <Col>
-                    <Score
-                      numMonToGuess={totalMonCount}
-                      pokeNum={state.pokeNum}
-                      numerator={state.correct.length}
-                      score={state.score}
-                    />
-                  </Col>
-                )}
+                <Col>
+                  <Score points={state.score} />
+                </Col>
                 {/* Local clock display: resets on next Pokémon, freezes when input is disabled */}
-                <Col>{state.pokeNum === 0 ? null : localClockDisplay}</Col>
+                <Col>{localClockDisplay}</Col>
               </Row>
             </div>
-          ) : null}
+          )}
+          {loadingMessage && (
+            <Row
+              className="rounded"
+              style={{
+                outlineColor: NEUTRAL_RESULT_COLOR,
+                outlineStyle: "dashed",
+              }}
+            >
+              <Row>
+                <Col className="d-flex justify-content-center align-items-center">
+                  {loadingMessage}
+                  <Spinner className="m-2" />
+                </Col>
+              </Row>
+            </Row>
+          )}
         </Col>
       </Row>
       <Col className="justify-content-center mb-2">

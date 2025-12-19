@@ -15,6 +15,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { ROUTER_UTIL, shuffle } from "../../library/util";
 import { usePoke } from "../../AppContext";
+import PokeProgressBar from "../../components/PokeProgressBar";
+import { genLoadingMessage } from "./Home";
 // import { List } from "lucide-react";
 
 const PRACTICE_TYPE = {
@@ -26,7 +28,7 @@ function GenerationsGrid({
   selectedGenerationIds = [],
   setSelectedGenerationIds,
 }) {
-  const { generationCount, preloadedGenIcons, pokeLoading } = usePoke();
+  const { generationCount, preloadedGenIcons, pokeLoadingGen } = usePoke();
   // Pure grid renderer. Expects generationCount and selection handlers from parent.
   const buttonNumbers = Array.from(
     { length: generationCount },
@@ -62,8 +64,8 @@ function GenerationsGrid({
                   )
                 }
               >
-                Gen {buttonId}{" "}
-                {pokeLoading ? null : (
+                Gen {buttonId} {console.log(pokeLoadingGen)}
+                {pokeLoadingGen ? null : (
                   <img
                     src={preloadedGenIcons[buttonId].icon || ""}
                     alt={"↻"}
@@ -88,7 +90,7 @@ function GenerationsGrid({
 }
 
 function PracticePanel() {
-  const { generationCount, preloadedMon, preloadedGenToNames, pokeLoading } =
+  const { generationCount, preloadedMon, preloadedGenToNames, pokeLoadingGen } =
     usePoke();
   const navigate = useNavigate();
   const [selectedGenerationIds, setSelectedGenerationIds] = useState([]);
@@ -295,18 +297,32 @@ function PracticePanel() {
           </Col>
         </Row>
       </Form>
-
+      {pokeLoadingGen && (
+        <Row className="justify-content-center mt-4">
+          <Col xl={3} sm={8} xs={12} className="text-center mb-1">
+            <div className="mb-2">
+              {pokeLoadingGen && genLoadingMessage[pokeLoadingGen]}
+            </div>
+            <PokeProgressBar
+              visuallyHidden={true}
+              completionPercent={
+                (pokeLoadingGen / (generationCount || 1)) * 100 || 100
+              }
+            />
+          </Col>
+        </Row>
+      )}
       {/* centered Start button */}
       <Row className="justify-content-center mt-3">
         <Col xs={6} md={4} lg={3} className="p-2 d-flex justify-content-center">
           <Button
-            disabled={selectedGenerationIds.length === 0 || pokeLoading}
+            disabled={selectedGenerationIds.length === 0 || pokeLoadingGen}
             variant="success"
             onClick={() => onStart(selectedGenerationIds)}
             className="w-100"
           >
             Practice{" "}
-            {pokeLoading ? <Spinner animation="border" size="sm" /> : null}
+            {pokeLoadingGen ? <Spinner animation="border" size="sm" /> : null}
           </Button>
         </Col>
       </Row>
