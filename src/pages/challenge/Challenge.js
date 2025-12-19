@@ -24,12 +24,11 @@ import {
 } from "../../library/util";
 import { Trie } from "../../library/trie";
 import { playCryForMon, playCryFromByteUrl } from "../../library/audioViz";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import PokeProgressBar from "../../components/PokeProgressBar";
 import Score from "../../components/Score";
 import AudioDisplay from "../../components/AudioDisplay";
 import PokeButton, { OUTLINE_TYPE } from "../../components/PokeButton";
-import Clock from "../../components/Clock";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { db } from "../../firebase";
 
@@ -45,6 +44,20 @@ const ACTION_TYPES = {
   DISABLE_INPUT: "DISABLE_INPUT",
   ENABLE_INPUT: "ENABLE_INPUT",
   END_GAME: "END_GAME",
+};
+
+const LOADING_MESSAGES = {
+  DONE_LOADING: "",
+  INITIALIZING_SESSION: "Initializing session...",
+  STARTING_SESSION: "Starting session...",
+  LOADING_FIRST_CRY: "Loading first cry...",
+};
+
+const LOADING_PROGRESS = {
+  [LOADING_MESSAGES.DONE_LOADING]: 100,
+  [LOADING_MESSAGES.INITIALIZING_SESSION]: 25,
+  [LOADING_MESSAGES.STARTING_SESSION]: 50,
+  [LOADING_MESSAGES.LOADING_FIRST_CRY]: 75,
 };
 
 const initialState = {
@@ -98,7 +111,6 @@ function quizReducer(state, action) {
       }
       return {
         ...initialState,
-        inputDisabled: false,
         preloadedMon: action.preloadedMon,
         pokeTrie: newTrie,
       };
@@ -241,7 +253,9 @@ function Challenge() {
   const [totalMonCount, setTotalMonCount] = useState(0);
   const [currentCryData, setCurrentCryData] = useState(null);
 
-  const [loadingMessage, setLoadingMessage] = useState("");
+  const [loadingMessage, setLoadingMessage] = useState(
+    LOADING_MESSAGES.INITIALIZING_SESSION
+  );
 
   if (!navigator.userActivation.hasBeenActive || selectedGenerationId === -1) {
     navigate(ROUTER_UTIL.HOME);
@@ -268,7 +282,7 @@ function Challenge() {
   useEffect(() => {
     async function initSession() {
       try {
-        setLoadingMessage("Initializing session...");
+        setLoadingMessage(LOADING_MESSAGES.INITIALIZING_SESSION);
         const startSessionResult = await createSession({
           generation: selectedGenerationId,
           mode: numberOfMons === 20 ? "fast" : "full",
@@ -276,12 +290,12 @@ function Challenge() {
         });
         const { totalMonCount, sessionId } = startSessionResult.data;
 
-        setLoadingMessage("Fetching first cry...");
+        setLoadingMessage(LOADING_MESSAGES.STARTING_SESSION);
         await updateSession({
           sessionId,
           answer: null,
         });
-        setLoadingMessage("");
+        setLoadingMessage(LOADING_MESSAGES.LOADING_FIRST_CRY);
         dispatch({
           type: ACTION_TYPES.INITIAL_SETUP,
           preloadedMon: preloadedMon,
@@ -327,7 +341,7 @@ function Challenge() {
       const sessionRef = doc(db, "protected-sessions", sessionId);
       const unsubscribe = onSnapshot(
         sessionRef,
-        (docSnapshot) => {
+        async (docSnapshot) => {
           if (!docSnapshot.exists()) {
             unsubscribe();
             return;
@@ -336,8 +350,11 @@ function Challenge() {
           if (!data.nextMonCryData) {
             return;
           }
+          setLoadingMessage(LOADING_MESSAGES.DONE_LOADING);
           setCurrentCryData(data.nextMonCryData);
-          playCryFromBase64(data.nextMonCryData);
+          setTimeout(() => {
+            playCryFromBase64(data.nextMonCryData);
+          }, 10);
           setShowViz(true);
           const start = Date.now();
           localStartRef.current = start; // for scoring
@@ -961,7 +978,7 @@ function Challenge() {
             </div>
           )}
           {loadingMessage && (
-            <Row
+            <div
               className="rounded"
               style={{
                 outlineColor: NEUTRAL_RESULT_COLOR,
@@ -969,12 +986,17 @@ function Challenge() {
               }}
             >
               <Row>
-                <Col className="d-flex justify-content-center align-items-center">
+                <Col className="p-2 d-flex justify-content-center align-items-center">
                   {loadingMessage}
-                  <Spinner className="m-2" />
                 </Col>
               </Row>
-            </Row>
+              <Row className="p-3">
+                <PokeProgressBar
+                  completionPercent={LOADING_PROGRESS[loadingMessage]}
+                  visuallyHidden
+                />
+              </Row>
+            </div>
           )}
         </Col>
       </Row>
