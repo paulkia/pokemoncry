@@ -8,9 +8,9 @@ import {
   InputGroup,
   Row,
   Col,
-  Spinner,
   FormControl,
 } from "react-bootstrap";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState, useReducer, useEffect, useCallback, useRef } from "react";
 import { usePoke, useSettings } from "../../AppContext";
 import {
@@ -58,6 +58,23 @@ const LOADING_PROGRESS = {
   [LOADING_MESSAGES.INITIALIZING_SESSION]: 25,
   [LOADING_MESSAGES.STARTING_SESSION]: 50,
   [LOADING_MESSAGES.LOADING_FIRST_CRY]: 75,
+};
+
+const FEEDBACK_STATE = {
+  CORRECT: "correct",
+  INCORRECT: "incorrect",
+};
+
+const submitAnswerButtonVariantForState = {
+  [null]: "outline-success",
+  [FEEDBACK_STATE.CORRECT]: "success",
+  [FEEDBACK_STATE.INCORRECT]: "danger",
+};
+
+const submitAnswerButtonIconForState = {
+  [null]: "bi-check-circle",
+  [FEEDBACK_STATE.CORRECT]: "bi-check-circle",
+  [FEEDBACK_STATE.INCORRECT]: "bi-x-circle",
 };
 
 const initialState = {
@@ -219,6 +236,7 @@ function useDisplayClock(startMs, monTimeTakenAccordingToServer, freeze) {
 
 function Challenge() {
   const location = useLocation();
+  const queryClient = useQueryClient();
   const { numberOfMons, selectedGenerationId } = location.state || {
     numberOfMons: 0,
     selectedGenerationId: -1,
@@ -256,6 +274,8 @@ function Challenge() {
   const [loadingMessage, setLoadingMessage] = useState(
     LOADING_MESSAGES.INITIALIZING_SESSION
   );
+
+  const [currState, setCurrState] = useState(null);
 
   if (!navigator.userActivation.hasBeenActive || selectedGenerationId === -1) {
     navigate(ROUTER_UTIL.HOME);
@@ -357,6 +377,7 @@ function Challenge() {
           setTimeout(() => {
             playCryFromBase64(nextMonCryData);
           }, 10);
+          setCurrState(null);
           setShowViz(true);
           const start = Date.now();
           localStartRef.current = start; // for scoring
@@ -383,24 +404,6 @@ function Challenge() {
     };
   }, [sessionId]);
 
-  function triggerCorrectAnimation() {
-    // Grab confirm answer button
-    let confirmAnswerButton = document.getElementById("confirm-answer");
-    if (!confirmAnswerButton) return;
-    // Fill confirm answer button in green.
-    confirmAnswerButton.classList.remove("btn-outline-success");
-    confirmAnswerButton.classList.add("btn-success");
-    // After timeout, grab it again and reset it.
-    setTimeout(() => {
-      confirmAnswerButton = document.getElementById("confirm-answer");
-      if (confirmAnswerButton) {
-        confirmAnswerButton.classList.add("btn-outline-success");
-        confirmAnswerButton.classList.remove("btn-success");
-        confirmAnswerButton.disabled = true;
-      }
-    }, PAUSE_TIME);
-  }
-
   function triggerIncorrectAnimation() {
     let shakeableInputGroup = document.getElementById("shake-input-group");
     if (shakeableInputGroup) {
@@ -413,32 +416,12 @@ function Challenge() {
         if (shakeableInputGroup) shakeableInputGroup.classList.remove("shake");
       }, PAUSE_TIME);
     }
-    // Grab confirm answer button.
-    let confirmAnswerButton = document.getElementById("confirm-answer");
-    let confirmAnswerIcon = document.getElementById("confirm-answer-icon");
-    if (confirmAnswerButton && confirmAnswerIcon) {
-      // Fill in the icon with danger and X.
-      confirmAnswerButton.classList.remove("btn-outline-success");
-      confirmAnswerButton.classList.add("btn-danger");
-      confirmAnswerIcon.classList.add("bi-x-circle");
-      // After timeout, grab it again and reset it.
-      setTimeout(() => {
-        confirmAnswerButton = document.getElementById("confirm-answer");
-        confirmAnswerIcon = document.getElementById("confirm-answer-icon");
-        if (confirmAnswerButton) {
-          confirmAnswerButton.classList.add("btn-outline-success");
-          confirmAnswerButton.classList.remove("btn-danger");
-        }
-        confirmAnswerIcon && confirmAnswerIcon.classList.remove("bi-x-circle");
-      }, PAUSE_TIME);
-    }
   }
 
   // Unified handler for both window-level key events and input onKeyDown.
   const handleKey = useCallback(async (e) => {
-    if (state.inputDisabled) return;
-    const suggestion = state.suggestionRemainder;
-    const input = `${state.input}${suggestion}`;
+    if (state.inputDisabled || currState !== null) return;
+    const input = state.input + state.suggestionRemainder;
     switch (e.key) {
       // Replay sound on 'space'
       case " ":
@@ -484,7 +467,7 @@ function Challenge() {
               streak: newStreak,
               score: newTotalScore,
             });
-            triggerCorrectAnimation();
+            setCurrState(FEEDBACK_STATE.CORRECT);
           } else {
             dispatch({
               type: ACTION_TYPES.ADD_INCORRECT,
@@ -493,12 +476,16 @@ function Challenge() {
             });
             // Trigger shake animation on the input when incorrect
             triggerIncorrectAnimation();
+            setCurrState(FEEDBACK_STATE.INCORRECT);
           }
 
           if (isGameComplete) {
             // Game complete - show final stats
             dispatch({ type: ACTION_TYPES.END_GAME, finalStats: finalStats });
-            // Leaderboard already updated by server!
+            // Invalidate leaderboard cache
+            queryClient.invalidateQueries({ queryKey: ["myBest"] });
+            queryClient.invalidateQueries({ queryKey: ["globalTop"] });
+            queryClient.invalidateQueries({ queryKey: ["nearby"] });
           }
         } catch (error) {
           console.error("Error submitting answer:", error);
@@ -951,20 +938,20 @@ function Challenge() {
                     </div>
                     {/* Submit button */}
                     <Button
-                      id="confirm-answer"
-                      variant="outline-success"
+                      variant={submitAnswerButtonVariantForState[currState]}
                       disabled={
                         !state.inputDisabled &&
-                        state.pokeTrie.words &&
-                        !state.pokeTrie.words.has(state.input)
+                        (!state.pokeTrie.words ||
+                          !state.pokeTrie.words.has(
+                            state.input + state.suggestionRemainder
+                          ))
                       }
                       onClick={() =>
                         handleKey({ key: "Enter", preventDefault: () => {} })
                       }
                     >
                       <i
-                        id="confirm-answer-icon"
-                        className="bi bi-check-circle"
+                        className={submitAnswerButtonIconForState[currState]}
                       ></i>
                     </Button>
                   </InputGroup>

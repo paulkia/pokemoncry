@@ -117,10 +117,18 @@ function CompleteProfile() {
             </Card.Body>
             <Card.Footer className="bg-white border-0 d-flex justify-content-end gap-2 p-4 pt-0">
               <>
-                <Button variant="outline-secondary" onClick={handleCancel}>
+                <Button
+                  variant="outline-secondary"
+                  disabled={loading}
+                  onClick={handleCancel}
+                >
                   Cancel
                 </Button>
-                <Button variant="primary" onClick={handleConfirm}>
+                <Button
+                  variant="primary"
+                  disabled={loading}
+                  onClick={handleConfirm}
+                >
                   Create Account
                 </Button>
               </>

@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import {
   collection,
   getDocs,
@@ -12,13 +13,82 @@ import { db } from "../firebase";
 import { useAuth, usePoke } from "../AppContext";
 import { Card, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AppHeader from "../components/AppHeader";
-import { ROUTER_UTIL } from "../library/util";
 
 const disabledUsername = "Anonymous";
 
 const GLOBAL_LIMIT = 10;
 const NEARBY_LIMIT = 3;
+
+const BASE_COLLECTION = "public-runs";
+
+export const fetchMyBest = async ({ uid, mode, gen }) => {
+  const q = query(
+    collection(db, BASE_COLLECTION),
+    where("uid", "==", uid),
+    where("mode", "==", mode),
+    where("gen", "==", gen),
+    orderBy("score", "desc"),
+    limit(1)
+  );
+  const snap = await getDocs(q);
+  return snap.empty ? null : { id: snap.docs[0].id, ...snap.docs[0].data() };
+};
+
+export const fetchNearbyScores = async ({ mode, gen, playerScore }) => {
+  const baseRef = collection(db, "public-runs");
+
+  // Fetch 3 scores higher than player's score
+  const qAbove = query(
+    baseRef,
+    where("mode", "==", mode),
+    where("gen", "==", gen),
+    where("score", ">", playerScore),
+    where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
+    orderBy("score", "asc"), // ascending to get closest higher scores
+    limit(NEARBY_LIMIT)
+  );
+
+  // Fetch 3 scores lower than player's score
+  const qBelow = query(
+    baseRef,
+    where("mode", "==", mode),
+    where("gen", "==", gen),
+    where("score", "<", playerScore),
+    where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
+    orderBy("score", "desc"), // descending to get closest lower scores
+    limit(NEARBY_LIMIT)
+  );
+
+  const [snapAbove, snapBelow] = await Promise.all([
+    getDocs(qAbove),
+    getDocs(qBelow),
+  ]);
+
+  let aboveReverseOrder = snapAbove.docs.map((d) => ({
+    id: d.id,
+    ...d.data(),
+  }));
+  const below = snapBelow.docs.map((d) => ({ id: d.id, ...d.data() }));
+  return { aboveReverseOrder, below };
+};
+
+export const fetchGlobalTop = async ({
+  mode,
+  gen,
+  disabledUsername,
+  limitCount,
+}) => {
+  const q = query(
+    collection(db, BASE_COLLECTION),
+    where("mode", "==", mode),
+    where("gen", "==", gen),
+    where("username", "!=", disabledUsername),
+    orderBy("score", "desc"),
+    limit(limitCount)
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+};
 
 // Modes: fast vs full
 const MODES = ["fast", "full"]; // "fast" = Fast Mode, "full" = Full Mode
@@ -43,6 +113,40 @@ function Leaderboard() {
     location?.state?.mode || "fast"
   );
 
+  // 1. Fetch: My Best
+  const myBestQuery = useQuery({
+    queryKey: ["myBest", authUser?.uid, selectedMode, selectedGen],
+    queryFn: () =>
+      fetchMyBest({ uid: authUser.uid, mode: selectedMode, gen: selectedGen }),
+    enabled: !!authUser?.uid, // Only run if logged in
+  });
+
+  const playerScore = myBestQuery.data?.score;
+
+  // 2. Fetch: Global Top
+  const globalQuery = useQuery({
+    queryKey: ["globalTop", selectedMode, selectedGen],
+    queryFn: () =>
+      fetchGlobalTop({
+        mode: selectedMode,
+        gen: selectedGen,
+        disabledUsername: "Anonymous",
+        limitCount: GLOBAL_LIMIT,
+      }),
+  });
+
+  // 3. Fetch: Nearby (Dependent Query)
+  const nearbyQuery = useQuery({
+    queryKey: ["nearby", selectedMode, selectedGen, playerScore],
+    queryFn: () =>
+      fetchNearbyScores({
+        mode: selectedMode,
+        gen: selectedGen,
+        playerScore: playerScore,
+      }),
+    enabled: !!playerScore, // IMPORTANT: Only run once we have the player's score
+  });
+
   if (
     selectedGen < 0 ||
     (generationCount !== 0 && selectedGen > generationCount)
@@ -53,188 +157,14 @@ function Leaderboard() {
     throw new Error("Invalid mode selected");
   }
 
-  const [myBest, setMyBest] = useState({
-    loading: true,
-    data: null,
-    error: null,
-  });
-  const [nearbyScores, setNearbyScores] = useState({
-    loading: true,
-    above: [],
-    below: [],
-    error: null,
-  });
-  const [globalTop, setGlobalTop] = useState({
-    loading: true,
-    data: [],
-    error: null,
-  });
-
-  // Fetch: My best for selected gen/mode
-  useEffect(() => {
-    let isMounted = true;
-    async function run() {
-      setMyBest({ loading: true, data: null, error: null });
-      // If user not available yet, wait/show loading
-      if (!authUser) {
-        setMyBest((prev) => ({ ...prev, loading: false, data: null }));
-        return;
-      }
-
-      try {
-        // Assumption: Firestore collection 'runs' with fields:
-        // uid:string, username:string, gen:number|'all', mode:'fast'|'full', score:number, createdAt:timestamp
-        const baseRef = collection(db, "public-runs");
-        const q = query(
-          baseRef,
-          where("uid", "==", authUser.uid),
-          where("mode", "==", selectedMode),
-          where("gen", "==", selectedGen),
-          orderBy("score", "desc"),
-          limit(1)
-        );
-        const snap = await getDocs(q);
-        if (!isMounted) return;
-        if (snap.empty) {
-          setMyBest({ loading: false, data: null, error: null });
-        } else {
-          const doc = snap.docs[0];
-          const data = { id: doc.id, ...doc.data() };
-          setMyBest({ loading: false, data, error: null });
-        }
-      } catch (err) {
-        console.error("My best fetch failed", err);
-        if (!isMounted) return;
-        setMyBest({
-          loading: false,
-          data: null,
-          error: err?.message || "Failed to fetch",
-        });
-      }
-    }
-    run();
-    return () => {
-      isMounted = false;
-    };
-  }, [authUser, selectedMode, selectedGen]);
-
-  // Fetch: Nearby scores (3 above and 3 below the player's score)
-  useEffect(() => {
-    let isMounted = true;
-    async function run() {
-      setNearbyScores({ loading: true, above: [], below: [], error: null });
-
-      // Only fetch if we have the player's best score
-      if (!myBest.data) {
-        setNearbyScores({ loading: false, above: [], below: [], error: null });
-        return;
-      }
-
-      try {
-        const baseRef = collection(db, "public-runs");
-        const playerScore = myBest.data.score ?? 0;
-
-        // Fetch 3 scores higher than player's score
-        const qAbove = query(
-          baseRef,
-          where("mode", "==", selectedMode),
-          where("gen", "==", selectedGen),
-          where("score", ">", playerScore),
-          where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
-          orderBy("score", "asc"), // ascending to get closest higher scores
-          limit(NEARBY_LIMIT)
-        );
-
-        // Fetch 3 scores lower than player's score
-        const qBelow = query(
-          baseRef,
-          where("mode", "==", selectedMode),
-          where("gen", "==", selectedGen),
-          where("score", "<", playerScore),
-          where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
-          orderBy("score", "desc"), // descending to get closest lower scores
-          limit(NEARBY_LIMIT)
-        );
-
-        const [snapAbove, snapBelow] = await Promise.all([
-          getDocs(qAbove),
-          getDocs(qBelow),
-        ]);
-
-        if (!isMounted) return;
-
-        let aboveReverseOrder = snapAbove.docs.map((d) => ({
-          id: d.id,
-          ...d.data(),
-        }));
-        const below = snapBelow.docs.map((d) => ({ id: d.id, ...d.data() }));
-
-        setNearbyScores({
-          loading: false,
-          above: aboveReverseOrder.reverse(),
-          below,
-          error: null,
-        });
-      } catch (err) {
-        console.error("Nearby scores fetch failed", err);
-        if (!isMounted) return;
-        setNearbyScores({
-          loading: false,
-          above: [],
-          below: [],
-          error: err?.message || "Failed to fetch",
-        });
-      }
-    }
-    run();
-    return () => {
-      isMounted = false;
-    };
-  }, [myBest.data, selectedMode, selectedGen]);
-
-  // Fetch: Global top 10 for selected gen/mode
-  useEffect(() => {
-    let isMounted = true;
-    async function run() {
-      setGlobalTop({ loading: true, data: [], error: null });
-      try {
-        const baseRef = collection(db, "public-runs");
-        const q = query(
-          baseRef,
-          where("mode", "==", selectedMode),
-          where("gen", "==", selectedGen),
-          where("username", "!=", disabledUsername), // Exclude anonymous users from global leaderboard
-          orderBy("score", "desc"),
-          limit(GLOBAL_LIMIT)
-        );
-        const snap = await getDocs(q);
-        if (!isMounted) return;
-        const rows = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-        setGlobalTop({ loading: false, data: rows, error: null });
-      } catch (err) {
-        console.error("Global top fetch failed", err);
-        if (!isMounted) return;
-        setGlobalTop({
-          loading: false,
-          data: [],
-          error: err?.message || "Failed to fetch",
-        });
-      }
-    }
-    run();
-    return () => {
-      isMounted = false;
-    };
-  }, [selectedMode, selectedGen]);
-
   // Derived: compute my rank versus global list (simple client-side rank; server-side preferred in future)
   const myRank = useMemo(() => {
-    if (!myBest?.data || !globalTop?.data?.length) return null;
-    const betterCount = globalTop.data.filter(
-      (r) => (r.score ?? 0) > (myBest.data.score ?? 0)
+    if (!playerScore || !globalQuery?.data?.length) return null;
+    const betterCount = globalQuery.data.filter(
+      (r) => (r.score ?? 0) > playerScore
     ).length;
     return betterCount + 1; // 1-based rank
-  }, [myBest, globalTop]);
+  }, [playerScore, globalQuery.data]);
 
   // Styled UI
   return (
@@ -297,13 +227,13 @@ function Leaderboard() {
                       </span>
                     </Card.Header>
                     <Card.Body>
-                      {myBest.loading ? (
+                      {myBestQuery.isLoading ? (
                         <SkeletonLine width={220} />
-                      ) : myBest.error ? (
+                      ) : myBestQuery.isError ? (
                         <div style={styles.errorText}>
-                          Error: {myBest.error}
+                          Error: {myBestQuery.error.message}
                         </div>
-                      ) : !myBest.data ? (
+                      ) : !myBestQuery.data ? (
                         <div style={styles.emptyText}>
                           {`No runs yet. Play a round of ${
                             selectedGen === "all"
@@ -321,7 +251,7 @@ function Leaderboard() {
                           <div style={styles.scoreRow}>
                             <div style={styles.scoreLabel}>Score</div>
                             <div style={styles.scoreValue}>
-                              {myBest.data.score ?? 0}
+                              {myBestQuery.data.score ?? 0}
                             </div>
                           </div>
                           <div style={styles.metaRow}>
@@ -333,62 +263,68 @@ function Leaderboard() {
                           </div>
 
                           {/* Nearby scores context */}
-                          {(nearbyScores.above.length > 0 ||
-                            nearbyScores.below.length > 0) && (
-                            <>
-                              <div style={styles.separator} />
-                              <div style={styles.nearbyTitle}>
-                                Nearby Players
-                              </div>
-                              <ol style={styles.nearbyList}>
-                                {/* Players above (reverse to show highest first) */}
-                                {nearbyScores.above.map((row) => (
-                                  <li key={row.id} style={styles.nearbyItem}>
+                          {!nearbyQuery.isLoading &&
+                            (nearbyQuery.data.aboveReverseOrder.length > 0 ||
+                              nearbyQuery.data.below.length > 0) && (
+                              <>
+                                <div style={styles.separator} />
+                                <div style={styles.nearbyTitle}>
+                                  Nearby Players
+                                </div>
+                                <ol style={styles.nearbyList}>
+                                  {/* Players above (reverse to show highest first) */}
+                                  {nearbyQuery.data.aboveReverseOrder.map(
+                                    (row) => (
+                                      <li
+                                        key={row.id}
+                                        style={styles.nearbyItem}
+                                      >
+                                        <div style={styles.nearbyUser}>
+                                          <div style={styles.nearbyName}>
+                                            {row.username}
+                                          </div>
+                                        </div>
+                                        <div style={styles.nearbyScore}>
+                                          {row.score ?? 0}
+                                        </div>
+                                      </li>
+                                    )
+                                  )}
+
+                                  {/* Current player (highlighted) */}
+                                  <li
+                                    style={{
+                                      ...styles.nearbyItem,
+                                      ...styles.nearbyItemCurrent,
+                                    }}
+                                  >
                                     <div style={styles.nearbyUser}>
                                       <div style={styles.nearbyName}>
-                                        {row.username}
+                                        {authUsername || "Anonymous"}{" "}
+                                        <span style={styles.youBadge}>YOU</span>
                                       </div>
                                     </div>
                                     <div style={styles.nearbyScore}>
-                                      {row.score ?? 0}
+                                      {myBestQuery.data.score ?? 0}
                                     </div>
                                   </li>
-                                ))}
 
-                                {/* Current player (highlighted) */}
-                                <li
-                                  style={{
-                                    ...styles.nearbyItem,
-                                    ...styles.nearbyItemCurrent,
-                                  }}
-                                >
-                                  <div style={styles.nearbyUser}>
-                                    <div style={styles.nearbyName}>
-                                      {authUsername || "Anonymous"}{" "}
-                                      <span style={styles.youBadge}>YOU</span>
-                                    </div>
-                                  </div>
-                                  <div style={styles.nearbyScore}>
-                                    {myBest.data.score ?? 0}
-                                  </div>
-                                </li>
-
-                                {/* Players below */}
-                                {nearbyScores.below.map((row) => (
-                                  <li key={row.id} style={styles.nearbyItem}>
-                                    <div style={styles.nearbyUser}>
-                                      <div style={styles.nearbyName}>
-                                        {row.username}
+                                  {/* Players below */}
+                                  {nearbyQuery.data.below.map((row) => (
+                                    <li key={row.id} style={styles.nearbyItem}>
+                                      <div style={styles.nearbyUser}>
+                                        <div style={styles.nearbyName}>
+                                          {row.username}
+                                        </div>
                                       </div>
-                                    </div>
-                                    <div style={styles.nearbyScore}>
-                                      {row.score ?? 0}
-                                    </div>
-                                  </li>
-                                ))}
-                              </ol>
-                            </>
-                          )}
+                                      <div style={styles.nearbyScore}>
+                                        {row.score ?? 0}
+                                      </div>
+                                    </li>
+                                  ))}
+                                </ol>
+                              </>
+                            )}
                         </div>
                       )}
                     </Card.Body>
@@ -410,23 +346,23 @@ function Leaderboard() {
                       </span>
                     </Card.Header>
                     <Card.Body>
-                      {globalTop.loading ? (
+                      {globalQuery.isLoading ? (
                         <div>
                           <SkeletonLine width={260} />
                           <SkeletonLine width={240} />
                           <SkeletonLine width={220} />
                         </div>
-                      ) : globalTop.error ? (
+                      ) : globalQuery.error ? (
                         <div style={styles.errorText}>
-                          Error: {globalTop.error}
+                          Error: {globalQuery.error.message}
                         </div>
-                      ) : globalTop.data.length === 0 ? (
+                      ) : globalQuery.data.length === 0 ? (
                         <div style={styles.emptyText}>
                           No scores yet. Be the first!
                         </div>
                       ) : (
                         <ol style={styles.list}>
-                          {globalTop.data.map((row, idx) => (
+                          {globalQuery.data.map((row, idx) => (
                             <li key={row.id} style={styles.listItem}>
                               <span style={styles.listRank}>#{idx + 1}</span>
                               <div style={styles.listUser}>

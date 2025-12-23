@@ -30,188 +30,203 @@ import AppFooter from "./components/AppFooter.js";
 
 import { ROUTER_UTIL } from "./library/util.js";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 30, // 30 minutes: Data is "fresh" for 30 mins
+      gcTime: 1000 * 60 * 60, // 1 hour: Keep unused data in memory for an hour
+      refetchOnWindowFocus: false, // DON'T re-read Firestore when user clicks back to the tab
+      retry: 1,
+    },
+  },
+});
+
 function App() {
   return (
-    <Col style={{ minHeight: "100vh" }} className="d-flex flex-column">
-      <AppProvider className="h-100">
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path={ROUTER_UTIL.HOME}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <Home />
-                  </div>
-                  <AppFooter disableBuyMeACoffee={true} />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.PRACTICE_MENU}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <PracticePanel />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.CHALLENGE_MENU}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <ChallengePanel />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.MULTIPLE_CHOICE_PRACTICE}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <MultipleChoicePractice />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.SHORT_ANSWER_PRACTICE}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <ShortAnswerPractice />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.ULTIMATE_TRAINING_PRACTICE}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <UltimateTrainingPractice />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.CHALLENGE}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <Challenge />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.LOGIN}
-              element={
-                <div
-                  className="d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <div className="App p-5">
+    <QueryClientProvider client={queryClient}>
+      <Col style={{ minHeight: "100vh" }} className="d-flex flex-column">
+        <AppProvider className="h-100">
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path={ROUTER_UTIL.HOME}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
                     <AppHeader />
+                    <div className="flex-grow-1">
+                      <Home />
+                    </div>
+                    <AppFooter disableBuyMeACoffee={true} />
                   </div>
-                  <div className="flex-grow-1">
-                    <Login />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.COMPLETE_PROFILE}
-              element={
-                <div
-                  className="d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <div className="App p-5">
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.PRACTICE_MENU}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
                     <AppHeader />
+                    <div className="flex-grow-1">
+                      <PracticePanel />
+                    </div>
+                    <AppFooter />
                   </div>
-                  <div className="flex-grow-1">
-                    <CompleteProfile />
-                  </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route
-              path={ROUTER_UTIL.PROFILE}
-              element={
-                <div
-                  className="d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <div className="App p-5">
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.CHALLENGE_MENU}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
                     <AppHeader />
+                    <div className="flex-grow-1">
+                      <ChallengePanel />
+                    </div>
+                    <AppFooter />
                   </div>
-                  <div className="flex-grow-1">
-                    <Profile />
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.MULTIPLE_CHOICE_PRACTICE}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <AppHeader />
+                    <div className="flex-grow-1">
+                      <MultipleChoicePractice />
+                    </div>
+                    <AppFooter />
                   </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-            <Route path={ROUTER_UTIL.REFRESHER} element={<Refresher />} />
-            <Route
-              path={ROUTER_UTIL.LEADERBOARD}
-              element={
-                <div
-                  className="App p-5 d-flex flex-column"
-                  style={{ minHeight: "100vh" }}
-                >
-                  <AppHeader />
-                  <div className="flex-grow-1">
-                    <Leaderboard />
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.SHORT_ANSWER_PRACTICE}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <AppHeader />
+                    <div className="flex-grow-1">
+                      <ShortAnswerPractice />
+                    </div>
+                    <AppFooter />
                   </div>
-                  <AppFooter />
-                </div>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </AppProvider>
-    </Col>
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.ULTIMATE_TRAINING_PRACTICE}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <AppHeader />
+                    <div className="flex-grow-1">
+                      <UltimateTrainingPractice />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.CHALLENGE}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <AppHeader />
+                    <div className="flex-grow-1">
+                      <Challenge />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.LOGIN}
+                element={
+                  <div
+                    className="d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <div className="App p-5">
+                      <AppHeader />
+                    </div>
+                    <div className="flex-grow-1">
+                      <Login />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.COMPLETE_PROFILE}
+                element={
+                  <div
+                    className="d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <div className="App p-5">
+                      <AppHeader />
+                    </div>
+                    <div className="flex-grow-1">
+                      <CompleteProfile />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.PROFILE}
+                element={
+                  <div
+                    className="d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <div className="App p-5">
+                      <AppHeader />
+                    </div>
+                    <div className="flex-grow-1">
+                      <Profile />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+              <Route path={ROUTER_UTIL.REFRESHER} element={<Refresher />} />
+              <Route
+                path={ROUTER_UTIL.LEADERBOARD}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <AppHeader />
+                    <div className="flex-grow-1">
+                      <Leaderboard />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+        </AppProvider>
+      </Col>
+    </QueryClientProvider>
   );
 }
 

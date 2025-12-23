@@ -263,12 +263,10 @@ async function updateLeaderboard(
         correctCount: finalStats.correctCount,
         totalCount: finalStats.totalCount,
         createdAt: FieldValue.serverTimestamp(),
-        public: {
-          username: username || ANONYMOUS_USERNAME,
-          gen: generation,
-          mode,
-          score: finalStats.totalScore,
-        },
+        username: username || ANONYMOUS_USERNAME,
+        gen: generation,
+        mode,
+        score: finalStats.totalScore,
       });
 
       await batch.commit();
