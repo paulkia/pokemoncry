@@ -64,7 +64,7 @@ function GenerationsGrid({
                   )
                 }
               >
-                Gen {buttonId} {console.log(pokeLoadingGen)}
+                Gen {buttonId}
                 {pokeLoadingGen !== null ? null : (
                   <img
                     src={preloadedGenIcons[buttonId].icon || ""}

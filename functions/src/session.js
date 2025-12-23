@@ -11,6 +11,9 @@ import { onTaskDispatched } from "firebase-functions/tasks";
 
 const ANONYMOUS_USERNAME = "Anonymous";
 
+// Generous buffer, averaged over several challenge attempts.
+const NETWORK_BUFFER = 350;
+
 const SESSION_STATUS = {
   INITIALIZED: 0,
   ACTIVE: 1,
@@ -308,6 +311,7 @@ export const updateSession = onCall(async (request) => {
     throw new HttpsError("invalid-argument", "Valid sessionId is required.");
   }
 
+  // Update correctness
   try {
     const sessionRef = db.collection("sessions").doc(sessionId);
     const protectedSessionRef = db
@@ -366,7 +370,12 @@ export const updateSession = onCall(async (request) => {
         throw new HttpsError("invalid-argument", "Valid answer is required.");
       }
 
-      const timeMs = Date.now() - protectedSession.questionTimestamp.toMillis();
+      const timeMs =
+        Date.now() -
+        protectedSession.questionTimestamp.toMillis() -
+        NETWORK_BUFFER;
+
+      // TODO: shadow-ban negative times.
 
       // Get current Mon
       const currentMon = session.monList[session.currentIndex];
@@ -520,14 +529,6 @@ export const revealNextQuestion = onTaskDispatched(async (request) => {
 
       const session = sessionDoc.data();
 
-      // if (session.status === SESSION_STATUS.INITIALIZED) {
-      //   logger.error(
-      //     "Session not active in revealNextQuestion",
-      //     sessionId,
-      //     session.status
-      //   );
-      //   return;
-      // }
       if (session.status === SESSION_STATUS.COMPLETED) {
         logger.error(
           "Session already completed in revealNextQuestion",

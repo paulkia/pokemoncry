@@ -346,14 +346,16 @@ function Challenge() {
             unsubscribe();
             return;
           }
-          const data = docSnapshot.data();
-          if (!data.nextMonCryData) {
+          const { previousCorrect, nextMonCryData } = docSnapshot.data();
+          if (previousCorrect !== undefined) {
+          }
+          if (!nextMonCryData) {
             return;
           }
           setLoadingMessage(LOADING_MESSAGES.DONE_LOADING);
-          setCurrentCryData(data.nextMonCryData);
+          setCurrentCryData(nextMonCryData);
           setTimeout(() => {
-            playCryFromBase64(data.nextMonCryData);
+            playCryFromBase64(nextMonCryData);
           }, 10);
           setShowViz(true);
           const start = Date.now();
@@ -459,20 +461,20 @@ function Challenge() {
         dispatch({ type: ACTION_TYPES.DISABLE_INPUT });
 
         try {
-          const result = await updateSession({
+          const {
+            data: {
+              correct: isCorrect,
+              correctAnswer,
+              newStreak,
+              newTotalScore,
+              isGameComplete,
+              timeMs,
+              finalStats,
+            },
+          } = await updateSession({
             sessionId,
             answer: input,
           });
-
-          const {
-            correct: isCorrect,
-            correctAnswer,
-            newStreak,
-            newTotalScore,
-            isGameComplete,
-            timeMs,
-            finalStats,
-          } = result.data;
           setMonTimeTakenAccordingToServer(timeMs);
 
           if (isCorrect) {
