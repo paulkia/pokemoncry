@@ -13,6 +13,7 @@ import {
   deleteZombieUserData,
 } from "./cleanupFlumes.js";
 import { createSession, updateSession, revealNextQuestion } from "./session.js";
+import { recalculateRanks } from "./leaderboard.js";
 
 export {
   claimUsername,
@@ -24,4 +25,5 @@ export {
   deleteOldAnonymousRuns,
   deleteOldSessions,
   deleteZombieUserData,
+  recalculateRanks,
 };

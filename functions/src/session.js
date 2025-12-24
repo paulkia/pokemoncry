@@ -254,7 +254,7 @@ async function updateLeaderboard(
 
       // Add new run to leaderboard
       const newRunRef = db.collection("public-runs").doc();
-      batch.set(newRunRef, {
+      let newRun = {
         uid,
         sessionId,
         longestStreak: finalStats.longestStreak,
@@ -267,7 +267,11 @@ async function updateLeaderboard(
         gen: generation,
         mode,
         score: finalStats.totalScore,
-      });
+      };
+      if (generation < 6) {
+        newRun.useLegacyCries = session.useLegacyCries;
+      }
+      batch.set(newRunRef, newRun);
 
       await batch.commit();
     }

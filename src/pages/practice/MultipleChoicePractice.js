@@ -256,19 +256,23 @@ function MultipleChoicePractice() {
               completionPercent={progress}
             />
             {pokeNum === numMonToGuess && (
-              <Button
-                className="mt-4"
-                onClick={() => {
-                  navigate(ROUTER_UTIL.REFRESHER, {
-                    state: {
-                      refreshRoute: location.pathname,
-                      refreshState: location.state,
-                    },
-                  });
-                }}
-              >
-                Play Again
-              </Button>
+              <>
+                <Button
+                  className="mt-4"
+                  onClick={() => {
+                    navigate(ROUTER_UTIL.REFRESHER, {
+                      state: {
+                        refreshRoute: location.pathname,
+                        refreshState: location.state,
+                      },
+                    });
+                  }}
+                >
+                  Play Again
+                </Button>
+                <br />
+                <br />
+              </>
             )}
             {/* Score, only displayed if all Mon have been guessed. */}
             <Score

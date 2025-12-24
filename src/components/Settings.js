@@ -46,8 +46,8 @@ function Settings() {
                       placement="right"
                       overlay={
                         <Tooltip id="tooltip-legacy">
-                          If enabled, plays original Pokemon game cries for
-                          early-gen Pokemon such as Lugia.
+                          If enabled, plays original cries for early-gen mons
+                          such as Lugia. No effect gen 6 and later.
                         </Tooltip>
                       }
                     >
@@ -80,8 +80,8 @@ function Settings() {
                     placement="right"
                     overlay={
                       <Tooltip id="tooltip-legacy">
-                        If enabled, uses static sprites instead of gifs.
-                        Automatically kicks in if many Pokemon are on-screen.
+                        If enabled, uses static sprites instead of gifs. May
+                        improve performance.
                       </Tooltip>
                     }
                   >

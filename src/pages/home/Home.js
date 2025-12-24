@@ -1,5 +1,6 @@
 import { Col, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
 import { ROUTER_UTIL } from "../../library/util";
 import BuyCoffeeButton from "../../components/BuyCoffeeButton";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,7 +27,7 @@ function Home() {
       <Row className="mt-3 justify-content-center">
         <Col xl={4} md={12} className="text-center">
           <Button
-            className="square-btn w-100 mb-3"
+            className="square-btn w-100 mb-3 practice-btn"
             variant="success"
             style={{
               minHeight: "100px",
@@ -39,14 +40,14 @@ function Home() {
             }
             onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
-            Practice +
+            Practice ✏️
           </Button>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col className="text-center" xl={4} md={12}>
           <Button
-            className="square-btn w-100"
+            className="square-btn w-100 challenge-btn "
             variant="primary"
             style={{
               minHeight: "100px",
@@ -54,19 +55,15 @@ function Home() {
               padding: "0.75rem 1rem",
             }}
             onClick={() => navigate(ROUTER_UTIL.CHALLENGE_MENU)}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.transform = "scale(1.1)")
-            }
-            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
-            Challenge <i className="bi bi-play-fill"></i>
+            Challenge ⚔️
           </Button>
         </Col>
       </Row>
       <Row className="mt-3 justify-content-center">
         <Col xl={4} md={12} className="text-center">
           <Button
-            className="square-btn w-100 mb-3"
+            className="square-btn w-100 mb-3 leaderboard-btn"
             variant="info"
             style={{
               fontSize: "1.2rem",
@@ -78,7 +75,7 @@ function Home() {
             }
             onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
-            Leaderboard <i className="bi bi-trophy-fill"></i>
+            Leaderboard 🏆
           </Button>
         </Col>
       </Row>

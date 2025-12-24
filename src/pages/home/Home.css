@@ -1,0 +1,45 @@
+.practice-btn {
+  /* background: linear-gradient(135deg, #5bce85 0%, #95dcff 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600; */
+  /* transition: all 0.3s ease; */
+  /* box-shadow: 0 4px 15px rgba(132, 250, 176, 0.4); */
+}
+
+.practice-btn:hover {
+  transform: scale(1.1) !important;
+  /* box-shadow: 0 6px 20px rgba(132, 250, 176, 0.6); */
+}
+
+.challenge-btn {
+  /* background: radial-gradient(135deg, #ff0000 0%, #ff4c3c 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600; */
+  /* transition: all 0.3s ease; */
+  /* box-shadow: 0 4px 15px rgba(250, 112, 154, 0.4); */
+}
+
+.challenge-btn:hover {
+  transform: scale(1.1) !important;
+  /* box-shadow: 0 6px 20px rgba(250, 112, 154, 0.6); */
+}
+
+.leaderboard-btn {
+  background: linear-gradient(135deg, #dc9730 0%, #f6d779 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  /* transition: all 0.3s ease; */
+  /* box-shadow: 0 4px 15px rgba(168, 237, 234, 0.4); */
+}
+
+.leaderboard-btn:hover {
+  transform: scale(1.1) !important;
+  /* box-shadow: 0 6px 20px rgba(168, 237, 234, 0.6); */
+}
+
+.coffee-btn {
+  margin-top: 1.5rem;
+}

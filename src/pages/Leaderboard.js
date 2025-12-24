@@ -16,7 +16,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const disabledUsername = "Anonymous";
 
-const GLOBAL_LIMIT = 10;
+const GLOBAL_LIMIT = 5;
 const NEARBY_LIMIT = 3;
 
 const BASE_COLLECTION = "public-runs";
@@ -64,10 +64,12 @@ export const fetchNearbyScores = async ({ mode, gen, playerScore }) => {
     getDocs(qBelow),
   ]);
 
-  let aboveReverseOrder = snapAbove.docs.map((d) => ({
-    id: d.id,
-    ...d.data(),
-  }));
+  let aboveReverseOrder = snapAbove.docs
+    .map((d) => ({
+      id: d.id,
+      ...d.data(),
+    }))
+    .reverse();
   const below = snapBelow.docs.map((d) => ({ id: d.id, ...d.data() }));
   return { aboveReverseOrder, below };
 };
@@ -99,7 +101,7 @@ function buildGenLabels(generationCount) {
     const id = i + 1;
     return { id, label: `Gen ${i + 1}` };
   });
-  return [...gens, { id: "all", label: "All Gens" }];
+  return [...gens, { id: 0, label: "All Gens" }];
 }
 
 function Leaderboard() {
@@ -108,7 +110,9 @@ function Leaderboard() {
   const { generationCount } = usePoke();
 
   // State
-  const [selectedGen, setSelectedGen] = useState(location?.state?.gen || 1);
+  const [selectedGen, setSelectedGen] = useState(
+    location?.state?.gen !== undefined ? location?.state?.gen : 1
+  );
   const [selectedMode, setSelectedMode] = useState(
     location?.state?.mode || "fast"
   );
@@ -157,20 +161,66 @@ function Leaderboard() {
     throw new Error("Invalid mode selected");
   }
 
-  // Derived: compute my rank versus global list (simple client-side rank; server-side preferred in future)
-  const myRank = useMemo(() => {
-    if (!playerScore || !globalQuery?.data?.length) return null;
-    const betterCount = globalQuery.data.filter(
-      (r) => (r.score ?? 0) > playerScore
-    ).length;
-    return betterCount + 1; // 1-based rank
-  }, [playerScore, globalQuery.data]);
+  const displayRank = useMemo(() => {
+    if (!myBestQuery.data) {
+      return null;
+    }
+
+    // If the player is part of the global top 10, return precise correct ranking.
+    if (playerScore && globalQuery?.data?.length) {
+      // Get next highest global player point count.
+      const betterCount = globalQuery.data.filter(
+        (r) => (r.score ?? 0) > playerScore
+      ).length;
+      if (betterCount + 1 < GLOBAL_LIMIT + 1) {
+        console.log("return global based rank");
+        return { cachedRank: betterCount + 1, lastUpdated: "Now" }; // 1-based rank
+      }
+    }
+
+    const cachedRank = myBestQuery.data.globalRank;
+    const lastUpdated = myBestQuery.data.rankUpdatedAt;
+
+    // If the player is not in the top 10, and already has an assigned ranking, use that.
+    if (cachedRank) {
+      console.log("return cached rank");
+      return {
+        cachedRank,
+        lastUpdated: lastUpdated
+          ? new Date(lastUpdated.seconds * 1000).toLocaleString()
+          : "Unknown",
+      };
+    }
+
+    // If the user has a brand new score that hasn't been ranked yet, we can guess
+    // their rank based on the nearby list.
+
+    if (nearbyQuery.data?.aboveReverseOrder?.length > 0) {
+      // If the person directly above me is Rank 40, I am likely Rank 41.
+      const closestBetterPlayer =
+        nearbyQuery.data.aboveReverseOrder[
+          nearbyQuery.data.aboveReverseOrder.length - 1
+        ];
+      if (closestBetterPlayer.globalRank) {
+        console.log("return local based rank");
+        return {
+          cachedRank: closestBetterPlayer.globalRank + 1,
+          lastUpdated: lastUpdated
+            ? new Date(lastUpdated.seconds * 1000).toLocaleString()
+            : "Unknown",
+        };
+      }
+    }
+
+    console.log("confus???");
+    return ["unknown", "unknown"];
+  }, [myBestQuery.data, nearbyQuery.data, playerScore, globalQuery.data]);
 
   // Styled UI
   return (
     <span>
       <Row className="justify-content-center">
-        <Col lg={8} md={12}>
+        <Col md={10} sm={12}>
           <Card className="cute-card mt-3">
             <Card.Header>
               <span style={styles.title}>Leaderboard</span>
@@ -236,7 +286,7 @@ function Leaderboard() {
                       ) : !myBestQuery.data ? (
                         <div style={styles.emptyText}>
                           {`No runs yet. Play a round of ${
-                            selectedGen === "all"
+                            selectedGen === 0
                               ? "all gens"
                               : `gen ${selectedGen || "all"}`
                           } in ${
@@ -245,9 +295,17 @@ function Leaderboard() {
                         </div>
                       ) : (
                         <div style={styles.myScoreWrap}>
-                          <div style={styles.rankBadge}>
-                            {myRank ? `Top ${myRank} worldwide` : "Unranked"}
+                          <div>
+                            <span style={styles.rankBadge}>
+                              {displayRank
+                                ? `Top ${displayRank.cachedRank} worldwide`
+                                : "Unranked"}
+                            </span>
+                            <span style={styles.listMeta}>
+                              {` • Updated ${displayRank.lastUpdated}`}
+                            </span>
                           </div>
+
                           <div style={styles.scoreRow}>
                             <div style={styles.scoreLabel}>Score</div>
                             <div style={styles.scoreValue}>
@@ -261,9 +319,12 @@ function Leaderboard() {
                                 "Create a username to submit scores!"}
                             </span>
                           </div>
-
                           {/* Nearby scores context */}
-                          {!nearbyQuery.isLoading &&
+                          {nearbyQuery.isLoading ? null : nearbyQuery.isError ? (
+                            <div style={styles.errorText}>
+                              Error: {nearbyQuery.error.message}
+                            </div>
+                          ) : (
                             (nearbyQuery.data.aboveReverseOrder.length > 0 ||
                               nearbyQuery.data.below.length > 0) && (
                               <>
@@ -324,7 +385,8 @@ function Leaderboard() {
                                   ))}
                                 </ol>
                               </>
-                            )}
+                            )
+                          )}
                         </div>
                       )}
                     </Card.Body>
@@ -370,10 +432,16 @@ function Leaderboard() {
                                   {row.username || "Anonymous"}
                                 </div>
                                 <div style={styles.listMeta}>
-                                  {row.gen === "all"
+                                  {row.gen === 0
                                     ? "All gens"
                                     : `Gen ${row.gen}`}{" "}
                                   • {row.mode === "fast" ? "Fast" : "Full"}
+                                  {row.useLegacyCries !== undefined &&
+                                    ` • ${
+                                      row.useLegacyCries
+                                        ? "Legacy 👑"
+                                        : "Latest 💎"
+                                    }`}
                                 </div>
                               </div>
                               <div style={styles.listScore}>
