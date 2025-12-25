@@ -173,7 +173,6 @@ function Leaderboard() {
         (r) => (r.score ?? 0) > playerScore
       ).length;
       if (betterCount + 1 < GLOBAL_LIMIT + 1) {
-        console.log("return global based rank");
         return { cachedRank: betterCount + 1, lastUpdated: "Now" }; // 1-based rank
       }
     }
@@ -183,7 +182,6 @@ function Leaderboard() {
 
     // If the player is not in the top 10, and already has an assigned ranking, use that.
     if (cachedRank) {
-      console.log("return cached rank");
       return {
         cachedRank,
         lastUpdated: lastUpdated
@@ -202,7 +200,6 @@ function Leaderboard() {
           nearbyQuery.data.aboveReverseOrder.length - 1
         ];
       if (closestBetterPlayer.globalRank) {
-        console.log("return local based rank");
         return {
           cachedRank: closestBetterPlayer.globalRank + 1,
           lastUpdated: lastUpdated
@@ -212,7 +209,6 @@ function Leaderboard() {
       }
     }
 
-    console.log("confus???");
     return ["unknown", "unknown"];
   }, [myBestQuery.data, nearbyQuery.data, playerScore, globalQuery.data]);
 

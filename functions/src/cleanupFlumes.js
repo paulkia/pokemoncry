@@ -3,12 +3,13 @@ import { logger } from "firebase-functions";
 import { db, auth } from "./firebase.js";
 import { Filter } from "firebase-admin/firestore";
 
-const DAILY = "every 24 hours";
-const FREQUENT = "every 6 hours";
+// Uncomment later. currently using small interval for debugging
+const DAILY = "every 1 hours"; // "every 24 hours";
+const FREQUENT = "every 1 hours"; // "every 6 hours";
 
-const OLD_ANONYMOUS_USER_THRESHOLD_HOURS = 6;
-const OLD_ANONYMOUS_RUN_THRESHOLD_HOURS = 12;
-const OLD_SESSION_THRESHOLD_HOURS = 3;
+const OLD_ANONYMOUS_USER_THRESHOLD_HOURS = 1; // 6;
+const OLD_ANONYMOUS_RUN_THRESHOLD_HOURS = 1; // 12;
+const OLD_SESSION_THRESHOLD_HOURS = 1; // 3;
 
 /**
  * Deletes anonymous users who last signed in more than 6 hours ago.

@@ -155,7 +155,6 @@ function Profile() {
                           placeholder="E.g. poke_master"
                           value={newUsername}
                           onChange={(e) => {
-                            console.log(e);
                             setNewUsername(
                               e.target.value
                                 .trim()

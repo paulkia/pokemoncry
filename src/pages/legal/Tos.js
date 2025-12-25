@@ -1,4 +1,28 @@
 import { Col, Row } from "react-bootstrap";
+import React from "react";
+
+const EmailDisplay = ({ encodedString }) => {
+  const decodeEmail = (encodedString) => {
+    let email = "";
+    // The first two characters are the hex "key"
+    let key = parseInt(encodedString.substr(0, 2), 16);
+
+    // The rest are the XORed characters of the email
+    for (let n = 2; n < encodedString.length; n += 2) {
+      let char = parseInt(encodedString.substr(n, 2), 16) ^ key;
+      email += String.fromCharCode(char);
+    }
+    return email;
+  };
+
+  const email = decodeEmail(encodedString);
+
+  return (
+    <a href={`mailto:${email}`} className="email-link">
+      {email}
+    </a>
+  );
+};
 
 function Tos() {
   return (
@@ -29,11 +53,6 @@ function Tos() {
           Guessthecry will not be responsible for any outcome that may occur
           during the course of usage of our resources. We reserve the rights to
           change prices and revise the resources usage policy in any moment.
-          This Terms & Conditions was created with{" "}
-          <a href="https://termify.io" target="_blank">
-            Termify
-          </a>
-          .
         </p>
         <h1>License</h1>
         <p>
@@ -470,13 +489,7 @@ function Tos() {
           name, address, and contact information of the party giving it, the
           facts giving rise to the dispute, and the relief requested. You must
           send any Notice of Dispute via email to: 
-          <a
-            href="/cdn-cgi/l/email-protection"
-            class="__cf_email__"
-            data-cfemail="79011c1a11151839160c0d15161612571a1614"
-          >
-            [email&#160;protected]
-          </a>
+          <EmailDisplay encodedString="b3cbd6d0dbdfd2f3dcc6c7dfdcdcd89dd0dcde" />
           . Guessthecry will send any Notice of Dispute to you by mail to your
           address if we have it, or otherwise to your email address. You and
           Guessthecry will attempt to resolve any dispute through informal
@@ -612,26 +625,9 @@ function Tos() {
         <ul>
           <li>
             Via Email:{" "}
-            <a
-              href="/cdn-cgi/l/email-protection"
-              class="__cf_email__"
-              data-cfemail="b3cbd6d0dbdfd2f3dcc6c7dfdcdcd89dd0dcde"
-            >
-              [email&#160;protected]
-            </a>
+            <EmailDisplay encodedString="b3cbd6d0dbdfd2f3dcc6c7dfdcdcd89dd0dcde" />
           </li>
         </ul>{" "}
-        <script
-          data-cfasync="false"
-          src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-        ></script>
-        <script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
-          integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
-          data-cf-beacon='{"version":"2024.11.0","token":"e62a9cf900a74843b8d7d59c0780f1ff","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-          crossorigin="anonymous"
-        ></script>
       </Col>
     </Row>
   );
