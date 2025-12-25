@@ -130,13 +130,7 @@ export const deleteOldSessions = onSchedule(
     try {
       const sessionsQuery = db
         .collection("sessions")
-        .where(
-          Filter.or(
-            Filter.where("lastActivityAt", "<", new Date(expiredSessionTime)),
-            Filter.where("completedAt", ">", new Date(0))
-          )
-        );
-
+        .where("lastActivityAt", "<", new Date(expiredSessionTime));
       const sessionsSnapshot = await sessionsQuery.get();
 
       if (sessionsSnapshot.empty) {
