@@ -26,6 +26,7 @@ export const ROUTER_UTIL = {
   REFRESHER: "/refresher",
   LEADERBOARD: "/leaderboard",
   PRIVACY_POLICY: "/privacy-policy",
+  TOS: "/tos",
 };
 
 export const CORRECT_RESULT_COLOR = "#d4edda";

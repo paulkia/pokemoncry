@@ -106,16 +106,17 @@ function Login() {
     >
       <Row className="w-100" style={{ maxWidth: 480 }}>
         <Col>
-          <Card className="shadow-sm border-0">
+          <Card className="shadow-sm border-0 cute-card">
             <>
-              <Card.Header className="bg-white border-0 pt-4 pb-0">
-                <h3 className="mb-1">Welcome</h3>
-                <div className="text-muted">Sign in to continue.</div>
+              <Card.Header className="bg-white border-0 pt-3">
+                <h3 className="mb-1">Login</h3>
               </Card.Header>
               <Card.Body
                 className="p-4"
                 style={{ fontFamily: '"Roboto Mono", monospace' }}
               >
+                <div className="text-muted">Sign in to continue.</div>
+                <br />
                 <div className="d-grid gap-3">
                   <Button
                     variant="light"

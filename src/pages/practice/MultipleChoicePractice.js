@@ -293,7 +293,7 @@ function MultipleChoicePractice() {
               </Row>
             )}
             {/* Audio button for current Mon. */}
-            {pokeNum !== numMonToGuess ? (
+            {pokeNum !== numMonToGuess && (
               // Audio display. Reveals either the waveform (current cry) or name of previous cry.
               <Row
                 className="align-items-center rounded p-2 pb-3 mb-2 mt-4 justify-content-center"
@@ -325,17 +325,17 @@ function MultipleChoicePractice() {
                   })}
                 </div>
               </Row>
-            ) : null}
+            )}
           </Col>
         </Row>
       </div>
       <Row className="justify-content-center">
         {/* Results, only displayed if at least one Mon has been guessed. */}
         <Col md={5}>
-          {pokeNum > 0 && pokeNum < numMonToGuess ? (
+          {pokeNum > 0 && pokeNum < numMonToGuess && (
             <Row className="m-4"></Row>
-          ) : null}
-          <Row>{pokeNum > 0 ? resultsPanel() : null}</Row>
+          )}
+          <Row>{pokeNum > 0 && resultsPanel()}</Row>
         </Col>
       </Row>
     </span>

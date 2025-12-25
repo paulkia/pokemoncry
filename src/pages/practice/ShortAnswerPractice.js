@@ -159,13 +159,13 @@ function quizReducer(state, action) {
 }
 
 function ShortAnswerPractice() {
+  const location = useLocation();
   const {
     allMon, // Data of all Mon
     numMonToGuess, // Mon names for this quiz
     monNamesForRelevantGens,
-  } = useLocation().state || {};
+  } = location.state || {};
   const navigate = useNavigate();
-  const location = useLocation();
   const [state, dispatch] = useReducer(quizReducer, initialState);
   const [monInGameOrder] = useState(
     shuffle(monNamesForRelevantGens).slice(0, numMonToGuess)
@@ -422,7 +422,7 @@ function ShortAnswerPractice() {
           </Col>
           {errorComponent}
         </Row>
-        {state.pokeNum === numMonToGuess ? (
+        {state.pokeNum === numMonToGuess && (
           <Row className="mb-2 justify-content-center">
             <Col className="col-md-6">
               <div
@@ -463,7 +463,7 @@ function ShortAnswerPractice() {
               </div>
             </Col>
           </Row>
-        ) : null}
+        )}
       </div>
     );
   };
@@ -521,8 +521,7 @@ function ShortAnswerPractice() {
       )}
       <Row className="justify-content-center">
         <Col xs={12} md={4}>
-          {" "}
-          {progress < 100 ? (
+          {progress < 100 && (
             <div
               className="align-items-center rounded p-2 pb-3 mt-3 mb-3"
               style={{
@@ -641,7 +640,7 @@ function ShortAnswerPractice() {
                 </Col>
               </Row>
             </div>
-          ) : null}
+          )}
         </Col>
       </Row>
       {resultsPanel()}

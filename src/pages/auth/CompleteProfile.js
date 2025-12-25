@@ -1,6 +1,7 @@
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, Link } from "react-router-dom";
 import {
   Container,
   Row,
@@ -9,11 +10,11 @@ import {
   Button,
   Form,
   Spinner,
+  ListGroup,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import { ROUTER_UTIL } from "../../library/util";
-import AppHeader from "../../components/AppHeader";
 import { useAuth } from "../../AppContext";
 
 import { getFunctions, httpsCallable } from "firebase/functions";
@@ -26,6 +27,7 @@ function CompleteProfile() {
   const [someUsername, setUsername] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
   const { authUser, authUsername, authLoading } = useAuth();
 
@@ -57,9 +59,9 @@ function CompleteProfile() {
     setLoading(true);
     setError("");
     const name = someUsername.trim();
-    if (name.length < 3 || name.length > 12 || !/^[a-zA-Z0-9_]+$/.test(name)) {
+    if (name.length < 3 || name.length > 20 || !/^[a-zA-Z0-9_]+$/.test(name)) {
       setError(
-        "Please choose a display name 3–12 chars, letters/numbers/underscore only."
+        "Please choose a display name 3–20 chars, letters/numbers/underscore only."
       );
       return;
     }
@@ -89,9 +91,9 @@ function CompleteProfile() {
     >
       <Row className="w-100" style={{ maxWidth: 480 }}>
         <Col>
-          <Card className="shadow-sm border-0">
-            <Card.Header className="bg-white border-0 pt-4 pb-0">
-              <h3 className="mb-1">Welcome</h3>
+          <Card className="shadow-sm border-0 cute-card">
+            <Card.Header className="bg-white border-0 pt-3">
+              <h3 className="mb-1">Complete Profile</h3>
             </Card.Header>
             <Card.Body style={{ fontFamily: '"Roboto Mono", monospace' }}>
               <Form onSubmit={(e) => e.preventDefault()}>
@@ -99,13 +101,22 @@ function CompleteProfile() {
                   <Form.Label>Choose a display name</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="e.g. PokeMaster"
-                    onChange={(e) => setUsername(e.target.value)}
-                    maxLength={12}
+                    placeholder="e.g. poke_master"
+                    onChange={(e) =>
+                      setUsername(
+                        e.target.value
+                          .trim()
+                          .toLowerCase()
+                          .replace(/[^a-z0-9_]/g, "")
+                      )
+                    }
+                    value={someUsername}
+                    maxLength={20}
                     autoFocus
                   />
                   <Form.Text className="text-muted">
-                    3-12 chars. Letters, numbers, underscore only.
+                    3-20 chars. Letters, numbers, underscore only. WARNING:
+                    usernames are PUBLIC.
                   </Form.Text>
                 </div>
               </Form>
@@ -114,8 +125,22 @@ function CompleteProfile() {
                   {error}
                 </div>
               )}
+              <ListGroup.Item>
+                <Form.Check
+                  type="checkbox"
+                  label={
+                    <span>
+                      I agree to the{" "}
+                      {<Link to={ROUTER_UTIL.TOS}>Terms and Conditions</Link>}.
+                    </span>
+                  }
+                  onChange={(e) => {
+                    setAgreed(e.target.checked);
+                  }}
+                />
+              </ListGroup.Item>
             </Card.Body>
-            <Card.Footer className="bg-white border-0 d-flex justify-content-end gap-2 p-4 pt-0">
+            <Card.Footer className="bg-white border-0 d-flex justify-content-end gap-2">
               <>
                 <Button
                   variant="outline-secondary"
@@ -126,7 +151,7 @@ function CompleteProfile() {
                 </Button>
                 <Button
                   variant="primary"
-                  disabled={loading}
+                  disabled={loading || !agreed}
                   onClick={handleConfirm}
                 >
                   Create Account

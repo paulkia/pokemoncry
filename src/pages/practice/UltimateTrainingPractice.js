@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import { useState, useReducer, useEffect, useCallback, useRef } from "react";
 import {
+  shuffle,
   CORRECT_AUDIO_SOUND,
   INCORRECT_AUDIO_SOUND,
   PAUSE_TIME,
@@ -216,14 +217,16 @@ function quizReducer(state, action) {
 }
 
 function UltimateTrainingPractice() {
+  const location = useLocation();
   const {
     allMon, // Data of all Mon
     numMonToGuess, // Mon names for this quiz
     monNamesForRelevantGens,
-  } = useLocation().state || {};
+  } = location.state || {};
   const navigate = useNavigate();
   const [state, dispatch] = useReducer(quizReducer, initialState);
   const { settings } = useSettings();
+  const monInGameOrder = shuffle(monNamesForRelevantGens);
 
   // Ref to the input DOM node so we can trigger a shake animation on wrong guesses.
   const inputRef = useRef(null);
@@ -263,7 +266,7 @@ function UltimateTrainingPractice() {
   useEffect(() => {
     // Play first cry with viz.
     if (numMonToGuess > 0) {
-      const firstMon = monNamesForRelevantGens[0];
+      const firstMon = monInGameOrder[0];
       setTimeout(() => {
         playCryForMon(
           allMon[firstMon],
@@ -277,7 +280,7 @@ function UltimateTrainingPractice() {
     dispatch({
       type: ACTION_TYPES.INITIAL_SETUP,
       allMon: allMon,
-      monInGameOrder: monNamesForRelevantGens.slice(0, numMonToGuess),
+      monInGameOrder: monInGameOrder.slice(0, numMonToGuess),
       pokeNum: 1,
     });
   }, []);
@@ -451,8 +454,7 @@ function UltimateTrainingPractice() {
   if (state.previousGuess) {
     const previous = state.monInGameOrder[state.pokeNum - 1];
     previousComponent = (
-      <Row className="mb-2 justify-content-center">
-        {" "}
+      <Row className="mb-2 justify-content-center text-center">
         <Col xs={6} sm={4} lg={2}>
           Previous:
           <br />
@@ -550,13 +552,30 @@ function UltimateTrainingPractice() {
           <Col xs={12} md={4}>
             {/* Container for relative positioning */}
             <PokeProgressBar completionPercent={progress} />
+            {state.pokeNum === state.monInGameOrder.length && (
+              <div>
+                <Button
+                  className="mt-4"
+                  onClick={() => {
+                    navigate(ROUTER_UTIL.REFRESHER, {
+                      state: {
+                        refreshRoute: location.pathname,
+                        refreshState: location.state,
+                      },
+                    });
+                  }}
+                >
+                  Play Again
+                </Button>
+              </div>
+            )}
           </Col>
         </Row>
       </div>
       <Row className="justify-content-center">
         <Col xs={12} md={4}>
           {" "}
-          {progress < 100 ? (
+          {progress < 100 && (
             <div
               className="align-items-center rounded p-2 pb-3 mt-3 mb-3"
               style={{
@@ -675,7 +694,7 @@ function UltimateTrainingPractice() {
                 </Col>
               </Row>
             </div>
-          ) : null}
+          )}
         </Col>
       </Row>
       <br />

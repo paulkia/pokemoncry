@@ -28,6 +28,9 @@ import Leaderboard from "./pages/Leaderboard.js";
 import AppHeader from "./components/AppHeader.js";
 import AppFooter from "./components/AppFooter.js";
 
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import Tos from "./pages/legal/Tos";
+
 import { ROUTER_UTIL } from "./library/util.js";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -217,6 +220,36 @@ function App() {
                     <AppHeader />
                     <div className="flex-grow-1">
                       <Leaderboard />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.PRIVACY_POLICY}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <AppHeader />
+                    <div className="flex-grow-1">
+                      <PrivacyPolicy />
+                    </div>
+                    <AppFooter />
+                  </div>
+                }
+              />
+              <Route
+                path={ROUTER_UTIL.TOS}
+                element={
+                  <div
+                    className="App p-5 d-flex flex-column"
+                    style={{ minHeight: "100vh" }}
+                  >
+                    <AppHeader />
+                    <div className="flex-grow-1">
+                      <Tos />
                     </div>
                     <AppFooter />
                   </div>

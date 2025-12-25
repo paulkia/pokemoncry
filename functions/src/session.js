@@ -88,8 +88,9 @@ export const createSession = onCall(async (request) => {
 
   // 2. Validate inputs
   if (
-    generation !== 0 &&
-    (typeof generation !== "number" || generation < 1 || generation > 9)
+    typeof generation !== "number" ||
+    generation < 0 ||
+    generation > Object.keys(genToMons).length
   ) {
     throw new HttpsError(
       "invalid-argument",
@@ -309,7 +310,11 @@ export const updateSession = onCall(async (request) => {
   const { sessionId, answer } = request.data;
 
   // 2. Validate inputs
-  if (!sessionId || typeof sessionId !== "string") {
+  if (
+    !sessionId ||
+    typeof sessionId !== "string" ||
+    !/^[A-Za-z0-9]+$/.test(sessionId)
+  ) {
     throw new HttpsError("invalid-argument", "Valid sessionId is required.");
   }
 
@@ -368,7 +373,7 @@ export const updateSession = onCall(async (request) => {
         );
       }
 
-      if (!answer || typeof answer !== "string") {
+      if (!answer || typeof answer !== "string" || !/^[a-z2-]+$/.test(answer)) {
         throw new HttpsError("invalid-argument", "Valid answer is required.");
       }
 
@@ -381,8 +386,7 @@ export const updateSession = onCall(async (request) => {
 
       // Get current Mon
       const currentMon = session.monList[session.currentIndex];
-      const isCorrect =
-        answer.toLowerCase().trim() === currentMon.toLowerCase().trim();
+      const isCorrect = answer === currentMon.trim().toLowerCase();
 
       // Calculate score
       let newStreak = session.streak;
@@ -510,7 +514,11 @@ export const revealNextQuestion = onTaskDispatched(async (request) => {
   const { sessionId } = request.data;
 
   // 2. Validate inputs
-  if (!sessionId || typeof sessionId !== "string") {
+  if (
+    !sessionId ||
+    typeof sessionId !== "string" ||
+    !/^[A-Za-z0-9]+$/.test(sessionId)
+  ) {
     logger.error("Invalid sessionId in revealNextQuestion", sessionId);
     return;
   }

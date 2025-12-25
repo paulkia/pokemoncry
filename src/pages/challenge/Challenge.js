@@ -514,7 +514,7 @@ function Challenge() {
     }
     return (
       <div>
-        {state.isGameComplete ? (
+        {state.isGameComplete && (
           <Row className="mb-5 mt-4 justify-content-center">
             <Col lg={7} sm={12} className="align-items-stretch flex">
               <Row
@@ -674,7 +674,7 @@ function Challenge() {
               </Row>
             </Col>
           </Row>
-        ) : null}
+        )}
         <Row className="mb-5 justify-content-center">
           <Col xs={6} sm={4} lg={2}>
             Previous:
@@ -700,34 +700,34 @@ function Challenge() {
             />
           </Col>
           {state.previousMon.length > 0 &&
-          state.previousMon.at(-1) !== state.previousGuess ? (
-            <Col xs={6} sm={4} lg={2}>
-              Guessed:
-              <br />
-              <PokeButton
-                key={`prev-guess-${state.previousGuess}`}
-                name={state.previousGuess}
-                sprite={
-                  settings.disableAnimations
-                    ? state.preloadedMon[state.previousGuess]
-                        ?.staticDisplaySprite
-                    : state.preloadedMon[state.previousGuess]?.displaySprite
-                }
-                outlineType={OUTLINE_TYPE.RED}
-                onClick={() => {
-                  setShowViz(false);
-                  playCryForMon(
-                    state.preloadedMon[state.previousGuess],
-                    vizInitializedRef,
-                    canvasRef,
-                    settings.preferLegacyCries
-                  );
-                }}
-              />
-            </Col>
-          ) : null}
+            state.previousMon.at(-1) !== state.previousGuess && (
+              <Col xs={6} sm={4} lg={2}>
+                Guessed:
+                <br />
+                <PokeButton
+                  key={`prev-guess-${state.previousGuess}`}
+                  name={state.previousGuess}
+                  sprite={
+                    settings.disableAnimations
+                      ? state.preloadedMon[state.previousGuess]
+                          ?.staticDisplaySprite
+                      : state.preloadedMon[state.previousGuess]?.displaySprite
+                  }
+                  outlineType={OUTLINE_TYPE.RED}
+                  onClick={() => {
+                    setShowViz(false);
+                    playCryForMon(
+                      state.preloadedMon[state.previousGuess],
+                      vizInitializedRef,
+                      canvasRef,
+                      settings.preferLegacyCries
+                    );
+                  }}
+                />
+              </Col>
+            )}
         </Row>
-        {state.isGameComplete ? (
+        {state.isGameComplete && (
           <Row className="justify-content-center">
             <Col className="col-md-8">
               <div
@@ -768,7 +768,7 @@ function Challenge() {
               </div>
             </Col>
           </Row>
-        ) : null}
+        )}
       </div>
     );
   };
@@ -990,7 +990,7 @@ function Challenge() {
         </Col>
       </Row>
       <Col className="justify-content-center mb-2">
-        {state.streak > 0 && progress < 100 ? `🔥 ${state.streak}` : null}
+        {state.streak > 0 && progress < 100 && `🔥 ${state.streak}`}
       </Col>
       {resultsPanel()}
     </span>

@@ -194,9 +194,9 @@ function ChallengePanel() {
             onClick={() => onStart()}
           >
             Challenge{" "}
-            {pokeLoadingGen !== null ? (
+            {pokeLoadingGen !== null && (
               <Spinner animation="border" size="sm" />
-            ) : null}
+            )}
           </Button>
         </Col>
       </Row>

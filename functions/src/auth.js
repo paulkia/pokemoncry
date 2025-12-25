@@ -4,6 +4,9 @@ import { FieldValue } from "firebase-admin/firestore";
 import { auth as authTrigger } from "firebase-functions/v1";
 import { db } from "./firebase.js";
 
+const MIN_USERNAME_LENGTH = 3;
+const MAX_USERNAME_LENGTH = 20;
+
 export const claimUsername = onCall(async (request) => {
   if (!request.auth) {
     throw new HttpsError(
@@ -16,29 +19,35 @@ export const claimUsername = onCall(async (request) => {
   const uid = request.auth.uid;
   const newUsername = request.data.username.toLowerCase().trim();
 
-  if (
-    !newUsername ||
-    newUsername.length < 3 ||
-    newUsername.length > 20 ||
-    !/^[a-z0-9_]+$/.test(newUsername)
-  ) {
+  if (!newUsername || !/^[a-z0-9_]{3,20}$/.test(newUsername)) {
     throw new HttpsError(
       "invalid-argument",
-      "Username must be between 3-20 characters long, alphanumeric, and can include underscores."
+      `Username must be between ${MIN_USERNAME_LENGTH}-` +
+        `${MAX_USERNAME_LENGTH} characters long, alphanumeric, and can include underscores.`
     );
   }
 
-  const userDocRef = db.collection("protected-users").doc(uid);
-  const usernameSentinelDocRef = db.collection("usernames").doc(newUsername);
-
   try {
     await db.runTransaction(async (transaction) => {
-      const currentUserDoc = await transaction.get(userDocRef);
+      // Get user's doc.
+      const currentUserDoc = await transaction.get(
+        db.collection("protected-users").doc(uid)
+      );
+
+      // Fetch old username.
       const oldUsername = currentUserDoc.exists
         ? currentUserDoc.data()?.username
         : null;
 
-      const usernameSentinelDoc = await transaction.get(usernameSentinelDocRef);
+      // Get sentinel docs.
+      const usernameSentinelDoc = await transaction.get(
+        db.collection("usernames").doc(newUsername)
+      );
+
+      // Get leaderboard for user.
+      const runsQuery = await transaction.get(
+        db.collection("public-runs").where("uid", "==", uid)
+      );
 
       if (
         usernameSentinelDoc.exists &&
@@ -50,18 +59,21 @@ export const claimUsername = onCall(async (request) => {
         );
       }
 
+      // SENTINEL DOC: USERNAME CLAIM / usernames
       if (oldUsername && oldUsername !== newUsername) {
         const oldUsernameSentinelRef = db
           .collection("usernames")
           .doc(oldUsername);
         transaction.delete(oldUsernameSentinelRef);
       }
-      transaction.set(usernameSentinelDocRef, {
+      transaction.set(usernameSentinelDoc.ref, {
         uid,
         timestamp: FieldValue.serverTimestamp(),
       });
+
+      // USER PROFILE: UID -> USERNAME UPDATE / protected-users
       transaction.set(
-        userDocRef,
+        currentUserDoc.ref,
         {
           uid: uid,
           username: newUsername,
@@ -70,12 +82,7 @@ export const claimUsername = onCall(async (request) => {
         { merge: true }
       );
 
-      // Update leaderboard runs within the same transaction
-      const runsQuery = await db
-        .collection("public-runs")
-        .where("uid", "==", uid)
-        .get();
-
+      // RUNS: UID -> RUNS(USERNAME) UPDATE / public-runs
       if (!runsQuery.empty) {
         runsQuery.docs.forEach((doc) => {
           transaction.update(doc.ref, { username: newUsername });
@@ -88,6 +95,9 @@ export const claimUsername = onCall(async (request) => {
     };
   } catch (error) {
     logger.error("Error claiming username:", error);
+    if (error.code === "already-exists") {
+      throw error;
+    }
     throw new HttpsError(
       "internal",
       "An unexpected error occurred while claiming the username.",
