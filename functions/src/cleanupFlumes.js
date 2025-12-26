@@ -1,6 +1,7 @@
 import { onSchedule } from "firebase-functions/v2/scheduler";
 import { logger } from "firebase-functions";
 import { db, auth } from "./firebase.js";
+import { Timestamp } from "firebase-admin/firestore";
 
 // Uncomment later. currently using small interval for debugging
 const DAILY = "every 1 hours"; // "every 24 hours";
@@ -8,7 +9,9 @@ const FREQUENT = "every 1 hours"; // "every 6 hours";
 
 const OLD_ANONYMOUS_USER_THRESHOLD_HOURS = 6;
 const OLD_ANONYMOUS_RUN_THRESHOLD_HOURS = 12;
-const OLD_SESSION_THRESHOLD_HOURS = 48;
+const OLD_SESSION_THRESHOLD_HOURS = 2;
+
+const MAX_BATCH_SIZE = 499; // Using 499 to be safe, as the max is 500 batched writes.
 
 /**
  * Deletes anonymous users who last signed in more than 6 hours ago.
@@ -94,7 +97,7 @@ export const deleteOldAnonymousRuns = onSchedule(
       const runsQuery = db
         .collection("public-runs")
         .where("username", "==", "Anonymous")
-        .where("createdAt", "<", new Date(expiredRunTime));
+        .where("createdAt", "<", Timestamp.fromMillis(expiredRunTime));
 
       const runsSnapshot = await runsQuery.get();
 
@@ -129,7 +132,8 @@ export const deleteOldSessions = onSchedule(
     try {
       const sessionsQuery = db
         .collection("sessions")
-        .where("startedAt", "<", new Date(expiredSessionTime));
+        .where("startedAt", "<", Timestamp.fromMillis(expiredSessionTime))
+        .limit(MAX_BATCH_SIZE);
       const sessionsSnapshot = await sessionsQuery.get();
 
       if (sessionsSnapshot.empty) {
@@ -141,7 +145,7 @@ export const deleteOldSessions = onSchedule(
       const batch = db.batch();
 
       sessionsSnapshot.docs.forEach((doc) => {
-        db.collection("protected-sessions").doc(doc.id).delete();
+        batch.delete(db.collection("protected-sessions").doc(doc.id));
         batch.delete(doc.ref);
         deleteCount++;
       });
@@ -164,7 +168,6 @@ export const deleteOldSessions = onSchedule(
 async function deleteRunsForZombieUser(zombieUid) {
   let totalDeleted = 0;
   let keepDeleting = true;
-  const batchSize = 499; // Using 499 to be safe, as the max is 500 batched writes.
 
   while (keepDeleting) {
     // Query for a batch of documents where 'uid' matches the zombieUid
@@ -172,7 +175,7 @@ async function deleteRunsForZombieUser(zombieUid) {
     const runsQuery = db
       .collection("public-runs")
       .where("uid", "==", zombieUid)
-      .limit(batchSize);
+      .limit(MAX_BATCH_SIZE);
 
     const runsSnapshot = await runsQuery.get();
 
@@ -196,7 +199,7 @@ async function deleteRunsForZombieUser(zombieUid) {
 
     // If the number of documents retrieved is less than the limit,
     // it means we reached the end of the matching documents.
-    if (runsSnapshot.size < batchSize) {
+    if (runsSnapshot.size < MAX_BATCH_SIZE) {
       keepDeleting = false;
     }
 
