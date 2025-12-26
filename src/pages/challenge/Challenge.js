@@ -1,6 +1,6 @@
 import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import {
   OverlayTrigger,
   Tooltip,
@@ -276,6 +276,7 @@ function Challenge() {
   );
 
   const [currState, setCurrState] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   if (!navigator.userActivation.hasBeenActive || selectedGenerationId === -1) {
     navigate(ROUTER_UTIL.HOME);
@@ -366,8 +367,10 @@ function Challenge() {
             unsubscribe();
             return;
           }
-          const { previousCorrect, nextMonCryData } = docSnapshot.data();
-          if (previousCorrect !== undefined) {
+          const { nextMonCryData, error } = docSnapshot.data();
+          if (error) {
+            setErrorMsg(error);
+            return;
           }
           if (!nextMonCryData) {
             return;
@@ -966,7 +969,19 @@ function Challenge() {
               </Row>
             </div>
           )}
-          {loadingMessage && (
+          {errorMsg && (
+            <div className="alert alert-danger mt-3 mb-0" role="alert">
+              {`Error: ${errorMsg}`}
+              <div>
+                Please{" "}
+                <Link to="https://forms.gle/qmr1XUVMJFc2JDfo7" target="_blank">
+                  file a bug
+                </Link>
+                .
+              </div>
+            </div>
+          )}
+          {!errorMsg && loadingMessage && (
             <div
               className="rounded"
               style={{

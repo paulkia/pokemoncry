@@ -1,7 +1,6 @@
 import { onSchedule } from "firebase-functions/v2/scheduler";
 import { logger } from "firebase-functions";
 import { db, auth } from "./firebase.js";
-import { Filter } from "firebase-admin/firestore";
 
 // Uncomment later. currently using small interval for debugging
 const DAILY = "every 1 hours"; // "every 24 hours";

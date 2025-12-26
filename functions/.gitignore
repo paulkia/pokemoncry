@@ -10,8 +10,10 @@ node_modules/
 *.local
 
 # Firebase junk
-.*firebase-export.*
-.*-debug\.log
+*firebase-export*
+*-debug.log*
 
 # Emulator files
 cries/
+
+

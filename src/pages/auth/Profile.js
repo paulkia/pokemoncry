@@ -80,14 +80,16 @@ function Profile() {
         await user.delete();
         // Cloud function to delete user data auth trigger called.
         // Nothing more to do here.
+
+        navigate(ROUTER_UTIL.HOME);
       } catch (authErr) {
         // Deletion may fail if re-auth is required
         console.error("Firebase auth user deletion failed", authErr);
+        setError(authErr);
       }
     } else {
       console.error("No authenticated user to delete");
     }
-    navigate(ROUTER_UTIL.HOME);
   };
 
   useEffect(() => {
@@ -132,7 +134,7 @@ function Profile() {
                 <h3>Profile</h3>
               </Card.Header>
               <Card.Body className="p-4">
-                <Card.Title>Username</Card.Title>
+                <Card.Title>Display Name</Card.Title>
                 {authUsername !== null ? (
                   newUsername !== null ? (
                     <span
@@ -187,13 +189,17 @@ function Profile() {
                             }
                             setLoading(false);
                           }}
+                          style={{
+                            borderTopRightRadius: "5px",
+                            borderBottomRightRadius: "5px",
+                          }}
                         >
                           Confirm
                         </Button>
                       </InputGroup>
                       <Form.Text className="text-muted">
                         3-20 chars. Letters, numbers, underscore only. WARNING:
-                        usernames are PUBLIC.
+                        usernames are PUBLIC to other players.
                       </Form.Text>
                     </span>
                   ) : (

@@ -26,7 +26,7 @@ function AppFooter({ disableBuyMeACoffee = false }) {
             variant="outline-secondary"
             onClick={() => navigate(ROUTER_UTIL.PRIVACY_POLICY)}
           >
-            Privacy Policy
+            <i class="bi bi-heart-fill" /> Privacy Policy
           </Button>
         </>
       )}
@@ -38,7 +38,7 @@ function AppFooter({ disableBuyMeACoffee = false }) {
             variant="outline-secondary"
             onClick={() => navigate(ROUTER_UTIL.TOS)}
           >
-            Terms of Service
+            <i class="bi bi-book-half" /> Terms of Service
           </Button>
         </>
       )}
@@ -48,7 +48,7 @@ function AppFooter({ disableBuyMeACoffee = false }) {
         href="https://forms.gle/qmr1XUVMJFc2JDfo7"
         target="_blank"
       >
-        File Bug <i class="bi bi-bug-fill" />
+        <i class="bi bi-bug-fill" /> File Bug
       </Button>
     </footer>
   );

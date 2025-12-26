@@ -11,7 +11,15 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth, usePoke } from "../AppContext";
-import { Card, Row, Col, Button } from "react-bootstrap";
+import {
+  Card,
+  Row,
+  Col,
+  Button,
+  OverlayTrigger,
+  Tooltip,
+  InputGroup,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const disabledUsername = "Anonymous";
@@ -20,6 +28,9 @@ const GLOBAL_LIMIT = 5;
 const NEARBY_LIMIT = 3;
 
 const BASE_COLLECTION = "public-runs";
+
+const LEGACY_DISPLAY = " • Legacy 👑";
+const LATEST_DISPLAY = " • Latest 💎";
 
 export const fetchMyBest = async ({ uid, mode, gen }) => {
   const q = query(
@@ -165,6 +176,7 @@ function Leaderboard() {
     if (!myBestQuery.data) {
       return null;
     }
+    console.log(myBestQuery.data);
 
     // If the player is part of the global top 10, return precise correct ranking.
     if (playerScore && globalQuery?.data?.length) {
@@ -178,7 +190,7 @@ function Leaderboard() {
     }
 
     const cachedRank = myBestQuery.data.globalRank;
-    const lastUpdated = myBestQuery.data.rankUpdatedAt;
+    let lastUpdated = myBestQuery.data.rankUpdatedAt;
 
     // If the player is not in the top 10, and already has an assigned ranking, use that.
     if (cachedRank) {
@@ -193,12 +205,14 @@ function Leaderboard() {
     // If the user has a brand new score that hasn't been ranked yet, we can guess
     // their rank based on the nearby list.
 
+    console.log(nearbyQuery.data);
     if (nearbyQuery.data?.aboveReverseOrder?.length > 0) {
-      // If the person directly above me is Rank 40, I am likely Rank 41.
+      // If the person directly above me is Rank 40, I am likely Rank 41.)
       const closestBetterPlayer =
         nearbyQuery.data.aboveReverseOrder[
           nearbyQuery.data.aboveReverseOrder.length - 1
         ];
+      lastUpdated = closestBetterPlayer.rankUpdatedAt;
       if (closestBetterPlayer.globalRank) {
         return {
           cachedRank: closestBetterPlayer.globalRank + 1,
@@ -209,8 +223,25 @@ function Leaderboard() {
       }
     }
 
-    return ["unknown", "unknown"];
+    return {
+      cachedRank: null,
+      lastUpdated: null,
+    };
   }, [myBestQuery.data, nearbyQuery.data, playerScore, globalQuery.data]);
+
+  const soundSettingDisplay = (useLegacyCries) => {
+    return (
+      useLegacyCries !== undefined && (
+        <span
+          style={{
+            color: "#666",
+          }}
+        >
+          {useLegacyCries ? LEGACY_DISPLAY : LATEST_DISPLAY}
+        </span>
+      )
+    );
+  };
 
   // Styled UI
   return (
@@ -293,12 +324,13 @@ function Leaderboard() {
                         <div style={styles.myScoreWrap}>
                           <div>
                             <span style={styles.rankBadge}>
-                              {displayRank
+                              {displayRank.cachedRank
                                 ? `Top ${displayRank.cachedRank} worldwide`
-                                : "Unranked"}
+                                : `Processing global rank, please visit later.`}
                             </span>
                             <span style={styles.listMeta}>
-                              {` • Updated ${displayRank.lastUpdated}`}
+                              {displayRank.lastUpdated &&
+                                ` • Updated ${displayRank.lastUpdated}`}
                             </span>
                           </div>
 
@@ -339,6 +371,15 @@ function Leaderboard() {
                                         <div style={styles.nearbyUser}>
                                           <div style={styles.nearbyName}>
                                             {row.username}
+                                            <span className="text-muted">
+                                              {row.useLegacyCries !==
+                                                undefined &&
+                                                ` • ${
+                                                  row.useLegacyCries
+                                                    ? LEGACY_DISPLAY
+                                                    : LATEST_DISPLAY
+                                                }`}
+                                            </span>
                                           </div>
                                         </div>
                                         <div style={styles.nearbyScore}>
@@ -359,6 +400,23 @@ function Leaderboard() {
                                       <div style={styles.nearbyName}>
                                         {authUsername || "Anonymous"}{" "}
                                         <span style={styles.youBadge}>YOU</span>
+                                        {!authUsername && (
+                                          <OverlayTrigger
+                                            placement="top"
+                                            overlay={
+                                              <Tooltip>
+                                                <div className="App">
+                                                  Log in to publish.
+                                                </div>
+                                              </Tooltip>
+                                            }
+                                          >
+                                            <span>(hidden)</span>
+                                          </OverlayTrigger>
+                                        )}
+                                        {soundSettingDisplay(
+                                          myBestQuery.data.useLegacyCries
+                                        )}
                                       </div>
                                     </div>
                                     <div style={styles.nearbyScore}>
@@ -372,6 +430,9 @@ function Leaderboard() {
                                       <div style={styles.nearbyUser}>
                                         <div style={styles.nearbyName}>
                                           {row.username}
+                                          {soundSettingDisplay(
+                                            row.useLegacyCries
+                                          )}
                                         </div>
                                       </div>
                                       <div style={styles.nearbyScore}>
@@ -421,23 +482,40 @@ function Leaderboard() {
                       ) : (
                         <ol style={styles.list}>
                           {globalQuery.data.map((row, idx) => (
-                            <li key={row.id} style={styles.listItem}>
-                              <span style={styles.listRank}>#{idx + 1}</span>
+                            <li
+                              key={row.id}
+                              style={
+                                row.username === authUsername
+                                  ? {
+                                      ...styles.listItem,
+                                      ...styles.nearbyItemCurrent,
+                                    }
+                                  : styles.listItem
+                              }
+                            >
+                              <span style={styles.listRank}>
+                                {" "}
+                                #{idx + 1} {idx === 0 && "🏆"}
+                                {idx === 1 && <i class="bi bi-trophy" />}
+                                {idx === 2 && <i class="bi bi-trophy-fill" />}
+                                {idx > 2 && <i class="bi bi-stars" />}
+                              </span>
                               <div style={styles.listUser}>
                                 <div style={styles.listName}>
                                   {row.username || "Anonymous"}
+                                  {row.username === authUsername && (
+                                    <span>
+                                      {" "}
+                                      <span style={styles.youBadge}>YOU</span>
+                                    </span>
+                                  )}
                                 </div>
                                 <div style={styles.listMeta}>
                                   {row.gen === 0
                                     ? "All gens"
                                     : `Gen ${row.gen}`}{" "}
                                   • {row.mode === "fast" ? "Fast" : "Full"}
-                                  {row.useLegacyCries !== undefined &&
-                                    ` • ${
-                                      row.useLegacyCries
-                                        ? "Legacy 👑"
-                                        : "Latest 💎"
-                                    }`}
+                                  {soundSettingDisplay(row.useLegacyCries)}
                                 </div>
                               </div>
                               <div style={styles.listScore}>

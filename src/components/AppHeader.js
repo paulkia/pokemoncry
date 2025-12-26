@@ -92,7 +92,7 @@ function AppHeader() {
 
   return (
     <span>
-      <Row>
+      <Row className="mb-4">
         <Col sm={4} xs={12} className="text-center mb-4">
           {![
             ROUTER_UTIL.HOME,

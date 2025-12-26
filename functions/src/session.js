@@ -158,7 +158,7 @@ export const createSession = onCall(async (request) => {
     if (error.code) {
       throw error;
     }
-    console.error("Error starting session:", error);
+    logger.error("Error starting session:", error);
     throw new HttpsError(
       "internal",
       "An unexpected error occurred while starting the session.",
@@ -190,7 +190,14 @@ async function getCryAudioData(monName, useLegacy) {
   try {
     const path = getCryPath(monName, useLegacy);
     const bucket = storage.bucket();
-    const file = bucket.file(path);
+    let file = bucket.file(path);
+
+    const [exists] = await file.exists();
+
+    // If useLegacy preferred but the mon has no legacy, use latest.
+    if (!exists) {
+      file = bucket.file(getCryPath(monName, /*useLegacy=*/ false));
+    }
 
     // Download the file as a buffer
     const [fileBuffer] = await file.download();
@@ -198,7 +205,7 @@ async function getCryAudioData(monName, useLegacy) {
     // Convert to base64 for easy transmission
     return fileBuffer.toString("base64");
   } catch (error) {
-    console.error(`Error downloading cry for ${monName}:`, error);
+    logger.error(`Error downloading cry for ${monName}:`, error);
     throw new HttpsError(
       "internal",
       `Failed to load audio file for ${monName}`
@@ -277,7 +284,7 @@ async function updateLeaderboard(
       await batch.commit();
     }
   } catch (error) {
-    console.error("Error updating leaderboard:", error);
+    logger.error("Error updating leaderboard:", error);
     // Don't throw - leaderboard update failure shouldn't break the game
   }
 }
@@ -501,7 +508,7 @@ export const updateSession = onCall(async (request) => {
     if (error.code) {
       throw error;
     }
-    console.error("Error checking answer:", error);
+    logger.error("Error checking answer:", error);
     throw new HttpsError(
       "internal",
       "An unexpected error occurred while checking the answer.",
@@ -522,12 +529,12 @@ export const revealNextQuestion = onTaskDispatched(async (request) => {
     logger.error("Invalid sessionId in revealNextQuestion", sessionId);
     return;
   }
+  const sessionRef = db.collection("sessions").doc(sessionId);
+  const protectedSessionRef = db
+    .collection("protected-sessions")
+    .doc(sessionId);
 
   try {
-    const sessionRef = db.collection("sessions").doc(sessionId);
-    const protectedSessionRef = db
-      .collection("protected-sessions")
-      .doc(sessionId);
     // 3. Use a transaction to ensure atomicity
     const result = await db.runTransaction(async (transaction) => {
       const sessionDoc = await transaction.get(sessionRef);
@@ -565,6 +572,7 @@ export const revealNextQuestion = onTaskDispatched(async (request) => {
     return result;
   } catch (error) {
     logger.error("Error in revealNextQuestion:", error);
+    await protectedSessionRef.set({ error: error.message });
     return;
   }
 });

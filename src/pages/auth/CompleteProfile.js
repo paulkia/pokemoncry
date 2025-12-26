@@ -116,7 +116,7 @@ function CompleteProfile() {
                   />
                   <Form.Text className="text-muted">
                     3-20 chars. Letters, numbers, underscore only. WARNING:
-                    usernames are PUBLIC.
+                    usernames are PUBLIC to other players.
                   </Form.Text>
                 </div>
               </Form>
@@ -151,7 +151,7 @@ function CompleteProfile() {
                 </Button>
                 <Button
                   variant="primary"
-                  disabled={loading || !agreed}
+                  disabled={loading || !agreed || someUsername.length < 3}
                   onClick={handleConfirm}
                 >
                   Create Account

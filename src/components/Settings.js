@@ -35,10 +35,11 @@ function Settings() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {location.pathname === ROUTER_UTIL.CHALLENGE ? null : (
+            {
               <Form.Check
                 type="checkbox"
                 id="legacy-cries"
+                disabled={location.pathname === ROUTER_UTIL.CHALLENGE}
                 label={
                   <>
                     Prefer legacy cries{" "}
@@ -69,7 +70,7 @@ function Settings() {
                   )
                 }
               />
-            )}
+            }
             <Form.Check
               type="checkbox"
               id="disable-animations"
