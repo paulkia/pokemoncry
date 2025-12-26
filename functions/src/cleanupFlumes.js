@@ -9,7 +9,7 @@ const FREQUENT = "every 1 hours"; // "every 6 hours";
 
 const OLD_ANONYMOUS_USER_THRESHOLD_HOURS = 6;
 const OLD_ANONYMOUS_RUN_THRESHOLD_HOURS = 12;
-const OLD_SESSION_THRESHOLD_HOURS = 2;
+const OLD_SESSION_THRESHOLD_HOURS = 48;
 
 const MAX_BATCH_SIZE = 499; // Using 499 to be safe, as the max is 500 batched writes.
 

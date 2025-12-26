@@ -80,7 +80,6 @@ function Profile() {
         await user.delete();
         // Cloud function to delete user data auth trigger called.
         // Nothing more to do here.
-
         navigate(ROUTER_UTIL.HOME);
       } catch (authErr) {
         // Deletion may fail if re-auth is required
