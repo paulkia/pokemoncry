@@ -2,7 +2,7 @@ import { Col, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { ROUTER_UTIL } from "../../library/util";
-import BuyCoffeeButton from "../../components/BuyCoffeeButton";
+// import BuyCoffeeButton from "../../components/BuyCoffeeButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const genLoadingMessage = {
@@ -79,11 +79,11 @@ function Home() {
           </Button>
         </Col>
       </Row>
-      <Row className="justify-content-center">
+      {/* <Row className="justify-content-center">
         <Col xl={4} md={12} className="text-center">
           <BuyCoffeeButton className="w-100" />
         </Col>
-      </Row>
+      </Row> */}
     </div>
   );
 }

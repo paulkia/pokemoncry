@@ -325,7 +325,9 @@ function Leaderboard() {
                           <div>
                             <span style={styles.rankBadge}>
                               {displayRank.cachedRank
-                                ? `Top ${displayRank.cachedRank} worldwide`
+                                ? displayRank.cachedRank === 1
+                                  ? `Best in the world 👑`
+                                  : `Top ${displayRank.cachedRank} worldwide`
                                 : `Processing global rank, please visit later.`}
                             </span>
                             <span style={styles.listMeta}>
@@ -498,7 +500,6 @@ function Leaderboard() {
                                 #{idx + 1} {idx === 0 && "🏆"}
                                 {idx === 1 && <i class="bi bi-trophy" />}
                                 {idx === 2 && <i class="bi bi-trophy-fill" />}
-                                {idx > 2 && <i class="bi bi-stars" />}
                               </span>
                               <div style={styles.listUser}>
                                 <div style={styles.listName}>

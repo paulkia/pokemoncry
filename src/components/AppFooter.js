@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import BuyCoffeeButton from "./BuyCoffeeButton";
+// import BuyCoffeeButton from "./BuyCoffeeButton";
 import { ROUTER_UTIL } from "../library/util";
 
 function AppFooter({ disableBuyMeACoffee = false }) {
@@ -11,13 +11,12 @@ function AppFooter({ disableBuyMeACoffee = false }) {
   return (
     <footer className="App mt-5">
       <span className="text-muted m-1">v0.2</span>
-      {!disableBuyMeACoffee && (
+      {/* {!disableBuyMeACoffee && (
         <>
           {" • "}
           <BuyCoffeeButton className="m-1" />
         </>
-      )}
-
+      )} */}
       {location.pathname !== ROUTER_UTIL.PRIVACY_POLICY && (
         <>
           {" • "}
