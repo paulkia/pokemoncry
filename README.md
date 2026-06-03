@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# pokemoncry — Game Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Repository:** [github.com/paulkia/pokemoncry](https://github.com/paulkia/pokemoncry)  
+**Author:** paulkia
 
-## Available Scripts
+**Guess the Cry** is a Pokémon audio-guessing game played in the browser. The core mechanic is simple: a Pokémon cry plays, and the player must identify which Pokémon it belongs to. It's a web app inspired by the classic "Who's that Pokémon?" style challenge, but driven entirely by sound rather than a silhouette.
 
-In the project directory, you can run:
+## Game Modes
 
-### `npm start`
+- **Practice Mode** — The player hears a cry and selects the correct Pokémon from a set of answer options (images/names), or short answer if they are able.
+- **Challenge Mode** — Short answer only. This mode is timed, and logged-in players automatically have their best scores saved in the global leaderboard.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Key Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **User Accounts** — Firebase Authentication supports user registration and login. Anonymous sessions are also supported, with anonymous run data merged into a real account upon sign-up.
+- **Leaderboards / Best Runs** — The app tracks best runs per user per game mode.
+- **Scoring** — A point system rewards correct guesses, streaks of correct guesses, and answer speed.
+- **Challenge Filtering** — Players can choose which Pokémon generations to include in their challenge.
 
-### `npm test`
+## Architecture
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
 
-### `npm run build`
+- Built with **React**.
+- Handles game UI, audio playback of Pokémon cries, answer selection, and displaying Pokémon sprites.
+- Communicates with Firebase for auth, data storage, and cloud function calls.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Backend / Database
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Firebase Firestore** — Stores user data, session records, and best run scores. Firestore security rules are defined in `firestore.rules`.
+- **Firebase Cloud Functions** — Server-side logic lives in the `/functions` directory. This handles things like validating game sessions and scoring.
+- **Firebase Hosting** — The React app is deployed and served via Firebase Hosting (`firebase.json`, `.firebaserc`).
+- **Firebase Storage** — used for hosting Pokémon cry audio files.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Data / Assets
 
-### `npm run eject`
+- A **Python script** compiles Pokémon cry audio data and metadata.
+- Pokémon cry audio is played client-side.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Running Locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+[terminal 1]
+# Install dependencies
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Start cloud functions
+firebase emulators:start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[terminal 2]
+# Start the development server
+npm start
+# → App runs at http://localhost:3000
+```
